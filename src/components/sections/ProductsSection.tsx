@@ -5,8 +5,6 @@ import { useTranslation } from 'react-i18next';
 
 const ProductsSection: React.FC = () => {
   const { t } = useTranslation('products');
-  
-  const [activeTab, setActiveTab] = useState<'individual' | 'bundle'>('bundle');
 
   // Tier 1 Product (Featured)
   const aiPostMaster = {
@@ -38,7 +36,7 @@ const ProductsSection: React.FC = () => {
       icon: <Users className="w-8 h-8" />,
       price: "от 2,000₽/мес",
       status: "coming", // available, coming, research
-      statusText: "🟡 Coming Q2 2025"
+      statusText: "🟡 Coming Q1 2026"
     },
     {
       id: "booking-bot",
@@ -48,7 +46,7 @@ const ProductsSection: React.FC = () => {
       icon: <Calendar className="w-8 h-8" />,
       price: "от 2,500₽/мес",
       status: "coming", // available, coming, research
-      statusText: "🟡 Coming Q3 2025"
+      statusText: "🟡 Coming Q2 2026"
     },
     {
       id: "feedback-bot",
@@ -58,7 +56,7 @@ const ProductsSection: React.FC = () => {
       icon: <Star className="w-8 h-8" />,
       price: "от 1,500₽/мес",
       status: "coming", // available, coming, research
-      statusText: "🟡 Coming Q4 2025"
+      statusText: "🟡 Coming Q2 2026"
     },
     {
       id: "video-inventory",
@@ -68,69 +66,11 @@ const ProductsSection: React.FC = () => {
       icon: <Video className="w-8 h-8" />,
       price: "от 3,000₽/мес",
       status: "research", // available, coming, research
-      statusText: "🔴 R&D, 2026"
+      statusText: "🔴 R&D, Q3 2026"
     }
   ];
 
-  // Tier 3 Packages
-  const packages = [
-    {
-      id: "restaurant-suite",
-      name: "Restaurant Suite 🍽️",
-      tagline: "Полная автоматизация для ресторанов",
-      icon: <ChefHat className="w-8 h-8" />,
-      products: ["AI PostMaster", "Booking Bot", "Feedback Bot", "Video Inventory"],
-      priceOriginal: 11500,
-      priceBundle: 9900,
-      savings: 1600,
-      savingsPercent: 14,
-      bonuses: ["Menu Management", "Table Optimization", "Food Waste Tracking"],
-      targetAudience: "Рестораны, кафе, кофейни (10-100 мест)",
-      badge: null
-    },
-    {
-      id: "beauty-suite",
-      name: "Beauty & Wellness Suite 💇",
-      tagline: "Все для салонов красоты и барбершопов",
-      icon: <Scissors className="w-8 h-8" />,
-      products: ["AI PostMaster", "Booking Bot", "Feedback Bot", "Conversation Bot"],
-      priceOriginal: 11500,
-      priceBundle: 9500,
-      savings: 2000,
-      savingsPercent: 17,
-      bonuses: ["Stylist Profiles", "Service Upselling", "Loyalty Program"],
-      targetAudience: "Салоны красоты, барбершопы (2-10 специалистов)",
-      badge: "BEST VALUE"
-    },
-    {
-      id: "fitness-suite",
-      name: "Fitness Suite 🏋️",
-      tagline: "Решение для фитнес-студий и залов",
-      icon: <Dumbbell className="w-8 h-8" />,
-      products: ["AI PostMaster", "Booking Bot", "Feedback Bot", "Conversation Bot"],
-      priceOriginal: 11500,
-      priceBundle: 9900,
-      savings: 1600,
-      savingsPercent: 14,
-      bonuses: ["Class Capacity Management", "Membership Renewals", "Progress Tracking"],
-      targetAudience: "Спортзалы, йога-студии (50-500 членов)",
-      badge: null
-    },
-    {
-      id: "retail-suite",
-      name: "Retail Suite 🛍️",
-      tagline: "Решение для розничных магазинов",
-      icon: <ShoppingBag className="w-8 h-8" />,
-      products: ["AI PostMaster", "Conversation Bot", "Feedback Bot", "Video Inventory"],
-      priceOriginal: 10500,
-      priceBundle: 8900,
-      savings: 1600,
-      savingsPercent: 15,
-      bonuses: ["Product Catalog", "Order Processing", "Loyalty Points"],
-      targetAudience: "Бутики, магазины электроники (100-10K SKU)",
-      badge: null
-    }
-  ];
+
 
   return (
     <section id="products" className="py-20 bg-gradient-to-b from-bg-primary to-bg-secondary">

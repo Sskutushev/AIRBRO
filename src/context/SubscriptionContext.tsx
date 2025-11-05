@@ -18,7 +18,7 @@ interface SubscriptionContextType {
   loading: boolean;
   fetchUserSubscription: () => Promise<void>;
   fetchPaymentMethods: () => Promise<void>;
-  subscribeToPlan: (planId: string, paymentMethod: string) => Promise<UserSubscription>;
+  subscribeToPlan: (planId: string) => Promise<UserSubscription>;
   cancelCurrentSubscription: () => Promise<UserSubscription>;
   updateCurrentSubscription: (newPlanId: string) => Promise<UserSubscription>;
 }
@@ -73,11 +73,11 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({ chil
     }
   };
 
-  const subscribeToPlan = async (planId: string, paymentMethod: string): Promise<UserSubscription> => {
+  const subscribeToPlan = async (planId: string): Promise<UserSubscription> => {
     if (!user) throw new Error('User not authenticated');
     
     try {
-      const subscription = await createSubscription(user.id, planId, paymentMethod);
+      const subscription = await createSubscription(user.id, planId);
       setUserSubscription(subscription);
       return subscription;
     } catch (error) {

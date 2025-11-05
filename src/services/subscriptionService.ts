@@ -138,7 +138,7 @@ export const cancelSubscription = async (subscriptionId: string): Promise<UserSu
 
       const subscription: UserSubscription = JSON.parse(storedSub);
       // Просто меняем статус на cancelled
-      const cancelledSubscription = {
+      const cancelledSubscription: UserSubscription = {
         ...subscription,
         status: 'cancelled'
       };
@@ -186,7 +186,7 @@ export const updateSubscription = async (subscriptionId: string, newPlanId: stri
 };
 
 // Моковая функция для получения истории платежей
-export const getPaymentHistory = async (userId: string) => {
+export const getPaymentHistory = async () => {
   return new Promise((resolve) => {
     setTimeout(() => {
       // В реальном приложении этот вызов будет к API

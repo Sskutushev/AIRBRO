@@ -6,7 +6,7 @@ import { useTheme } from '../../context/ThemeContext';
 
 
 const Footer: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const { theme, toggleTheme } = useTheme();
 
   const changeLanguage = (lng: string) => {

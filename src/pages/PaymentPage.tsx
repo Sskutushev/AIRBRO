@@ -58,7 +58,7 @@ const PaymentPage: React.FC = () => {
 
           if (confirmResult.success) {
             // Subscribe user to the plan
-            await subscribeToPlan(plan.id, 'card');
+            await subscribeToPlan(plan.id);
             setPaymentResult(confirmResult);
           } else {
             setPaymentResult(confirmResult);

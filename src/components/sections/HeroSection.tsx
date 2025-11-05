@@ -4,8 +4,11 @@ import { useTranslation } from 'react-i18next';
 import Button from '../common/Button';
 import CountUp from '../common/CountUp';
 
+import { useTheme } from '../../context/ThemeContext';
+
 const HeroSection: React.FC = () => {
   const { t } = useTranslation('hero');
+  const { theme } = useTheme();
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-bg-primary to-bg-secondary pt-20">
@@ -22,14 +25,7 @@ const HeroSection: React.FC = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12">
           {/* Left content */}
           <div className="w-full lg:w-1/2 text-center lg:text-left">
-            <motion.div
-              className="inline-block bg-primary-telegram/10 text-primary-telegram text-sm font-medium px-4 py-2 rounded-full mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              🚀 Новинка: AI PostMaster теперь с Imagen 4
-            </motion.div>
+
             
             <motion.h1 
               className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 gradient-text"
@@ -56,7 +52,7 @@ const HeroSection: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <Button 
-                variant="cta" 
+                variant="gradient-primary" 
                 size="xl" 
                 className="text-lg px-8 py-4"
                 glow={true}
@@ -109,17 +105,19 @@ const HeroSection: React.FC = () => {
           {/* Right content - 3D Visual */}
           <div className="w-full lg:w-1/2 flex justify-center mt-8 lg:mt-0">
             <motion.div
-              className="relative w-[300px] h-[300px] sm:w-[350px] sm:h-[350px] md:w-[400px] md:h-[400px] lg:w-[450px] lg:h-[450px]"
+              className="relative w-[320px] h-[320px] sm:w-[370px] sm:h-[370px] md:w-[420px] md:h-[420px] lg:w-[470px] lg:h-[470px]"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              {/* Placeholder for 3D Hero Object */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-full h-full rounded-2xl bg-gradient-to-br from-primary-telegram to-primary-neon flex items-center justify-center">
-                  <div className="text-white text-6xl animate-pulse">🤖</div>
-                </div>
-              </div>
+              <video
+                src={theme === 'dark' ? '/images/Hero.mp4' : '/images/HeroWhite.mp4'}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover rounded-2xl relative z-10"
+              />
               
               {/* Floating particles */}
               {[...Array(5)].map((_, i) => (

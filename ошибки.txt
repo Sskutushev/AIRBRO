@@ -1,70 +1,46 @@
-22:33:16.273 Running build in Washington, D.C., USA (East) – iad1
-22:33:16.274 Build machine configuration: 2 cores, 8 GB
-22:33:16.451 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: 72a0ad9)
-22:33:16.451 Previous build caches not available.
-22:33:16.751 Cloning completed: 300.000ms
-22:33:17.078 Running "vercel build"
-22:33:17.451 Vercel CLI 48.8.2
-22:33:18.185 Installing dependencies...
-22:33:20.255 npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
-22:33:20.409 npm warn deprecated npmlog@5.0.1: This package is no longer supported.
-22:33:20.673 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
-22:33:20.909 npm warn deprecated gauge@3.0.2: This package is no longer supported.
-22:33:21.184 npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.
-22:33:21.868 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-22:33:21.915 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-22:33:24.576 
-22:33:24.577 added 419 packages in 6s
-22:33:24.578 
-22:33:24.578 80 packages are looking for funding
-22:33:24.578   run `npm fund` for details
-22:33:24.625 Running "npm run build"
-22:33:24.749 
-22:33:24.750 > airbro-business-landing@1.0.0 build
-22:33:24.750 > tsc -b && vite build
-22:33:24.750 
-22:33:29.332 src/components/common/Button.tsx(1,17): error TS1484: 'ButtonHTMLAttributes' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
-22:33:29.333 src/components/common/Button.tsx(1,39): error TS1484: 'DetailedHTMLProps' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
-22:33:29.333 src/components/common/Button.tsx(50,6): error TS2322: Type '{ children: (ReactNode | Element)[]; ref?: Ref<HTMLButtonElement> | undefined; key?: Key | null | undefined; disabled: boolean; form?: string | undefined; ... 286 more ...; whileTap: {} | { ...; }; }' is not assignable to type 'Omit<HTMLMotionProps<"button">, "ref">'.
-22:33:29.334   Types of property 'onDrag' are incompatible.
-22:33:29.334     Type 'DragEventHandler<HTMLButtonElement> | undefined' is not assignable to type '((event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => void) | undefined'.
-22:33:29.334       Type 'DragEventHandler<HTMLButtonElement>' is not assignable to type '(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => void'.
-22:33:29.334         Types of parameters 'event' and 'event' are incompatible.
-22:33:29.335           Type 'MouseEvent | TouchEvent | PointerEvent' is not assignable to type 'DragEvent<HTMLButtonElement>'.
-22:33:29.335             Type 'MouseEvent' is missing the following properties from type 'DragEvent<HTMLButtonElement>': dataTransfer, nativeEvent, isDefaultPrevented, isPropagationStopped, persist
-22:33:29.335 src/components/sections/CTASection.tsx(10,9): error TS6133: 't' is declared but its value is never read.
-22:33:29.335 src/components/sections/FAQSection.tsx(3,38): error TS6133: 'Users' is declared but its value is never read.
-22:33:29.336 src/components/sections/FAQSection.tsx(3,45): error TS6133: 'CreditCard' is declared but its value is never read.
-22:33:29.336 src/components/sections/FAQSection.tsx(3,57): error TS6133: 'Shield' is declared but its value is never read.
-22:33:29.336 src/components/sections/FAQSection.tsx(104,25): error TS6133: 'e' is declared but its value is never read.
-22:33:29.337 src/components/sections/Footer.tsx(2,1): error TS6133: 'motion' is declared but its value is never read.
-22:33:29.337 src/components/sections/Footer.tsx(3,34): error TS6133: 'Menu' is declared but its value is never read.
-22:33:29.339 src/components/sections/Footer.tsx(3,40): error TS6133: 'X' is declared but its value is never read.
-22:33:29.339 src/components/sections/Footer.tsx(6,1): error TS6133: 'Link' is declared but its value is never read.
-22:33:29.340 src/components/sections/Footer.tsx(11,10): error TS6133: 'isMobileMenuOpen' is declared but its value is never read.
-22:33:29.340 src/components/sections/Footer.tsx(11,28): error TS6133: 'setIsMobileMenuOpen' is declared but its value is never read.
-22:33:29.340 src/components/sections/Footer.tsx(18,9): error TS6133: 'quickLinks' is declared but its value is never read.
-22:33:29.340 src/components/sections/Header.tsx(58,18): error TS2591: Cannot find name 'require'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
-22:33:29.340 src/components/sections/HeroSection.tsx(59,17): error TS2322: Type '"cta"' is not assignable to type 'ButtonVariant | undefined'.
-22:33:29.340 src/components/sections/RoadmapSection.tsx(211,55): error TS6133: 'idx' is declared but its value is never read.
-22:33:29.340 src/components/sections/SolutionSection.tsx(7,9): error TS6133: 't' is declared but its value is never read.
-22:33:29.340 src/context/AuthContext.tsx(1,44): error TS1484: 'ReactNode' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
-22:33:29.340 src/context/AuthContext.tsx(43,39): error TS6133: 'password' is declared but its value is never read.
-22:33:29.340 src/context/AuthContext.tsx(64,56): error TS6133: 'password' is declared but its value is never read.
-22:33:29.340 src/context/SubscriptionContext.tsx(1,44): error TS1484: 'ReactNode' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
-22:33:29.340 src/context/SubscriptionContext.tsx(4,3): error TS1484: 'UserSubscription' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
-22:33:29.340 src/context/SubscriptionContext.tsx(5,3): error TS1484: 'SubscriptionPlan' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
-22:33:29.340 src/context/SubscriptionContext.tsx(10,3): error TS6133: 'getPaymentHistory' is declared but its value is never read.
-22:33:29.340 src/context/SubscriptionContext.tsx(13,10): error TS1484: 'PaymentMethod' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
-22:33:29.340 src/hooks/useLogin.ts(1,20): error TS6133: 'useEffect' is declared but its value is never read.
-22:33:29.340 src/pages/AccountPage.tsx(3,49): error TS6133: 'Settings' is declared but its value is never read.
-22:33:29.340 src/pages/PaymentPage.tsx(10,3): error TS1484: 'PaymentResult' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
-22:33:29.340 src/pages/PaymentPage.tsx(20,24): error TS6133: 'setSelectedPlan' is declared but its value is never read.
-22:33:29.340 src/services/paymentService.ts(124,61): error TS6133: 'description' is declared but its value is never read.
-22:33:29.340 src/services/subscriptionService.ts(94,74): error TS6133: 'paymentMethod' is declared but its value is never read.
-22:33:29.341 src/services/subscriptionService.ts(149,15): error TS2345: Argument of type '{ status: string; id: string; userId: string; planId: string; startDate: string; endDate: string; nextPaymentDate?: string; amount: number; }' is not assignable to parameter of type 'UserSubscription | PromiseLike<UserSubscription>'.
-22:33:29.341   Type '{ status: string; id: string; userId: string; planId: string; startDate: string; endDate: string; nextPaymentDate?: string; amount: number; }' is not assignable to type 'UserSubscription'.
-22:33:29.341     Types of property 'status' are incompatible.
-22:33:29.341       Type 'string' is not assignable to type '"active" | "inactive" | "trial" | "cancelled"'.
-22:33:29.341 src/services/subscriptionService.ts(189,41): error TS6133: 'userId' is declared but its value is never read.
-22:33:30.050 Error: Command "npm run build" exited with 2
+22:39:50.173 Running build in Washington, D.C., USA (East) – iad1
+22:39:50.173 Build machine configuration: 2 cores, 8 GB
+22:39:50.303 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: 5a3e2ec)
+22:39:50.304 Previous build caches not available.
+22:39:50.678 Cloning completed: 375.000ms
+22:39:51.083 Running "vercel build"
+22:39:51.537 Vercel CLI 48.8.2
+22:39:52.382 Installing dependencies...
+22:39:54.913 npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+22:39:55.168 npm warn deprecated npmlog@5.0.1: This package is no longer supported.
+22:39:55.289 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+22:39:55.659 npm warn deprecated gauge@3.0.2: This package is no longer supported.
+22:39:55.806 npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.
+22:39:56.553 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+22:39:56.594 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+22:39:59.515 
+22:39:59.516 added 419 packages in 7s
+22:39:59.516 
+22:39:59.517 80 packages are looking for funding
+22:39:59.517   run `npm fund` for details
+22:39:59.571 Running "npm run build"
+22:39:59.682 
+22:39:59.683 > airbro-business-landing@1.0.0 build
+22:39:59.683 > tsc -b && vite build
+22:39:59.683 
+22:40:04.497 src/components/common/Button.tsx(50,6): error TS2322: Type '{ children: (ReactNode | Element)[]; ref?: Ref<HTMLButtonElement> | undefined; key?: Key | null | undefined; disabled: boolean; form?: string | undefined; ... 286 more ...; whileTap: {} | { ...; }; }' is not assignable to type 'Omit<HTMLMotionProps<"button">, "ref">'.
+22:40:04.498   Types of property 'onDrag' are incompatible.
+22:40:04.499     Type 'DragEventHandler<HTMLButtonElement> | undefined' is not assignable to type '((event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => void) | undefined'.
+22:40:04.499       Type 'DragEventHandler<HTMLButtonElement>' is not assignable to type '(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => void'.
+22:40:04.499         Types of parameters 'event' and 'event' are incompatible.
+22:40:04.500           Type 'MouseEvent | TouchEvent | PointerEvent' is not assignable to type 'DragEvent<HTMLButtonElement>'.
+22:40:04.500             Type 'MouseEvent' is missing the following properties from type 'DragEvent<HTMLButtonElement>': dataTransfer, nativeEvent, isDefaultPrevented, isPropagationStopped, persist
+22:40:04.501 src/components/sections/CTASection.tsx(17,60): error TS2552: Cannot find name 'SubmissionStatus'. Did you mean 'PermissionStatus'?
+22:40:04.501 src/components/sections/Footer.tsx(9,11): error TS6133: 't' is declared but its value is never read.
+22:40:04.502 src/components/sections/HeroSection.tsx(59,17): error TS2322: Type '"cta"' is not assignable to type 'ButtonVariant | undefined'.
+22:40:04.502 src/components/sections/ProductsSection.tsx(9,10): error TS6133: 'activeTab' is declared but its value is never read.
+22:40:04.502 src/components/sections/ProductsSection.tsx(9,21): error TS6133: 'setActiveTab' is declared but its value is never read.
+22:40:04.503 src/components/sections/ProductsSection.tsx(76,9): error TS6133: 'packages' is declared but its value is never read.
+22:40:04.503 src/context/SubscriptionContext.tsx(80,70): error TS2554: Expected 2 arguments, but got 3.
+22:40:04.504 src/pages/PaymentPage.tsx(71,11): error TS2554: Expected 1 arguments, but got 2.
+22:40:04.505 src/services/subscriptionService.ts(149,15): error TS2345: Argument of type '{ status: string; id: string; userId: string; planId: string; startDate: string; endDate: string; nextPaymentDate?: string; amount: number; }' is not assignable to parameter of type 'UserSubscription | PromiseLike<UserSubscription>'.
+22:40:04.505   Type '{ status: string; id: string; userId: string; planId: string; startDate: string; endDate: string; nextPaymentDate?: string; amount: number; }' is not assignable to type 'UserSubscription'.
+22:40:04.505     Types of property 'status' are incompatible.
+22:40:04.505       Type 'string' is not assignable to type '"active" | "inactive" | "trial" | "cancelled"'.
+22:40:04.506 src/services/subscriptionService.ts(189,41): error TS6133: 'userId' is declared but its value is never read.
+22:40:05.337 Error: Command "npm run build" exited with 2

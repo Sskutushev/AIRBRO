@@ -1,10 +1,9 @@
-import React, { type ButtonHTMLAttributes, type DetailedHTMLProps } from 'react';
-import { motion } from 'framer-motion';
+import { motion, type HTMLMotionProps } from 'framer-motion';
 
-type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'gradient-primary' | 'gradient-cta' | 'white';
+type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'gradient-primary' | 'gradient-cta' | 'white' | 'cta';
 type ButtonSize = 'sm' | 'md' | 'lg' | 'xl';
 
-interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+interface ButtonProps extends HTMLMotionProps<'button'> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   glow?: boolean;
@@ -34,6 +33,7 @@ const Button: React.FC<ButtonProps> = ({
     primary: "bg-gradient-to-r from-primary-telegram to-primary-electric text-white hover:opacity-90",
     'gradient-primary': "bg-gradient-to-r from-primary-telegram to-primary-electric text-white",
     'gradient-cta': "bg-gradient-to-r from-accent-coral to-primary-violet text-white",
+    cta: "bg-gradient-to-r from-accent-coral to-primary-violet text-white",
     secondary: "bg-white text-primary-telegram border border-primary-telegram hover:bg-primary-telegram/10",
     outline: "border border-text-secondary text-text-secondary hover:border-primary-telegram hover:text-primary-telegram",
     ghost: "text-text-secondary hover:bg-bg-secondary",
