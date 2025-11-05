@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, User, Building, MessageSquare, Shield, Clock } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
-
-// Определяем тип для статуса отправки
-type SubmissionStatus = 'idle' | 'loading' | 'success' | 'error';
-
 const CTASection: React.FC = () => {
-  const { t } = useTranslation();
   // Состояние для данных формы
   const [formData, setFormData] = useState({
     name: '',

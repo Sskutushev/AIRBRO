@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { User, CreditCard, TrendingUp, Package, Settings, LogOut } from 'lucide-react';
+import { User, CreditCard, TrendingUp, Package, LogOut } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 

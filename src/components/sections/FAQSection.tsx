@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, MessageCircle, Users, CreditCard, Shield, Phone } from 'lucide-react';
+import { ChevronDown, MessageCircle, Phone } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const FAQSection: React.FC = () => {
@@ -101,7 +101,7 @@ const FAQSection: React.FC = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = () => {
     // В реальном приложении здесь будет фильтрация
   };
 

@@ -7,7 +7,7 @@ import {
   createPaymentIntent, 
   confirmPayment, 
   createTelegramPayment,
-  PaymentResult
+  type PaymentResult
 } from '../services/paymentService';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ const PaymentPage: React.FC = () => {
   const [expiry, setExpiry] = useState('');
   const [cvv, setCvv] = useState('');
   const [name, setName] = useState('');
-  const [selectedPlan, setSelectedPlan] = useState<string>('pro'); // Default to Pro plan
+  const [selectedPlan] = useState<string>('pro'); // Default to Pro plan
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentResult, setPaymentResult] = useState<PaymentResult | null>(null);
   const { user } = useAuth();

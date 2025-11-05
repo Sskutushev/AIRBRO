@@ -167,13 +167,6 @@ const SuccessMetricsSection: React.FC = () => {
           <div className="relative max-w-4xl mx-auto">
             <div className="glass rounded-3xl p-8 border border-border/50">
               <div className="flex flex-col md:flex-row items-center">
-                <div className="md:w-1/3 mb-6 md:mb-0 flex justify-center">
-                  <img 
-                    src={testimonials[currentTestimonial].avatar} 
-                    alt={testimonials[currentTestimonial].name}
-                    className="w-24 h-24 rounded-full object-cover border-4 border-primary-telegram/20"
-                  />
-                </div>
                 <div className="md:w-2/3 md:pl-8">
                   <div className="text-2xl mb-4 text-center md:text-left text-text-secondary italic">
                     "{testimonials[currentTestimonial].quote}"

@@ -121,7 +121,7 @@ export const confirmPayment = async (paymentIntentId: string, paymentMethod: str
   });
 };
 
-export const createTelegramPayment = async (amount: number, description: string): Promise<PaymentResult> => {
+export const createTelegramPayment = async (amount: number): Promise<PaymentResult> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({

@@ -5,9 +5,9 @@ import { CheckCircle, Clock, Calendar, Rocket, Zap } from 'lucide-react';
 const RoadmapSection: React.FC = () => {
   const quarters = [
     {
-      id: "q1-2025",
-      label: "Q1 2025",
-      status: "completed",
+      id: "q4-2025",
+      label: "Q4 2025",
+      status: "in-progress",
       features: [
         {
           id: "apm-v1",
@@ -32,9 +32,9 @@ const RoadmapSection: React.FC = () => {
       ]
     },
     {
-      id: "q2-2025",
-      label: "Q2 2025",
-      status: "in-progress",
+      id: "q1-2026",
+      label: "Q1 2026",
+      status: "planned",
       features: [
         {
           id: "conv-bot-v1",
@@ -59,8 +59,8 @@ const RoadmapSection: React.FC = () => {
       ]
     },
     {
-      id: "q3-2025",
-      label: "Q3 2025",
+      id: "q2-2026",
+      label: "Q2 2026",
       status: "planned",
       features: [
         {
@@ -86,8 +86,8 @@ const RoadmapSection: React.FC = () => {
       ]
     },
     {
-      id: "q4-2025",
-      label: "Q4 2025",
+      id: "q3-2026",
+      label: "Q3 2026",
       status: "future",
       features: [
         {
@@ -113,8 +113,8 @@ const RoadmapSection: React.FC = () => {
       ]
     },
     {
-      id: "2026",
-      label: "2026+",
+      id: "2027",
+      label: "2027+",
       status: "vision",
       features: [
         {
@@ -208,7 +208,7 @@ const RoadmapSection: React.FC = () => {
                     </div>
                     
                     <div className="space-y-4">
-                      {quarter.features.map((feature, idx) => (
+                      {quarter.features.map((feature) => (
                         <div key={feature.id} className="flex items-start p-4 bg-bg-tertiary/50 rounded-xl hover:bg-bg-tertiary transition-colors">
                           <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-4 mt-1 ${getStatusColor(quarter.status)} bg-opacity-20`}>
                             {getStatusIcon(quarter.status)}

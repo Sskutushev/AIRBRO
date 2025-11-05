@@ -91,7 +91,7 @@ export const getUserSubscription = async (userId: string): Promise<UserSubscript
 };
 
 // Моковая функция для оформления подписки
-export const createSubscription = async (userId: string, planId: string, paymentMethod: string): Promise<UserSubscription> => {
+export const createSubscription = async (userId: string, planId: string): Promise<UserSubscription> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const plan = subscriptionPlans.find(p => p.id === planId);

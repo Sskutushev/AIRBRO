@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode, useState, useEffect } from 'react';
+import React, { createContext, useContext, type ReactNode, useState, useEffect } from 'react';
 
 interface User {
   id: string;
@@ -40,7 +40,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setLoading(false);
   }, []);
 
-  const login = async (email: string, password: string) => {
+  const login = async (email: string) => {
     // В реальном приложении здесь будет запрос к API
     // Для демонстрации создадим фиктивного пользователя
     setLoading(true);
@@ -61,7 +61,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setLoading(false);
   };
 
-  const register = async (name: string, email: string, password: string, telegram: string) => {
+  const register = async (name: string, email: string, telegram: string) => {
     setLoading(true);
     
     // Имитация API-запроса

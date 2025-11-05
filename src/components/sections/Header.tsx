@@ -11,7 +11,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('');
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
@@ -55,7 +55,6 @@ const Header = () => {
   };
 
   const changeLanguage = (lng: string) => {
-    const i18n = require('../../i18n/config').default;
     i18n.changeLanguage(lng);
     localStorage.setItem('language', lng);
   };

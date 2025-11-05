@@ -54,7 +54,7 @@ const PricingSection: React.FC = () => {
         "Loyalty Program"
       ],
       target: "Салоны красоты, барбершопы (2-10 специалистов)",
-      badge: "BEST VALUE"
+      badge: null
     },
     {
       id: "fitness-suite",
@@ -247,21 +247,7 @@ const PricingSection: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* FAQ teaser */}
-        <motion.div 
-          className="mt-12 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          <p className="text-text-secondary inline-flex items-center">
-            Вопросы по ценам? 
-            <a href="#faq" className="text-primary-telegram font-medium ml-2 hover:underline">
-              Посмотрите FAQ
-            </a>
-          </p>
-        </motion.div>
+
       </div>
     </section>
   );

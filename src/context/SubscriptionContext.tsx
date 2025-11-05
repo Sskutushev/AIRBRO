@@ -1,16 +1,15 @@
-import React, { createContext, useContext, ReactNode, useState, useEffect } from 'react';
+import React, { createContext, useContext, type ReactNode, useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { 
-  UserSubscription, 
-  SubscriptionPlan, 
+  type UserSubscription, 
+  type SubscriptionPlan, 
   getUserSubscription, 
   createSubscription, 
   cancelSubscription, 
   updateSubscription,
-  getPaymentHistory,
   subscriptionPlans 
 } from '../services/subscriptionService';
-import { PaymentMethod, getSavedPaymentMethods } from '../services/paymentService';
+import { type PaymentMethod, getSavedPaymentMethods } from '../services/paymentService';
 
 interface SubscriptionContextType {
   userSubscription: UserSubscription | null;

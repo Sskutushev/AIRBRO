@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
+import React, { type ButtonHTMLAttributes, type DetailedHTMLProps } from 'react';
 import { motion } from 'framer-motion';
 
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'gradient-primary' | 'gradient-cta' | 'white';

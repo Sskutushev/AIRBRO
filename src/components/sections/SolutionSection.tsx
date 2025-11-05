@@ -1,10 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Check, MessageCircle, Calendar, BarChart3 } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
-
 const SolutionSection: React.FC = () => {
-  const { t } = useTranslation();
 
   const benefits = [
     {

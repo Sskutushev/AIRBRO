@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { User, Mail, Lock, Smartphone, ArrowRight, CheckCircle } from 'lucide-react';
+import { User, Mail, Lock, Smartphone, ArrowRight, CheckCircle, ArrowLeft } from 'lucide-react';
+
+import { Link } from 'react-router-dom';
 
 const AuthPage: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -23,7 +25,10 @@ const AuthPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-bg-primary to-bg-secondary flex items-center justify-center py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-bg-primary to-bg-secondary flex items-center justify-center py-12 px-4 relative">
+      <Link to="/" className="absolute top-8 left-8 text-text-primary bg-white/20 p-2 rounded-full hover:bg-white/30 transition-colors z-10">
+        <ArrowLeft className="w-6 h-6" />
+      </Link>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

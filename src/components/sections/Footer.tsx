@@ -1,28 +1,18 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Globe, Sun, Moon, Menu, X } from 'lucide-react';
+
+import { Mail, Globe, Sun, Moon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../context/ThemeContext';
-import { Link } from 'react-router-dom';
+
 
 const Footer: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { theme, toggleTheme } = useTheme();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
     localStorage.setItem('language', lng);
   };
-
-  const quickLinks = [
-    { text: t('products', { ns: 'common' }), href: '#products' },
-    { text: t('pricing', { ns: 'common' }), href: '#pricing' },
-    { text: t('cases', { ns: 'common' }), href: '#' },
-    { text: 'Блог', href: '#' },
-    { text: 'Документация', href: '#' },
-    { text: 'Roadmap', href: '#roadmap' }
-  ];
 
   const resources = [
     { text: 'База знаний', href: '#' },
