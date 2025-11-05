@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, User, CreditCard } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Menu, X, User, CreditCard, LogOut } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
 import Button from '../common/Button';
+import { useAuth } from '../../context/AuthContext';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('');
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,10 +96,28 @@ const Header = () => {
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
-          <button className="flex items-center text-text-primary hover:text-primary-coral font-medium transition-colors">
-            <User className="w-5 h-5 mr-1" />
-            Войти
-          </button>
+          {user ? (
+            <>
+              <Link to="/account" className="flex items-center text-text-primary hover:text-primary-coral font-medium transition-colors">
+                <User className="w-5 h-5 mr-1" />
+                Личный кабинет
+              </Link>
+              <button 
+                onClick={logout}
+                className="flex items-center text-text-primary hover:text-primary-coral font-medium transition-colors"
+              >
+                <LogOut className="w-5 h-5 mr-1" />
+                Выйти
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/auth" className="flex items-center text-text-primary hover:text-primary-coral font-medium transition-colors">
+                <User className="w-5 h-5 mr-1" />
+                Войти
+              </Link>
+            </>
+          )}
           <Button 
             variant="cta" 
             size="md"
@@ -146,10 +166,37 @@ const Header = () => {
               </button>
             ))}
             <div className="pt-4 border-t border-gray-200 flex flex-col space-y-3">
-              <button className="flex items-center text-text-primary hover:text-primary-coral py-2 text-left">
-                <User className="w-5 h-5 mr-2" />
-                Войти
-              </button>
+              {user ? (
+                <>
+                  <Link 
+                    to="/account" 
+                    className="flex items-center text-text-primary hover:text-primary-coral py-2 text-left"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <User className="w-5 h-5 mr-2" />
+                    Личный кабинет
+                  </Link>
+                  <button 
+                    onClick={() => {
+                      logout();
+                      setIsMenuOpen(false);
+                    }}
+                    className="flex items-center text-text-primary hover:text-primary-coral py-2 text-left"
+                  >
+                    <LogOut className="w-5 h-5 mr-2" />
+                    Выйти
+                  </button>
+                </>
+              ) : (
+                <Link 
+                  to="/auth" 
+                  className="flex items-center text-text-primary hover:text-primary-coral py-2 text-left"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <User className="w-5 h-5 mr-2" />
+                  Войти
+                </Link>
+              )}
               <Button 
                 variant="cta" 
                 size="md" 

@@ -1,8 +1,29 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { User, CreditCard, TrendingUp, Package, Settings, LogOut } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 const AccountPage: React.FC = () => {
+  const { user, logout } = useAuth();
+
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-bg-secondary py-12 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-text-primary mb-4">Доступ запрещен</h1>
+          <p className="text-text-secondary mb-8">Пожалуйста, войдите в свой аккаунт для доступа к личному кабинету</p>
+          <Link 
+            to="/auth" 
+            className="inline-block bg-gradient-to-r from-primary-electric to-primary-violet text-white px-6 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity"
+          >
+            Войти в аккаунт
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-bg-secondary py-12">
       <div className="container mx-auto px-4">
@@ -18,7 +39,7 @@ const AccountPage: React.FC = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <h1 className="text-3xl font-bold">Личный кабинет</h1>
-                  <p className="text-white/80">Добро пожаловать, Иван Иванов</p>
+                  <p className="text-white/80">Добро пожаловать, {user.name}</p>
                 </div>
                 <div className="flex items-center">
                   <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
@@ -61,7 +82,7 @@ const AccountPage: React.FC = () => {
                       </div>
                       <div className="ml-4">
                         <p className="text-text-secondary text-sm">Активные продукты</p>
-                        <p className="text-2xl font-bold text-text-primary">2</p>
+                        <p className="text-2xl font-bold text-text-primary">{user.subscriptions.length}</p>
                       </div>
                     </div>
                   </div>
@@ -85,7 +106,7 @@ const AccountPage: React.FC = () => {
                       </div>
                       <div className="ml-4">
                         <p className="text-text-secondary text-sm">След. платеж</p>
-                        <p className="text-2xl font-bold text-text-primary">3,000 ₽</p>
+                        <p className="text-2xl font-bold text-text-primary">5,000 ₽</p>
                       </div>
                     </div>
                   </div>
@@ -156,6 +177,14 @@ const AccountPage: React.FC = () => {
                   <h2 className="text-lg font-bold text-text-primary mb-4">Платежная информация</h2>
                   <div className="space-y-3">
                     <div className="flex justify-between">
+                      <span className="text-text-secondary">Email</span>
+                      <span className="font-medium">{user.email}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-text-secondary">Telegram</span>
+                      <span className="font-medium">{user.telegram}</span>
+                    </div>
+                    <div className="flex justify-between">
                       <span className="text-text-secondary">Текущий план</span>
                       <span className="font-medium">Starter</span>
                     </div>
@@ -170,6 +199,17 @@ const AccountPage: React.FC = () => {
                   </div>
                   <button className="w-full mt-4 py-2 bg-gradient-to-r from-primary-electric to-primary-violet text-white rounded-lg font-medium">
                     Обновить платежную информацию
+                  </button>
+                </div>
+                
+                {/* Logout */}
+                <div className="bg-white border border-gray-200 rounded-xl p-6">
+                  <button 
+                    onClick={logout}
+                    className="w-full flex items-center justify-center py-3 bg-red-50 text-red-600 rounded-lg font-medium hover:bg-red-100 transition-colors"
+                  >
+                    <LogOut className="w-5 h-5 mr-2" />
+                    Выйти из аккаунта
                   </button>
                 </div>
               </div>

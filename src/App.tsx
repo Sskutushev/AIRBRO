@@ -1,5 +1,7 @@
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { AuthProvider } from './context/AuthContext';
+import { SubscriptionProvider } from './context/SubscriptionContext';
 import Header from './components/sections/Header';
 import HeroSection from './components/sections/HeroSection';
 import ProblemSection from './components/sections/ProblemSection';
@@ -35,31 +37,35 @@ function ScrollToAnchor() {
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={
-            <>
-              <Header />
-              <ScrollToAnchor />
-              <HeroSection />
-              <ProblemSection />
-              <SolutionSection />
-              <ProductsSection />
-              <HowItWorksSection />
-              <PricingSection />
-              <SuccessMetricsSection />
-              <RoadmapSection />
-              <FAQSection />
-              <CTASection />
-            </>
-          } />
-          <Route path="/account" element={<AccountPage />} />
-          <Route path="/payment" element={<PaymentPage />} />
-          <Route path="/auth" element={<AuthPage />} />
-        </Routes>
-      </div>
-    </Router>
+    <AuthProvider>
+      <SubscriptionProvider>
+        <Router>
+          <div className="App">
+            <Routes>
+              <Route path="/" element={
+                <>
+                  <Header />
+                  <ScrollToAnchor />
+                  <HeroSection />
+                  <ProblemSection />
+                  <SolutionSection />
+                  <ProductsSection />
+                  <HowItWorksSection />
+                  <PricingSection />
+                  <SuccessMetricsSection />
+                  <RoadmapSection />
+                  <FAQSection />
+                  <CTASection />
+                </>
+              } />
+              <Route path="/account" element={<AccountPage />} />
+              <Route path="/payment" element={<PaymentPage />} />
+              <Route path="/auth" element={<AuthPage />} />
+            </Routes>
+          </div>
+        </Router>
+      </SubscriptionProvider>
+    </AuthProvider>
   );
 }
 
