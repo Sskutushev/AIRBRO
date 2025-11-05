@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #FAFBFC;
+    --bg-secondary: #F4F6F8;
+    --bg-accent: #FFFFFF;
+    --accent-primary: #FF6B6B;
+    --accent-secondary: #4ECDC4;
+    --accent-tertiary: #FFE66D;
+    --accent-purple: #A78BFA;
+    --accent-blue: #60A5FA;
+    --text-primary: #1A1A2E;
+    --text-secondary: #64748B;
+    --text-muted: #94A3B8;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-coral to-primary-gold text-white font-bold py-3 px-6 rounded-lg hover:opacity-90 transition-all duration-300 shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-primary-coral border border-primary-coral font-medium py-3 px-6 rounded-lg hover:bg-gray-50 transition-all duration-300;
+  }
+  
+  .glass {
+    @apply bg-white bg-opacity-70 backdrop-filter backdrop-blur-lg border border-white border-opacity-30 shadow-lg;
+  }
+  
+  .section-container {
+    @apply py-20 px-4 sm:px-6 lg:px-8;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #FFE66D);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 5s linear infinite;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .glow {
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.4);
+  }
+}
