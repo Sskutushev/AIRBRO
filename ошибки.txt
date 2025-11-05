@@ -1,46 +1,32 @@
-22:39:50.173 Running build in Washington, D.C., USA (East) – iad1
-22:39:50.173 Build machine configuration: 2 cores, 8 GB
-22:39:50.303 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: 5a3e2ec)
-22:39:50.304 Previous build caches not available.
-22:39:50.678 Cloning completed: 375.000ms
-22:39:51.083 Running "vercel build"
-22:39:51.537 Vercel CLI 48.8.2
-22:39:52.382 Installing dependencies...
-22:39:54.913 npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
-22:39:55.168 npm warn deprecated npmlog@5.0.1: This package is no longer supported.
-22:39:55.289 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
-22:39:55.659 npm warn deprecated gauge@3.0.2: This package is no longer supported.
-22:39:55.806 npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.
-22:39:56.553 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-22:39:56.594 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-22:39:59.515 
-22:39:59.516 added 419 packages in 7s
-22:39:59.516 
-22:39:59.517 80 packages are looking for funding
-22:39:59.517   run `npm fund` for details
-22:39:59.571 Running "npm run build"
-22:39:59.682 
-22:39:59.683 > airbro-business-landing@1.0.0 build
-22:39:59.683 > tsc -b && vite build
-22:39:59.683 
-22:40:04.497 src/components/common/Button.tsx(50,6): error TS2322: Type '{ children: (ReactNode | Element)[]; ref?: Ref<HTMLButtonElement> | undefined; key?: Key | null | undefined; disabled: boolean; form?: string | undefined; ... 286 more ...; whileTap: {} | { ...; }; }' is not assignable to type 'Omit<HTMLMotionProps<"button">, "ref">'.
-22:40:04.498   Types of property 'onDrag' are incompatible.
-22:40:04.499     Type 'DragEventHandler<HTMLButtonElement> | undefined' is not assignable to type '((event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => void) | undefined'.
-22:40:04.499       Type 'DragEventHandler<HTMLButtonElement>' is not assignable to type '(event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => void'.
-22:40:04.499         Types of parameters 'event' and 'event' are incompatible.
-22:40:04.500           Type 'MouseEvent | TouchEvent | PointerEvent' is not assignable to type 'DragEvent<HTMLButtonElement>'.
-22:40:04.500             Type 'MouseEvent' is missing the following properties from type 'DragEvent<HTMLButtonElement>': dataTransfer, nativeEvent, isDefaultPrevented, isPropagationStopped, persist
-22:40:04.501 src/components/sections/CTASection.tsx(17,60): error TS2552: Cannot find name 'SubmissionStatus'. Did you mean 'PermissionStatus'?
-22:40:04.501 src/components/sections/Footer.tsx(9,11): error TS6133: 't' is declared but its value is never read.
-22:40:04.502 src/components/sections/HeroSection.tsx(59,17): error TS2322: Type '"cta"' is not assignable to type 'ButtonVariant | undefined'.
-22:40:04.502 src/components/sections/ProductsSection.tsx(9,10): error TS6133: 'activeTab' is declared but its value is never read.
-22:40:04.502 src/components/sections/ProductsSection.tsx(9,21): error TS6133: 'setActiveTab' is declared but its value is never read.
-22:40:04.503 src/components/sections/ProductsSection.tsx(76,9): error TS6133: 'packages' is declared but its value is never read.
-22:40:04.503 src/context/SubscriptionContext.tsx(80,70): error TS2554: Expected 2 arguments, but got 3.
-22:40:04.504 src/pages/PaymentPage.tsx(71,11): error TS2554: Expected 1 arguments, but got 2.
-22:40:04.505 src/services/subscriptionService.ts(149,15): error TS2345: Argument of type '{ status: string; id: string; userId: string; planId: string; startDate: string; endDate: string; nextPaymentDate?: string; amount: number; }' is not assignable to parameter of type 'UserSubscription | PromiseLike<UserSubscription>'.
-22:40:04.505   Type '{ status: string; id: string; userId: string; planId: string; startDate: string; endDate: string; nextPaymentDate?: string; amount: number; }' is not assignable to type 'UserSubscription'.
-22:40:04.505     Types of property 'status' are incompatible.
-22:40:04.505       Type 'string' is not assignable to type '"active" | "inactive" | "trial" | "cancelled"'.
-22:40:04.506 src/services/subscriptionService.ts(189,41): error TS6133: 'userId' is declared but its value is never read.
-22:40:05.337 Error: Command "npm run build" exited with 2
+23:10:23.228 Running build in Washington, D.C., USA (East) – iad1
+23:10:23.228 Build machine configuration: 2 cores, 8 GB
+23:10:23.429 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: 9d1569a)
+23:10:23.430 Previous build caches not available.
+23:10:24.172 Cloning completed: 743.000ms
+23:10:24.569 Running "vercel build"
+23:10:24.948 Vercel CLI 48.8.2
+23:10:25.659 Installing dependencies...
+23:10:29.326 npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+23:10:29.744 npm warn deprecated npmlog@5.0.1: This package is no longer supported.
+23:10:29.938 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+23:10:30.177 npm warn deprecated gauge@3.0.2: This package is no longer supported.
+23:10:30.407 npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.
+23:10:31.063 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+23:10:31.132 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+23:10:33.862 
+23:10:33.863 added 419 packages in 6s
+23:10:33.864 
+23:10:33.864 80 packages are looking for funding
+23:10:33.864   run `npm fund` for details
+23:10:33.901 Running "npm run build"
+23:10:34.004 
+23:10:34.005 > airbro-business-landing@1.0.0 build
+23:10:34.005 > tsc -b && vite build
+23:10:34.005 
+23:10:38.104 src/components/sections/ProductsSection.tsx(1,17): error TS6133: 'useState' is declared but its value is never read.
+23:10:38.105 src/components/sections/ProductsSection.tsx(3,60): error TS6133: 'ShoppingBag' is declared but its value is never read.
+23:10:38.105 src/components/sections/ProductsSection.tsx(3,73): error TS6133: 'Scissors' is declared but its value is never read.
+23:10:38.105 src/components/sections/ProductsSection.tsx(3,83): error TS6133: 'Dumbbell' is declared but its value is never read.
+23:10:38.105 src/components/sections/ProductsSection.tsx(3,93): error TS6133: 'ChefHat' is declared but its value is never read.
+23:10:38.105 src/pages/PaymentPage.tsx(71,11): error TS2554: Expected 1 arguments, but got 2.
+23:10:38.811 Error: Command "npm run build" exited with 2

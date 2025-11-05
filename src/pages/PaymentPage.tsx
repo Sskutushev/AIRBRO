@@ -67,8 +67,7 @@ const PaymentPage: React.FC = () => {
       } else if (paymentMethod === 'telegram' && plan) {
         // Create Telegram payment
         const telegramPaymentResult = await createTelegramPayment(
-          plan.price,
-          `Подписка ${plan.name} для ${user.email}`
+          plan.price
         );
 
         if (telegramPaymentResult.success) {

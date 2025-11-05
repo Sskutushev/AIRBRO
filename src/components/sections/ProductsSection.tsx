@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle, Users, Calendar, Star, Bot, Video, ShoppingBag, Scissors, Dumbbell, ChefHat } from 'lucide-react';
+import { MessageCircle, Users, Calendar, Star, Bot, Video } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const ProductsSection: React.FC = () => {
