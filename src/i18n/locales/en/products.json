@@ -1,0 +1,15 @@
+{
+  "ecosystem": "Meet the Ecosystem",
+  "description": "From content automation to full business management",
+  "ai_postmaster": {
+    "name": "AI PostMaster",
+    "tagline": "Your AI SMM-manager for 3,000₽/month",
+    "description": "Automatic creation and publication of content in Telegram channels. Gemini 2.0 Flash + Imagen 4 Fast.",
+    "features": {
+      "text_gen": "Text Generation",
+      "image_gen": "Image Generation",
+      "smart_scheduling": "Smart Scheduling",
+      "brand_personalization": "Brand Personalization"
+    }
+  }
+}

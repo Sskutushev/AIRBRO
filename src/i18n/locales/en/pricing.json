@@ -1,0 +1,22 @@
+{
+  "industry_bundles": "Industry-Ready Bundles",
+  "save_up": "Save up to 17% with industry bundles",
+  "packages": {
+    "restaurant": {
+      "name": "Restaurant Suite",
+      "description": "Complete package for restaurants and cafes"
+    },
+    "beauty": {
+      "name": "Beauty & Wellness Suite",
+      "description": "Everything for salons and barbershops"
+    },
+    "fitness": {
+      "name": "Fitness Suite",
+      "description": "Solution for fitness studios and gyms"
+    },
+    "retail": {
+      "name": "Retail Suite",
+      "description": "Solution for retail stores"
+    }
+  }
+}

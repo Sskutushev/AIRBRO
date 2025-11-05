@@ -1,85 +1,113 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Star, Users, MessageCircle, Calendar, Package } from 'lucide-react';
+import { ChefHat, Scissors, Dumbbell, ShoppingBag } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const PricingSection: React.FC = () => {
-  const plans = [
+  const { t } = useTranslation('pricing');
+  const [viewMode, setViewMode] = useState<'individual' | 'bundle'>('bundle');
+  
+  const packages = [
     {
-      name: "AI PostMaster",
-      price: "3,000 ₽/мес",
-      description: "Ваш AI SMM-менеджер",
-      icon: <MessageCircle className="w-6 h-6" />,
-      features: [
-        "1 Telegram-канал",
-        "30 постов/месяц",
-        "Базовая персонализация",
-        "Тон бренда",
-        "Планирование публикаций"
+      id: "restaurant-suite",
+      name: t('packages.restaurant.name'),
+      emoji: "🍽️",
+      tagline: t('packages.restaurant.description'),
+      icon: <ChefHat className="w-8 h-8" />,
+      products: [
+        "AI PostMaster (меню дня, акции)",
+        "Booking Bot (резервирование столиков)",
+        "Feedback Bot (отзывы после ужина)",
+        "Video Inventory Agent (инвентаризация кухни)"
       ],
-      cta: "Начать с контента",
-      popular: false
-    },
-    {
-      name: "Conversation Bot",
-      price: "2,000 ₽/мес",
-      description: "AI-сотрудник 24/7",
-      icon: <MessageCircle className="w-6 h-6" />,
-      features: [
-        "500 разговоров/месяц",
-        "FAQ-автоматизация",
-        "Мультиязычность",
-        "Аналитика разговоров",
-        "Интеграция с базой знаний"
+      priceOriginal: 11500,
+      priceBundle: 9900,
+      savings: 1600,
+      savingsPercent: 14,
+      bonuses: [
+        "Menu Management (динамическое меню)",
+        "Table Optimization",
+        "Food Waste Tracking"
       ],
-      cta: "Автоматизировать поддержку",
-      popular: false
+      target: "Рестораны, кафе, кофейни (10-100 мест)",
+      badge: null
     },
     {
-      name: "Booking Bot",
-      price: "2,500 ₽/мес",
-      description: "Менеджер по бронированиям",
-      icon: <Calendar className="w-6 h-6" />,
-      features: [
-        "100 бронирований/месяц",
-        "Календарь Google/Yandex",
-        "Авто-напоминания",
-        "Управление сотрудниками",
-        "Интеграция с платежами"
+      id: "beauty-suite",
+      name: t('packages.beauty.name'),
+      emoji: "💇",
+      tagline: t('packages.beauty.description'),
+      icon: <Scissors className="w-8 h-8" />,
+      products: [
+        "AI PostMaster (до/после, промо)",
+        "Booking Bot (записи на приём)",
+        "Feedback Bot (отзывы)",
+        "Conversation Bot (консультации)"
       ],
-      cta: "Упростить бронирование",
-      popular: true
-    }
-  ];
-
-  const verticalPackages = [
-    {
-      name: "Restaurant Suite",
-      price: "9,900 ₽/мес",
-      saving: "Экономия 14%",
-      icon: <Package className="w-6 h-6" />,
-      products: ["AI PostMaster", "Booking Bot", "Feedback Bot", "Video Inventory Agent"],
-      description: "Полный комплект для ресторанов и кафе"
+      priceOriginal: 11500,
+      priceBundle: 9500,
+      savings: 2000,
+      savingsPercent: 17,
+      bonuses: [
+        "Stylist Profiles",
+        "Service Upselling",
+        "Loyalty Program"
+      ],
+      target: "Салоны красоты, барбершопы (2-10 специалистов)",
+      badge: "BEST VALUE"
     },
     {
-      name: "Beauty Suite", 
-      price: "9,500 ₽/мес",
-      saving: "Экономия 17%",
-      icon: <Package className="w-6 h-6" />,
-      products: ["AI PostMaster", "Booking Bot", "Feedback Bot", "Conversation Bot"],
-      description: "Все для салонов красоты и барбершопов"
+      id: "fitness-suite",
+      name: t('packages.fitness.name'),
+      emoji: "🏋️",
+      tagline: t('packages.fitness.description'),
+      icon: <Dumbbell className="w-8 h-8" />,
+      products: [
+        "AI PostMaster (советы по тренировкам)",
+        "Booking Bot (записи на классы)",
+        "Feedback Bot (отзывы членов)",
+        "Conversation Bot (вопросы о членстве)"
+      ],
+      priceOriginal: 11500,
+      priceBundle: 9900,
+      savings: 1600,
+      savingsPercent: 14,
+      bonuses: [
+        "Class Capacity Management",
+        "Membership Renewals",
+        "Progress Tracking"
+      ],
+      target: "Спортзалы, йога-студии (50-500 членов)",
+      badge: null
     },
     {
-      name: "Fitness Suite",
-      price: "9,900 ₽/мес", 
-      saving: "Экономия 14%",
-      icon: <Package className="w-6 h-6" />,
-      products: ["AI PostMaster", "Booking Bot", "Feedback Bot", "Conversation Bot"],
-      description: "Решение для фитнес-студий и залов"
+      id: "retail-suite",
+      name: t('packages.retail.name'),
+      emoji: "🛍️",
+      tagline: t('packages.retail.description'),
+      icon: <ShoppingBag className="w-8 h-8" />,
+      products: [
+        "AI PostMaster (новые поступления, распродажи)",
+        "Conversation Bot (запросы продуктов)",
+        "Feedback Bot (отзывы)",
+        "Video Inventory Agent (отслеживание запасов)"
+      ],
+      priceOriginal: 10500,
+      priceBundle: 8900,
+      savings: 1600,
+      savingsPercent: 15,
+      bonuses: [
+        "Product Catalog",
+        "Order Processing",
+        "Loyalty Points"
+      ],
+      target: "Бутики, магазины электроники (100-10K SKU)",
+      badge: null
     }
   ];
 
   return (
-    <section id="pricing" className="py-20 bg-gradient-to-b from-bg-secondary to-white">
+    <section id="pricing" className="py-20 bg-gradient-to-b from-bg-primary to-bg-secondary">
       <div className="container mx-auto px-4">
         <motion.div 
           className="text-center mb-16"
@@ -88,100 +116,152 @@ const PricingSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
-            Пакеты для каждого бизнеса
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 gradient-text">
+            {t('industry_bundles')}
           </h2>
-          <p className="text-xl text-text-secondary max-w-2xl mx-auto">
-            Начните с одного продукта и добавляйте по мере роста
+          <p className="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto">
+            {t('save_up')}
           </p>
         </motion.div>
 
-        {/* Individual Plans */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          {plans.map((plan, index) => (
-            <motion.div
-              key={index}
-              className={`bg-white rounded-2xl shadow-lg p-8 relative overflow-hidden ${
-                plan.popular ? 'ring-2 ring-primary-coral transform scale-105' : ''
+        {/* Toggle between individual and bundle prices */}
+        <div className="flex justify-center mb-12">
+          <div className="bg-bg-tertiary rounded-full p-1 inline-flex">
+            <button
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+                viewMode === 'individual'
+                  ? 'bg-primary-telegram text-white'
+                  : 'text-text-secondary hover:text-text-primary'
               }`}
+              onClick={() => setViewMode('individual')}
+            >
+              Individual Prices
+            </button>
+            <button
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+                viewMode === 'bundle'
+                  ? 'bg-primary-telegram text-white'
+                  : 'text-text-secondary hover:text-text-primary'
+              }`}
+              onClick={() => setViewMode('bundle')}
+            >
+              Bundle Prices
+            </button>
+          </div>
+        </div>
+
+        {/* Pricing Packages */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
+          {packages.map((pkg, index) => (
+            <motion.div
+              key={pkg.id}
+              className="glass rounded-2xl p-6 border border-border/50 relative overflow-hidden hover:scale-[1.02] transition-transform duration-300"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              {plan.popular && (
-                <div className="absolute top-0 right-0 bg-primary-coral text-white px-6 py-1 rounded-bl-lg font-semibold">
-                  Популярный
+              {pkg.badge && (
+                <div className="absolute -top-3 -right-3 bg-accent-gold text-text-primary text-xs font-bold px-3 py-1 rounded-full">
+                  {pkg.badge}
                 </div>
               )}
-              <div className="w-12 h-12 bg-primary-electric/10 rounded-lg flex items-center justify-center text-primary-electric mb-6">
-                {plan.icon}
+              
+              <div className="flex items-center justify-center mb-6">
+                <div className="w-16 h-16 bg-primary-violet/20 rounded-full flex items-center justify-center text-primary-violet text-2xl">
+                  {pkg.emoji}
+                </div>
               </div>
-              <h3 className="text-2xl font-bold mb-2 text-text-primary">{plan.name}</h3>
-              <div className="text-3xl font-bold text-primary-coral mb-2">{plan.price}</div>
-              <p className="text-text-secondary mb-6">{plan.description}</p>
               
-              <ul className="space-y-3 mb-8">
-                {plan.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center">
-                    <Check className="w-5 h-5 text-primary-electric mr-3" />
-                    <span className="text-text-secondary">{feature}</span>
-                  </li>
-                ))}
-              </ul>
+              <h3 className="text-xl font-bold text-center mb-2 text-text-primary">
+                {pkg.name} {pkg.emoji}
+              </h3>
+              <p className="text-center text-text-secondary text-sm mb-6">{pkg.tagline}</p>
               
-              <button className={`w-full py-3 px-6 rounded-lg font-semibold transition-colors ${
-                plan.popular 
-                  ? 'bg-primary-coral text-white hover:bg-primary-coral/90' 
-                  : 'bg-bg-secondary text-text-primary hover:bg-bg-secondary/80'
-              }`}>
-                {plan.cta}
-              </button>
+              <div className="mb-6">
+                <h4 className="font-medium text-text-primary mb-3">Включает:</h4>
+                <ul className="space-y-2">
+                  {pkg.products.map((product, idx) => (
+                    <li key={idx} className="flex items-start text-sm">
+                      <div className="w-1.5 h-1.5 bg-primary-electric rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                      <span className="text-text-secondary">{product}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div className="mb-6 p-4 bg-bg-tertiary rounded-xl">
+                <div className="text-center mb-1">
+                  <span className={`text-text-secondary ${viewMode === 'bundle' ? 'line-through' : ''} text-sm`}>
+                    {pkg.priceOriginal.toLocaleString()}₽
+                  </span>
+                </div>
+                <div className="text-3xl font-bold text-center text-primary-telegram mb-1">
+                  {viewMode === 'bundle' 
+                    ? `${pkg.priceBundle.toLocaleString()}₽` 
+                    : `${pkg.priceOriginal.toLocaleString()}₽`}/мес
+                </div>
+                {viewMode === 'bundle' && (
+                  <div className="text-center text-green-500 font-medium">
+                    Экономия {pkg.savings.toLocaleString()}₽ ({pkg.savingsPercent}%)
+                  </div>
+                )}
+              </div>
+              
+              <div className="mb-6">
+                <h4 className="font-medium text-text-primary mb-2">Бонусы:</h4>
+                <ul className="space-y-1">
+                  {pkg.bonuses.map((bonus, idx) => (
+                    <li key={idx} className="flex items-start text-xs">
+                      <div className="w-1.5 h-1.5 bg-primary-mint rounded-full mt-1.5 mr-2 flex-shrink-0"></div>
+                      <span className="text-text-secondary">{bonus}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div className="pt-4 border-t border-border">
+                <p className="text-xs text-text-tertiary text-center mb-4">{pkg.target}</p>
+                <button className="w-full py-3 bg-gradient-to-r from-primary-telegram to-primary-electric text-white rounded-lg font-medium hover:opacity-90 transition-opacity">
+                  Выбрать пакет
+                </button>
+              </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Vertical Packages */}
-        <div className="text-center mb-12">
-          <h3 className="text-3xl font-bold mb-4 text-text-primary">Вертикальные пакеты</h3>
-          <p className="text-xl text-text-secondary max-w-2xl mx-auto">
-            Связанные продукты для конкретных отраслей со скидкой
+        {/* Custom Package Builder */}
+        <motion.div 
+          className="mt-20 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          <div className="inline-block bg-bg-tertiary rounded-2xl p-8">
+            <h3 className="text-xl font-bold text-text-primary mb-2">Не нашли подходящий пакет?</h3>
+            <p className="text-text-secondary mb-4">Соберите свой пакет</p>
+            <button className="px-6 py-3 border border-primary-telegram text-primary-telegram rounded-lg font-medium hover:bg-primary-telegram/10 transition-colors">
+              Собрать свой пакет
+            </button>
+          </div>
+        </motion.div>
+
+        {/* FAQ teaser */}
+        <motion.div 
+          className="mt-12 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
+          <p className="text-text-secondary inline-flex items-center">
+            Вопросы по ценам? 
+            <a href="#faq" className="text-primary-telegram font-medium ml-2 hover:underline">
+              Посмотрите FAQ
+            </a>
           </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {verticalPackages.map((pkg, index) => (
-            <motion.div
-              key={index}
-              className="bg-gradient-to-br from-primary-electric/5 to-primary-violet/5 rounded-2xl p-8 border border-primary-electric/20"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <div className="w-12 h-12 bg-primary-violet/10 rounded-lg flex items-center justify-center text-primary-violet mb-6">
-                {pkg.icon}
-              </div>
-              <h4 className="text-2xl font-bold mb-2 text-text-primary">{pkg.name}</h4>
-              <div className="text-3xl font-bold text-primary-gold mb-2">{pkg.price}</div>
-              <div className="text-primary-coral font-semibold mb-4">{pkg.saving}</div>
-              <p className="text-text-secondary mb-6">{pkg.description}</p>
-              
-              <ul className="space-y-2 mb-8">
-                {pkg.products.map((product, idx) => (
-                  <li key={idx} className="flex items-center text-text-secondary">
-                    <Star className="w-4 h-4 text-primary-gold mr-2" />
-                    <span>{product}</span>
-                  </li>
-                ))}
-              </ul>
-              
-              <button className="w-full py-3 px-6 bg-primary-violet text-white rounded-lg font-semibold hover:bg-primary-violet/90 transition-colors">
-                Выбрать пакет
-              </button>
-            </motion.div>
-          ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

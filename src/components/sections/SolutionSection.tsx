@@ -1,93 +1,168 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Target, Zap, CheckCircle } from 'lucide-react';
+import { Check, MessageCircle, Calendar, BarChart3 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const SolutionSection: React.FC = () => {
+  const { t } = useTranslation();
+
   const benefits = [
     {
-      icon: <Target className="w-6 h-6" />,
-      title: "Telegram-нативная экосистема",
-      description: "Все продукты работают внутри Telegram - без переключения приложений"
+      id: 1,
+      title: "Всё в одном приложении",
+      description: "Не нужны отдельные приложения. Всё управление — в Telegram, где вы уже работаете.",
+      highlights: [
+        "✓ Уведомления в реальном времени",
+        "✓ Никакого переключения приложений",
+        "✓ 98% открываемость (vs 20% у email)"
+      ],
+      icon: <MessageCircle className="w-8 h-8" />,
+      visual: <div className="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16" /> // Placeholder for Telegram mockup
     },
     {
-      icon: <Zap className="w-6 h-6" />,
-      title: "Молниеносная автоматизация",
-      description: "Запуск за 5 минут, настройка под особенности вашего бизнеса"
+      id: 2,
+      title: "Начните с малого, растите вместе с нами",
+      description: "Не платите за то, что не используете. Добавляйте модули по мере роста бизнеса.",
+      highlights: [
+        "✓ Низкий входной барьер (3,000₽/мес)",
+        "✓ Естественные апсейлы",
+        "✓ Никакого vendor lock-in"
+      ],
+      icon: <Calendar className="w-8 h-8" />,
+      visual: <div className="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16" /> // Placeholder for module diagram
+      , reverse: true
     },
     {
-      icon: <CheckCircle className="w-6 h-6" />,
-      title: "Модульное ценообразование",
-      description: "Платите только за то, что используете, расширяйте по мере роста"
+      id: 3,
+      title: "Чем дольше — тем умнее",
+      description: "Каждый клиент получает персональный AI Data Store. Знает ваши продукты, цены, стиль бренда.",
+      highlights: [
+        "✓ RAG-based персонализация",
+        "✓ Никаких шаблонов",
+        "✓ Уникальный контент для вашего бизнеса"
+      ],
+      icon: <BarChart3 className="w-8 h-8" />,
+      visual: <div className="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16" /> // Placeholder for AI brain animation
     }
   ];
 
+  const comparisonData = [
+    { feature: "Стоимость/месяц", freelancer: "58,000₽", corp: "150,000₽+", aibro: "от 3,000₽" },
+    { feature: "Время на настройку", freelancer: "2-4 недели", corp: "3-6 месяцев", aibro: "15 минут" },
+    { feature: "Персонализация", freelancer: "Высокая", corp: "Низкая", aibro: "AI-driven" },
+    { feature: "Надёжность", freelancer: "Зависит", corp: "Высокая", aibro: "SLA 99.9%" },
+    { feature: "Масштабируемость", freelancer: "Нет", corp: "Да", aibro: "Да" },
+    { feature: "Интеграция с Telegram", freelancer: "Нет", corp: "Нет", aibro: "Нативная" }
+  ];
+
   return (
-    <section className="py-20 bg-white" id="solution">
+    <section className="py-20 bg-gradient-to-b from-bg-secondary to-bg-primary" id="solution">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-          <motion.div 
-            className="lg:w-1/2"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
-              Решение: <span className="text-text-primary">AIRBRO Business</span>
-            </h2>
-            <p className="text-xl text-text-secondary mb-8">
-              Полная AI-операционная система для малого бизнеса, построенная на Telegram.
-            </p>
-            
-            <div className="space-y-6">
-              {benefits.map((benefit, index) => (
-                <motion.div
-                  key={index}
-                  className="flex items-start"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <div className="w-12 h-12 bg-primary-electric/10 rounded-lg flex items-center justify-center text-primary-electric flex-shrink-0 mr-4">
-                    {benefit.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-text-primary mb-2">{benefit.title}</h3>
-                    <p className="text-text-secondary">{benefit.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-            
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 gradient-text">
+            AIBRO Business: Ваш AI-отдел в Telegram
+          </h2>
+          <p className="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto">
+            Не просто инструменты. Полная экосистема, которая растёт вместе с вами.
+          </p>
+        </motion.div>
+
+        <div className="space-y-20">
+          {benefits.map((benefit, index) => (
             <motion.div 
-              className="mt-8"
-              initial={{ opacity: 0, y: 20 }}
+              key={benefit.id}
+              className={`flex flex-col ${benefit.id % 2 === 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12`}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
             >
-              <button className="flex items-center text-text-primary font-bold text-lg group">
-                Узнайте, как AIBRO трансформирует ваш бизнес
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </button>
+              <div className={`${benefit.id % 2 === 0 ? 'lg:order-2' : 'lg:order-1'} lg:w-1/2`}>
+                <div className="bg-gradient-to-br from-primary-telegram/10 to-primary-electric/10 p-8 rounded-2xl">
+                  <div className="w-16 h-16 bg-primary-telegram/10 rounded-xl flex items-center justify-center text-primary-telegram mb-6">
+                    {benefit.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-text-primary">{benefit.title}</h3>
+                  <p className="text-text-secondary mb-6">{benefit.description}</p>
+                  <ul className="space-y-3">
+                    {benefit.highlights.map((highlight, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <Check className="w-5 h-5 text-primary-electric mt-1 mr-3 flex-shrink-0" />
+                        <span className="text-text-secondary">{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className={`${benefit.id % 2 === 0 ? 'lg:order-1' : 'lg:order-2'} lg:w-1/2`}>
+                <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-80 flex items-center justify-center">
+                  <span className="text-gray-500">Визуализация: {benefit.title}</span>
+                </div>
+              </div>
             </motion.div>
-          </motion.div>
-          
-          <motion.div 
-            className="lg:w-1/2 flex justify-center"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            <div className="relative">
-              <div className="w-80 h-80 bg-gradient-to-br from-primary-electric to-primary-violet rounded-2xl shadow-2xl"></div>
-              <div className="absolute -top-6 -right-6 w-64 h-64 bg-gradient-to-br from-primary-coral to-primary-gold rounded-2xl shadow-xl transform rotate-12"></div>
-              <div className="absolute -bottom-6 -left-6 w-64 h-64 bg-gradient-to-br from-primary-teal to-primary-blue rounded-2xl shadow-xl transform -rotate-12"></div>
-            </div>
-          </motion.div>
+          ))}
         </div>
+
+        {/* Comparison Table */}
+        <motion.div 
+          className="mt-32"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h3 className="text-3xl font-bold text-center mb-12 text-text-primary">
+            AIBRO Business vs Альтернативы
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr className="bg-bg-tertiary">
+                  <th className="p-4 text-left text-text-primary font-semibold">Критерий</th>
+                  <th className="p-4 text-center text-amber-600 font-semibold">Фрилансер SMM</th>
+                  <th className="p-4 text-center text-blue-600 font-semibold">Корп. ПО</th>
+                  <th className="p-4 text-center text-primary-telegram font-semibold">AIBRO Business</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisonData.map((row, idx) => (
+                  <motion.tr 
+                    key={idx}
+                    className="border-b border-border hover:bg-bg-tertiary transition-colors"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3, delay: idx * 0.1 }}
+                  >
+                    <td className="p-4 font-medium text-text-primary">{row.feature}</td>
+                    <td className="p-4 text-center text-text-secondary">{row.freelancer}</td>
+                    <td className="p-4 text-center text-text-secondary">{row.corp}</td>
+                    <td className="p-4 text-center text-primary-telegram font-medium">{row.aibro}</td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </motion.div>
+
+        {/* CTA Banner */}
+        <motion.div 
+          className="mt-20 bg-gradient-to-r from-primary-telegram to-primary-electric rounded-2xl p-8 text-center text-white"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h3 className="text-2xl md:text-3xl font-bold mb-4">Готовы начать?</h3>
+          <button className="bg-white text-primary-telegram font-bold px-8 py-4 rounded-lg text-lg hover:bg-gray-100 transition-colors">
+            Попробовать бесплатно
+          </button>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,0 +1,22 @@
+{
+  "industry_bundles": "Готовые решения для вашей индустрии",
+  "save_up": "Сэкономьте до 17% с отраслевыми пакетами",
+  "packages": {
+    "restaurant": {
+      "name": "Restaurant Suite",
+      "description": "Полный комплект для ресторанов и кафе"
+    },
+    "beauty": {
+      "name": "Beauty & Wellness Suite",
+      "description": "Все для салонов красоты и барбершопов"
+    },
+    "fitness": {
+      "name": "Fitness Suite",
+      "description": "Решение для фитнес-студий и залов"
+    },
+    "retail": {
+      "name": "Retail Suite",
+      "description": "Решение для розничных магазинов"
+    }
+  }
+}

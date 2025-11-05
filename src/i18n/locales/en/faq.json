@@ -1,0 +1,14 @@
+{
+  "frequently_asked": "Frequently Asked Questions",
+  "not_found": "Can't find an answer? Message us on Telegram.",
+  "questions": {
+    "what_is_aibro": {
+      "question": "What is AIBRO Business?",
+      "answer": "AIBRO Business is an ecosystem of AI tools for automating small and medium business, fully integrated into Telegram. We help automate content creation, customer communication, booking and other routine tasks."
+    },
+    "why_telegram": {
+      "question": "Why Telegram?",
+      "answer": "Telegram is not just a messenger. It's a full business platform with channels, groups, bots and built-in payments. 70% of Russian businesses already use Telegram to communicate with customers. We make this work automatic."
+    }
+  }
+}

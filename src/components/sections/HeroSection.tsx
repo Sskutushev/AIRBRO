@@ -1,15 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { TypeAnimation } from 'react-type-animation';
+import { useTranslation } from 'react-i18next';
 import Button from '../common/Button';
 import CountUp from '../common/CountUp';
 
 const HeroSection: React.FC = () => {
+  const { t } = useTranslation('hero');
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-bg-primary via-white to-bg-secondary pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-bg-primary to-bg-secondary pt-20">
       {/* Animated gradient background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-electric/10 via-primary-violet/10 to-primary-gold/10 animate-gradient-shift"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-telegram/10 via-primary-electric/10 to-primary-neon/10 animate-gradient-shift"></div>
         {/* Grid overlay */}
         <div 
           className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"
@@ -20,49 +22,43 @@ const HeroSection: React.FC = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12">
           {/* Left content */}
           <div className="w-full lg:w-1/2 text-center lg:text-left">
+            <motion.div
+              className="inline-block bg-primary-telegram/10 text-primary-telegram text-sm font-medium px-4 py-2 rounded-full mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              🚀 Новинка: AI PostMaster теперь с Imagen 4
+            </motion.div>
+            
             <motion.h1 
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 gradient-text"
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 gradient-text"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              AIRBRO Business
-              <br />
-              <span className="text-text-primary">AI-операционная система для Telegram-бизнеса</span>
+              {t('title')}
             </motion.h1>
             
-            <motion.div
-              className="text-xl md:text-2xl text-text-secondary mb-10"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <TypeAnimation
-                sequence={[
-                  'Автоматизируйте контент, поддержку и продажи через Telegram',
-                  2000,
-                  'Демократизируем AI-автоматизацию для малого бизнеса',
-                  2000,
-                  'Telegram-нативная экосистема для вашего бизнеса',
-                  2000
-                ]}
-                wrapper="span"
-                speed={50}
-                repeat={Infinity}
-                style={{ display: 'inline-block' }}
-                className="text-text-primary"
-              />
-            </motion.div>
-            
-            <motion.div
+            <motion.p
+              className="text-xl md:text-2xl text-text-secondary mb-10 max-w-2xl mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              {t('subtitle')}
+            </motion.p>
+            
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
               <Button 
                 variant="cta" 
-                size="lg" 
-                className="text-lg px-8 py-4 mb-6"
+                size="xl" 
+                className="text-lg px-8 py-4"
                 glow={true}
                 onClick={() => {
                   const element = document.getElementById('contact');
@@ -71,107 +67,89 @@ const HeroSection: React.FC = () => {
                   }
                 }}
               >
-                Попробовать бесплатно
+                {t('cta.primary')}
               </Button>
-              <p className="text-text-secondary text-sm">
-                72-часовой челлендж без рисков
-              </p>
+              <Button 
+                variant="outline" 
+                size="xl" 
+                className="text-lg px-8 py-4 border-text-secondary text-text-primary hover:border-primary-telegram hover:text-primary-telegram"
+              >
+                {t('cta.secondary')} →
+              </Button>
             </motion.div>
             
             {/* Stats */}
             <motion.div 
-              className="flex justify-center items-center gap-6 mt-16"
+              className="grid grid-cols-3 gap-4 max-w-xs mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
             >
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary-electric">
-                  <CountUp end={72} suffix="ч" />
-                </div>
-                <div className="text-text-secondary text-sm">челлендж</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary-violet">
-                  <CountUp end={40} suffix="%" />
-                </div>
-                <div className="text-text-secondary text-sm">экономия времени</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary-gold">
+                <div className="text-3xl font-bold text-primary-telegram">
                   <CountUp end={500} suffix="+" />
                 </div>
-                <div className="text-text-secondary text-sm">довольных клиентов</div>
+                <div className="text-text-secondary text-sm">{t('stats.businesses')}</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-primary-electric">
+                  <CountUp end={50} suffix="K+" />
+                </div>
+                <div className="text-text-secondary text-sm">{t('stats.posts')}</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-primary-neon">
+                  <CountUp end={4.8} />
+                </div>
+                <div className="text-text-secondary text-sm">{t('stats.rating')}</div>
               </div>
             </motion.div>
           </div>
           
-          {/* Right content - 3D Brain */}
+          {/* Right content - 3D Visual */}
           <div className="w-full lg:w-1/2 flex justify-center mt-8 lg:mt-0">
             <motion.div
-              className="relative w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[370px] md:h-[370px]"
+              className="relative w-[300px] h-[300px] sm:w-[350px] sm:h-[350px] md:w-[400px] md:h-[400px] lg:w-[450px] lg:h-[450px]"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              whileHover={{ scale: 1.05 }}
             >
-              {/* 3D Brain Image */}
+              {/* Placeholder for 3D Hero Object */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <img 
-                  src="/images/Hero3D.png" 
-                  alt="AI Brain 3D" 
-                  className="w-full h-full object-contain"
-                  style={{ filter: 'drop-shadow(0 0 20px rgba(0, 217, 255, 0.5))' }}
-                />
+                <div className="w-full h-full rounded-2xl bg-gradient-to-br from-primary-telegram to-primary-neon flex items-center justify-center">
+                  <div className="text-white text-6xl animate-pulse">🤖</div>
+                </div>
               </div>
               
-              {/* Floating elements */}
-              <motion.div 
-                className="absolute top-10 left-10 w-16 h-16 rounded-full bg-primary-electric/20 backdrop-blur-sm border border-white/30 flex items-center justify-center"
-                animate={{ 
-                  y: [0, -20, 0],
-                  rotate: [0, 10, 0, -10, 0]
-                }}
-                transition={{ 
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut" 
-                }}
-              >
-                <div className="text-white text-lg">🤖</div>
-              </motion.div>
+              {/* Floating particles */}
+              {[...Array(5)].map((_, i) => (
+                <motion.div 
+                  key={i}
+                  className="absolute rounded-full bg-primary-electric/20 backdrop-blur-sm border border-white/30 flex items-center justify-center"
+                  style={{
+                    width: `${20 + i * 10}px`,
+                    height: `${20 + i * 10}px`,
+                    top: `${20 + i * 15}%`,
+                    left: `${10 + i * 15}%`,
+                  }}
+                  animate={{ 
+                    y: [0, -20 - i * 5, 0],
+                    x: [0, 10 + i * 5, 0],
+                    rotate: [0, 360]
+                  }}
+                  transition={{ 
+                    duration: 6 + i * 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: i * 0.5
+                  }}
+                >
+                  <div className="text-white text-xs">💬</div>
+                </motion.div>
+              ))}
               
-              <motion.div 
-                className="absolute bottom-12 right-16 w-12 h-12 rounded-full bg-primary-violet/20 backdrop-blur-sm border border-white/30 flex items-center justify-center"
-                animate={{ 
-                  y: [0, 15, 0],
-                  rotate: [0, -15, 0, 15, 0]
-                }}
-                transition={{ 
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 0.5
-                }}
-              >
-                <div className="text-white text-lg">💬</div>
-              </motion.div>
-              
-              <motion.div 
-                className="absolute top-1/3 right-8 w-10 h-10 rounded-full bg-primary-gold/20 backdrop-blur-sm border border-white/30 flex items-center justify-center"
-                animate={{ 
-                  y: [0, -10, 0],
-                  rotate: [0, 20, 0, -20, 0]
-                }}
-                transition={{ 
-                  duration: 7,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1
-                }}
-              >
-                <div className="text-white text-lg">📱</div>
-              </motion.div>
+              {/* Gradient mesh effect */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary-mint/20 via-primary-electric/20 to-primary-neon/20 animate-gradient-x"></div>
             </motion.div>
           </div>
         </div>
@@ -183,7 +161,7 @@ const HeroSection: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.5 }}
         >
-          <span className="text-text-muted text-sm mb-2">Прокрутите вниз</span>
+          <span className="text-text-tertiary text-sm mb-2">Прокрутите вниз</span>
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ 
@@ -192,8 +170,8 @@ const HeroSection: React.FC = () => {
               ease: "easeInOut"
             }}
           >
-            <div className="w-6 h-10 rounded-full border-2 border-primary-electric flex justify-center p-1">
-              <div className="w-1 h-3 bg-primary-electric rounded-full animate-pulse"></div>
+            <div className="w-6 h-10 rounded-full border-2 border-primary-telegram flex justify-center p-1">
+              <div className="w-1 h-3 bg-primary-telegram rounded-full animate-pulse"></div>
             </div>
           </motion.div>
         </motion.div>
