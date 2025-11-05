@@ -1,0 +1,30 @@
+SubscriptionContext.tsx:14  GET http://localhost:5173/src/services/subscriptionService.ts net::ERR_ABORTED 500 (Internal Server Error)
+[plugin:vite:esbuild] Transform failed with 2 errors:
+C:/Users/sskut/Desktop/AIRBRO/src/services/subscriptionService.ts:189:13: ERROR: Multiple exports with the same name "updateSubscription"
+C:/Users/sskut/Desktop/AIRBRO/src/services/subscriptionService.ts:189:13: ERROR: The symbol "updateSubscription" has already been declared
+C:/Users/sskut/Desktop/AIRBRO/src/services/subscriptionService.ts:189:13
+Multiple exports with the same name "updateSubscription"
+187 |  
+188 |  // Моковая функция для обновления подписки
+189 |  export const updateSubscription = async (subscriptionId: string, newPlanId: string): Promise<UserSubscription> => {
+    |               ^
+190 |    return new Promise((resolve, reject) => {
+191 |      setTimeout(() => {
+
+The symbol "updateSubscription" has already been declared
+187 |  
+188 |  // Моковая функция для обновления подписки
+189 |  export const updateSubscription = async (subscriptionId: string, newPlanId: string): Promise<UserSubscription> => {
+    |               ^
+190 |    return new Promise((resolve, reject) => {
+191 |      setTimeout(() => {
+    at failureErrorWithLog (C:\Users\sskut\Desktop\AIRBRO\node_modules\esbuild\lib\main.js:1467:15)
+    at C:\Users\sskut\Desktop\AIRBRO\node_modules\esbuild\lib\main.js:736:50
+    at responseCallbacks.<computed> (C:\Users\sskut\Desktop\AIRBRO\node_modules\esbuild\lib\main.js:603:9)
+    at handleIncomingPacket (C:\Users\sskut\Desktop\AIRBRO\node_modules\esbuild\lib\main.js:658:12)
+    at Socket.readFromStdout (C:\Users\sskut\Desktop\AIRBRO\node_modules\esbuild\lib\main.js:581:7)
+    at Socket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:191:23)

@@ -6,7 +6,7 @@ import {
   getUserSubscription, 
   createSubscription, 
   cancelSubscription, 
-  updateSubscription, 
+  updateSubscription,
   getPaymentHistory,
   subscriptionPlans 
 } from '../services/subscriptionService';

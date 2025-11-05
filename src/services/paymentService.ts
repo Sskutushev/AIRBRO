@@ -25,7 +25,6 @@ export interface PaymentResult {
   redirectUrl?: string;
 }
 
-// Моковая функция для получения сохраненных методов оплаты
 export const getSavedPaymentMethods = async (userId: string): Promise<PaymentMethod[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -49,7 +48,6 @@ export const getSavedPaymentMethods = async (userId: string): Promise<PaymentMet
   });
 };
 
-// Моковая функция для добавления метода оплаты
 export const addPaymentMethod = async (userId: string, paymentMethod: Omit<PaymentMethod, 'id'>): Promise<PaymentMethod> => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -73,7 +71,6 @@ export const addPaymentMethod = async (userId: string, paymentMethod: Omit<Payme
   });
 };
 
-// Моковая функция для создания платежа
 export const createPaymentIntent = async (amount: number, currency: string = 'RUB', paymentMethod: string): Promise<PaymentResult> => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -96,7 +93,6 @@ export const createPaymentIntent = async (amount: number, currency: string = 'RU
   });
 };
 
-// Моковая функция для подтверждения платежа
 export const confirmPayment = async (paymentIntentId: string, paymentMethod: string): Promise<PaymentResult> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -125,7 +121,6 @@ export const confirmPayment = async (paymentIntentId: string, paymentMethod: str
   });
 };
 
-// Моковая функция для оплаты через Telegram
 export const createTelegramPayment = async (amount: number, description: string): Promise<PaymentResult> => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -144,7 +139,6 @@ export const createTelegramPayment = async (amount: number, description: string)
   });
 };
 
-// Моковая функция для получения статуса платежа
 export const getPaymentStatus = async (paymentIntentId: string): Promise<PaymentIntent> => {
   return new Promise((resolve) => {
     setTimeout(() => {
