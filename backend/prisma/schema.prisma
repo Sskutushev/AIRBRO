@@ -1,0 +1,106 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Пользователь
+model User {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  passwordHash  String
+  name          String
+  telegram      String         @unique
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  
+  subscriptions Subscription[]
+  payments      Payment[]
+  cartItems     CartItem[]
+  
+  @@map("users")
+}
+
+// Продукт
+model Product {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  name        String
+  description String
+  price       Int      // В копейках
+  interval    String   // "month" или "year"
+  features    String   // JSON с фичами
+  isActive    Boolean  @default(true)
+  tier        Int      // 1, 2, 3
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  subscriptions Subscription[]
+  cartItems     CartItem[]
+  
+  @@map("products")
+}
+
+// Корзина
+model CartItem {
+  id        String   @id @default(uuid())
+  userId    String
+  productId String
+  quantity  Int      @default(1)
+  createdAt DateTime @default(now())
+  
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, productId])
+  @@map("cart_items")
+}
+
+// Подписка
+model Subscription {
+  id              String    @id @default(uuid())
+  userId          String
+  productId       String
+  status          String    // "active", "cancelled", "expired", "trial"
+  startDate       DateTime
+  endDate         DateTime
+  nextPaymentDate DateTime?
+  cancelledAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+  
+  @@map("subscriptions")
+}
+
+// Платеж
+model Payment {
+  id            String    @id @default(uuid())
+  userId        String
+  amount        Int       // В копейках
+  currency      String    // "RUB", "USD", "USDT", "TON"
+  status        String    // "pending", "completed", "failed", "expired"
+  paymentMethod String    // "crypto_usdt_trc20", "crypto_usdt_erc20", "crypto_ton"
+  
+  // Крипто данные
+  walletAddress String?
+  txHash        String?
+  qrCode        String?   // Base64 QR-код
+  
+  // Метаданные
+  metadata      String?   // JSON
+  expiresAt     DateTime?
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("payments")
+}

@@ -131,6 +131,7 @@
   "voting": {
     "title": "Vote for New Features",
     "total_votes": "{count}+ people have already voted",
+    "total_votes_suffix": "people have already voted",
     "auth_required": "Please log in to vote.",
     "select_option": "Please select an option.",
     "already_voted": "You have already voted.",

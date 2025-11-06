@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import Button from '../common/Button';
 import CountUp from '../common/CountUp';
-
+import Modal from '../common/Modal';
 import { useTheme } from '../../context/ThemeContext';
 
 const HeroSection: React.FC = () => {
   const { t } = useTranslation('hero');
   const { theme } = useTheme();
+  const [showVideoModal, setShowVideoModal] = useState(false);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-bg-primary to-bg-secondary pt-20">
@@ -66,6 +67,7 @@ const HeroSection: React.FC = () => {
                 variant="outline" 
                 size="xl" 
                 className="text-lg px-8 py-4 border-text-secondary text-text-primary hover:border-primary-telegram hover:text-primary-telegram"
+                onClick={() => setShowVideoModal(true)}
               >
                 {t('cta.secondary')} →
               </Button>
@@ -171,6 +173,19 @@ const HeroSection: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
+      
+      <Modal isOpen={showVideoModal} onClose={() => setShowVideoModal(false)} title={t('cta.video_title', { ns: 'common' })}>
+        <div className="relative pt-[56.25%] w-full">
+          <iframe
+            className="absolute top-0 left-0 w-full h-full rounded-lg"
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+      </Modal>
     </section>
   );
 };

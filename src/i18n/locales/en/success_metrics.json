@@ -22,42 +22,42 @@
   "testimonials": [
     {
       "name": "Dmitry Ivanov",
-      "business": "@TastyBitesRest",
+      "business": "Tasty Bites",
       "industry": "Restaurant, St. Petersburg",
       "quote": "Booking Bot reduced no-shows by 30%. Now the tables are always full.",
       "result": "↑ 30% occupancy"
     },
     {
       "name": "Anna Petrova",
-      "business": "@BeautySalonMoscow",
+      "business": "Beauty Salon",
       "industry": "Beauty Salon, Moscow",
       "quote": "AI PostMaster saved me 20 hours a week. The content has improved, and engagement has grown by 35%.",
       "result": "↓ 20h/week"
     },
     {
       "name": "Sergey Kovalev",
-      "business": "@FitLifeStudio",
+      "business": "FitLife Studio",
       "industry": "Fitness, Kazan",
       "quote": "Conversation Bot answers 80% of questions. My team focuses on clients.",
       "result": "↑ 80% auto-replies"
     },
     {
       "name": "Elena Smirnova",
-      "business": "@TechShopKrasnodar",
+      "business": "TechShop",
       "industry": "Electronics, Krasnodar",
       "quote": "Video Inventory Agent reduced inventory time from 4 hours to 20 minutes.",
       "result": "↓ 92% time"
     },
     {
       "name": "Maxim Sokolov",
-      "business": "@CoffeeCornerEkb",
+      "business": "Coffee Corner",
       "industry": "Coffee Shop, Yekaterinburg",
       "quote": "Feedback Bot helped collect 200+ reviews. The rating grew from 4.2 to 4.8.",
       "result": "↑ 4.8★ rating"
     },
     {
       "name": "Igor Volkov",
-      "business": "@SharpCutsBarber",
+      "business": "Sharp Cuts Barber",
       "industry": "Barbershop, Nizhny Novgorod",
       "quote": "AIBRO Business paid for itself in the first month. I'm no longer looking for an SMM manager.",
       "result": "↓ $1K/month"

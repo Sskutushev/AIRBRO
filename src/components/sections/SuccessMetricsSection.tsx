@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import CountUp from '../common/CountUp';
@@ -38,13 +38,35 @@ const SuccessMetricsSection: React.FC = () => {
     }
   ];
 
+  // Персонализированные аватарки для конкретных людей
+  const getAvatarForTestimonial = (name: string) => {
+    if (name.includes('Елена')) return '/women1.jpg';
+    if (name.includes('Дмитрий')) return '/man2.jpeg';
+    if (name.includes('Сергей')) return '/man1.jpg';
+    if (name.includes('Максим')) return '/man3.jpeg';
+    if (name.includes('Игорь')) return '/man4.jpg';
+    if (name.includes('Анна')) return '/women2.jpg';
+    // fallback для остальных
+    return '/women2.jpg';
+  };
+
   const fullTestimonials = testimonials.map((testimonial, index) => ({
     ...testimonial,
     id: index + 1,
-    avatar: `/images/тимлид${index % 2 === 0 ? '3' : ''}.jpg`,
+    avatar: getAvatarForTestimonial(testimonial.name),
     subscribers: [3500, 1200, 5800, 2100, 800, 1500][index],
     rating: 5,
   }));
+
+  // Автоматическая прокрутка слайдов каждые 7.5 секунд
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial(prev => (prev + 1) % fullTestimonials.length);
+    }, 7500); // 7.5 секунд = 7500 миллисекунд
+    
+    // Очистка интервала при размонтировании компонента
+    return () => clearInterval(interval);
+  }, [fullTestimonials.length]);
 
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev === fullTestimonials.length - 1 ? 0 : prev + 1));
@@ -108,7 +130,14 @@ const SuccessMetricsSection: React.FC = () => {
           <div className="relative max-w-4xl mx-auto">
             <div className="glass rounded-3xl p-8 border border-border/50">
               <div className="flex flex-col md:flex-row items-center">
-                <div className="md:w-2/3 md:pl-8">
+                <div className="flex-shrink-0 mb-6 md:mb-0 md:mr-8">
+                  <img 
+                    src={fullTestimonials[currentTestimonial].avatar} 
+                    alt={fullTestimonials[currentTestimonial].name}
+                    className="w-24 h-24 rounded-full object-cover border-4 border-primary-telegram/30"
+                  />
+                </div>
+                <div className="md:w-2/3">
                   <div className="text-2xl mb-4 text-center md:text-left text-text-secondary italic">
                     "{fullTestimonials[currentTestimonial].quote}"
                   </div>
@@ -163,29 +192,7 @@ const SuccessMetricsSection: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Partners/Logos Marquee */}
-        <motion.div 
-          className="py-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          <div className="text-center mb-8">
-            <p className="text-text-secondary font-medium">{t('trusted_by')}</p>
-          </div>
-          <div className="flex animate-marquee whitespace-nowrap overflow-hidden">
-            <div className="flex items-center justify-around w-full">
-              {['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].map((item, idx) => (
-                <div key={idx} className="mx-8 opacity-60 hover:opacity-100 transition-opacity">
-                  <div className="w-16 h-16 bg-gray-200 rounded-xl flex items-center justify-center">
-                    <span className="text-text-primary font-bold">{item}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
+
       </div>
     </section>
   );

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, MessageCircle, Phone } from 'lucide-react';
+import { ChevronDown, MessageCircle, Phone, Search } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const FAQSection: React.FC = () => {
   const { t } = useTranslation('faq');
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState('all');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [visibleCount, setVisibleCount] = useState(5);
 
   const categories = ['all', 'general', 'products', 'pricing', 'security', 'support'];
   const categoryLabels = {
@@ -89,20 +91,35 @@ const FAQSection: React.FC = () => {
       id: 12,
       category: 'support',
       question: 'Как получить помощь?',
-      answer: 'Напишите @AIBROSupportBot в Telegram. Среднее время ответа — 2 часа (на тарифах Pro/Business). Также доступна база знаний и video-tutorials.'
+      answer: 'Напишите @AIBRO_Support в Telegram. Среднее время ответа — 2 часа (на тарифах Pro/Business). Также доступна база знаний и video-tutorials.'
     }
   ];
 
-  const filteredFAQs = activeCategory === 'all' 
-    ? faqs 
-    : faqs.filter(faq => faq.category === activeCategory);
+  // Фильтрация FAQ по категории и поисковому запросу
+  const filteredFAQs = faqs.filter(faq => {
+    const matchesCategory = activeCategory === 'all' || faq.category === activeCategory;
+    const matchesSearch = faq.question.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                         faq.answer.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  // Ограничиваем отображение только для категории 'all'
+  const displayedFAQs = activeCategory === 'all' ? filteredFAQs.slice(0, visibleCount) : filteredFAQs;
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const handleSearch = () => {
-    // В реальном приложении здесь будет фильтрация
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+    // Сбросить количество видимых элементов при новом поиске
+    if(activeCategory === 'all') {
+      setVisibleCount(5);
+    }
+  };
+
+  const loadMore = () => {
+    setVisibleCount(prev => prev + 5);
   };
 
   return (
@@ -129,10 +146,11 @@ const FAQSection: React.FC = () => {
             <input
               type="text"
               placeholder="Поиск по вопросам..."
+              value={searchTerm}
               onChange={handleSearch}
               className="w-full px-6 py-4 rounded-2xl bg-bg-tertiary border border-border focus:outline-none focus:ring-2 focus:ring-primary-telegram pl-14"
             />
-            <MessageCircle className="absolute left-5 top-1/2 transform -translate-y-1/2 text-text-tertiary" />
+            <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-text-tertiary" />
           </div>
         </div>
 
@@ -155,7 +173,7 @@ const FAQSection: React.FC = () => {
 
         {/* FAQ Accordion */}
         <div className="max-w-4xl mx-auto space-y-4">
-          {filteredFAQs.map((faq, index) => (
+          {displayedFAQs.map((faq, index) => (
             <motion.div
               key={faq.id}
               className="glass rounded-2xl overflow-hidden border border-border/50"
@@ -196,9 +214,21 @@ const FAQSection: React.FC = () => {
           ))}
         </div>
 
+        {/* Load More Button - показываем только для вкладки 'Все' и если есть скрытые вопросы */}
+        {activeCategory === 'all' && filteredFAQs.length > displayedFAQs.length && (
+          <div className="text-center mt-8">
+            <button
+              onClick={loadMore}
+              className="px-6 py-3 bg-gradient-to-r from-primary-telegram to-primary-electric text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
+            >
+              Показать еще
+            </button>
+          </div>
+        )}
+
         {/* Support Banner */}
         <motion.div 
-          className="mt-20 bg-gradient-to-r from-primary-telegram to-primary-electric rounded-2xl p-8 text-center text-white"
+          className="mt-20 w-[calc(100%-500px)] mx-auto bg-white dark:bg-[#334155] backdrop-blur-[15px] rounded-[20px] p-8 text-center text-text-primary dark:text-white shadow-[0_10px_30px_rgba(0,0,0,0.1),_10px_0_30px_rgba(0,0,0,0.1),_-10px_0_30px_rgba(0,0,0,0.1)]"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -212,9 +242,14 @@ const FAQSection: React.FC = () => {
               <h3 className="text-xl font-bold">Не нашли ответ?</h3>
               <p className="mt-2">Напишите нам в поддержку</p>
             </div>
-            <button className="mt-4 md:mt-0 px-6 py-3 bg-white text-primary-telegram font-bold rounded-lg hover:bg-gray-100 transition-colors">
+            <a 
+              href="https://t.me/AIBRO_Support" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="mt-4 md:mt-0 px-6 py-3 bg-[#00DDFD] text-white font-bold rounded-lg hover:opacity-90 transition-colors"
+            >
               Написать в поддержку
-            </button>
+            </a>
           </div>
         </motion.div>
       </div>

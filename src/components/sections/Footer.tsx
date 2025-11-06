@@ -59,7 +59,7 @@ const Footer: React.FC = () => {
                     hello@aibrobusiness.com
                   </a>
                 </div>
-                <a href="https://t.me/AIBROSupportBot" target="_blank" rel="noopener noreferrer" className="text-primary-telegram hover:underline">
+                <a href="https://t.me/AIBRO_Support" target="_blank" rel="noopener noreferrer" className="text-primary-telegram hover:underline">
                   {t('support_link')}
                 </a>
               </div>

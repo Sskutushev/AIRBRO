@@ -1,6 +1,6 @@
 {
   "title": "Ready to automate your business?",
-  "subtitle": "Join {count}+ businesses that already use AIBRO",
+  "subtitle": "Join 500+ businesses that already use AIBRO",
   "form": {
     "name": "Name",
     "name_placeholder": "John Doe",
@@ -33,8 +33,7 @@
   },
   "success": {
     "title": "Application sent!",
-    "message": "We have sent you a message on Telegram. Check @AIBROBusinessBot.",
-    "button": "Go to Telegram"
+    "message": "Thank you for your application! Our manager will contact you shortly."
   },
   "error": {
     "title": "An error has occurred",

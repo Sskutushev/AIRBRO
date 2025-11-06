@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const PricingSection: React.FC = () => {
   const { t } = useTranslation('pricing');
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [viewMode, setViewMode] = useState<'individual' | 'bundle'>('bundle');
   
   const packagesData = t('packages', { returnObjects: true }) as any;
@@ -129,7 +133,19 @@ const PricingSection: React.FC = () => {
               
               <div className="pt-4 border-t border-border">
                 <p className="text-xs text-text-tertiary text-center mb-4">{pkg.target}</p>
-                <button className="w-full py-3 bg-gradient-to-r from-primary-telegram to-primary-electric text-white rounded-lg font-medium hover:opacity-90 transition-opacity">
+                <button 
+                  className="w-full py-3 bg-gradient-to-r from-primary-telegram to-primary-electric text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
+                  onClick={() => {
+                    if (!user) {
+                      // Если пользователь не авторизован, перенаправляем на страницу авторизации
+                      navigate('/auth');
+                    } else {
+                      // Если пользователь авторизован, переходим к оплате
+                      // Здесь должна быть логика добавления пакета в корзину
+                      navigate('/payment');
+                    }
+                  }}
+                >
                   {t('select_package')}
                 </button>
               </div>
@@ -148,7 +164,18 @@ const PricingSection: React.FC = () => {
           <div className="inline-block bg-bg-tertiary rounded-2xl p-8">
             <h3 className="text-xl font-bold text-text-primary mb-2">{t('custom_package.title')}</h3>
             <p className="text-text-secondary mb-4">{t('custom_package.subtitle')}</p>
-            <button className="px-6 py-3 border border-primary-telegram text-primary-telegram rounded-lg font-medium hover:bg-primary-telegram/10 transition-colors">
+            <button 
+              className="px-6 py-3 border border-primary-telegram text-primary-telegram rounded-lg font-medium hover:bg-primary-telegram/10 transition-colors"
+              onClick={() => {
+                if (!user) {
+                  // Если пользователь не авторизован, перенаправляем на страницу авторизации
+                  navigate('/auth');
+                } else {
+                  // Если пользователь авторизован, переходим к оплате
+                  navigate('/payment');
+                }
+              }}
+            >
               {t('custom_package.button')}
             </button>
           </div>

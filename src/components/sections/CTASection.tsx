@@ -34,7 +34,7 @@ const CTASection: React.FC = () => {
     setSubmissionStatus('loading');
 
     try {
-      const response = await fetch('/api/telegram', {
+      const response = await fetch('http://localhost:3000/api/telegram/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -79,16 +79,6 @@ const CTASection: React.FC = () => {
             <div className="text-6xl mb-6">✅</div>
             <h3 className="text-3xl font-bold text-text-primary mb-4">{t('success.title')}</h3>
             <p className="text-text-secondary mb-6">{t('success.message')}</p>
-            <div className="flex justify-center">
-              <a 
-                href="https://t.me/AIBROBusinessBot" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-telegram to-primary-electric text-white rounded-lg font-bold hover:opacity-90 transition-opacity"
-              >
-                {t('success.button')}
-              </a>
-            </div>
           </motion.div>
         );
       case 'error':
@@ -125,7 +115,7 @@ const CTASection: React.FC = () => {
                   value={formData.name} 
                   onChange={handleChange} 
                   required 
-                  className="w-full px-4 py-3 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent" 
+                  className="w-full px-4 py-3 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary" 
                   placeholder={t('form.name_placeholder')} 
                 />
               </div>
@@ -142,7 +132,7 @@ const CTASection: React.FC = () => {
                   value={formData.email} 
                   onChange={handleChange} 
                   required 
-                  className="w-full px-4 py-3 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent" 
+                  className="w-full px-4 py-3 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary" 
                   placeholder={t('form.email_placeholder')} 
                 />
               </div>
@@ -162,7 +152,7 @@ const CTASection: React.FC = () => {
                   onChange={handleChange} 
                   required 
                   pattern="^@[a-zA-Z0-9_]{5,}$"
-                  className="w-full px-4 py-3 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent" 
+                  className="w-full px-4 py-3 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary" 
                   placeholder={t('form.telegram_placeholder')} 
                 />
               </div>
@@ -178,7 +168,7 @@ const CTASection: React.FC = () => {
                   name="business" 
                   value={formData.business} 
                   onChange={handleChange} 
-                  className="w-full px-4 py-3 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-electric focus:border-transparent" 
+                  className="w-full px-4 py-3 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-electric focus:border-transparent text-text-primary placeholder:text-text-tertiary" 
                   placeholder={t('form.business_placeholder')} 
                 />
               </div>
@@ -192,7 +182,7 @@ const CTASection: React.FC = () => {
                   name="product" 
                   value={formData.product} 
                   onChange={handleChange} 
-                  className="w-full px-4 py-3 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-violet focus:border-transparent"
+                  className="w-full px-4 py-3 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-violet focus:border-transparent text-text-primary"
                 >
                   {Object.entries(t('form.products', { returnObjects: true }) as { [key: string]: string }).map(([key, value]) => (
                     <option key={key} value={value}>{value}</option>
@@ -212,7 +202,7 @@ const CTASection: React.FC = () => {
                   onChange={handleChange} 
                   required 
                   rows={4} 
-                  className="w-full px-4 py-3 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent" 
+                  className="w-full px-4 py-3 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary" 
                   placeholder={t('form.problem_placeholder')}
                 ></textarea>
               </div>
@@ -302,7 +292,7 @@ const CTASection: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <a 
-            href="https://t.me/AIBROBusinessBot" 
+            href="https://t.me/AIBRO_Support" 
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center text-white font-bold text-lg hover:opacity-90 transition-opacity"

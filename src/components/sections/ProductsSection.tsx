@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle, Users, Calendar, Star, Bot, Video, Tag, Coins } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import ModulePopup from '../common/ModulePopup';
 
 const ProductsSection: React.FC = () => {
   const { t } = useTranslation('products');
+  const [activeModule, setActiveModule] = useState<{id: string, name: string, icon: string, tagline: string, price: string, status: string} | null>(null);
 
   // Tier 1 Product (Featured)
   const aiPostMaster = {
@@ -227,13 +229,37 @@ const ProductsSection: React.FC = () => {
                 
                 <div className="text-primary-telegram font-bold text-lg mb-4">{product.price}</div>
                 
-                <button className="w-full py-2 bg-white/10 text-white rounded-lg font-medium hover:bg-white/20 transition-colors">
+                <button 
+                  className="w-full py-2 bg-white/10 text-white rounded-lg font-medium hover:bg-white/20 transition-colors"
+                  onClick={() => setActiveModule({
+                    id: product.id,
+                    name: product.name,
+                    icon: product.id === 'conversation-bot' ? '💬' : 
+                         product.id === 'booking-bot' ? '📅' : 
+                         product.id === 'feedback-bot' ? '⭐' : '📹',
+                    tagline: product.tagline,
+                    price: product.price,
+                    status: product.statusText
+                  })}
+                >
                   Узнать больше
                 </button>
               </motion.div>
             ))}
           </div>
         </motion.div>
+        
+        {/* Module Popup */}
+        <ModulePopup
+          isOpen={!!activeModule}
+          onClose={() => setActiveModule(null)}
+          moduleId={activeModule?.id || ''}
+          moduleName={activeModule?.name || ''}
+          moduleIcon={activeModule?.icon || ''}
+          tagline={activeModule?.tagline || ''}
+          price={activeModule?.price || ''}
+          status={activeModule?.status || ''}
+        />
 
 
       </div>

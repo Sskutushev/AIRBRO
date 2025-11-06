@@ -5,7 +5,8 @@ interface User {
   name: string;
   email: string;
   telegram: string;
-  subscriptions: string[];
+  createdAt: string;
+  subscriptions?: string[];
 }
 
 interface AuthContextType {
@@ -17,6 +18,8 @@ interface AuthContextType {
   updateUser: (userData: Partial<User>) => void;
 }
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 interface AuthProviderProps {
@@ -27,63 +30,100 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Проверяем наличие пользователя в localStorage при загрузке
+  // Проверяем наличие токена и пользователя при загрузке
   useEffect(() => {
-    const storedUser = localStorage.getItem('airbro_user');
-    if (storedUser) {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (error) {
-        console.error('Error parsing user from localStorage', error);
-      }
+    const token = localStorage.getItem('airbro_token');
+    if (token) {
+      // Проверяем валидность токена, запросив данные пользователя
+      fetch(`${API_BASE_URL}/auth/me`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Token is not valid');
+      })
+      .then(userData => {
+        setUser(userData);
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+        // Если токен невалиден, удаляем его
+        localStorage.removeItem('airbro_token');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+    } else {
+      setLoading(false);
     }
-    setLoading(false);
   }, []);
 
-  const login = async (email: string) => {
-    // В реальном приложении здесь будет запрос к API
-    // Для демонстрации создадим фиктивного пользователя
+  const login = async (email: string, password: string) => {
     setLoading(true);
-    
-    // Имитация API-запроса
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    const mockUser: User = {
-      id: 'user_123',
-      name: 'Иван Иванов',
-      email,
-      telegram: '@ivan_ivanov',
-      subscriptions: ['ai_postmaster', 'conversation_bot']
-    };
-    
-    setUser(mockUser);
-    localStorage.setItem('airbro_user', JSON.stringify(mockUser));
-    setLoading(false);
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Login failed');
+      }
+
+      const data = await response.json();
+      
+      // Сохраняем токен и данные пользователя
+      localStorage.setItem('airbro_token', data.token);
+      setUser(data.user);
+    } catch (error) {
+      console.error('Login error:', error);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const register = async (name: string, email: string, telegram: string) => {
+  const register = async (name: string, email: string, password: string, telegram: string) => {
     setLoading(true);
-    
-    // Имитация API-запроса
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    const mockUser: User = {
-      id: 'user_456',
-      name,
-      email,
-      telegram,
-      subscriptions: [] // Новый пользователь без подписок
-    };
-    
-    setUser(mockUser);
-    localStorage.setItem('airbro_user', JSON.stringify(mockUser));
-    setLoading(false);
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password, name, telegram }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Registration failed');
+      }
+
+      const data = await response.json();
+      
+      // Сохраняем токен и данные пользователя
+      localStorage.setItem('airbro_token', data.token);
+      setUser(data.user);
+    } catch (error) {
+      console.error('Registration error:', error);
+      throw error;
+    } finally {
+      setLoading(false);
+    }
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('airbro_user');
     localStorage.removeItem('airbro_token');
+    localStorage.removeItem('airbro_user');
   };
 
   const updateUser = (userData: Partial<User>) => {

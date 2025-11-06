@@ -82,7 +82,7 @@ const AccountPage: React.FC = () => {
                       </div>
                       <div className="ml-4">
                         <p className="text-text-secondary text-sm">Активные продукты</p>
-                        <p className="text-2xl font-bold text-text-primary">{user.subscriptions.length}</p>
+                        <p className="text-2xl font-bold text-text-primary">{user.subscriptions?.length || 0}</p>
                       </div>
                     </div>
                   </div>
@@ -205,7 +205,10 @@ const AccountPage: React.FC = () => {
                 {/* Logout */}
                 <div className="bg-white border border-gray-200 rounded-xl p-6">
                   <button 
-                    onClick={logout}
+                    onClick={() => {
+                      logout();
+                      window.location.href = '/';
+                    }}
                     className="w-full flex items-center justify-center py-3 bg-red-50 text-red-600 rounded-lg font-medium hover:bg-red-100 transition-colors"
                   >
                     <LogOut className="w-5 h-5 mr-2" />
