@@ -1,10 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Check, MessageCircle, Calendar, BarChart3 } from 'lucide-react';
+import { Check, MessageCircle, Calendar, BarChart3, Smartphone, Layers, Brain } from 'lucide-react';
+import { useTheme } from '../../context/ThemeContext';
 
 const SolutionSection: React.FC = () => {
   const { t } = useTranslation('solution');
+  const { theme } = useTheme();
 
   const benefits = t('benefits', { returnObjects: true }) as { title: string; description: string; highlights: string[]; icon: string }[];
   const comparisonData = t('comparison.data', { returnObjects: true }) as { feature: string; freelancer: string; corp: string; aibro: string }[];
@@ -13,6 +15,9 @@ const SolutionSection: React.FC = () => {
     MessageCircle: <MessageCircle className="w-8 h-8" />,
     Calendar: <Calendar className="w-8 h-8" />,
     BarChart3: <BarChart3 className="w-8 h-8" />,
+    Smartphone: <Smartphone className="w-8 h-8" />,
+    Layers: <Layers className="w-8 h-8" />,
+    Brain: <Brain className="w-8 h-8" />,
   };
 
   return (
@@ -61,9 +66,25 @@ const SolutionSection: React.FC = () => {
                 </div>
               </div>
               <div className={`lg:w-1/2`}>
-                <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-80 flex items-center justify-center">
-                  <span className="text-gray-500">{t('visualization')}: {benefit.title}</span>
-                </div>
+                {index === 0 ? (
+                  <img
+                    src={theme === 'dark' ? '/images/решения.png' : '/images/решениябелый.png'}
+                    alt={`${t('visualization')}: ${benefit.title}`}
+                    className="w-full h-80 object-contain rounded-xl"
+                  />
+                ) : index === 1 ? (
+                  <img
+                    src={'/images/решения1.png'}
+                    alt={`${t('visualization')}: ${benefit.title}`}
+                    className="w-full h-80 object-contain rounded-xl"
+                  />
+                ) : (
+                  <img
+                    src={'/images/решения2.png'}
+                    alt={`${t('visualization')}: ${benefit.title}`}
+                    className="w-full h-80 object-contain rounded-xl"
+                  />
+                )}
               </div>
             </motion.div>
           ))}

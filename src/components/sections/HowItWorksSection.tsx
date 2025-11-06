@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { MessageCircle, Settings, Send } from 'lucide-react';
+import Modal from '../common/Modal';
 
 const HowItWorksSection: React.FC = () => {
   const { t } = useTranslation('how_it_works');
+  const [showVideoModal, setShowVideoModal] = useState(false);
 
   const steps = t('steps', { returnObjects: true }) as { title: string; description: string; duration: string; icon: string; mockup: string }[];
 
@@ -40,13 +42,13 @@ const HowItWorksSection: React.FC = () => {
             {steps.map((step, index) => (
               <motion.div 
                 key={step.title}
-                className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12`}
+                className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-start gap-12`}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
               >
-                <div className={`${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'} lg:w-1/2`}>
+                <div className={`lg:order-2 lg:w-1/2`}>
                   <div className="bg-gradient-to-br from-primary-telegram/10 to-primary-electric/10 p-8 rounded-2xl">
                     <div className="flex items-center mb-4">
                       <div className="w-12 h-12 bg-primary-telegram/10 rounded-lg flex items-center justify-center text-primary-telegram mr-4">
@@ -62,9 +64,31 @@ const HowItWorksSection: React.FC = () => {
                     <p className="text-text-secondary mb-6">{step.description}</p>
                   </div>
                 </div>
-                <div className={`${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'} lg:w-1/2`}>
+                <div className={`lg:order-1 lg:w-1/2`}>
                   <div className="glass rounded-2xl p-6 border border-border/50">
-                    <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-48 flex items-center justify-center">{step.mockup}</div>
+                    <div className="bg-gray-200 border-2 border-dashed rounded-xl w-96 h-auto flex items-center justify-center mx-auto">
+                      {index === 0 ? (
+                        <img 
+                          src="/images/Frame 7486.svg"
+                          alt="Telegram Chat Mockup"
+                          className="w-full h-auto object-contain"
+                        />
+                      ) : index === 1 ? (
+                        <img 
+                          src="/images/Рассказ.jpg"
+                          alt="Onboarding Form Mockup"
+                          className="w-full h-auto object-contain"
+                        />
+                      ) : index === 2 ? (
+                        <img 
+                          src="/images/пост.jpg"
+                          alt="Post Preview Mockup"
+                          className="w-full h-auto object-contain"
+                        />
+                      ) : (
+                        step.mockup
+                      )}
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -99,14 +123,38 @@ const HowItWorksSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <button className="px-8 py-4 bg-gradient-to-r from-primary-telegram to-primary-electric text-white font-bold rounded-lg hover:opacity-90 transition-opacity text-lg">
+          <button 
+            className="px-8 py-4 bg-gradient-to-r from-primary-telegram to-primary-electric text-white font-bold rounded-lg hover:opacity-90 transition-opacity text-lg"
+            onClick={() => {
+              const element = document.getElementById('contact');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+          >
             {t('cta.primary')}
           </button>
-          <button className="px-8 py-4 border border-text-secondary text-text-primary font-bold rounded-lg hover:border-primary-telegram hover:text-primary-telegram transition-colors text-lg">
+          <button 
+            className="px-8 py-4 border border-text-secondary text-text-primary font-bold rounded-lg hover:border-primary-telegram hover:text-primary-telegram transition-colors text-lg"
+            onClick={() => setShowVideoModal(true)}
+          >
             {t('cta.secondary')}
           </button>
         </motion.div>
       </div>
+
+      <Modal isOpen={showVideoModal} onClose={() => setShowVideoModal(false)} title={t('cta.video_title', { ns: 'common' })}>
+        <div className="relative pt-[56.25%] w-full">
+          <iframe
+            className="absolute top-0 left-0 w-full h-full rounded-lg"
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+      </Modal>
     </section>
   );
 };

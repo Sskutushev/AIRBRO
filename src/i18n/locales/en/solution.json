@@ -4,7 +4,7 @@
   "visualization": "Visualization",
   "benefits": [
     {
-      "icon": "MessageCircle",
+      "icon": "Smartphone",
       "title": "All in one app",
       "description": "No separate apps needed. All management is in Telegram, where you already work.",
       "highlights": [
@@ -14,7 +14,7 @@
       ]
     },
     {
-      "icon": "Calendar",
+      "icon": "Layers",
       "title": "Start small, grow with us",
       "description": "Don't pay for what you don't use. Add modules as your business grows.",
       "highlights": [
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "icon": "BarChart3",
+      "icon": "Brain",
       "title": "The longer you use it, the smarter it gets",
       "description": "Each client gets a personal AI Data Store. It knows your products, prices, and brand style.",
       "highlights": [

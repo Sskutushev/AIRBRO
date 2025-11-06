@@ -4,7 +4,7 @@
   "visualization": "Визуализация",
   "benefits": [
     {
-      "icon": "MessageCircle",
+      "icon": "Smartphone",
       "title": "Всё в одном приложении",
       "description": "Не нужны отдельные приложения. Всё управление — в Telegram, где вы уже работаете.",
       "highlights": [
@@ -14,7 +14,7 @@
       ]
     },
     {
-      "icon": "Calendar",
+      "icon": "Layers",
       "title": "Начните с малого, растите вместе с нами",
       "description": "Не платите за то, что не используете. Добавляйте модули по мере роста бизнеса.",
       "highlights": [
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "icon": "BarChart3",
+      "icon": "Brain",
       "title": "Чем дольше — тем умнее",
       "description": "Каждый клиент получает персональный AI Data Store. Знает ваши продукты, цены, стиль бренда.",
       "highlights": [
