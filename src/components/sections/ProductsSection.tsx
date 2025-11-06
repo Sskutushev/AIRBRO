@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle, Users, Calendar, Star, Bot, Video, Tag, Coins } from 'lucide-react';
+import { Users, Calendar, Star, Bot, Video, Coins } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import ModulePopup from '../common/ModulePopup';
 

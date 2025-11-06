@@ -5,6 +5,7 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  title?: string;
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
@@ -27,7 +28,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="p-6">
-            <div className="flex justify-end">
+            <div className="flex justify-between items-start mb-4">
+              {title && <h2 className="text-2xl font-bold text-text-primary">{title}</h2>}
               <button 
                 onClick={onClose}
                 className="text-text-secondary hover:text-text-primary text-2xl font-bold"
@@ -35,7 +37,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
                 &times;
               </button>
             </div>
-            <div className="mt-4">
+            <div>
               {children}
             </div>
           </div>

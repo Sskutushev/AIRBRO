@@ -229,9 +229,17 @@ const ModulePopup: React.FC<ModulePopupProps> = ({
                     <p className="text-text-secondary">{tagline}</p>
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="text-primary-telegram font-bold">{price}</div>
-                  <div className="text-text-secondary text-sm">{status}</div>
+                <div className="flex flex-col items-end">
+                  <button 
+                    onClick={onClose}
+                    className="text-text-secondary hover:text-text-primary"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+                  <div className="text-right mt-6">
+                    <div className="text-primary-telegram font-bold">{price}</div>
+                    <div className="text-text-secondary text-sm">{status}</div>
+                  </div>
                 </div>
               </div>
 

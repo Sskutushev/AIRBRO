@@ -174,7 +174,7 @@ const HeroSection: React.FC = () => {
         </motion.div>
       </div>
       
-      <Modal isOpen={showVideoModal} onClose={() => setShowVideoModal(false)} title={t('cta.video_title', { ns: 'common' })}>
+      <Modal isOpen={showVideoModal} onClose={() => setShowVideoModal(false)}>
         <div className="relative pt-[56.25%] w-full">
           <iframe
             className="absolute top-0 left-0 w-full h-full rounded-lg"

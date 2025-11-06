@@ -1,20 +1,26 @@
-09:19:55.242 Running build in Washington, D.C., USA (East) – iad1
-09:19:55.243 Build machine configuration: 2 cores, 8 GB
-09:19:55.383 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: 7e60f62)
-09:19:55.860 Cloning completed: 477.000ms
-09:19:56.194 Restored build cache from previous deployment (9DyeMGEqN959C1Dj5R6g6LBiQSkp)
-09:19:56.658 Running "vercel build"
-09:19:57.159 Vercel CLI 48.8.2
-09:19:57.930 Installing dependencies...
-09:19:59.294 
-09:19:59.295 up to date in 1s
-09:19:59.296 
-09:19:59.296 80 packages are looking for funding
-09:19:59.296   run `npm fund` for details
-09:19:59.326 Running "npm run build"
-09:19:59.431 
-09:19:59.432 > airbro-business-landing@1.0.0 build
-09:19:59.432 > tsc -b && vite build
-09:19:59.432 
-09:20:03.926 src/components/sections/PricingSection.tsx(3,1): error TS6192: All imports in import declaration are unused.
-09:20:04.662 Error: Command "npm run build" exited with 2
+17:01:34.479 Running build in Washington, D.C., USA (East) – iad1
+17:01:34.479 Build machine configuration: 2 cores, 8 GB
+17:01:34.863 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: 3bf12b6)
+17:01:36.556 Cloning completed: 1.693s
+17:01:36.745 Restored build cache from previous deployment (74yQ6kS4z2u9t6c1q8nntheCRuCr)
+17:01:37.223 Running "vercel build"
+17:01:37.624 Vercel CLI 48.8.2
+17:01:38.379 Installing dependencies...
+17:01:39.785 
+17:01:39.786 up to date in 1s
+17:01:39.786 
+17:01:39.787 80 packages are looking for funding
+17:01:39.787   run `npm fund` for details
+17:01:39.817 Running "npm run build"
+17:01:39.929 
+17:01:39.930 > airbro-business-landing@1.0.0 build
+17:01:39.930 > tsc -b && vite build
+17:01:39.930 
+17:01:45.086 src/components/common/ModulePopup.tsx(3,1): error TS6133: 'X' is declared but its value is never read.
+17:01:45.088 src/components/sections/HeroSection.tsx(177,79): error TS2322: Type '{ children: Element; isOpen: boolean; onClose: () => void; title: string; }' is not assignable to type 'IntrinsicAttributes & ModalProps'.
+17:01:45.088   Property 'title' does not exist on type 'IntrinsicAttributes & ModalProps'.
+17:01:45.088 src/components/sections/HowItWorksSection.tsx(146,79): error TS2322: Type '{ children: Element; isOpen: boolean; onClose: () => void; title: string; }' is not assignable to type 'IntrinsicAttributes & ModalProps'.
+17:01:45.088   Property 'title' does not exist on type 'IntrinsicAttributes & ModalProps'.
+17:01:45.089 src/components/sections/ProductsSection.tsx(3,10): error TS6133: 'MessageCircle' is declared but its value is never read.
+17:01:45.089 src/components/sections/ProductsSection.tsx(3,60): error TS6133: 'Tag' is declared but its value is never read.
+17:01:45.876 Error: Command "npm run build" exited with 2
