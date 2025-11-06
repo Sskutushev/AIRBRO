@@ -125,26 +125,7 @@ const RoadmapSection: React.FC = () => {
           </button>
         </motion.div>
 
-        {/* Newsletter Signup */}
-        <motion.div 
-          className="mt-12 bg-bg-tertiary rounded-2xl p-8 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <h3 className="text-xl font-bold text-text-primary mb-4">{t('newsletter.title')}</h3>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input 
-              type="email" 
-              placeholder={t('newsletter.placeholder')} 
-              className="flex-1 px-4 py-3 rounded-lg border border-border bg-bg-primary focus:outline-none focus:ring-2 focus:ring-primary-telegram"
-            />
-            <button className="px-6 py-3 bg-gradient-to-r from-primary-telegram to-primary-electric text-white rounded-lg font-medium hover:opacity-90 transition-opacity">
-              {t('newsletter.button')}
-            </button>
-          </div>
-        </motion.div>
+
 
         <VotingModal isOpen={isVotingModalOpen} onClose={() => setIsVotingModalOpen(false)} />
       </div>
