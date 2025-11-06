@@ -31,8 +31,8 @@ const Footer: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             <div className="lg:col-span-2">
               <div className="flex items-center mb-4">
-                <div className="w-8 h-8 bg-primary-telegram rounded-full flex items-center justify-center text-white font-bold mr-3">
-                  🤖
+                <div className="w-8 h-8 bg-bg-primary rounded-full flex items-center justify-center mr-3">
+                  <img src="/Favicon.svg" alt="AIBRO Logo" className="w-full h-full object-contain" />
                 </div>
                 <span className="text-2xl font-bold text-text-primary">AIBRO Business</span>
               </div>
