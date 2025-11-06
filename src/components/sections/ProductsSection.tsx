@@ -22,9 +22,9 @@ const ProductsSection: React.FC = () => {
       t('ai_postmaster.features.brand_personalization')
     ],
     pricing: {
-      starter: { price: 3000, features: ["1 канал", "30 постов/мес"] },
-      pro: { price: 5000, features: ["1 канал", "Неограниченно", "Аналитика"] },
-      business: { price: 8000, features: ["3 канала", "Неограниченно", "Приоритет"] },
+      starter: { price: 990, features: ["1 канал", "30 постов/мес"] },
+      pro: { price: 2490, features: ["1 канал", "Неограниченно", "Аналитика"] },
+      business: { price: 4990, features: ["3 канала", "Неограниченно", "Приоритет"] },
     }
   };
 
@@ -66,7 +66,7 @@ const ProductsSection: React.FC = () => {
       tagline: "Умный помощник по инвентарю",
       description: "Видео-инвентаризация, OCR сроков годности, автозаказ.",
       icon: <Video className="w-8 h-8" />,
-      price: "от 3,000₽/мес",
+      price: "от 4,990₽/мес",
       status: "research", // available, coming, research
       statusText: "🔴 R&D, Q3 2026"
     }
@@ -142,7 +142,7 @@ const ProductsSection: React.FC = () => {
                     <div className="bg-white/10 rounded-xl p-4">
                       <div className="flex justify-between items-center mb-2">
                         <span className="font-medium">Starter</span>
-                        <span className="font-bold text-xl">3,000₽</span>
+                        <span className="font-bold text-xl">990₽</span>
                       </div>
                       <ul className="text-sm space-y-1 opacity-80">
                         {aiPostMaster.pricing.starter.features.map((feature, idx) => (
@@ -156,9 +156,9 @@ const ProductsSection: React.FC = () => {
                         {t('recommended_badge')}
                       </div>
                       <div className="flex justify-between items-center mb-2">
-                        <span className="font-medium">Pro</span>
+                        <span className="font-medium">Business</span>
                         <div className="flex flex-col items-end">
-                          <span className="font-bold text-xl">5,000₽</span>
+                          <span className="font-bold text-xl">2,490₽</span>
                         </div>
                       </div>
                       <ul className="text-sm space-y-1 opacity-80">
@@ -170,8 +170,8 @@ const ProductsSection: React.FC = () => {
                     
                     <div className="bg-white/10 rounded-xl p-4">
                       <div className="flex justify-between items-center mb-2">
-                        <span className="font-medium">Business</span>
-                        <span className="font-bold text-xl">8,000₽</span>
+                        <span className="font-medium">Premium</span>
+                        <span className="font-bold text-xl">4,990₽</span>
                       </div>
                       <ul className="text-sm space-y-1 opacity-80">
                         {aiPostMaster.pricing.business.features.map((feature, idx) => (

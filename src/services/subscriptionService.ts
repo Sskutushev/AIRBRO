@@ -28,7 +28,7 @@ export const subscriptionPlans: SubscriptionPlan[] = [
     id: 'starter',
     name: 'Starter',
     description: 'Для начинающих предпринимателей',
-    price: 3000,
+    price: 990,
     interval: 'month',
     features: [
       'AI PostMaster',
@@ -40,10 +40,10 @@ export const subscriptionPlans: SubscriptionPlan[] = [
     productId: 'ai_postmaster'
   },
   {
-    id: 'pro',
-    name: 'Pro',
+    id: 'business',
+    name: 'Business',
     description: 'Для растущего бизнеса',
-    price: 5000,
+    price: 2490,
     interval: 'month',
     features: [
       'AI PostMaster',
@@ -56,13 +56,13 @@ export const subscriptionPlans: SubscriptionPlan[] = [
     productId: 'ai_postmaster_conversation'
   },
   {
-    id: 'business',
-    name: 'Business',
+    id: 'premium',
+    name: 'Premium',
     description: 'Для развитого бизнеса',
-    price: 8000,
+    price: 4990,
     interval: 'month',
     features: [
-      'Все функции Pro',
+      'Все функции Business',
       'Booking Bot',
       'Feedback Bot',
       '5 Telegram-каналов',
@@ -194,23 +194,23 @@ export const getPaymentHistory = async () => {
         {
           id: 'pay_1',
           date: '2025-10-05',
-          amount: 5000,
-          plan: 'Pro',
+          amount: 2490,
+          plan: 'Business',
           status: 'completed',
           method: 'card'
         },
         {
           id: 'pay_2',
           date: '2025-09-05',
-          amount: 5000,
-          plan: 'Pro',
+          amount: 2490,
+          plan: 'Business',
           status: 'completed',
           method: 'card'
         },
         {
           id: 'pay_3',
           date: '2025-08-05',
-          amount: 3000,
+          amount: 990,
           plan: 'Starter',
           status: 'completed',
           method: 'card'

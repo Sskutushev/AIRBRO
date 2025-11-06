@@ -1,80 +1,288 @@
-# AIBRO Business Landing Page
+# AIBRO Business - AI-powered automation ecosystem for Telegram-native businesses
 
-This is the official repository for the AIBRO Business landing page, a fully responsive, animated, and bilingual (English/Russian) single-page application built with a modern frontend stack.
+![AIBRO Business Banner](public/images/HeroWhite.mp4)
 
-![AIBRO Hero Section](public/images/screenshot.png) <!-- I'll assume a screenshot will be added here later -->
+**AIBRO Business** - это комплексная система автоматизации малого и среднего бизнеса, полностью интегрированная в Telegram. Система предоставляет набор инструментов на основе искусственного интеллекта для автоматизации различных аспектов бизнеса: создание контента, управление заказами, бронирование, обратная связь и многое другое.
 
-## ✨ Features
+## 🚀 Особенности
 
--   **Modern & Animated UI:** Built with Tailwind CSS and Framer Motion for a smooth, fluid user experience.
--   **Fully Responsive:** Adapts to all screen sizes, from mobile to desktop.
--   **Bilingual (i18n):** Supports English and Russian languages, managed by `i18next`.
--   **Light & Dark Modes:** Theme support with a toggle, persists in `localStorage`.
--   **Component-Based:** Structured with reusable React components for maintainability.
--   **Enhanced UI/UX:** Improved footer logo, responsive 'Мы рекомендуем' badge, and refined CTA sections for better user engagement.
--   **Contact Form:** A functional contact form that sends inquiries directly to a Telegram chat via a secure serverless function.
+- **AI-инструменты**: Автоматические боты для управления бизнесом
+- **Telegram-интеграция**: Полная интеграция с Telegram
+- **Крипто-платежи**: Поддержка USDT (TRC20/ERC20) и TON
+- **Многоязычность**: RU и EN языки
+- **Адаптивный дизайн**: Работает на всех устройствах
+- **Темная/светлая тема**: Гибкие настройки интерфейса
+- **Безопасность**: JWT аутентификация и шифрование данных
 
-## 🛠️ Tech Stack
+## 🎯 Функции
 
--   **Framework:** [React](https://reactjs.org/)
--   **Build Tool:** [Vite](https://vitejs.dev/)
--   **Language:** [TypeScript](https://www.typescriptlang.org/)
--   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
--   **Animations:** [Framer Motion](https://www.framer.com/motion/)
--   **Internationalization:** [i18next](https://www.i18next.com/)
--   **Deployment:** [Vercel](https://vercel.com/)
+### AI PostMaster
+- Автоматическое создание контента для Telegram-каналов
+- Генерация текста (Gemini 2.0 Flash)
+- Генерация изображений (Imagen 4 Fast)
+- Умное планирование и персонализация под бренд
 
-## 📄 Project Structure
+### Conversation Bot
+- AI-ассистент для поддержки клиентов
+- Ответы на частые вопросы
+- Квалификация лидов
+- Бесшовная передача сложных запросов
 
-The project is organized into a modular structure to keep the codebase clean and scalable. For a detailed breakdown of the architecture, file structure, and key concepts, please see the [**Project Structure Documentation**](./docs/PROJECT_STRUCTURE.md).
+### Booking Bot
+- Автоматические записи и напоминания
+- Управление календарём
+- Синхронизация с внешними сервисами
 
-## 🚀 Getting Started
+### Feedback Bot
+- Автоматический сбор отзывов
+- Управление репутацией
+- NPS-трекинг
 
-### Prerequisites
+### Video Inventory Agent
+- Компьютерное зрение для инвентаризации
+- OCR сроков годности
+- Автозаказ материалов
 
--   Node.js (v18.x or higher)
--   npm or yarn
+## 🛠 Технологии
 
-### Installation
+### Frontend
+- **React** (v19.1.1) - Библиотека компонентного UI
+- **TypeScript** - Строгая типизация
+- **TailwindCSS** - Утилитарный CSS-фреймворк
+- **Framer Motion** - Анимации и переходы
+- **React Router** - Маршрутизация
+- **i18next** - Многоязычность
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/Sskutushev/AIRBRO.git
-    cd AIRBRO
-    ```
+### Backend
+- **Express.js** - Веб-фреймворк
+- **TypeScript** - Строгая типизация
+- **Prisma** - ORM для работы с базой данных
+- **SQLite/PostgreSQL** - Хранение данных
+- **JWT** - Аутентификация
+- **BCrypt** - Хеширование паролей
+- **Zod** - Валидация данных
 
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
+### Интеграции
+- **Telegram API** - Интеграция с мессенджером
+- **Cryptocurrency payments** - Поддержка USDT и TON
+- **Node.js** - Серверное окружение
 
-3.  **Set up environment variables:**
-    Create a `.env` file in the root of the project and add your Telegram Bot Token and Chat ID for the contact form to work.
-    ```
-    VITE_TELEGRAM_BOT_TOKEN=your_bot_token
-    VITE_TELEGRAM_CHAT_ID=your_chat_id
-    ```
+## 📁 Структура проекта
 
-### Running the Development Server
+```
+AIBRO/
+├── backend/                    # Бэкенд приложения
+│   ├── src/
+│   │   ├── config/            # Конфигурация
+│   │   ├── controllers/       # Бизнес-логика
+│   │   ├── middleware/        # Middleware
+│   │   ├── models/            # TypeScript типы
+│   │   ├── routes/            # API маршруты
+│   │   ├── services/          # Сервисные слои
+│   │   ├── utils/             # Утилиты
+│   │   └── prisma/            # Схема БД и миграции
+│   └── package.json
+├── src/                        # Фронтенд приложения
+│   ├── components/            # React компоненты
+│   │   ├── common/            # Общие компоненты
+│   │   └── sections/          # Секции
+│   ├── context/               # React контексты
+│   ├── hooks/                 # React хуки
+│   ├── i18n/                  # Локализация
+│   ├── lib/                   # Библиотеки
+│   ├── pages/                 # Страницы
+│   └── services/              # API сервисы
+├── public/                    # Публичные ресурсы
+├── docs/                      # Документация
+├── assets/                    # Изображения
+├── package.json              # Зависимости
+└── README.md                 # Документация
+```
 
-To start the Vite development server, run:
+## 🚀 Установка и запуск
 
+### Требования
+- Node.js 18+
+- npm или yarn
+- Git
+
+### Установка
+
+1. Клонируйте репозиторий:
 ```bash
+git clone https://github.com/Sskutushev/AIRBRO.git
+cd AIRBRO
+```
+
+2. Установите зависимости для фронтенда:
+```bash
+npm install
+```
+
+3. Установите зависимости для бэкенда:
+```bash
+cd backend
+npm install
+```
+
+4. Настройте переменные окружения:
+```bash
+# В директории backend создайте .env:
+NODE_ENV=development
+PORT=3000
+FRONTEND_URL=http://localhost:5173
+DATABASE_URL="file:./dev.db"
+JWT_SECRET=ваш_секретный_ключ_для_jwt
+USDT_TRC20_WALLET=ваш_TRC20_адрес
+USDT_ERC20_WALLET=ваш_ERC20_адрес
+TON_WALLET=ваш_TON_адрес
+TELEGRAM_BOT_TOKEN=ваш_токен_бота
+TELEGRAM_ADMIN_CHANNEL=ваш_ID_канала
+```
+
+### Запуск
+
+1. Запустите бэкенд:
+```bash
+cd backend
+npm run prisma:generate
+npm run prisma:migrate
+npm run prisma:seed
 npm run dev
 ```
 
-This will start the application on `http://localhost:5173` (or another port if 5173 is in use). The server supports Hot Module Replacement (HMR) for a fast development workflow.
-
-### Building for Production
-
-To create a production-ready build of the application, run:
-
+2. В новом терминале запустите фронтенд:
 ```bash
-npm run build
+cd ..  # или cd ../frontend если вы в backend директории
+npm run dev
 ```
 
-This command will generate a `dist` folder in the project root, which contains the optimized and minified static assets for deployment.
+Приложение будет доступно по адресу: [http://localhost:5173](http://localhost:5173)
 
-## 部署 (Deployment)
+## 🧪 Тестирование
 
-The project is configured for easy deployment on [Vercel](https://vercel.com/). Simply connect your GitHub repository to a new Vercel project. Vercel will automatically detect the Vite configuration and deploy the application. The serverless function in the `api` directory will also be deployed automatically.
+### Запуск тестов
+
+Для запуска тестов выполните:
+```bash
+# Фронтенд тесты
+npm run test
+
+# Бэкенд тесты
+cd backend
+npm run test
+```
+
+## 📊 API
+
+### Базовый URL
+```
+http://localhost:3000/api
+```
+
+### Основные эндпоинты
+
+| Метод | Эндпоинт | Описание |
+|-------|----------|----------|
+| POST | /api/auth/register | Регистрация пользователя |
+| POST | /api/auth/login | Вход пользователя |
+| GET | /api/auth/me | Информация о пользователе |
+| GET | /api/products | Список продуктов |
+| GET | /api/products/:slug | Продукт по slug |
+| GET | /api/cart | Корзина пользователя |
+| POST | /api/cart/add | Добавить товар в корзину |
+| POST | /api/payments/crypto/create | Создать криптоплатеж |
+| GET | /api/payments/:id/status | Статус платежа |
+| GET | /api/user/profile | Профиль пользователя |
+
+Полная документация API доступна в [api_documentation.md](docs/api_documentation.md)
+
+## 🎨 UX/UI особенности
+
+- **Адаптивный дизайн**: Работает на экранах от 350px
+- **Темы**: Светлая и темная темы
+- **Анимации**: Плавные переходы с Framer Motion
+- **Интерактивность**: Отзывчивые элементы с hover и focus состояниями
+- **Доступность**: Соответствие стандартам WCAG
+
+## 🔐 Безопасность
+
+- **JWT аутентификация**: Безопасные токены с ограниченным сроком действия
+- **Шифрование паролей**: BCrypt с 10 раундами
+- **Валидация**: Zod для проверки входных данных
+- **CORS**: Настроена для безопасности
+- **Rate limiting**: Защита от атак перебором
+
+## 💳 Платежи
+
+- **Криптовалюты**: Поддержка USDT (TRC20/ERC20) и TON
+- **QR-коды**: Автоматическая генерация для оплаты
+- **Таймеры**: 30-минутный таймер на совершение платежа
+- **Конвертация**: RUB в криптовалюту по текущему курсу
+- **Уведомления**: Telegram-уведомления о платежах
+
+## 🌐 Локализация
+
+- **Языки**: Русский и английский
+- **Автоматическое определение**: Язык пользователя определяется автоматически
+- **Переключение**: Возможность переключения между языками
+- **Интернационализация**: Полностью локализованный интерфейс
+
+## 📱 Мобильная оптимизация
+
+- **Адаптивный дизайн**: Оптимизация под все размеры экранов
+- **Touch-оптимизации**: Для сенсорных устройств
+- **Минимальная ширина**: Поддержка экранов от 350px
+- **Производительность**: Оптимизация времени загрузки
+
+## 🚀 Деплой
+
+### Frontend (Vercel)
+1. Подключите репозиторий к Vercel
+2. Укажите команду сборки: `npm run build`
+3. Укажите директорию вывода: `dist`
+
+### Backend (Railway/Render)
+1. Разверните backend отдельно
+2. Настройте переменные окружения
+3. Обновите URL API в фронтенд конфигурации
+
+## 🤝 Контрибуция
+
+Мы приветствуем контрибуции! Чтобы внести изменения:
+
+1. Форкните репозиторий
+2. Создайте feature-ветку (`git checkout -b feature/AmazingFeature`)
+3. Сделайте изменения
+4. Зафиксируйте изменения (`git commit -m 'Add some AmazingFeature'`)
+5. Запушьте ветку (`git push origin feature/AmazingFeature`)
+6. Откройте Pull Request
+
+## 📜 Лицензия
+
+Проект распространяется под лицензией MIT. Подробности см. в файле [LICENSE](LICENSE).
+
+## 👥 Авторы и поддержка
+
+- **AIRBRO Business Team**
+- Telegram: [@AIBROSupportBot](https://t.me/AIBROSupportBot)
+- Email: hello@aibrobusiness.com
+
+## 🙏 Благодарности
+
+- Сообществу open source за предоставленные библиотеки
+- всем, кто тестировал и помогал с проектом
+- Telegram за мощную платформу для интеграции
+- разработчикам AI-моделей, которые делают автоматизацию возможной
+
+## 📞 Поддержка
+
+Если у вас есть вопросы или предложения, пожалуйста, свяжитесь с нами:
+
+- Задайте вопрос в [Issues](https://github.com/Sskutushev/AIRBRO/issues)
+- Напишите в Telegram: [@AIBROSupportBot](https://t.me/AIBROSupportBot)
+- Отправьте email: hello@aibrobusiness.com
+
+---
+
+✨ **AIBRO Business - автоматизируйте свой бизнес с мощью AI и Telegram!** ✨

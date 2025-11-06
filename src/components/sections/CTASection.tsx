@@ -292,7 +292,7 @@ const CTASection: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <a 
-            href="https://t.me/AIBRO_Support" 
+            href="https://t.me/zayavki_ai" 
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center text-white font-bold text-lg hover:opacity-90 transition-opacity"

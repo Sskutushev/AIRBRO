@@ -18,7 +18,7 @@
       "title": "Start small, grow with us",
       "description": "Don't pay for what you don't use. Add modules as your business grows.",
       "highlights": [
-        "Low entry barrier ($50/month)",
+        "Low entry barrier ($9.90/month)",
         "Natural upsells",
         "No vendor lock-in"
       ]
@@ -43,7 +43,7 @@
       "aibro": "AIBRO Business"
     },
     "data": [
-      { "feature": "Cost/month", "freelancer": "$1,000", "corp": "$2,500+", "aibro": "from $50" },
+      { "feature": "Cost/month", "freelancer": "$1,000", "corp": "$2,500+", "aibro": "from $9.90" },
       { "feature": "Setup time", "freelancer": "2-4 weeks", "corp": "3-6 months", "aibro": "15 minutes" },
       { "feature": "Personalization", "freelancer": "High", "corp": "Low", "aibro": "AI-driven" },
       { "feature": "Reliability", "freelancer": "Depends", "corp": "High", "aibro": "SLA 99.9%" },

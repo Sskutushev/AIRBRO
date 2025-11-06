@@ -15,10 +15,10 @@ const PricingSection: React.FC = () => {
   const packages = Object.keys(packagesData).map(key => ({
     id: key,
     ...packagesData[key],
-    priceOriginal: 11500, // These should probably be in the JSON too, but leaving for now
-    priceBundle: 9900,
-    savings: 1600,
-    savingsPercent: 14,
+    priceOriginal: 14000, // Обновленная цена для пакетов
+    priceBundle: 11900,
+    savings: 2100,
+    savingsPercent: 15,
     emoji: key === 'restaurant' ? '🍽️' : key === 'beauty' ? '💇' : key === 'fitness' ? '🏋️' : '🛍️',
   }));
 

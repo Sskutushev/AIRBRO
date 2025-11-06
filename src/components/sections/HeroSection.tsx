@@ -58,7 +58,7 @@ const HeroSection: React.FC = () => {
                 className="text-lg px-8 py-4"
                 glow={true}
                 onClick={() => {
-                  window.open('https://t.me/aipostmaster_bot', '_blank');
+                  window.open('https://t.me/AIBROBusinessBot', '_blank');
                 }}
               >
                 {t('cta.primary')}
@@ -71,6 +71,32 @@ const HeroSection: React.FC = () => {
               >
                 {t('cta.secondary')} →
               </Button>
+            </motion.div>
+            
+            {/* Additional "Start Small" Button */}
+            <motion.div
+              className="mt-4 text-center lg:text-left"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <div className="inline-flex flex-col items-center lg:items-start">
+                <div className="text-text-secondary text-sm mb-2">{t('low_barrier')}</div>
+                <Button 
+                  variant="ghost"
+                  size="md"
+                  className="text-primary-telegram hover:bg-primary-telegram/10 px-0 underline"
+                  onClick={() => {
+                    // Прокрутка к секции с пакетами
+                    const element = document.getElementById('pricing');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                >
+                  {t('start_small_cta')}
+                </Button>
+              </div>
             </motion.div>
             
             {/* Stats */}
