@@ -1,32 +1,23 @@
-23:10:23.228 Running build in Washington, D.C., USA (East) – iad1
-23:10:23.228 Build machine configuration: 2 cores, 8 GB
-23:10:23.429 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: 9d1569a)
-23:10:23.430 Previous build caches not available.
-23:10:24.172 Cloning completed: 743.000ms
-23:10:24.569 Running "vercel build"
-23:10:24.948 Vercel CLI 48.8.2
-23:10:25.659 Installing dependencies...
-23:10:29.326 npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
-23:10:29.744 npm warn deprecated npmlog@5.0.1: This package is no longer supported.
-23:10:29.938 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
-23:10:30.177 npm warn deprecated gauge@3.0.2: This package is no longer supported.
-23:10:30.407 npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.
-23:10:31.063 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-23:10:31.132 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-23:10:33.862 
-23:10:33.863 added 419 packages in 6s
-23:10:33.864 
-23:10:33.864 80 packages are looking for funding
-23:10:33.864   run `npm fund` for details
-23:10:33.901 Running "npm run build"
-23:10:34.004 
-23:10:34.005 > airbro-business-landing@1.0.0 build
-23:10:34.005 > tsc -b && vite build
-23:10:34.005 
-23:10:38.104 src/components/sections/ProductsSection.tsx(1,17): error TS6133: 'useState' is declared but its value is never read.
-23:10:38.105 src/components/sections/ProductsSection.tsx(3,60): error TS6133: 'ShoppingBag' is declared but its value is never read.
-23:10:38.105 src/components/sections/ProductsSection.tsx(3,73): error TS6133: 'Scissors' is declared but its value is never read.
-23:10:38.105 src/components/sections/ProductsSection.tsx(3,83): error TS6133: 'Dumbbell' is declared but its value is never read.
-23:10:38.105 src/components/sections/ProductsSection.tsx(3,93): error TS6133: 'ChefHat' is declared but its value is never read.
-23:10:38.105 src/pages/PaymentPage.tsx(71,11): error TS2554: Expected 1 arguments, but got 2.
-23:10:38.811 Error: Command "npm run build" exited with 2
+09:16:32.521 Running build in Washington, D.C., USA (East) – iad1
+09:16:32.521 Build machine configuration: 2 cores, 8 GB
+09:16:32.648 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: 722e02f)
+09:16:34.114 Cloning completed: 1.466s
+09:16:34.246 Restored build cache from previous deployment (9DyeMGEqN959C1Dj5R6g6LBiQSkp)
+09:16:34.765 Running "vercel build"
+09:16:35.156 Vercel CLI 48.8.2
+09:16:35.885 Installing dependencies...
+09:16:37.116 
+09:16:37.117 up to date in 988ms
+09:16:37.117 
+09:16:37.117 80 packages are looking for funding
+09:16:37.118   run `npm fund` for details
+09:16:37.149 Running "npm run build"
+09:16:37.807 
+09:16:37.808 > airbro-business-landing@1.0.0 build
+09:16:37.808 > tsc -b && vite build
+09:16:37.808 
+09:16:42.801 src/components/common/VotingModal.tsx(2,1): error TS6133: 'motion' is declared but its value is never read.
+09:16:42.802 src/components/sections/PricingSection.tsx(22,9): error TS6133: 'icons' is declared but its value is never read.
+09:16:42.802 src/components/sections/SuccessMetricsSection.tsx(91,60): error TS2339: Property 'suffix' does not exist on type '{ label: string; description: string; icon: Element; value: number; suffix: string; } | { label: string; description: string; icon: Element; value: number; }'.
+09:16:42.802   Property 'suffix' does not exist on type '{ label: string; description: string; icon: Element; value: number; }'.
+09:16:43.564 Error: Command "npm run build" exited with 2

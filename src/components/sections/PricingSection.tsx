@@ -19,13 +19,6 @@ const PricingSection: React.FC = () => {
     emoji: key === 'restaurant' ? '🍽️' : key === 'beauty' ? '💇' : key === 'fitness' ? '🏋️' : '🛍️',
   }));
 
-  const icons: { [key: string]: React.ReactNode } = {
-    restaurant: <ChefHat className="w-8 h-8" />,
-    beauty: <Scissors className="w-8 h-8" />,
-    fitness: <Dumbbell className="w-8 h-8" />,
-    retail: <ShoppingBag className="w-8 h-8" />,
-  };
-
   return (
     <section id="pricing" className="py-20 bg-gradient-to-b from-bg-primary to-bg-secondary">
       <div className="container mx-auto px-4">

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import Modal from './Modal';
 import { useAuth } from '../../context/AuthContext';
 import { useTranslation } from 'react-i18next';

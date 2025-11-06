@@ -33,6 +33,7 @@ const SuccessMetricsSection: React.FC = () => {
     {
       icon: <Star className="w-8 h-8" />,
       value: 4.8,
+      suffix: "",
       ...metricsData[3]
     }
   ];
