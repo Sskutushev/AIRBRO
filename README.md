@@ -11,6 +11,7 @@ This is the official repository for the AIBRO Business landing page, a fully res
 -   **Bilingual (i18n):** Supports English and Russian languages, managed by `i18next`.
 -   **Light & Dark Modes:** Theme support with a toggle, persists in `localStorage`.
 -   **Component-Based:** Structured with reusable React components for maintainability.
+-   **Enhanced UI/UX:** Improved footer logo, responsive 'Мы рекомендуем' badge, and refined CTA sections for better user engagement.
 -   **Contact Form:** A functional contact form that sends inquiries directly to a Telegram chat via a secure serverless function.
 
 ## 🛠️ Tech Stack

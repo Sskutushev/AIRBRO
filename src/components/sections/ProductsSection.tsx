@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle, Users, Calendar, Star, Bot, Video } from 'lucide-react';
+import { MessageCircle, Users, Calendar, Star, Bot, Video, Tag, Coins } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const ProductsSection: React.FC = () => {
@@ -12,7 +12,7 @@ const ProductsSection: React.FC = () => {
     name: t('ai_postmaster.name'),
     tagline: t('ai_postmaster.tagline'),
     description: t('ai_postmaster.description'),
-    icon: <MessageCircle className="w-10 h-10" />,
+    icon: <Coins className="w-10 h-10" />,
     features: [
       t('ai_postmaster.features.text_gen'),
       t('ai_postmaster.features.image_gen'),
@@ -117,15 +117,20 @@ const ProductsSection: React.FC = () => {
                   ))}
                 </ul>
                 
-                <button className="bg-white text-primary-telegram font-bold px-8 py-4 rounded-lg text-lg hover:bg-gray-100 transition-colors">
+                <a 
+                  href="https://t.me/aipostmaster_bot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-white text-primary-telegram font-bold px-8 py-4 rounded-lg text-lg hover:bg-gray-100 transition-colors"
+                >
                   Попробовать бесплатно 7 дней
-                </button>
+                </a>
               </div>
               
               <div className="flex-1 flex justify-center">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 w-full max-w-md">
-                  <div className="text-center mb-6">
-                    <div className="bg-primary-mint/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="bg-[#334155]/70 backdrop-blur-[15px] rounded-2xl p-8 border border-white/20 w-full max-w-md">
+                  <div className="flex items-center justify-center mb-6">
+                    <div className="bg-primary-mint/20 w-16 h-16 rounded-full flex items-center justify-center mr-3">
                       {aiPostMaster.icon}
                     </div>
                     <h4 className="font-bold text-lg">Тарифы</h4>
@@ -144,10 +149,15 @@ const ProductsSection: React.FC = () => {
                       </ul>
                     </div>
                     
-                    <div className="bg-white/10 rounded-xl p-4">
+                    <div className="bg-white/10 rounded-xl p-4 relative">
+                      <div className="absolute top-[-10px] left-[-10px] bg-gradient-to-r from-primary-telegram to-primary-electric text-white font-bold text-xs px-3 py-1 rounded-full animate-pulse whitespace-nowrap">
+                        {t('recommended_badge')}
+                      </div>
                       <div className="flex justify-between items-center mb-2">
                         <span className="font-medium">Pro</span>
-                        <span className="font-bold text-xl">5,000₽</span>
+                        <div className="flex flex-col items-end">
+                          <span className="font-bold text-xl">5,000₽</span>
+                        </div>
                       </div>
                       <ul className="text-sm space-y-1 opacity-80">
                         {aiPostMaster.pricing.pro.features.map((feature, idx) => (

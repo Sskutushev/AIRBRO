@@ -133,14 +133,22 @@ const SolutionSection: React.FC = () => {
 
         {/* CTA Banner */}
         <motion.div 
-          className="mt-20 bg-gradient-to-r from-primary-telegram to-primary-electric rounded-2xl p-8 text-center text-white"
+          className="mt-20 max-w-[calc(100%-500px)] mx-auto bg-[#334155]/70 rounded-[20px] p-8 text-center text-white backdrop-blur-[15px]"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">{t('cta.title')}</h3>
-          <button className="bg-white text-primary-telegram font-bold px-8 py-4 rounded-lg text-lg hover:bg-gray-100 transition-colors">
+          <h3 className="text-2xl md:text-3xl font-bold mb-4 text-[#00DDFD]">{t('cta.title')}</h3>
+          <button 
+            className="bg-[#00DDFD] text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-[#00DDFD]/80 transition-colors"
+            onClick={() => {
+              const element = document.getElementById('contact');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+          >
             {t('cta.button')}
           </button>
         </motion.div>

@@ -57,10 +57,7 @@ const HeroSection: React.FC = () => {
                 className="text-lg px-8 py-4"
                 glow={true}
                 onClick={() => {
-                  const element = document.getElementById('contact');
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                  }
+                  window.open('https://t.me/aipostmaster_bot', '_blank');
                 }}
               >
                 {t('cta.primary')}
