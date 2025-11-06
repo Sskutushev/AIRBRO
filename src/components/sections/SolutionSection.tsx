@@ -1,56 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Check, MessageCircle, Calendar, BarChart3 } from 'lucide-react';
+
 const SolutionSection: React.FC = () => {
+  const { t } = useTranslation('solution');
 
-  const benefits = [
-    {
-      id: 1,
-      title: "Всё в одном приложении",
-      description: "Не нужны отдельные приложения. Всё управление — в Telegram, где вы уже работаете.",
-      highlights: [
-        "✓ Уведомления в реальном времени",
-        "✓ Никакого переключения приложений",
-        "✓ 98% открываемость (vs 20% у email)"
-      ],
-      icon: <MessageCircle className="w-8 h-8" />,
-      visual: <div className="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16" /> // Placeholder for Telegram mockup
-    },
-    {
-      id: 2,
-      title: "Начните с малого, растите вместе с нами",
-      description: "Не платите за то, что не используете. Добавляйте модули по мере роста бизнеса.",
-      highlights: [
-        "✓ Низкий входной барьер (3,000₽/мес)",
-        "✓ Естественные апсейлы",
-        "✓ Никакого vendor lock-in"
-      ],
-      icon: <Calendar className="w-8 h-8" />,
-      visual: <div className="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16" /> // Placeholder for module diagram
-      , reverse: true
-    },
-    {
-      id: 3,
-      title: "Чем дольше — тем умнее",
-      description: "Каждый клиент получает персональный AI Data Store. Знает ваши продукты, цены, стиль бренда.",
-      highlights: [
-        "✓ RAG-based персонализация",
-        "✓ Никаких шаблонов",
-        "✓ Уникальный контент для вашего бизнеса"
-      ],
-      icon: <BarChart3 className="w-8 h-8" />,
-      visual: <div className="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16" /> // Placeholder for AI brain animation
-    }
-  ];
+  const benefits = t('benefits', { returnObjects: true }) as { title: string; description: string; highlights: string[]; icon: string }[];
+  const comparisonData = t('comparison.data', { returnObjects: true }) as { feature: string; freelancer: string; corp: string; aibro: string }[];
 
-  const comparisonData = [
-    { feature: "Стоимость/месяц", freelancer: "58,000₽", corp: "150,000₽+", aibro: "от 3,000₽" },
-    { feature: "Время на настройку", freelancer: "2-4 недели", corp: "3-6 месяцев", aibro: "15 минут" },
-    { feature: "Персонализация", freelancer: "Высокая", corp: "Низкая", aibro: "AI-driven" },
-    { feature: "Надёжность", freelancer: "Зависит", corp: "Высокая", aibro: "SLA 99.9%" },
-    { feature: "Масштабируемость", freelancer: "Нет", corp: "Да", aibro: "Да" },
-    { feature: "Интеграция с Telegram", freelancer: "Нет", corp: "Нет", aibro: "Нативная" }
-  ];
+  const icons: { [key: string]: React.ReactNode } = {
+    MessageCircle: <MessageCircle className="w-8 h-8" />,
+    Calendar: <Calendar className="w-8 h-8" />,
+    BarChart3: <BarChart3 className="w-8 h-8" />,
+  };
 
   return (
     <section className="py-20 bg-gradient-to-b from-bg-secondary to-bg-primary" id="solution">
@@ -63,27 +26,27 @@ const SolutionSection: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 gradient-text">
-            AIBRO Business: Ваш AI-отдел в Telegram
+            {t('title')}
           </h2>
           <p className="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto">
-            Не просто инструменты. Полная экосистема, которая растёт вместе с вами.
+            {t('subtitle')}
           </p>
         </motion.div>
 
         <div className="space-y-20">
           {benefits.map((benefit, index) => (
             <motion.div 
-              key={benefit.id}
-              className={`flex flex-col ${benefit.id % 2 === 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12`}
+              key={benefit.title}
+              className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12`}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
             >
-              <div className={`${benefit.id % 2 === 0 ? 'lg:order-2' : 'lg:order-1'} lg:w-1/2`}>
+              <div className={`lg:w-1/2`}>
                 <div className="bg-gradient-to-br from-primary-telegram/10 to-primary-electric/10 p-8 rounded-2xl">
                   <div className="w-16 h-16 bg-primary-telegram/10 rounded-xl flex items-center justify-center text-primary-telegram mb-6">
-                    {benefit.icon}
+                    {icons[benefit.icon] || <MessageCircle className="w-8 h-8" />}
                   </div>
                   <h3 className="text-2xl font-bold mb-4 text-text-primary">{benefit.title}</h3>
                   <p className="text-text-secondary mb-6">{benefit.description}</p>
@@ -97,9 +60,9 @@ const SolutionSection: React.FC = () => {
                   </ul>
                 </div>
               </div>
-              <div className={`${benefit.id % 2 === 0 ? 'lg:order-1' : 'lg:order-2'} lg:w-1/2`}>
+              <div className={`lg:w-1/2`}>
                 <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-80 flex items-center justify-center">
-                  <span className="text-gray-500">Визуализация: {benefit.title}</span>
+                  <span className="text-gray-500">{t('visualization')}: {benefit.title}</span>
                 </div>
               </div>
             </motion.div>
@@ -115,16 +78,16 @@ const SolutionSection: React.FC = () => {
           transition={{ duration: 0.8 }}
         >
           <h3 className="text-3xl font-bold text-center mb-12 text-text-primary">
-            AIBRO Business vs Альтернативы
+            {t('comparison.title')}
           </h3>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
                 <tr className="bg-bg-tertiary">
-                  <th className="p-4 text-left text-text-primary font-semibold">Критерий</th>
-                  <th className="p-4 text-center text-amber-600 font-semibold">Фрилансер SMM</th>
-                  <th className="p-4 text-center text-blue-600 font-semibold">Корп. ПО</th>
-                  <th className="p-4 text-center text-primary-telegram font-semibold">AIBRO Business</th>
+                  <th className="p-4 text-left text-text-primary font-semibold">{t('comparison.headers.feature')}</th>
+                  <th className="p-4 text-center text-amber-600 font-semibold">{t('comparison.headers.freelancer')}</th>
+                  <th className="p-4 text-center text-blue-600 font-semibold">{t('comparison.headers.corp')}</th>
+                  <th className="p-4 text-center text-primary-telegram font-semibold">{t('comparison.headers.aibro')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -155,9 +118,9 @@ const SolutionSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">Готовы начать?</h3>
+          <h3 className="text-2xl md:text-3xl font-bold mb-4">{t('cta.title')}</h3>
           <button className="bg-white text-primary-telegram font-bold px-8 py-4 rounded-lg text-lg hover:bg-gray-100 transition-colors">
-            Попробовать бесплатно
+            {t('cta.button')}
           </button>
         </motion.div>
       </div>

@@ -1,0 +1,163 @@
+{
+  "title": "What's next?",
+  "subtitle": "We are constantly evolving. Here's what we have planned.",
+  "statuses": {
+    "in-progress": "In Progress",
+    "planned": "Planned",
+    "future": "Future",
+    "vision": "Vision"
+  },
+  "quarters": [
+    {
+      "label": "Q4 2025",
+      "status": "in-progress",
+      "features": [
+        {
+          "title": "AI PostMaster V1 (Gemini 2.0 Flash + Imagen 4)",
+          "description": "Core functionality with RAG Data Stores"
+        },
+        {
+          "title": "Multi-channel support (Telegram)",
+          "description": "Manage multiple channels from one dashboard"
+        },
+        {
+          "title": "RAG Data Stores",
+          "description": "Personalized AI based on your business data"
+        },
+        {
+          "title": "Basic analytics",
+          "description": "Performance metrics and insights"
+        }
+      ]
+    },
+    {
+      "label": "Q1 2026",
+      "status": "planned",
+      "features": [
+        {
+          "title": "Conversation Bot V1",
+          "description": "AI assistant for customer support"
+        },
+        {
+          "title": "Multi-language support (EN, RU)",
+          "description": "Expand to international markets"
+        },
+        {
+          "title": "Advanced analytics dashboard",
+          "description": "Deeper insights and reporting"
+        },
+        {
+          "title": "API beta access",
+          "description": "For developers and custom integrations"
+        }
+      ]
+    },
+    {
+      "label": "Q2 2026",
+      "status": "planned",
+      "features": [
+        {
+          "title": "Booking Bot V1",
+          "description": "Automated appointment scheduling"
+        },
+        {
+          "title": "Feedback Bot V1",
+          "description": "Review collection and reputation management"
+        },
+        {
+          "title": "Restaurant & Beauty Suites",
+          "description": "Industry-specific bundles"
+        },
+        {
+          "title": "White-label option",
+          "description": "Custom branding for agencies"
+        }
+      ]
+    },
+    {
+      "label": "Q3 2026",
+      "status": "future",
+      "features": [
+        {
+          "title": "Video Inventory Agent (R&D)",
+          "description": "Computer vision for inventory management"
+        },
+        {
+          "title": "Fitness & Retail Suites",
+          "description": "Additional industry bundles"
+        },
+        {
+          "title": "Premium features (Analytics Pro)",
+          "description": "Advanced analytics and reporting"
+        },
+        {
+          "title": "International expansion",
+          "description": "Market entry in new regions"
+        }
+      ]
+    },
+    {
+      "label": "2027+",
+      "status": "vision",
+      "features": [
+        {
+          "title": "Voice AI integration",
+          "description": "Voice commands and responses"
+        },
+        {
+          "title": "Computer Vision features",
+          "description": "Advanced visual recognition"
+        },
+        {
+          "title": "IoT device integration",
+          "description": "Connect with physical devices"
+        },
+        {
+          "title": "Full Business OS",
+          "description": "Complete management platform"
+        }
+      ]
+    }
+  ],
+  "feature_voting": {
+    "title": "Want to influence the roadmap?",
+    "button": "Vote for features"
+  },
+  "newsletter": {
+    "title": "Get updates on new features",
+    "placeholder": "Your email",
+    "button": "Subscribe"
+  },
+  "voting": {
+    "title": "Vote for New Features",
+    "total_votes": "{count}+ people have already voted",
+    "auth_required": "Please log in to vote.",
+    "select_option": "Please select an option.",
+    "already_voted": "You have already voted.",
+    "voted_for": "You voted for: {{option}}",
+    "vote_button": "Vote",
+    "login_to_vote": "Log in to vote",
+    "options": {
+      "feature1": {
+        "title": "CRM Integration",
+        "description": "Automatic synchronization of leads and clients."
+      },
+      "feature2": {
+        "title": "Advanced Post Analytics",
+        "description": "Detailed reports on engagement and reach."
+      },
+      "feature3": {
+        "title": "AI Video Generation",
+        "description": "Creation of short videos for social networks."
+      },
+      "feature4": {
+        "title": "Support for other messengers",
+        "description": "WhatsApp, Viber, VK Messenger."
+      },
+      "feature5": {
+        "title": "Custom Post Templates",
+        "description": "Ability to create your own templates for AI."
+      }
+    }
+  }
+}

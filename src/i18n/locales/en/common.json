@@ -1,10 +1,13 @@
 {
-  "products": "Продукты",
-  "pricing": "Цены",
-  "cases": "Кейсы",
+  "products": "Products",
+  "pricing": "Pricing",
+  "cases": "Cases",
   "faq": "FAQ",
-  "dashboard": "Личный кабинет",
-  "theme": "Тема",
-  "language": "Язык",
-  "start_free_trial": "Попробовать бесплатно"
+  "dashboard": "Dashboard",
+  "theme": "Theme",
+  "language": "Language",
+  "start_free_trial": "Start Free Trial",
+  "login": "Login",
+  "logout": "Logout",
+  "toggle_theme": "Toggle theme"
 }

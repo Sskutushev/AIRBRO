@@ -28,7 +28,7 @@ const Header = () => {
   const navLinks = [
     { name: t('products', { ns: 'common' }), href: '#products' },
     { name: t('pricing', { ns: 'common' }), href: '#pricing' },
-    { name: "Кейсы", href: '#success-metrics' },
+    { name: t('cases', { ns: 'common' }), href: '#success-metrics' },
     { name: t('faq', { ns: 'common' }), href: '#faq' },
   ];
 
@@ -122,7 +122,7 @@ const Header = () => {
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full bg-bg-tertiary hover:bg-bg-secondary transition-colors mr-2"
-            aria-label="Toggle theme"
+            aria-label={t('toggle_theme', { ns: 'common' })}
           >
             {theme === 'light' ? (
               <Moon className="w-5 h-5 text-text-primary" />
@@ -141,15 +141,14 @@ const Header = () => {
                 onClick={logout}
                 className="flex items-center text-text-primary hover:text-primary-telegram font-medium transition-colors"
               >
-                <LogOut className="w-5 h-5 mr-1" />
-                Выйти
+{t('logout', { ns: 'common' })}
               </button>
             </>
           ) : (
             <>
               <Link to="/auth" className="flex items-center text-text-primary hover:text-primary-telegram font-medium transition-colors">
                 <User className="w-5 h-5 mr-1" />
-                Войти
+                {t('login', { ns: 'common' })}
               </Link>
             </>
           )}
@@ -241,7 +240,7 @@ const Header = () => {
                     toggleTheme();
                   }}
                   className="p-2 rounded-full bg-bg-tertiary hover:bg-bg-secondary transition-colors"
-                  aria-label="Toggle theme"
+                  aria-label={t('toggle_theme', { ns: 'common' })}
                 >
                   {theme === 'light' ? (
                     <Moon className="w-5 h-5 text-text-primary" />
@@ -269,7 +268,7 @@ const Header = () => {
                     className="flex items-center text-text-primary hover:text-primary-telegram py-2 text-left"
                   >
                     <LogOut className="w-5 h-5 mr-2" />
-                    Выйти
+                    {t('logout', { ns: 'common' })}
                   </button>
                 </>
               ) : (
@@ -279,7 +278,7 @@ const Header = () => {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <User className="w-5 h-5 mr-2" />
-                  Войти
+                  {t('login', { ns: 'common' })}
                 </Link>
               )}
               

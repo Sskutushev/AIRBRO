@@ -1,12 +1,10 @@
 import React from 'react';
-
-import { Mail, Globe, Sun, Moon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Mail, Globe, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 
-
 const Footer: React.FC = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation('footer');
   const { theme, toggleTheme } = useTheme();
 
   const changeLanguage = (lng: string) => {
@@ -14,22 +12,10 @@ const Footer: React.FC = () => {
     localStorage.setItem('language', lng);
   };
 
-  const resources = [
-    { text: 'База знаний', href: '#' },
-    { text: 'API Documentation', href: '#' },
-    { text: 'Status', href: '#' },
-    { text: 'Careers', href: '#' },
-    { text: 'Press', href: '#' },
-    { text: 'Partners', href: '#' }
-  ];
-
-  const legal = [
-    { text: 'Политика конфиденциальности', href: '/privacy' },
-    { text: 'Условия использования', href: '/terms' },
-    { text: 'Cookie Policy', href: '/cookies' },
-    { text: 'SLA', href: '/sla' },
-    { text: 'Реквизиты', href: '/requisites' }
-  ];
+  const products = t('products', { returnObjects: true }) as string[];
+  const resources = t('resources', { returnObjects: true }) as string[];
+  const support = t('support', { returnObjects: true }) as string[];
+  const legal = t('legal', { returnObjects: true }) as { [key: string]: string };
 
   const socialLinks = [
     { name: 'Telegram', href: 'https://t.me/AIBROBusinessBot', icon: '📱' },
@@ -40,11 +26,9 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-bg-primary border-t border-border">
-      {/* Top Section - Company Info */}
       <div className="bg-bg-tertiary py-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-            {/* Company Info */}
             <div className="lg:col-span-2">
               <div className="flex items-center mb-4">
                 <div className="w-8 h-8 bg-primary-telegram rounded-full flex items-center justify-center text-white font-bold mr-3">
@@ -52,9 +36,7 @@ const Footer: React.FC = () => {
                 </div>
                 <span className="text-2xl font-bold text-text-primary">AIBRO Business</span>
               </div>
-              <p className="text-text-secondary mb-6 max-w-md">
-                AI-операционная система для малого и среднего бизнеса, интегрированная с Telegram.
-              </p>
+              <p className="text-text-secondary mb-6 max-w-md">{t('description')}</p>
               
               <div className="flex space-x-4 mb-6">
                 {socialLinks.map((social, index) => (
@@ -78,23 +60,15 @@ const Footer: React.FC = () => {
                   </a>
                 </div>
                 <a href="https://t.me/AIBROSupportBot" target="_blank" rel="noopener noreferrer" className="text-primary-telegram hover:underline">
-                  Telegram Support
+                  {t('support_link')}
                 </a>
               </div>
             </div>
             
-            {/* Quick Links */}
             <div>
-              <h4 className="font-bold text-text-primary mb-4">Продукты</h4>
+              <h4 className="font-bold text-text-primary mb-4">{t('products_title')}</h4>
               <ul className="space-y-2">
-                {[
-                  'AI PostMaster',
-                  'Conversation Bot',
-                  'Booking Bot',
-                  'Feedback Bot',
-                  'Video Inventory Agent',
-                  'Vertical Bundles'
-                ].map((item, index) => (
+                {products.map((item, index) => (
                   <li key={index}>
                     <a href="#" className="text-text-secondary hover:text-primary-telegram transition-colors">
                       {item}
@@ -104,31 +78,23 @@ const Footer: React.FC = () => {
               </ul>
             </div>
             
-            {/* Resources */}
             <div>
-              <h4 className="font-bold text-text-primary mb-4">Ресурсы</h4>
+              <h4 className="font-bold text-text-primary mb-4">{t('resources_title')}</h4>
               <ul className="space-y-2">
-                {resources.map((resource, index) => (
+                {resources.map((item, index) => (
                   <li key={index}>
-                    <a href={resource.href} className="text-text-secondary hover:text-primary-telegram transition-colors">
-                      {resource.text}
+                    <a href="#" className="text-text-secondary hover:text-primary-telegram transition-colors">
+                      {item}
                     </a>
                   </li>
                 ))}
               </ul>
             </div>
             
-            {/* Support */}
             <div>
-              <h4 className="font-bold text-text-primary mb-4">Поддержка</h4>
+              <h4 className="font-bold text-text-primary mb-4">{t('support_title')}</h4>
               <ul className="space-y-2">
-                {[
-                  'База знаний',
-                  'Обратиться в поддержку',
-                  'Система статусов',
-                  'Community',
-                  'Контакты'
-                ].map((item, index) => (
+                {support.map((item, index) => (
                   <li key={index}>
                     <a href="#" className="text-text-secondary hover:text-primary-telegram transition-colors">
                       {item}
@@ -141,30 +107,28 @@ const Footer: React.FC = () => {
         </div>
       </div>
       
-      {/* Bottom Section - Copyright & Legal */}
       <div className="py-8">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <p className="text-text-secondary text-sm">
-                &copy; {new Date().getFullYear()} AIBRO Business. Все права защищены.
+                {t('copyright', { year: new Date().getFullYear() })}
               </p>
             </div>
             
             <div className="flex flex-wrap justify-center gap-6 mb-4 md:mb-0">
-              {legal.map((item, index) => (
+              {Object.entries(legal).map(([key, value]) => (
                 <a 
-                  key={index} 
-                  href={item.href} 
+                  key={key} 
+                  href={`/${key}`} 
                   className="text-text-secondary hover:text-primary-telegram text-sm transition-colors"
                 >
-                  {item.text}
+                  {value}
                 </a>
               ))}
             </div>
             
             <div className="flex items-center space-x-4">
-              {/* Language Switcher */}
               <div className="flex items-center border-r border-border pr-4">
                 <Globe className="w-4 h-4 text-text-secondary mr-2" />
                 <button
@@ -190,11 +154,10 @@ const Footer: React.FC = () => {
                 </button>
               </div>
               
-              {/* Theme Toggle */}
               <button
                 onClick={toggleTheme}
                 className="p-2 rounded-full bg-bg-tertiary hover:bg-bg-secondary transition-colors"
-                aria-label="Toggle theme"
+                aria-label={t('toggle_theme')}
               >
                 {theme === 'light' ? (
                   <Moon className="w-4 h-4 text-text-primary" />

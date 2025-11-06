@@ -1,0 +1,35 @@
+{
+  "title": "3 steps to automation",
+  "subtitle": "From registration to the first post — 15 minutes",
+  "steps": [
+    {
+      "title": "Find @AIBROBusinessBot",
+      "description": "Just write to the bot in Telegram. No website registrations.",
+      "duration": "1 minute",
+      "icon": "MessageCircle",
+      "mockup": "Telegram Chat Mockup"
+    },
+    {
+      "title": "Tell us about your business",
+      "description": "The bot will ask a few questions: name, niche, products, style. The AI will create your personal Data Store.",
+      "duration": "5 minutes",
+      "icon": "Settings",
+      "mockup": "Onboarding Form Mockup"
+    },
+    {
+      "title": "Create your first post",
+      "description": "Just tell the bot the topic. The AI will generate text + image. Approve or edit. Done!",
+      "duration": "9 minutes",
+      "icon": "Send",
+      "mockup": "Post Preview Mockup"
+    }
+  ],
+  "pro_tip": {
+    "title": "Pro Tip",
+    "description": "Want to go even faster? Use the /quickstart command"
+  },
+  "cta": {
+    "primary": "Start now",
+    "secondary": "Watch demo video"
+  }
+}

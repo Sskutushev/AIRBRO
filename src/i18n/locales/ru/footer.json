@@ -1,0 +1,39 @@
+{
+  "description": "AI-операционная система для малого и среднего бизнеса, интегрированная с Telegram.",
+  "support_link": "Поддержка в Telegram",
+  "products_title": "Продукты",
+  "products": [
+    "AI PostMaster",
+    "Conversation Bot",
+    "Booking Bot",
+    "Feedback Bot",
+    "Video Inventory Agent",
+    "Вертикальные пакеты"
+  ],
+  "resources_title": "Ресурсы",
+  "resources": [
+    "База знаний",
+    "Документация API",
+    "Статус системы",
+    "Карьера",
+    "Пресса",
+    "Партнеры"
+  ],
+  "support_title": "Поддержка",
+  "support": [
+    "База знаний",
+    "Обратиться в поддержку",
+    "Система статусов",
+    "Сообщество",
+    "Контакты"
+  ],
+  "copyright": "© 2025 AIBRO Business. Все права защищены.",
+  "legal": {
+    "privacy": "Политика конфиденциальности",
+    "terms": "Условия использования",
+    "cookies": "Политика Cookie",
+    "sla": "SLA",
+    "requisites": "Реквизиты"
+  },
+  "toggle_theme": "Переключить тему"
+}

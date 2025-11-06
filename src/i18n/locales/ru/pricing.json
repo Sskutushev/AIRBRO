@@ -1,22 +1,84 @@
 {
   "industry_bundles": "Готовые решения для вашей индустрии",
   "save_up": "Сэкономьте до 17% с отраслевыми пакетами",
+  "toggle": {
+    "individual": "Отдельные цены",
+    "bundle": "Цены пакетов"
+  },
+  "includes": "Включает:",
+  "per_month": "/мес",
+  "savings": "Экономия",
+  "bonuses": "Бонусы:",
+  "select_package": "Выбрать пакет",
+  "custom_package": {
+    "title": "Не нашли подходящий пакет?",
+    "subtitle": "Соберите свой пакет",
+    "button": "Собрать свой пакет"
+  },
   "packages": {
     "restaurant": {
       "name": "Restaurant Suite",
-      "description": "Полный комплект для ресторанов и кафе"
+      "description": "Полный комплект для ресторанов и кафе",
+      "products": [
+        "AI PostMaster (меню дня, акции)",
+        "Booking Bot (резервирование столиков)",
+        "Feedback Bot (отзывы после ужина)",
+        "Video Inventory Agent (инвентаризация кухни)"
+      ],
+      "bonuses": [
+        "Menu Management (динамическое меню)",
+        "Table Optimization",
+        "Food Waste Tracking"
+      ],
+      "target": "Рестораны, кафе, кофейни (10-100 мест)"
     },
     "beauty": {
       "name": "Beauty & Wellness Suite",
-      "description": "Все для салонов красоты и барбершопов"
+      "description": "Все для салонов красоты и барбершопов",
+      "products": [
+        "AI PostMaster (до/после, промо)",
+        "Booking Bot (записи на приём)",
+        "Feedback Bot (отзывы)",
+        "Conversation Bot (консультации)"
+      ],
+      "bonuses": [
+        "Stylist Profiles",
+        "Service Upselling",
+        "Loyalty Program"
+      ],
+      "target": "Салоны красоты, барбершопы (2-10 специалистов)"
     },
     "fitness": {
       "name": "Fitness Suite",
-      "description": "Решение для фитнес-студий и залов"
+      "description": "Решение для фитнес-студий и залов",
+      "products": [
+        "AI PostMaster (советы по тренировкам)",
+        "Booking Bot (записи на классы)",
+        "Feedback Bot (отзывы членов)",
+        "Conversation Bot (вопросы о членстве)"
+      ],
+      "bonuses": [
+        "Class Capacity Management",
+        "Membership Renewals",
+        "Progress Tracking"
+      ],
+      "target": "Спортзалы, йога-студии (50-500 членов)"
     },
     "retail": {
       "name": "Retail Suite",
-      "description": "Решение для розничных магазинов"
+      "description": "Решение для розничных магазинов",
+      "products": [
+        "AI PostMaster (новые поступления, распродажи)",
+        "Conversation Bot (запросы продуктов)",
+        "Feedback Bot (отзывы)",
+        "Video Inventory Agent (отслеживание запасов)"
+      ],
+      "bonuses": [
+        "Product Catalog",
+        "Order Processing",
+        "Loyalty Points"
+      ],
+      "target": "Бутики, магазины электроники (100-10K SKU)"
     }
   }
 }

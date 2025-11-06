@@ -1,0 +1,59 @@
+{
+  "title": "Ready to automate your business?",
+  "subtitle": "Join {count}+ businesses that already use AIBRO",
+  "form": {
+    "name": "Name",
+    "name_placeholder": "John Doe",
+    "email": "Email",
+    "email_placeholder": "email@example.com",
+    "telegram": "Telegram",
+    "telegram_placeholder": "@username",
+    "business": "Business Name",
+    "business_placeholder": "My Business",
+    "product_interest": "What are you interested in?",
+    "products": {
+      "postmaster": "AI PostMaster",
+      "conversation": "Conversation Bot",
+      "booking": "Booking Bot",
+      "feedback": "Feedback Bot",
+      "inventory": "Video Inventory Agent",
+      "restaurant_suite": "Restaurant Suite",
+      "beauty_suite": "Beauty & Wellness Suite",
+      "fitness_suite": "Fitness Suite",
+      "retail_suite": "Retail Suite",
+      "not_sure": "Not Sure"
+    },
+    "problem_description": "Tell us what you want to automate",
+    "problem_placeholder": "For example: creating content for Telegram, responding to messages, bookings...",
+    "consent": "I agree to the processing of personal data and accept the terms of the",
+    "privacy_policy": "privacy policy",
+    "submit_button": "Get a free trial",
+    "submitting_button": "Submitting...",
+    "consent_alert": "Please agree to the data processing."
+  },
+  "success": {
+    "title": "Application sent!",
+    "message": "We have sent you a message on Telegram. Check @AIBROBusinessBot.",
+    "button": "Go to Telegram"
+  },
+  "error": {
+    "title": "An error has occurred",
+    "message": "Failed to send the application. Please try again or contact us directly on Telegram.",
+    "button": "Try again"
+  },
+  "features": [
+    {
+      "title": "Secure",
+      "description": "All data is encrypted and stored securely"
+    },
+    {
+      "title": "Fast",
+      "description": "Launch in 15 minutes. First results in 72 hours."
+    },
+    {
+      "title": "Free trial",
+      "description": "7 days free. No credit card required."
+    }
+  ],
+  "final_link": "Or write to us on Telegram →"
+}

@@ -1,22 +1,84 @@
 {
   "industry_bundles": "Industry-Ready Bundles",
   "save_up": "Save up to 17% with industry bundles",
+  "toggle": {
+    "individual": "Individual Prices",
+    "bundle": "Bundle Prices"
+  },
+  "includes": "Includes:",
+  "per_month": "/month",
+  "savings": "Save",
+  "bonuses": "Bonuses:",
+  "select_package": "Select Package",
+  "custom_package": {
+    "title": "Didn't find a suitable package?",
+    "subtitle": "Build your own package",
+    "button": "Build your own package"
+  },
   "packages": {
     "restaurant": {
       "name": "Restaurant Suite",
-      "description": "Complete package for restaurants and cafes"
+      "description": "Complete package for restaurants and cafes",
+      "products": [
+        "AI PostMaster (daily menu, promotions)",
+        "Booking Bot (table reservations)",
+        "Feedback Bot (post-dinner reviews)",
+        "Video Inventory Agent (kitchen inventory)"
+      ],
+      "bonuses": [
+        "Menu Management (dynamic menu)",
+        "Table Optimization",
+        "Food Waste Tracking"
+      ],
+      "target": "Restaurants, cafes, coffee shops (10-100 seats)"
     },
     "beauty": {
       "name": "Beauty & Wellness Suite",
-      "description": "Everything for salons and barbershops"
+      "description": "Everything for salons and barbershops",
+      "products": [
+        "AI PostMaster (before/after, promos)",
+        "Booking Bot (appointments)",
+        "Feedback Bot (reviews)",
+        "Conversation Bot (consultations)"
+      ],
+      "bonuses": [
+        "Stylist Profiles",
+        "Service Upselling",
+        "Loyalty Program"
+      ],
+      "target": "Beauty salons, barbershops (2-10 specialists)"
     },
     "fitness": {
       "name": "Fitness Suite",
-      "description": "Solution for fitness studios and gyms"
+      "description": "Solution for fitness studios and gyms",
+      "products": [
+        "AI PostMaster (workout tips)",
+        "Booking Bot (class bookings)",
+        "Feedback Bot (member reviews)",
+        "Conversation Bot (membership questions)"
+      ],
+      "bonuses": [
+        "Class Capacity Management",
+        "Membership Renewals",
+        "Progress Tracking"
+      ],
+      "target": "Gyms, yoga studios (50-500 members)"
     },
     "retail": {
       "name": "Retail Suite",
-      "description": "Solution for retail stores"
+      "description": "Solution for retail stores",
+      "products": [
+        "AI PostMaster (new arrivals, sales)",
+        "Conversation Bot (product inquiries)",
+        "Feedback Bot (reviews)",
+        "Video Inventory Agent (stock tracking)"
+      ],
+      "bonuses": [
+        "Product Catalog",
+        "Order Processing",
+        "Loyalty Points"
+      ],
+      "target": "Boutiques, electronics stores (100-10K SKUs)"
     }
   }
 }

@@ -1,0 +1,39 @@
+{
+  "description": "AI operating system for small and medium businesses, integrated with Telegram.",
+  "support_link": "Telegram Support",
+  "products_title": "Products",
+  "products": [
+    "AI PostMaster",
+    "Conversation Bot",
+    "Booking Bot",
+    "Feedback Bot",
+    "Video Inventory Agent",
+    "Vertical Bundles"
+  ],
+  "resources_title": "Resources",
+  "resources": [
+    "Knowledge Base",
+    "API Documentation",
+    "Status",
+    "Careers",
+    "Press",
+    "Partners"
+  ],
+  "support_title": "Support",
+  "support": [
+    "Knowledge Base",
+    "Contact Support",
+    "Status System",
+    "Community",
+    "Contacts"
+  ],
+  "copyright": "© 2025 AIBRO Business. All rights reserved.",
+  "legal": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "cookies": "Cookie Policy",
+    "sla": "SLA",
+    "requisites": "Requisites"
+  },
+  "toggle_theme": "Toggle theme"
+}

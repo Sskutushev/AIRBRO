@@ -1,0 +1,35 @@
+{
+  "title": "Familiar pain?",
+  "subtitle": "Small businesses spend too much on tasks that AI can solve in minutes",
+  "transition": "But there is a solution...",
+  "problems": [
+    {
+      "emoji": "💰",
+      "title": "SMM Manager: $1,000/month",
+      "description": "Content is needed every day. Hiring is expensive, doing it yourself takes too much time.",
+      "stat": "$1K/month per person",
+      "color": "accent-coral"
+    },
+    {
+      "emoji": "💬",
+      "title": "3-5 hours/day on responses",
+      "description": "The same questions over and over. Missed messages = lost customers.",
+      "stat": "40+ hours/month wasted",
+      "color": "primary-electric"
+    },
+    {
+      "emoji": "📅",
+      "title": "Missed calls = lost orders",
+      "description": "Manual calendar management. No-show clients. Lost profit.",
+      "stat": "20% of bookings missed",
+      "color": "primary-neon"
+    },
+    {
+      "emoji": "📊",
+      "title": "Working in the dark",
+      "description": "You don't know what works. No data for decisions.",
+      "stat": "95% of SMBs don't use analytics",
+      "color": "primary-mint"
+    }
+  ]
+}

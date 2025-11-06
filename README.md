@@ -1,175 +1,79 @@
-# AIRBRO Business
+# AIBRO Business Landing Page
 
-Платформа AI-автоматизации для малого и среднего бизнеса, интегрированная с Telegram.
+This is the official repository for the AIBRO Business landing page, a fully responsive, animated, and bilingual (English/Russian) single-page application built with a modern frontend stack.
 
-## Описание
-AIRBRO Business - это полная AI-операционная система для малого бизнеса, построенная на Telegram. 
-Платформа включает в себя набор инструментов для автоматизации маркетинга, обслуживания клиентов,
-управления бронированиями и многого другого.
+![AIBRO Hero Section](public/images/screenshot.png) <!-- I'll assume a screenshot will be added here later -->
 
-## Основные продукты
-- **AI PostMaster** - автоматизация контента для Telegram-каналов
-- **Conversation Bot** - AI-помощник для обслуживания клиентов
-- **Booking Bot** - система бронирования и записи
-- **Feedback Bot** - сбор и управление отзывами
-- **Video Inventory Agent** - автоматизация управления инвентарем
+## ✨ Features
 
-## Архитектура
-- Frontend: React + TypeScript + Tailwind CSS
-- Backend: Vercel Serverless Functions
-- База данных: PostgreSQL
-- Платежи: Telegram Payments, Stripe, YooKassa
-- Интеграция: Telegram Bot API
+-   **Modern & Animated UI:** Built with Tailwind CSS and Framer Motion for a smooth, fluid user experience.
+-   **Fully Responsive:** Adapts to all screen sizes, from mobile to desktop.
+-   **Bilingual (i18n):** Supports English and Russian languages, managed by `i18next`.
+-   **Light & Dark Modes:** Theme support with a toggle, persists in `localStorage`.
+-   **Component-Based:** Structured with reusable React components for maintainability.
+-   **Contact Form:** A functional contact form that sends inquiries directly to a Telegram chat via a secure serverless function.
 
-## Функциональность
-- Система аутентификации пользователей (регистрация/авторизация)
-- Управление подписками и оплатой
-- Поддержка светлой/темной темы
-- Мультиязычность (RU/EN)
-- Интеграция с Telegram Bot API
-- Система уведомлений
-- Аналитика и метрики
-- Управление продуктами через личный кабинет
-- 72-часовой пробный период
-- Поддержка различных методов оплаты
+## 🛠️ Tech Stack
 
-## Установка и запуск
+-   **Framework:** [React](https://reactjs.org/)
+-   **Build Tool:** [Vite](https://vitejs.dev/)
+-   **Language:** [TypeScript](https://www.typescriptlang.org/)
+-   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+-   **Animations:** [Framer Motion](https://www.framer.com/motion/)
+-   **Internationalization:** [i18next](https://www.i18next.com/)
+-   **Deployment:** [Vercel](https://vercel.com/)
 
-### Требования
+## 📄 Project Structure
 
-- Node.js (версия 16 или выше)
-- npm или yarn
+The project is organized into a modular structure to keep the codebase clean and scalable. For a detailed breakdown of the architecture, file structure, and key concepts, please see the [**Project Structure Documentation**](./docs/PROJECT_STRUCTURE.md).
 
-### Установка зависимостей
+## 🚀 Getting Started
 
-```bash
-npm install
-```
+### Prerequisites
 
-### Запуск в режиме разработки
+-   Node.js (v18.x or higher)
+-   npm or yarn
+
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/Sskutushev/AIRBRO.git
+    cd AIRBRO
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Set up environment variables:**
+    Create a `.env` file in the root of the project and add your Telegram Bot Token and Chat ID for the contact form to work.
+    ```
+    VITE_TELEGRAM_BOT_TOKEN=your_bot_token
+    VITE_TELEGRAM_CHAT_ID=your_chat_id
+    ```
+
+### Running the Development Server
+
+To start the Vite development server, run:
 
 ```bash
 npm run dev
 ```
 
-Откройте [http://localhost:5173](http://localhost:5173) в браузере для просмотра.
+This will start the application on `http://localhost:5173` (or another port if 5173 is in use). The server supports Hot Module Replacement (HMR) for a fast development workflow.
 
-### Сборка проекта
+### Building for Production
+
+To create a production-ready build of the application, run:
 
 ```bash
 npm run build
 ```
 
-Файлы сборки будут находиться в папке `dist/`.
+This command will generate a `dist` folder in the project root, which contains the optimized and minified static assets for deployment.
 
-### Предварительный просмотр сборки
+## 部署 (Deployment)
 
-```bash
-npm run preview
-```
-
-## Структура проекта
-
-```
-airbro-business/
-├── public/                     # Статические файлы
-│   ├── images/                 # Изображения сайта
-│   └── vite.svg                # Vite логотип (по умолчанию)
-├── src/
-│   ├── components/             # Компоненты React
-│   │   ├── common/             # Общие компоненты
-│   │   └── sections/           # Секции лендинга
-│   ├── pages/                  # Страницы приложения
-│   │   ├── AccountPage.tsx     # Личный кабинет
-│   │   ├── PaymentPage.tsx     # Страница оплаты
-│   │   └── AuthPage.tsx        # Страница аутентификации
-│   ├── lib/                    # Вспомогательные библиотеки
-│   ├── App.tsx                 # Главный компонент приложения
-│   └── main.tsx                # Точка входа приложения
-├── api/                        # API-роуты
-│   └── telegram.ts             # Обработчик форм
-├── docs/                       # Документация
-├── index.html                  # HTML шаблон
-├── package.json               # Зависимости и скрипты
-├── tsconfig.json              # Конфигурация TypeScript
-├── vite.config.ts             # Конфигурация Vite
-├── tailwind.config.js         # Конфигурация Tailwind CSS
-└── README.md                  # Этот файл
-```
-
-## Основные технологии
-
-- **React 19** - Библиотека для создания пользовательских интерфейсов
-- **TypeScript** - Строгая типизация для JavaScript
-- **Vite** - Современный инструмент сборки
-- **Tailwind CSS** - Utility-first CSS фреймворк
-- **Framer Motion** - Библиотека для анимаций
-- **React Router DOM** - Маршрутизация в приложении
-- **Lucide React** - Иконки
-
-## Секции лендинга
-
-1. **Header** - Навигационная панель с логотипом и меню
-2. **Hero** - Главная секция с заголовком и призывом к действию
-3. **Problem** - Проблемы малого бизнеса в Telegram
-4. **Solution** - Решение AIRBRO Business
-5. **Products** - Продукты и пакеты
-6. **How It Works** - 3 шага к автоматизации
-7. **Pricing** - Цены и пакеты
-8. **Success Metrics** - Метрики успеха и отзывы
-9. **Roadmap** - Планы на будущее
-10. **FAQ** - Часто задаваемые вопросы
-11. **CTA** - Призыв к действию с формой
-
-## Функциональность
-
-### Личный кабинет
-- Управление подписками
-- Настройка интеграций
-- Аналитика и метрики
-- Платежная информация
-
-### Система оплаты
-- Различные методы оплаты (карта, Telegram Pay)
-- Подписки и биллинг
-- Пробные периоды
-
-### Интеграция с Telegram
-- Управление через Telegram-бота
-- Уведомления и алерты
-- Прямая связь с клиентами
-
-## Цветовая палитра
-
-### Основные брендовые цвета
-- **Telegram Blue**: #0088cc
-- **Electric Cyan**: #00D9FF
-- **Neon Purple**: #7B2FFF
-- **Mint Green**: #00FFA3
-
-### Акцентные цвета
-- **Coral**: #FF6B6B (для CTA)
-- **Gold**: #FFD93D (для премиум)
-- **Violet**: #A855F7 (для фичеров)
-
-## Развертывание
-
-Проект готов к развертыванию на Vercel:
-1. Подключите репозиторий к Vercel
-2. Укажите команды сборки:
-   - Install: `npm install`
-   - Build: `npm run build`
-   - Output: `dist`
-
-## API
-
-Проект включает API-роуты в папке `api/`:
-- `/api/telegram` - обработка форм обратной связи
-
-## Лицензия
-
-MIT License - см. файл LICENSE для получения дополнительной информации.
-
-## Контакты
-
-Для вопросов по проекту обращайтесь к разработчику.
+The project is configured for easy deployment on [Vercel](https://vercel.com/). Simply connect your GitHub repository to a new Vercel project. Vercel will automatically detect the Vite configuration and deploy the application. The serverless function in the `api` directory will also be deployed automatically.

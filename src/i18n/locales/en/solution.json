@@ -1,0 +1,58 @@
+{
+  "title": "AIBRO Business: Your AI Department in Telegram",
+  "subtitle": "Not just tools. A complete ecosystem that grows with you.",
+  "visualization": "Visualization",
+  "benefits": [
+    {
+      "icon": "MessageCircle",
+      "title": "All in one app",
+      "description": "No separate apps needed. All management is in Telegram, where you already work.",
+      "highlights": [
+        "Real-time notifications",
+        "No app switching",
+        "98% open rate (vs 20% for email)"
+      ]
+    },
+    {
+      "icon": "Calendar",
+      "title": "Start small, grow with us",
+      "description": "Don't pay for what you don't use. Add modules as your business grows.",
+      "highlights": [
+        "Low entry barrier ($50/month)",
+        "Natural upsells",
+        "No vendor lock-in"
+      ]
+    },
+    {
+      "icon": "BarChart3",
+      "title": "The longer you use it, the smarter it gets",
+      "description": "Each client gets a personal AI Data Store. It knows your products, prices, and brand style.",
+      "highlights": [
+        "RAG-based personalization",
+        "No templates",
+        "Unique content for your business"
+      ]
+    }
+  ],
+  "comparison": {
+    "title": "AIBRO Business vs Alternatives",
+    "headers": {
+      "feature": "Feature",
+      "freelancer": "SMM Freelancer",
+      "corp": "Corporate Software",
+      "aibro": "AIBRO Business"
+    },
+    "data": [
+      { "feature": "Cost/month", "freelancer": "$1,000", "corp": "$2,500+", "aibro": "from $50" },
+      { "feature": "Setup time", "freelancer": "2-4 weeks", "corp": "3-6 months", "aibro": "15 minutes" },
+      { "feature": "Personalization", "freelancer": "High", "corp": "Low", "aibro": "AI-driven" },
+      { "feature": "Reliability", "freelancer": "Depends", "corp": "High", "aibro": "SLA 99.9%" },
+      { "feature": "Scalability", "freelancer": "No", "corp": "Yes", "aibro": "Yes" },
+      { "feature": "Telegram Integration", "freelancer": "No", "corp": "No", "aibro": "Native" }
+    ]
+  },
+  "cta": {
+    "title": "Ready to start?",
+    "button": "Start Free Trial"
+  }
+}

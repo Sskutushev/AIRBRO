@@ -1,0 +1,59 @@
+{
+  "title": "Готовы автоматизировать свой бизнес?",
+  "subtitle": "Присоединяйтесь к {count}+ бизнесам, которые уже используют AIBRO",
+  "form": {
+    "name": "Имя",
+    "name_placeholder": "Иван Иванов",
+    "email": "Email",
+    "email_placeholder": "email@example.com",
+    "telegram": "Telegram",
+    "telegram_placeholder": "@username",
+    "business": "Название бизнеса",
+    "business_placeholder": "Мой бизнес",
+    "product_interest": "Что вас интересует?",
+    "products": {
+      "postmaster": "AI PostMaster",
+      "conversation": "Conversation Bot",
+      "booking": "Booking Bot",
+      "feedback": "Feedback Bot",
+      "inventory": "Video Inventory Agent",
+      "restaurant_suite": "Restaurant Suite",
+      "beauty_suite": "Beauty & Wellness Suite",
+      "fitness_suite": "Fitness Suite",
+      "retail_suite": "Retail Suite",
+      "not_sure": "Не уверен"
+    },
+    "problem_description": "Расскажите, что хотите автоматизировать",
+    "problem_placeholder": "Например: создание контента для Telegram, ответы на сообщения, бронирования...",
+    "consent": "Я согласен на обработку персональных данных и принимаю условия",
+    "privacy_policy": "политики конфиденциальности",
+    "submit_button": "Получить бесплатный trial",
+    "submitting_button": "Отправка...",
+    "consent_alert": "Пожалуйста, дайте согласие на обработку данных."
+  },
+  "success": {
+    "title": "Заявка отправлена!",
+    "message": "Мы отправили вам сообщение в Telegram. Проверьте @AIBROBusinessBot.",
+    "button": "Перейти в Telegram"
+  },
+  "error": {
+    "title": "Произошла ошибка",
+    "message": "Не удалось отправить заявку. Пожалуйста, попробуйте еще раз или свяжитесь с нами напрямую в Telegram.",
+    "button": "Попробовать снова"
+  },
+  "features": [
+    {
+      "title": "Безопасно",
+      "description": "Все данные зашифрованы и хранятся в защищённом виде"
+    },
+    {
+      "title": "Быстро",
+      "description": "Запуск за 15 минут. Первый результат за 72 часа."
+    },
+    {
+      "title": "Бесплатный trial",
+      "description": "7 дней бесплатно. Без привязки карты."
+    }
+  ],
+  "final_link": "Или напишите нам в Telegram →"
+}

@@ -1,0 +1,163 @@
+{
+  "title": "Что дальше?",
+  "subtitle": "Мы постоянно развиваемся. Вот что у нас в планах.",
+  "statuses": {
+    "in-progress": "В процессе",
+    "planned": "Запланировано",
+    "future": "Будущее",
+    "vision": "Видение"
+  },
+  "quarters": [
+    {
+      "label": "Q4 2025",
+      "status": "in-progress",
+      "features": [
+        {
+          "title": "AI PostMaster V1 (Gemini 2.0 Flash + Imagen 4)",
+          "description": "Основная функциональность с RAG Data Stores"
+        },
+        {
+          "title": "Поддержка нескольких каналов (Telegram)",
+          "description": "Управляйте несколькими каналами с одной панели"
+        },
+        {
+          "title": "RAG Data Stores",
+          "description": "Персонализированный AI на основе данных вашего бизнеса"
+        },
+        {
+          "title": "Базовая аналитика",
+          "description": "Метрики производительности и инсайты"
+        }
+      ]
+    },
+    {
+      "label": "Q1 2026",
+      "status": "planned",
+      "features": [
+        {
+          "title": "Conversation Bot V1",
+          "description": "AI-ассистент для поддержки клиентов"
+        },
+        {
+          "title": "Поддержка нескольких языков (EN, RU)",
+          "description": "Выход на международные рынки"
+        },
+        {
+          "title": "Расширенная панель аналитики",
+          "description": "Более глубокие инсайты и отчетность"
+        },
+        {
+          "title": "Доступ к API (бета)",
+          "description": "Для разработчиков и пользовательских интеграций"
+        }
+      ]
+    },
+    {
+      "label": "Q2 2026",
+      "status": "planned",
+      "features": [
+        {
+          "title": "Booking Bot V1",
+          "description": "Автоматизированное планирование встреч"
+        },
+        {
+          "title": "Feedback Bot V1",
+          "description": "Сбор отзывов и управление репутацией"
+        },
+        {
+          "title": "Restaurant & Beauty Suites",
+          "description": "Отраслевые пакеты"
+        },
+        {
+          "title": "White-label опция",
+          "description": "Пользовательский брендинг для агентств"
+        }
+      ]
+    },
+    {
+      "label": "Q3 2026",
+      "status": "future",
+      "features": [
+        {
+          "title": "Video Inventory Agent (R&D)",
+          "description": "Компьютерное зрение для управления запасами"
+        },
+        {
+          "title": "Fitness & Retail Suites",
+          "description": "Дополнительные отраслевые пакеты"
+        },
+        {
+          "title": "Премиум-функции (Analytics Pro)",
+          "description": "Расширенная аналитика и отчетность"
+        },
+        {
+          "title": "Международная экспансия",
+          "description": "Выход на рынки новых регионов"
+        }
+      ]
+    },
+    {
+      "label": "2027+",
+      "status": "vision",
+      "features": [
+        {
+          "title": "Интеграция с голосовым AI",
+          "description": "Голосовые команды и ответы"
+        },
+        {
+          "title": "Функции компьютерного зрения",
+          "description": "Расширенное визуальное распознавание"
+        },
+        {
+          "title": "Интеграция с IoT-устройствами",
+          "description": "Подключение к физическим устройствам"
+        },
+        {
+          "title": "Полноценная бизнес-ОС",
+          "description": "Комплексная платформа управления"
+        }
+      ]
+    }
+  ],
+  "feature_voting": {
+    "title": "Хотите повлиять на roadmap?",
+    "button": "Голосовать за функции"
+  },
+  "newsletter": {
+    "title": "Получайте обновления о новых функциях",
+    "placeholder": "Ваш email",
+    "button": "Подписаться"
+  },
+  "voting": {
+    "title": "Голосование за новые функции",
+    "total_votes": "{count}+ человек уже проголосовало",
+    "auth_required": "Пожалуйста, войдите, чтобы проголосовать.",
+    "select_option": "Пожалуйста, выберите вариант.",
+    "already_voted": "Вы уже проголосовали.",
+    "voted_for": "Вы проголосовали за: {{option}}",
+    "vote_button": "Проголосовать",
+    "login_to_vote": "Войдите, чтобы проголосовать",
+    "options": {
+      "feature1": {
+        "title": "Интеграция с CRM",
+        "description": "Автоматическая синхронизация лидов и клиентов."
+      },
+      "feature2": {
+        "title": "Расширенная аналитика по постам",
+        "description": "Детальные отчеты по вовлеченности и охвату."
+      },
+      "feature3": {
+        "title": "AI-генерация видео",
+        "description": "Создание коротких видеороликов для соцсетей."
+      },
+      "feature4": {
+        "title": "Поддержка других мессенджеров",
+        "description": "WhatsApp, Viber, VK Messenger."
+      },
+      "feature5": {
+        "title": "Кастомные шаблоны постов",
+        "description": "Возможность создавать свои шаблоны для AI."
+      }
+    }
+  }
+}

@@ -98,7 +98,7 @@ const ProductsSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <div className="bg-gradient-to-r from-primary-telegram to-primary-electric rounded-3xl p-8 md:p-12 text-white">
+          <div className="bg-gradient-to-r from-primary-telegram to-primary-electric rounded-3xl p-8 md:p-12 text-white bg-opacity-85">
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="flex-1 text-center md:text-left">
                 <div className="inline-block bg-white/20 text-white text-xs font-medium px-3 py-1 rounded-full mb-4">

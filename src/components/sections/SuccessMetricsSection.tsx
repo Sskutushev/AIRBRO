@@ -1,116 +1,56 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import CountUp from '../common/CountUp';
 import { Users, MessageSquare, Clock, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const SuccessMetricsSection: React.FC = () => {
+  const { t } = useTranslation('success_metrics');
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   
+  const metricsData = t('metrics', { returnObjects: true }) as { label: string; description: string }[];
+  const testimonials = t('testimonials', { returnObjects: true }) as { name: string; business: string; industry: string; quote: string; result: string }[];
+
   const metrics = [
     {
       icon: <Users className="w-8 h-8" />,
       value: 500,
       suffix: "+",
-      label: "бизнесов",
-      description: "уже автоматизировали свой бизнес"
+      ...metricsData[0]
     },
     {
       icon: <MessageSquare className="w-8 h-8" />,
       value: 50000,
       suffix: "+",
-      label: "постов создано",
-      description: "с помощью AI PostMaster"
+      ...metricsData[1]
     },
     {
       icon: <Clock className="w-8 h-8" />,
       value: 40,
       suffix: "+",
-      label: "часов сэкономлено",
-      description: "ежемесячно нашими клиентами"
+      ...metricsData[2]
     },
     {
       icon: <Star className="w-8 h-8" />,
       value: 4.8,
-      label: "рейтинг",
-      description: "среди наших клиентов"
+      ...metricsData[3]
     }
   ];
 
-  const testimonials = [
-    {
-      id: 1,
-      avatar: "/images/тимлид3.jpg",
-      name: "Дмитрий Иванов",
-      business: "@TastyBitesRest",
-      industry: "Ресторан, Санкт-Петербург",
-      subscribers: 3500,
-      quote: "Booking Bot уменьшил no-show на 30%. Теперь столики всегда заполнены.",
-      result: "↑ 30% загрузка",
-      rating: 5
-    },
-    {
-      id: 2,
-      avatar: "/images/Тимлид.jpg",
-      name: "Анна Петрова",
-      business: "@BeautySalonMoscow",
-      industry: "Салон красоты, Москва",
-      subscribers: 1200,
-      quote: "AI PostMaster сэкономил мне 20 часов в неделю. Контент стал лучше, вовлечённость выросла на 35%.",
-      result: "↓ 20ч/неделю",
-      rating: 5
-    },
-    {
-      id: 3,
-      avatar: "/images/тимлид3.jpg",
-      name: "Сергей Ковалёв",
-      business: "@FitLifeStudio",
-      industry: "Фитнес, Казань",
-      subscribers: 5800,
-      quote: "Conversation Bot отвечает на 80% вопросов. Моя команда фокусируется на клиентах.",
-      result: "↑ 80% автоответов",
-      rating: 5
-    },
-    {
-      id: 4,
-      avatar: "/images/Тимлид.jpg",
-      name: "Елена Смирнова",
-      business: "@TechShopKrasnodar",
-      industry: "Электроника, Краснодар",
-      subscribers: 2100,
-      quote: "Video Inventory Agent сократил время инвентаризации с 4 часов до 20 минут.",
-      result: "↓ 92% время",
-      rating: 5
-    },
-    {
-      id: 5,
-      avatar: "/images/тимлид3.jpg",
-      name: "Максим Соколов",
-      business: "@CoffeeCornerEkb",
-      industry: "Кофейня, Екатеринбург",
-      subscribers: 800,
-      quote: "Feedback Bot помог собрать 200+ отзывов. Рейтинг вырос с 4.2 до 4.8.",
-      result: "↑ 4.8★ рейтинг",
-      rating: 5
-    },
-    {
-      id: 6,
-      avatar: "/images/Тимлид.jpg",
-      name: "Игорь Волков",
-      business: "@SharpCutsBarber",
-      industry: "Барбершоп, Нижний Новгород",
-      subscribers: 1500,
-      quote: "AIBRO Business окупился за первый месяц. Больше не ищу SMM-менеджера.",
-      result: "↓ 58K₽/мес",
-      rating: 5
-    }
-  ];
+  const fullTestimonials = testimonials.map((testimonial, index) => ({
+    ...testimonial,
+    id: index + 1,
+    avatar: `/images/тимлид${index % 2 === 0 ? '3' : ''}.jpg`,
+    subscribers: [3500, 1200, 5800, 2100, 800, 1500][index],
+    rating: 5,
+  }));
 
   const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+    setCurrentTestimonial((prev) => (prev === fullTestimonials.length - 1 ? 0 : prev + 1));
   };
 
   const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+    setCurrentTestimonial((prev) => (prev === 0 ? fullTestimonials.length - 1 : prev - 1));
   };
 
   return (
@@ -124,10 +64,10 @@ const SuccessMetricsSection: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 gradient-text">
-            Они уже автоматизировали свой бизнес
+            {t('title')}
           </h2>
           <p className="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto">
-            Реальные результаты от реальных бизнесов
+            {t('subtitle')}
           </p>
         </motion.div>
 
@@ -169,23 +109,23 @@ const SuccessMetricsSection: React.FC = () => {
               <div className="flex flex-col md:flex-row items-center">
                 <div className="md:w-2/3 md:pl-8">
                   <div className="text-2xl mb-4 text-center md:text-left text-text-secondary italic">
-                    "{testimonials[currentTestimonial].quote}"
+                    "{fullTestimonials[currentTestimonial].quote}"
                   </div>
                   <div className="text-center md:text-left">
-                    <div className="font-bold text-lg text-text-primary">{testimonials[currentTestimonial].name}</div>
-                    <div className="text-text-secondary">{testimonials[currentTestimonial].business}</div>
+                    <div className="font-bold text-lg text-text-primary">{fullTestimonials[currentTestimonial].name}</div>
+                    <div className="text-text-secondary">{fullTestimonials[currentTestimonial].business}</div>
                     <div className="text-sm text-text-tertiary mt-1">
-                      {testimonials[currentTestimonial].industry} | {testimonials[currentTestimonial].subscribers} подписчиков
+                      {fullTestimonials[currentTestimonial].industry} | {fullTestimonials[currentTestimonial].subscribers} {t('subscribers')}
                     </div>
                     <div className="flex items-center justify-center md:justify-start mt-2">
                       {[...Array(5)].map((_, i) => (
                         <Star 
                           key={i} 
-                          className={`w-5 h-5 ${i < testimonials[currentTestimonial].rating ? 'text-primary-telegram fill-current' : 'text-text-tertiary'}`} 
+                          className={`w-5 h-5 ${i < fullTestimonials[currentTestimonial].rating ? 'text-primary-telegram fill-current' : 'text-text-tertiary'}`}
                         />
                       ))}
                       <span className="ml-2 bg-primary-mint/20 text-primary-mint text-xs font-medium px-2 py-1 rounded-full">
-                        {testimonials[currentTestimonial].result}
+                        {fullTestimonials[currentTestimonial].result}
                       </span>
                     </div>
                   </div>
@@ -209,11 +149,11 @@ const SuccessMetricsSection: React.FC = () => {
             
             {/* Dots navigation */}
             <div className="flex justify-center mt-6 space-x-2">
-              {testimonials.map((_, idx) => (
+              {fullTestimonials.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setCurrentTestimonial(idx)}
-                  className={`w-3 h-3 rounded-full ${
+                  className={`w-3 h-3 rounded-full ${ 
                     idx === currentTestimonial ? 'bg-primary-telegram' : 'bg-border'
                   }`}
                 />
@@ -231,7 +171,7 @@ const SuccessMetricsSection: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <div className="text-center mb-8">
-            <p className="text-text-secondary font-medium">Нам доверяют:</p>
+            <p className="text-text-secondary font-medium">{t('trusted_by')}</p>
           </div>
           <div className="flex animate-marquee whitespace-nowrap overflow-hidden">
             <div className="flex items-center justify-around w-full">

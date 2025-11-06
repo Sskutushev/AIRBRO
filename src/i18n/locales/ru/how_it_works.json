@@ -1,0 +1,35 @@
+{
+  "title": "3 шага к автоматизации",
+  "subtitle": "От регистрации до первого поста — 15 минут",
+  "steps": [
+    {
+      "title": "Найдите @AIBROBusinessBot",
+      "description": "Просто напишите боту в Telegram. Никаких регистраций на сайтах.",
+      "duration": "1 минута",
+      "icon": "MessageCircle",
+      "mockup": "Telegram Chat Mockup"
+    },
+    {
+      "title": "Расскажите о своём бизнесе",
+      "description": "Бот задаст несколько вопросов: название, ниша, продукты, стиль. AI создаст ваш персональный Data Store.",
+      "duration": "5 минут",
+      "icon": "Settings",
+      "mockup": "Onboarding Form Mockup"
+    },
+    {
+      "title": "Создайте первый пост",
+      "description": "Просто скажите боту тему. AI сгенерирует текст + изображение. Одобрите или отредактируйте. Готово!",
+      "duration": "9 минут",
+      "icon": "Send",
+      "mockup": "Post Preview Mockup"
+    }
+  ],
+  "pro_tip": {
+    "title": "Pro Tip",
+    "description": "Хотите ещё быстрее? Используйте /quickstart команду"
+  },
+  "cta": {
+    "primary": "Начать сейчас",
+    "secondary": "Посмотреть демо-видео"
+  }
+}
