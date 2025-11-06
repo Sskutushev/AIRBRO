@@ -111,7 +111,7 @@ const HeroSection: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <video
-                src={theme === 'dark' ? '/images/Hero.mp4' : '/images/HeroWhite.mp4'}
+                src={theme === 'dark' ? '/images/Heroblack.mp4' : '/images/HeroWhite.mp4'}
                 autoPlay
                 loop
                 muted

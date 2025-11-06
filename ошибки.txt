@@ -1,23 +1,20 @@
-09:16:32.521 Running build in Washington, D.C., USA (East) – iad1
-09:16:32.521 Build machine configuration: 2 cores, 8 GB
-09:16:32.648 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: 722e02f)
-09:16:34.114 Cloning completed: 1.466s
-09:16:34.246 Restored build cache from previous deployment (9DyeMGEqN959C1Dj5R6g6LBiQSkp)
-09:16:34.765 Running "vercel build"
-09:16:35.156 Vercel CLI 48.8.2
-09:16:35.885 Installing dependencies...
-09:16:37.116 
-09:16:37.117 up to date in 988ms
-09:16:37.117 
-09:16:37.117 80 packages are looking for funding
-09:16:37.118   run `npm fund` for details
-09:16:37.149 Running "npm run build"
-09:16:37.807 
-09:16:37.808 > airbro-business-landing@1.0.0 build
-09:16:37.808 > tsc -b && vite build
-09:16:37.808 
-09:16:42.801 src/components/common/VotingModal.tsx(2,1): error TS6133: 'motion' is declared but its value is never read.
-09:16:42.802 src/components/sections/PricingSection.tsx(22,9): error TS6133: 'icons' is declared but its value is never read.
-09:16:42.802 src/components/sections/SuccessMetricsSection.tsx(91,60): error TS2339: Property 'suffix' does not exist on type '{ label: string; description: string; icon: Element; value: number; suffix: string; } | { label: string; description: string; icon: Element; value: number; }'.
-09:16:42.802   Property 'suffix' does not exist on type '{ label: string; description: string; icon: Element; value: number; }'.
-09:16:43.564 Error: Command "npm run build" exited with 2
+09:19:55.242 Running build in Washington, D.C., USA (East) – iad1
+09:19:55.243 Build machine configuration: 2 cores, 8 GB
+09:19:55.383 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: 7e60f62)
+09:19:55.860 Cloning completed: 477.000ms
+09:19:56.194 Restored build cache from previous deployment (9DyeMGEqN959C1Dj5R6g6LBiQSkp)
+09:19:56.658 Running "vercel build"
+09:19:57.159 Vercel CLI 48.8.2
+09:19:57.930 Installing dependencies...
+09:19:59.294 
+09:19:59.295 up to date in 1s
+09:19:59.296 
+09:19:59.296 80 packages are looking for funding
+09:19:59.296   run `npm fund` for details
+09:19:59.326 Running "npm run build"
+09:19:59.431 
+09:19:59.432 > airbro-business-landing@1.0.0 build
+09:19:59.432 > tsc -b && vite build
+09:19:59.432 
+09:20:03.926 src/components/sections/PricingSection.tsx(3,1): error TS6192: All imports in import declaration are unused.
+09:20:04.662 Error: Command "npm run build" exited with 2

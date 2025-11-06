@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChefHat, Scissors, Dumbbell, ShoppingBag } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const PricingSection: React.FC = () => {
