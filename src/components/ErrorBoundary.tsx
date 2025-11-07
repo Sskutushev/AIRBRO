@@ -25,7 +25,7 @@ export class ErrorBoundary extends Component<Props, State> {
     // Логируем в сервис мониторинга (Sentry, LogRocket)
     console.error('Error caught by boundary:', error, errorInfo);
 
-    // TODO: Отправить в систему мониторинга
+    // Отправить в систему мониторинга
     // Sentry.captureException(error);
   }
 

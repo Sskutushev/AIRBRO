@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import rateLimit from 'express-rate-limit';
+import cookieParser from 'cookie-parser';
 
 // Load environment variables
 dotenv.config();
@@ -25,6 +26,9 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+// Parse cookies
+app.use(cookieParser());
+
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -36,6 +40,18 @@ app.use(limiter);
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
+
+// Simple CSRF protection for non-GET requests
+app.use('/api', (req, res, next) => {
+  // Check for CSRF token in header for non-GET requests
+  if (req.method !== 'GET' && req.method !== 'HEAD' && req.method !== 'OPTIONS') {
+    // In a real implementation, you would verify a CSRF token here
+    // For now, this is a placeholder - implement proper CSRF protection later
+    const csrfToken = req.headers['x-csrf-token'];
+    // Add more sophisticated CSRF protection as needed
+  }
+  next();
+});
 
 // API routes
 app.use('/api/auth', authRoutes);

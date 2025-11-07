@@ -17,3 +17,18 @@ export const isStrongPassword = (password: string): boolean => {
     /[!@#$%^&*]/.test(password)
   );
 };
+
+export const validatePhoneNumber = (phone: string): boolean => {
+  // Basic phone validation (can be enhanced based on requirements)
+  const re = /^\+?[1-9]\d{1,14}$/;
+  return re.test(phone.replace(/[\s\-\(\)]/g, ''));
+};
+
+export const validateUrl = (url: string): boolean => {
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
+  }
+};

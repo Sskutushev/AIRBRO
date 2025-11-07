@@ -1,250 +1,329 @@
-# AIBRO Business - Архитектурная документация
+# Архитектура AIBRO Business
 
-## Обзор системы
+## Обзор архитектуры
 
-AIBRO Business представляет собой современную веб-систему автоматизации бизнеса, полностью интегрированную в Telegram. Система построена по модульной архитектуре с разделением на frontend и backend части, каждая из которых имеет свои слои и компоненты.
+AIBRO Business использует современную архитектуру клиент-серверного приложения с раздельным frontend и backend. Проект построен на принципах модульности, масштабируемости и безопасности.
 
-## Модель домена
+## Стек технологий и решения
 
-### Основные сущности
+### Frontend архитектура
 
-```
-┌─ User ──────────────────────┐
-│ id: String @id @default(...)│
-│ email: String @unique       │
-│ passwordHash: String        │
-│ name: String                │
-│ telegram: String @unique    │
-│ createdAt: DateTime         │
-│ updatedAt: DateTime         │
-│ subscriptions: Subscription[]│
-│ payments: Payment[]         │
-│ cartItems: CartItem[]       │
-└────────────────────────────┘
-           │
-           │ 1..*
-           ▼
-┌─ Subscription ──────────────┐
-│ id: String @id @default(...)│
-│ userId: String              │
-│ productId: String           │
-│ status: String              │
-│ startDate: DateTime         │
-│ endDate: DateTime           │
-│ nextPaymentDate: DateTime?  │
-│ cancelledAt: DateTime?      │
-│ createdAt: DateTime         │
-│ updatedAt: DateTime         │
-└────────────────────────────┘
+#### React + TypeScript
+- **Component-Based Architecture** - архитектура компонентов
+- **Hooks-based State Management** - управление состоянием через хуки
+- **Type-First Development** - строгая типизация как основа архитектуры
+- **Feature-Sliced Design** - разделение по функциональным слоям
 
-┌─ Product ───────────────────┐
-│ id: String @id @default(...)│
-│ slug: String @unique        │
-│ name: String                │
-│ description: String         │
-│ price: Int                  │
-│ interval: String            │
-│ features: String[]          │
-│ isActive: Boolean           │
-│ tier: Int                   │
-│ createdAt: DateTime         │
-│ updatedAt: DateTime         │
-│ subscriptions: Subscription[]│
-│ cartItems: CartItem[]       │
-└────────────────────────────┘
+#### Библиотеки и инструменты
+- **Vite** - современный инструмент сборки с быстрым HMR
+- **TailwindCSS** - утилитарный CSS-фреймворк для стилизации
+- **Framer Motion** - библиотека для анимаций и переходов
+- **React Router** - декларативная маршрутизация
+- **i18next** - комплексное решение для многоязычности
+- **Zod** - валидация данных на стороне клиента
+- **Sentry** - мониторинг ошибок в production
+- **Testing Library** - тестирование компонентов
 
-┌─ CartItem ──────────────────┐
-│ id: String @id @default(...)│
-│ userId: String              │
-│ productId: String           │
-│ quantity: Int               │
-│ createdAt: DateTime         │
-└────────────────────────────┘
+### Backend архитектура
 
-┌─ Payment ───────────────────┐
-│ id: String @id @default(...)│
-│ userId: String              │
-│ amount: Int                 │
-│ currency: String            │
-│ status: String              │
-│ paymentMethod: String       │
-│ walletAddress: String?      │
-│ txHash: String?             │
-│ qrCode: String?             │
-│ metadata: Json?             │
-│ expiresAt: DateTime?        │
-│ createdAt: DateTime         │
-│ updatedAt: DateTime         │
-└────────────────────────────┘
-```
+#### Express.js + TypeScript
+- **REST API** - интерфейс взаимодействия с сервером
+- **Middleware-based Architecture** - слоистая архитектура
+- **Type-First Development** - строгая типизация
+- **Dependency Injection** - через модульную структуру
 
-## Архитектура frontend
+#### База данных и ORM
+- **Prisma ORM** - типизированный ORM для работы с базой данных
+- **SQLite/PostgreSQL** - реляционное хранилище данных
+- **Migrations** - управление миграциями схемы БД
+- **Relations** - связывание таблиц с типизацией
 
-### Слои приложения
+## Слоистая архитектура
+
+### Frontend слои
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    UI Layer                                 │
-│  ┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐│
-│  │   Components    │ │    Sections     │ │    Pages        ││
-│  │  (микрокомпоненты)│ │(секции страниц) │ │(маршруты)       ││
-│  └─────────────────┘ └─────────────────┘ └─────────────────┘│
+│                        Presentation Layer                   │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────┐ │
+│  │   Components    │  │     Pages       │  │   Layouts   │ │
+│  │                 │  │                 │  │             │ │
+│  │ - UI элементы   │  │ - Роутинг       │  │ - Шаблоны   │ │
+│  │ - Интерактивн.  │  │ - Страницы      │  │ - Макеты    │ │
+│  │ - Состояния     │  │ - Контент       │  │ - Навигация │ │
+│  └─────────────────┘  └─────────────────┘  └─────────────┘ │
 ├─────────────────────────────────────────────────────────────┤
-│                 Presentation Layer                          │
-│  ┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐│
-│  │   Contexts      │ │     Hooks       │ │   Forms         ││
-│  │(состояния)      │ │(логика UI)      │ │(управление)     ││
-│  └─────────────────┘ └─────────────────┘ └─────────────────┘│
+│                        Logic Layer                          │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────┐ │
+│  │     Hooks       │  │     Context     │  │   Forms     │ │
+│  │                 │  │                 │  │             │ │
+│  │ - Бизнес-логика │  │ - Глоб. сост.   │  │ - Управл.   │ │
+│  │ - API вызовы    │  │ - Данные сессии │  │ - Валидация │ │
+│  │ - Мемоизация    │  │ - Темы/языки    │  │ - Отправка  │ │
+│  └─────────────────┘  └─────────────────┘  └─────────────┘ │
 ├─────────────────────────────────────────────────────────────┤
-│                  Service Layer                              │
-│  ┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐│
-│  │   API Client    │ │    i18n         │ │   Analytics     ││
-│  │(запросы)        │ │(переводы)       │ │(отслеживание)    ││
-│  └─────────────────┘ └─────────────────┘ └─────────────────┘│
+│                       Service Layer                         │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────┐ │
+│  │   API Client    │  │    Analytics    │  │ Monitoring  │ │
+│  │                 │  │                 │  │             │ │
+│  │ - HTTP запросы  │  │ - GA, Yandex    │  │ - Sentry,   │ │
+│  │ - Аутентификация│  │ - Поведение     │  │   LogRocket │ │
+│  │ - Ошибки        │  │ - События       │  │ - Метрики   │ │
+│  └─────────────────┘  └─────────────────┘  └─────────────┘ │
 ├─────────────────────────────────────────────────────────────┤
-│                   Utils Layer                               │
-│  ┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐│
-│  │   Validation    │ │   Storage       │ │   DOM Utils     ││
-│  │(схемы Zod)      │ │(localStorage)   │ │(доступ к DOM)   ││
-│  └─────────────────┘ └─────────────────┘ └─────────────────┘│
+│                        Data Layer                           │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────┐ │
+│  │   TypeScript    │  │   Validation    │  │   Utils     │ │
+│  │                 │  │                 │  │             │ │
+│  │ - DTO           │  │ - Zod схемы     │  │ - Функции   │ │
+│  │ - Типы          │  │ - Проверки      │  │ - Утилиты   │ │
+│  │ - Интерфейсы    │  │ - Форматы       │  │ - Валидация │ │
+│  └─────────────────┘  └─────────────────┘  └─────────────┘ │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Ключевые технологии
+#### Presentation Layer
+- **Components**: Переиспользуемые UI компоненты с атомарной архитектурой
+  - Atomic Design: Atoms, Molecules, Organisms
+  - Reusable и configurable компоненты
+  - Accessibility-first подход
+  - Responsive design с TailwindCSS
 
-#### React
-- **React 19.1.1** - библиотека для создания пользовательских интерфейсов
-- **Functional components** с использованием hooks
-- **Context API** для глобального состояния
-- **React.memo** для оптимизации рендеринга
+- **Pages**: Страницы приложения с логикой отображения
+  - Роутинг через React Router
+  - Data fetching и error handling
+  - Loading states и skeleton screens
+  - SEO оптимизации через React Helmet
 
-#### TypeScript
-- **Strict mode** для максимальной безопасности типов
-- **Type definitions** для всех props и состояний
-- **Generic types** для переиспользуемых компонентов
-- **Utility types** для сложных манипуляций с типами
+- **Layouts**: Шаблоны для различных типов страниц
+  - MainLayout - основной макет с навигацией
+  - AuthLayout - макет для аутентификации
+  - DashboardLayout - макет для личного кабинета
 
-#### Framer Motion
-- **Animations** для плавных переходов
-- **Gestures** для touch взаимодействий
-- **Layout animations** для динамических изменений
-- **Spring physics** для реалистичных анимаций
+#### Logic Layer
+- **Hooks**: Кастомные хуки для изоляции бизнес-логики
+  - `useAsync` - управление асинхронными операциями
+  - `useDebounce` - дебаунсинг значений
+  - `useLocalStorage` - синхронизация с localStorage
+  - `useAuth` - управление аутентификацией
+  - `useTheme` - управление темой
 
-#### React Query
-- **Server state management** для данных с сервера
-- **Caching** для оптимизации производительности
-- **Background updates** для актуальных данных
-- **Optimistic updates** для улучшенного UX
+- **Context**: Глобальное состояние приложения
+  - AuthContext - данные аутентификации
+  - ThemeContext - данные темы
+  - SubscriptionContext - данные подписок
+  - CartContext - данные корзины
 
-#### React Hook Form
-- **Form state management** для управления формами
-- **Validation** с Zod схемами
-- **Performance optimization** через контролируемые компоненты
-- **Accessibility** с правильными ARIA атрибутами
+- **Forms**: Управление формами и валидацией
+  - React Hook Form для управления формами
+  - Zod для клиентской валидации
+  - UX оптимизации для форм
 
-## Архитектура backend
+#### Service Layer
+- **API Client**: Централизованный клиент для API запросов
+  - Обработка ошибок
+  - Аутентификация (JWT)
+  - Retry логика
+  - Caching стратегии
 
-### Слои приложения
+- **Analytics**: Интеграция с системами аналитики
+  - Google Analytics
+  - Яндекс.Метрика
+  - События пользователей
+  - Conversion tracking
+
+- **Monitoring**: Система мониторинга ошибок
+  - Sentry для отслеживания ошибок
+  - Performance metrics
+  - Error boundaries
+
+#### Data Layer
+- **TypeScript**: Строгая типизация как основа архитектуры
+  - DTO (Data Transfer Objects)
+  - Interface definitions
+  - Type safety throughout
+  - Generics usage
+
+- **Validation**: Система валидации данных
+  - Zod для валидации форм
+  - Runtime validation
+  - Schema composition
+  - Error handling
+
+- **Utils**: Вспомогательные функции
+  - DOM утилиты
+  - Storage утилиты
+  - Validator утилиты
+  - Format утилиты
+
+---
+
+### Backend слои
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    API Layer                                │
-│  ┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐│
-│  │   Controllers   │ │   Middleware    │ │   Routes        ││
-│  │(бизнес-логика)  │ │(валидация, аут) │ │(маршруты)       ││
-│  └─────────────────┘ └─────────────────┘ └─────────────────┘│
+│                        Presentation Layer                   │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────┐ │
+│  │   Controllers   │  │    Routes       │  │   Middle-   │ │
+│  │                 │  │                 │  │   ware      │ │
+│  │ - Бизнес-логика │  │ - Маршрутизация │  │ - Защита    │ │
+│  │ - Валидация     │  │ - API точки     │  │ - Логика    │ │
+│  │ - Сервисы       │  │ - Параметры     │  │ - Обработка │ │
+│  └─────────────────┘  └─────────────────┘  └─────────────┘ │
 ├─────────────────────────────────────────────────────────────┤
-│                  Service Layer                              │
-│  ┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐│
-│  │   Services      │ │    Prisma       │ │   Utils         ││
-│  │(сложная логика)  │ │(ORM)            │ │(вспомогательные) ││
-│  └─────────────────┘ └─────────────────┘ └─────────────────┘│
+│                        Service Layer                        │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────┐ │
+│  │    Services     │  │   Telegram      │  │ Cryptopay-  │ │
+│  │                 │  │ Integration     │  │   ments     │ │
+│  │ - Бизнес-      │  │ - Обработка     │  │ - Обработка │ │
+│  │   процессы      │  │ - API          │  │ - Крипто    │ │
+│  │ - Логика        │  │ - Уведомления  │  │ - Сети      │ │
+│  └─────────────────┘  └─────────────────┘  └─────────────┘ │
 ├─────────────────────────────────────────────────────────────┤
-│                   Config Layer                              │
-│  ┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐│
-│  │   Database      │ │     JWT         │ │   Telegram      ││
-│  │(настройка)      │ │(аутентификация)  │ │(интеграция)     ││
-│  └─────────────────┘ └─────────────────┘ └─────────────────┘│
+│                        Data Layer                           │
+│  ┌─────────────────┐  ┌─────────────────┐  └─────────────┘ │
+│  │   Prisma ORM    │  │   Types/DTOs    │  │ Zod Schemas │ │
+│  │                 │  │                 │  │             │ │
+│  │ - Модели БД     │  │ - TypeScript    │  │ - Валидация │ │
+│  │ - Queries       │  │ - Интерфейсы    │  │ - Схемы     │ │
+│  │ - Relations     │  │ - Типы          │  │ - Проверки  │ │
+│  └─────────────────┘  └─────────────────┘  └─────────────┘ │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Ключевые технологии
+#### Presentation Layer
+- **Controllers**: Бизнес-логика обработки запросов
+  - Валидация входных данных
+  - Обработка ошибок
+  - Форматирование ответов
+  - Взаимодействие с сервисами
 
-#### Express.js
-- **Middleware architecture** для обработки запросов
-- **Routing system** для организации эндпоинтов
-- **Error handling** для централизованной обработки ошибок
-- **Security middlewares** для защиты от атак
+- **Routes**: Маршрутизация API запросов
+  - RESTful API endpoints
+  - Parameter validation
+  - Error handling
+  - Rate limiting
 
-#### Prisma ORM
-- **Type-safe database access** через TypeScript
-- **Automatic migrations** для безопасного изменения схемы
-- **Relation queries** для сложных запросов
-- **Transaction support** для безопасных операций
+- **Middleware**: Промежуточная логика
+  - Authentication/Authorization
+  - Rate limiting
+  - CORS configuration
+  - Logging
+  - Error handling
 
-#### Security
-- **Helmet** для HTTP заголовков безопасности
-- **express-rate-limit** для защиты от DDoS
-- **express-validator** для валидации данных
-- **bcrypt** для шифрования паролей
+#### Service Layer
+- **Services**: Бизнес-процессы и логика
+  - User management
+  - Product management
+  - Cart/Order processing
+  - Payment processing
+  - Subscription management
 
-#### JWT Authentication
-- **JSON Web Tokens** для безопасной аутентификации
-- **Token expiration** для безопасности
-- **Refresh tokens** для длительных сессий
-- **Middleware protection** для защищенных маршрутов
+- **Telegram Integration**: Интеграция с Telegram
+  - Bot API interaction
+  - Message processing
+  - Notifications
+  - Channel integration
 
-## Интеграции
+- **Cryptopayments**: Обработка криптоплатежей
+  - Wallet addresses
+  - Transaction verification
+  - Network detection
+  - Payment tracking
 
-### Telegram API
-- **Node Telegram Bot API** для взаимодействия с ботом
-- **Webhook handling** для получения обновлений
-- **Message templates** для структурированных сообщений
-- **Inline keyboards** для интерактивности
+#### Data Layer
+- **Prisma ORM**: Работа с базой данных
+  - Schema definition
+  - Migration management
+  - Type-safe queries
+  - Relations handling
 
-### Криптовалютные платежи
-- **Dynamic QR codes** для оплаты
-- **Blockchain monitoring** для подтверждения платежей
-- **Multiple wallets** (USDT TRC20/ERC20, TON)
-- **Payment statuses** с таймерами и уведомлениями
+- **Types/DTOs**: TypeScript типы и интерфейсы
+  - DTO для API
+  - Type safety
+  - Shared interfaces
+  - Generic types
+
+- **Zod Schemas**: Валидация данных
+  - Runtime validation
+  - Schema composition
+  - Type inference
+  - Error handling
+
+## Паттерны проектирования
+
+### Frontend Patterns
+1. **Component Composition** - компоненты собираются из меньших компонентов
+2. **Custom Hooks Pattern** - изолированная бизнес-логика
+3. **Higher Order Components** - для переиспользуемой функциональности
+4. **Compound Components** - взаимодействующие компоненты
+5. **Render Props Pattern** - гибкость в отображении
+
+### Backend Patterns
+1. **Repository Pattern** - абстракция доступа к данным
+2. **Service Layer Pattern** - бизнес-логика отделена от контроллеров
+3. **Middleware Pattern** - перехват и обработка запросов
+4. **Factory Pattern** - создание объектов с разными стратегиями
+5. **Strategy Pattern** - различные алгоритмы обработки
+
+## Архитектурные принципы
+
+### SOLID Principles
+1. **Single Responsibility**: Каждый модуль/класс/компонент имеет одну ответственность
+2. **Open/Closed**: Система открыта для расширения, но закрыта для модификации
+3. **Liskov Substitution**: Подтипы должны быть заменяемыми своими базовыми типами
+4. **Interface Segregation**: Клиенты не зависят от интерфейсов, которые они не используют
+5. **Dependency Inversion**: Зависимости на абстракциях, а не на деталях
+
+### KISS & DRY
+- **Keep It Simple, Stupid**: Простота кода имеет приоритет
+- **Don't Repeat Yourself**: Общие функции вынесены в утилиты и хуки
+
+## Масштабируемость и производительность
+
+### Frontend оптимизации
+- **Code Splitting**: Разделение кода по маршрутам и функциональным областям
+- **Lazy Loading**: Ленивая загрузка компонентов и изображений
+- **Memoization**: React.memo, useMemo, useCallback для оптимизации рендеринга
+- **Image Optimization**: WebP/AVIF форматы и lazy loading
+- **Bundle Analysis**: Мониторинг размера сборки
+
+### Backend оптимизации
+- **Database Indexing**: Индексы для часто используемых запросов
+- **Query Optimization**: Эффективные запросы к БД с помощью Prisma
+- **Caching**: Кэширование часто запрашиваемых данных
+- **Connection Pooling**: Управление подключениями к БД
+- **Rate Limiting**: Защита от DDoS атак
 
 ## Безопасность
 
 ### Frontend безопасность
-- **XSS protection** через DOMPurify
-- **Input sanitization** с Zod схемами
-- **JWT validation** на клиенте
-- **CSRF protection** через заголовки
+- **XSS Protection**: DOMPurify для безопасного рендера HTML
+- **Input Validation**: Zod для валидации на клиенте
+- **Token Storage**: JWT токены в localStorage с безопасной обработкой
+- **Secure Communication**: HTTPS для всех API запросов
 
 ### Backend безопасность
-- **Rate limiting** для предотвращения атак
-- **Input validation** через express-validator
-- **Password hashing** через bcrypt
-- **JWT security** с надежными секретами
+- **Authentication**: JWT с ограничением по времени
+- **Authorization**: Проверка прав доступа к ресурсам
+- **Input Sanitization**: Валидация и санитизация всех входных данных
+- **Rate Limiting**: Защита от атак перебором
+- **Password Hashing**: BCrypt с 10 раундами
+- **SQL Injection Prevention**: ORM (Prisma) для безопасных запросов
 
-## Масштабируемость
+## Доступность (A11y)
 
-### Архитектура
-- **Stateless API** для легкого масштабирования
-- **Database indexing** для быстрых запросов
-- **Caching layers** для снижения нагрузки
+### Атрибуты доступности
+- **ARIA Labels**: Для семантической разметки
+- **Keyboard Navigation**: Полная навигация с клавиатуры
+- **Screen Reader Support**: Поддержка программ чтения с экрана
+- **Color Contrast**: Соответствие WCAG 2.1 AA стандарту
+- **Skip Links**: Быстрый доступ к основному контенту
+- **Focus Management**: Правильное управление фокусом
 
-### Производительность
-- **Optimized queries** через Prisma
-- **Connection pooling** для эффективного использования ресурсов
-- **Response caching** для часто запрашиваемых данных
-- **Image optimization** для уменьшения размера загрузки
+## Мобильная адаптация
 
-## Мониторинг и логирование
-
-### Логирование
-- **Application logs** через Winston
-- **Error tracking** через Sentry
-- **User actions** для анализа поведения
-- **System health** для мониторинга статуса
-
-### Аналитика
-- **Google Analytics** для отслеживания пользователей
-- **Event tracking** для анализа пользовательских сценариев
-- **Payment success rates** для мониторинга конверсии
-- **Performance monitoring** для выявления узких мест
+- **Responsive Design**: Адаптация под все размеры экранов
+- **Touch-friendly UI**: Сенсорно-оптимизированный интерфейс
+- **Performance Optimization**: Оптимизация для мобильных устройств
+- **Progressive Web App**: Поддержка PWA функций

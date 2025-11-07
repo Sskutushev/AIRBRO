@@ -1,5 +1,5 @@
 class StorageService {
-  private prefix = 'aibro_';
+  private prefix = 'aibro\_';
 
   set<T>(key: string, value: T): void {
     try {

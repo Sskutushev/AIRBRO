@@ -77,14 +77,14 @@ class APIClient {
 
   // Auth methods
   async login(email: string, password: string) {
-    return this.request<ApiTypes.LoginResponse>('/auth/login', {
+    return this.request<{ user: ApiTypes.User; token: string }>('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     });
   }
 
   async register(data: RegisterInput) {
-    return this.request<ApiTypes.RegisterResponse>('/auth/register', {
+    return this.request<{ user: ApiTypes.User; token: string }>('/auth/register', {
       method: 'POST',
       body: JSON.stringify(data),
     });
@@ -99,18 +99,18 @@ class APIClient {
     const query = new URLSearchParams(
       params as Record<string, string>
     ).toString();
-    return this.request<ApiTypes.ProductsResponse>(
+    return this.request<{ products: ApiTypes.Product[] }>(
       `/products${query ? `?${query}` : ''}`
     );
   }
 
   async getProductBySlug(slug: string) {
-    return this.request<ApiTypes.SingleProductResponse>(`/products/${slug}`);
+    return this.request<ApiTypes.Product>(`/products/${slug}`);
   }
 
   // Cart methods
   async getCart() {
-    return this.request<ApiTypes.CartResponse>('/cart');
+    return this.request<{ items: ApiTypes.CartItem[]; total: number }>('/cart');
   }
 
   async addToCart(productId: string, quantity: number = 1) {
@@ -157,17 +157,17 @@ class APIClient {
   }
 
   async getUserSubscriptions() {
-    return this.request<ApiTypes.UserSubscriptionsResponse>(
+    return this.request<{ subscriptions: ApiTypes.Subscription[] }>(
       '/user/subscriptions'
     );
   }
 
   async getUserPayments() {
-    return this.request<ApiTypes.UserPaymentsResponse>('/user/payments');
+    return this.request<{ payments: ApiTypes.Payment[] }>('/user/payments');
   }
 
   async cancelSubscription(subscriptionId: string) {
-    return this.request<ApiTypes.SubscriptionCancellationResponse>(
+    return this.request<{ subscription: ApiTypes.Subscription }>(
       `/user/subscriptions/${subscriptionId}/cancel`,
       { method: 'POST' }
     );
@@ -176,4 +176,3 @@ class APIClient {
 
 export const apiClient = new APIClient();
 export { APIError };
-// Dummy comment to force re-transpilation
