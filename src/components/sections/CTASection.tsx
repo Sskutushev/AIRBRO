@@ -101,11 +101,11 @@ const CTASection: React.FC = () => {
         );
       default:
         return (
-          <form onSubmit={handleSubmit} className="glass rounded-2xl p-8 space-y-6 border border-border/50">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <form onSubmit={handleSubmit} className="glass rounded-2xl p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4 border border-border/50">
+            <div className="grid grid-cols-1 gap-3 sm:gap-4">
               <div>
-                <label htmlFor="name" className="block text-text-primary font-medium mb-2 flex items-center">
-                  <User size={18} className="mr-2 text-primary-telegram" /> 
+                <label htmlFor="name" className="block text-text-primary font-medium mb-1 text-xs sm:text-sm flex items-center">
+                  <User size={14} className="mr-1 sm:mr-2 text-primary-telegram" /> 
                   {t('form.name')} *
                 </label>
                 <input 
@@ -115,14 +115,14 @@ const CTASection: React.FC = () => {
                   value={formData.name} 
                   onChange={handleChange} 
                   required 
-                  className="w-full px-4 py-3 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary" 
+                  className="w-full px-2 sm:px-3 py-2 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary text-xs sm:text-sm" 
                   placeholder={t('form.name_placeholder')} 
                 />
               </div>
               
               <div>
-                <label htmlFor="email" className="block text-text-primary font-medium mb-2 flex items-center">
-                  <Mail size={18} className="mr-2 text-primary-telegram" /> 
+                <label htmlFor="email" className="block text-text-primary font-medium mb-1 text-xs sm:text-sm flex items-center">
+                  <Mail size={14} className="mr-1 sm:mr-2 text-primary-telegram" /> 
                   {t('form.email')} *
                 </label>
                 <input 
@@ -132,14 +132,14 @@ const CTASection: React.FC = () => {
                   value={formData.email} 
                   onChange={handleChange} 
                   required 
-                  className="w-full px-4 py-3 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary" 
+                  className="w-full px-2 sm:px-3 py-2 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary text-xs sm:text-sm" 
                   placeholder={t('form.email_placeholder')} 
                 />
               </div>
               
               <div>
-                <label htmlFor="telegram" className="block text-text-primary font-medium mb-2 flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" className="mr-2 text-primary-telegram">
+                <label htmlFor="telegram" className="block text-text-primary font-medium mb-1 text-xs sm:text-sm flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" className="mr-1 sm:mr-2 text-primary-telegram">
                     <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m6.62 5.42l-1.5 7.13c-.11.51-.43.65-.91.41l-3-1.91l-1.48 1.4c-.12.11-.21.2-.28.3l-1.17 2.09c-.21.33-.4.24-.63-.12l-1.89-3.18l-4.4-1.64c-.34-.13-.33-.38.09-.55l11.27-4.4c.33-.13.63.1.5.44l-1.1 2.5l-1.97-.61c-.34-.11-.34.14-.1.3l1.45 1.1l-.58 2.43c-.07.31.12.37.33.22l1.35-1.07l2.93 2.91c.19.19.37.13.44-.15l.86-4.3c.08-.36-.24-.5-.54-.28l-2.18 1.61l-.62-1.86c-.08-.24.12-.33.32-.21l4.94 3.28c.35.2.44.05.36-.34"/>
                   </svg>
                   {t('form.telegram')} *
@@ -152,14 +152,14 @@ const CTASection: React.FC = () => {
                   onChange={handleChange} 
                   required 
                   pattern="^@[a-zA-Z0-9_]{5,}$"
-                  className="w-full px-4 py-3 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary" 
+                  className="w-full px-2 sm:px-3 py-2 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary text-xs sm:text-sm" 
                   placeholder={t('form.telegram_placeholder')} 
                 />
               </div>
               
               <div>
-                <label htmlFor="business" className="block text-text-primary font-medium mb-2 flex items-center">
-                  <Building size={18} className="mr-2 text-primary-electric" /> 
+                <label htmlFor="business" className="block text-text-primary font-medium mb-1 text-xs sm:text-sm flex items-center">
+                  <Building size={14} className="mr-1 sm:mr-2 text-primary-electric" /> 
                   {t('form.business')}
                 </label>
                 <input 
@@ -168,13 +168,13 @@ const CTASection: React.FC = () => {
                   name="business" 
                   value={formData.business} 
                   onChange={handleChange} 
-                  className="w-full px-4 py-3 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-electric focus:border-transparent text-text-primary placeholder:text-text-tertiary" 
+                  className="w-full px-2 sm:px-3 py-2 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-electric focus:border-transparent text-text-primary placeholder:text-text-tertiary text-xs sm:text-sm" 
                   placeholder={t('form.business_placeholder')} 
                 />
               </div>
               
-              <div className="md:col-span-2">
-                <label htmlFor="product" className="block text-text-primary font-medium mb-2">
+              <div>
+                <label htmlFor="product" className="block text-text-primary font-medium mb-1 text-xs sm:text-sm">
                   {t('form.product_interest')}
                 </label>
                 <select 
@@ -182,7 +182,7 @@ const CTASection: React.FC = () => {
                   name="product" 
                   value={formData.product} 
                   onChange={handleChange} 
-                  className="w-full px-4 py-3 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-violet focus:border-transparent text-text-primary"
+                  className="w-full px-2 sm:px-3 py-2 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-violet focus:border-transparent text-text-primary text-xs sm:text-sm"
                 >
                   {Object.entries(t('form.products', { returnObjects: true }) as { [key: string]: string }).map(([key, value]) => (
                     <option key={key} value={value}>{value}</option>
@@ -190,9 +190,9 @@ const CTASection: React.FC = () => {
                 </select>
               </div>
               
-              <div className="md:col-span-2">
-                <label htmlFor="description" className="block text-text-primary font-medium mb-2 flex items-center">
-                  <MessageSquare size={18} className="mr-2 text-primary-telegram" /> 
+              <div>
+                <label htmlFor="description" className="block text-text-primary font-medium mb-1 text-xs sm:text-sm flex items-center">
+                  <MessageSquare size={14} className="mr-1 sm:mr-2 text-primary-telegram" /> 
                   {t('form.problem_description')} *
                 </label>
                 <textarea 
@@ -201,23 +201,23 @@ const CTASection: React.FC = () => {
                   value={formData.description} 
                   onChange={handleChange} 
                   required 
-                  rows={4} 
-                  className="w-full px-4 py-3 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary" 
+                  rows={2} 
+                  className="w-full px-2 sm:px-3 py-2 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary text-xs sm:text-sm" 
                   placeholder={t('form.problem_placeholder')}
                 ></textarea>
               </div>
             </div>
             
-            <div>
-              <label className="flex items-start mb-6">
+            <div className="pt-2">
+              <label className="flex items-start mb-3 text-xs sm:text-sm">
                 <input 
                   type="checkbox" 
                   checked={consent} 
                   onChange={() => setConsent(!consent)} 
                   required 
-                  className="mt-1 mr-3 h-5 w-5 accent-primary-telegram rounded" 
+                  className="mt-1 mr-1 sm:mt-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4 accent-primary-telegram rounded flex-shrink-0" 
                 />
-                <span className="text-text-secondary text-sm">
+                <span className="text-text-secondary">
                   {t('form.consent')}{' '}
                   <a href="/privacy-policy" target="_blank" className="text-primary-telegram hover:underline">{t('form.privacy_policy')}</a>.
                 </span>
@@ -226,7 +226,7 @@ const CTASection: React.FC = () => {
               <button 
                 type="submit" 
                 disabled={submissionStatus === 'loading'} 
-                className="w-full py-4 bg-gradient-to-r from-primary-telegram to-primary-electric text-white font-bold rounded-lg hover:opacity-90 transition-opacity text-lg"
+                className="w-full py-2 sm:py-3 bg-gradient-to-r from-primary-telegram to-primary-electric text-white font-bold rounded-lg hover:opacity-90 transition-opacity text-sm sm:text-base"
               >
                 {submissionStatus === 'loading' ? t('form.submitting_button') : t('form.submit_button')}
               </button>
@@ -242,22 +242,22 @@ const CTASection: React.FC = () => {
     <section className="py-20 bg-gradient-to-br from-primary-telegram to-primary-electric" id="contact">
       <div className="container mx-auto px-4">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-4 sm:mb-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-6xl font-bold mb-2 sm:mb-3 text-white">
             {t('title')}
           </h2>
-          <p className="text-2xl text-white/90 max-w-3xl mx-auto mb-6">
+          <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl sm:max-w-3xl mx-auto mb-3 sm:mb-4">
             {t('subtitle', { count: 500 })}
           </p>
         </motion.div>
 
         <motion.div
-          className="max-w-4xl mx-auto"
+          className="min-w-[350px] max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-4xl mx-auto w-full px-2"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

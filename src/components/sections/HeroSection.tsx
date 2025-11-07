@@ -179,7 +179,7 @@ const HeroSection: React.FC = () => {
         
         {/* Scroll indicator */}
         <motion.div 
-          className="absolute bottom-[45px] left-1/2 transform -translate-x-1/2 flex flex-col items-center"
+          className="hidden md:flex absolute bottom-[45px] left-1/2 transform -translate-x-1/2 flex-col items-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.5 }}

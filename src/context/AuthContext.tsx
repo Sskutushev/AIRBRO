@@ -1,24 +1,15 @@
-import React, { createContext, useContext, type ReactNode, useState, useEffect } from 'react';
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  telegram: string;
-  createdAt: string;
-  subscriptions?: string[];
-}
+import React, { createContext, useContext, type ReactNode, useState, useEffect, useMemo, useCallback } from 'react';
+import { apiClient } from '../services/api/client';
+import * as ApiTypes from '../types/api';
 
 interface AuthContextType {
-  user: User | null;
+  user: ApiTypes.User | null;
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   register: (name: string, email: string, password: string, telegram: string) => Promise<void>;
   logout: () => void;
-  updateUser: (userData: Partial<User>) => void;
+  updateUser: (userData: Partial<ApiTypes.User>) => void;
 }
-
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -27,7 +18,7 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<ApiTypes.User | null>(null);
   const [loading, setLoading] = useState(true);
 
   // Проверяем наличие токена и пользователя при загрузке
@@ -35,24 +26,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const token = localStorage.getItem('airbro_token');
     if (token) {
       // Проверяем валидность токена, запросив данные пользователя
-      fetch(`${API_BASE_URL}/auth/me`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('Token is not valid');
-      })
-      .then(userData => {
+      apiClient.setToken(token);
+      apiClient.getMe()
+      .then((userData: ApiTypes.User) => {
         setUser(userData);
       })
       .catch(error => {
         console.error('Error fetching user data:', error);
         // Если токен невалиден, удаляем его
         localStorage.removeItem('airbro_token');
+        apiClient.setToken(null);
       })
       .finally(() => {
         setLoading(false);
@@ -62,86 +45,63 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, []);
 
-  const login = async (email: string, password: string) => {
+  const login = useCallback(async (email: string, password: string) => {
     setLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Login failed');
-      }
-
-      const data = await response.json();
+      const data = await apiClient.login(email, password);
       
       // Сохраняем токен и данные пользователя
       localStorage.setItem('airbro_token', data.token);
-      setUser(data.user);
+      apiClient.setToken(data.token);
+      setUser(data.user as ApiTypes.User);
     } catch (error) {
       console.error('Login error:', error);
       throw error;
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const register = async (name: string, email: string, password: string, telegram: string) => {
+  const register = useCallback(async (name: string, email: string, password: string, telegram: string) => {
     setLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password, name, telegram }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Registration failed');
-      }
-
-      const data = await response.json();
+      const data = await apiClient.register({ name, email, password, telegram });
       
       // Сохраняем токен и данные пользователя
       localStorage.setItem('airbro_token', data.token);
-      setUser(data.user);
+      apiClient.setToken(data.token);
+      setUser(data.user as ApiTypes.User);
     } catch (error) {
       console.error('Registration error:', error);
       throw error;
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     setUser(null);
     localStorage.removeItem('airbro_token');
+    apiClient.setToken(null);
     localStorage.removeItem('airbro_user');
-  };
+  }, []);
 
-  const updateUser = (userData: Partial<User>) => {
+  const updateUser = useCallback((userData: Partial<ApiTypes.User>) => {
     if (user) {
-      const updatedUser = { ...user, ...userData };
+      const updatedUser = { ...user, ...userData } as ApiTypes.User;
       setUser(updatedUser);
-      localStorage.setItem('airbro_user', JSON.stringify(updatedUser));
+      localStorage.removeItem('airbro_user'); // Remove old user data from local storage
     }
-  };
+  }, [user]);
 
-  const value = {
+  const value = useMemo(() => ({
     user,
     loading,
     login,
     register,
     logout,
     updateUser
-  };
+  }), [user, loading, login, register, logout, updateUser]);
 
   return (
     <AuthContext.Provider value={value}>

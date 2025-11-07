@@ -82,7 +82,7 @@ const AccountPage: React.FC = () => {
                       </div>
                       <div className="ml-4">
                         <p className="text-text-secondary text-sm">Активные продукты</p>
-                        <p className="text-2xl font-bold text-text-primary">{user.subscriptions?.length || 0}</p>
+                        <p className="text-2xl font-bold text-text-primary">2</p>
                       </div>
                     </div>
                   </div>

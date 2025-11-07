@@ -187,11 +187,11 @@ const Header = () => {
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
         >
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col items-center space-y-3">
             {navLinks.map((link) => (
               <button
                 key={link.name}
-                className="font-medium text-text-primary hover:text-primary-telegram py-2 text-left"
+                className="font-medium text-text-primary hover:text-primary-telegram py-3 text-center w-full max-w-[300px]"
                 onClick={() => {
                   handleNavClick(link.href, link.name);
                   setIsMenuOpen(false);
@@ -201,7 +201,7 @@ const Header = () => {
               </button>
             ))}
             
-            <div className="pt-4 border-t border-border flex flex-col space-y-3">
+            <div className="w-full max-w-[300px] pt-3 border-t border-border flex flex-col space-y-3 items-center">
               {/* Mobile Language Switcher */}
               <div className="flex items-center justify-center space-x-4 py-2">
                 <button
@@ -254,7 +254,7 @@ const Header = () => {
                 <>
                   <Link 
                     to="/account" 
-                    className="flex items-center text-text-primary hover:text-primary-telegram py-2 text-left"
+                    className="flex items-center text-text-primary hover:text-primary-telegram py-3 justify-center w-full"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <User className="w-5 h-5 mr-2" />
@@ -265,7 +265,7 @@ const Header = () => {
                       logout();
                       setIsMenuOpen(false);
                     }}
-                    className="flex items-center text-text-primary hover:text-primary-telegram py-2 text-left"
+                    className="flex items-center text-text-primary hover:text-primary-telegram py-3 justify-center w-full"
                   >
                     <LogOut className="w-5 h-5 mr-2" />
                     {t('logout', { ns: 'common' })}
@@ -274,7 +274,7 @@ const Header = () => {
               ) : (
                 <Link 
                   to="/auth" 
-                  className="flex items-center text-text-primary hover:text-primary-telegram py-2 text-left"
+                  className="flex items-center text-text-primary hover:text-primary-telegram py-3 justify-center w-full"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <User className="w-5 h-5 mr-2" />
@@ -285,7 +285,7 @@ const Header = () => {
               <Button 
                 variant="gradient-primary" 
                 size="md" 
-                className="w-full"
+                className="w-full mt-2 py-3"
                 onClick={() => {
                   setIsMenuOpen(false);
                   const element = document.getElementById('contact');

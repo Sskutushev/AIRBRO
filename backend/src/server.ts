@@ -51,8 +51,11 @@ app.get('/health', (req, res) => {
 });
 
 // Error handling middleware
+import logger from './utils/logger';
+
+// Error handling middleware
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  console.error(err.stack);
+  logger.error('Unhandled server error', err);
   res.status(500).json({ error: 'Something went wrong!' });
 });
 

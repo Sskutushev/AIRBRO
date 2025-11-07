@@ -54,24 +54,24 @@ const RoadmapSection: React.FC = () => {
           {/* Timeline line */}
           <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary-telegram to-primary-electric"></div>
           
-          <div className="space-y-20">
+          <div className="space-y-8 lg:space-y-20">
             {quarters.map((quarter, index) => (
               <motion.div 
                 key={quarter.label}
-                className={`flex flex-col lg:flex-row items-center gap-12`}
+                className={`flex flex-col lg:flex-row items-center gap-8`}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
               >
                 <div className={`${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'} lg:w-1/2`}>
-                  <div className="glass rounded-2xl p-8 border border-border/50">
+                  <div className="glass rounded-2xl p-6 sm:p-8 border border-border/50">
                     <div className="flex items-center mb-6">
                       <div className={`w-12 h-12 rounded-full flex items-center justify-center mr-4 ${getStatusColor(quarter.status)} bg-opacity-20`}>
                         {getStatusIcon(quarter.status)}
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-text-primary">{quarter.label}</h3>
+                        <h3 className="text-xl sm:text-2xl font-bold text-text-primary">{quarter.label}</h3>
                         <span className="text-text-secondary capitalize">{t(`statuses.${quarter.status}`)}</span>
                       </div>
                     </div>
@@ -92,7 +92,7 @@ const RoadmapSection: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className={`${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'} lg:w-1/2 flex justify-center`}>
+                <div className={`${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'} lg:w-1/2 flex justify-center hidden lg:flex`}>
                   <div className="relative">
                     <div className="w-20 h-20 rounded-full bg-primary-telegram flex items-center justify-center text-white font-bold text-lg z-10">
                       {quarter.label}

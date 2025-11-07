@@ -1,22 +1,30 @@
 import { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { apiClient, APIError } from '../services/api/client';
 
 export const useLogin = () => {
-  const { login, loading } = useAuth();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
 
-  const handleLogin = async (email: string, password: string) => {
+  const login = async (email: string, password: string) => {
+    setLoading(true);
+    setError(null);
+
     try {
-      setError(null);
-      setSuccess(false);
-      await login(email, password);
-      setSuccess(true);
+      const response = await apiClient.login(email, password);
+      apiClient.setToken(response.token);
+      localStorage.setItem('token', response.token);
+      return response.user;
     } catch (err) {
-      setError('Ошибка входа. Пожалуйста, проверьте данные и попробуйте снова.');
-      console.error('Login error:', err);
+      if (err instanceof APIError) {
+        setError(err.message);
+      } else {
+        setError('Произошла неизвестная ошибка');
+      }
+      throw err;
+    } finally {
+      setLoading(false);
     }
   };
 
-  return { handleLogin, loading, error, success };
+  return { login, loading, error };
 };

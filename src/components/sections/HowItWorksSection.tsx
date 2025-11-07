@@ -64,26 +64,26 @@ const HowItWorksSection: React.FC = () => {
                     <p className="text-text-secondary mb-6">{step.description}</p>
                   </div>
                 </div>
-                <div className={`lg:order-1 lg:w-1/2`}>
-                  <div className="glass rounded-2xl p-6 border border-border/50">
-                    <div className="bg-gray-200 border-2 border-dashed rounded-xl w-96 h-auto flex items-center justify-center mx-auto">
+                <div className={`lg:order-1 lg:w-1/2 w-full max-w-[90vw] sm:max-w-full`}>
+                  <div className="glass rounded-2xl p-4 sm:p-6 border border-border/50">
+                    <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-auto flex items-center justify-center mx-auto overflow-hidden max-h-[400px]">
                       {index === 0 ? (
                         <img 
                           src="/images/Frame 7486.svg"
                           alt="Telegram Chat Mockup"
-                          className="w-full h-auto object-contain"
+                          className="w-full h-auto object-contain max-h-[400px]"
                         />
                       ) : index === 1 ? (
                         <img 
                           src="/images/Рассказ.jpg"
                           alt="Onboarding Form Mockup"
-                          className="w-full h-auto object-contain"
+                          className="w-full h-auto object-contain max-h-[400px]"
                         />
                       ) : index === 2 ? (
                         <img 
                           src="/images/пост.jpg"
                           alt="Post Preview Mockup"
-                          className="w-full h-auto object-contain"
+                          className="w-full h-auto object-contain max-h-[400px]"
                         />
                       ) : (
                         step.mockup

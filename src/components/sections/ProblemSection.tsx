@@ -29,21 +29,25 @@ const ProblemSection: React.FC = () => {
           {problems.map((problem, index) => (
             <motion.div
               key={index}
-              className="glass p-8 rounded-2xl border border-border/50 hover:scale-105 transition-transform duration-300"
+              className="glass p-6 sm:p-8 rounded-2xl border border-border/50 hover:scale-105 transition-transform duration-300"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: index * 0.15 }}
               whileHover={{ y: -10 }}
             >
-              <div className="flex items-start">
-                <div className={`text-4xl p-3 rounded-xl bg-${problem.color}/20 mr-6`}>
+              <div className="flex flex-col items-center">
+                <div className={`text-4xl p-3 rounded-xl bg-${problem.color}/20 mb-4 w-fit`}>
                   {problem.emoji}
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-3 text-text-primary">{problem.title}</h3>
-                  <p className="text-text-secondary mb-4">{problem.description}</p>
-                  <div className="inline-block bg-bg-tertiary text-text-primary text-sm font-medium px-3 py-1 rounded-full">
+                <div className="text-center w-full">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 text-text-primary">
+                    {problem.title}
+                  </h3>
+                  <p className="text-text-secondary mb-4 text-sm sm:text-base">
+                    {problem.description}
+                  </p>
+                  <div className="bg-bg-tertiary text-text-primary text-xs sm:text-sm font-medium px-3 py-1 rounded-full inline-block">
                     {problem.stat}
                   </div>
                 </div>

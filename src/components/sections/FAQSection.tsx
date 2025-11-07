@@ -228,25 +228,25 @@ const FAQSection: React.FC = () => {
 
         {/* Support Banner */}
         <motion.div 
-          className="mt-20 w-[calc(100%-500px)] mx-auto bg-white dark:bg-[#334155] backdrop-blur-[15px] rounded-[20px] p-8 text-center text-text-primary dark:text-white shadow-[0_10px_30px_rgba(0,0,0,0.1),_10px_0_30px_rgba(0,0,0,0.1),_-10px_0_30px_rgba(0,0,0,0.1)]"
+          className="mt-20 w-full max-w-[calc(100%-30px)] md:w-[calc(100%-500px)] mx-auto bg-white dark:bg-[#334155] backdrop-blur-[15px] rounded-[20px] p-6 sm:p-8 text-center text-text-primary dark:text-white shadow-[0_10px_30px_rgba(0,0,0,0.1),_10px_0_30px_rgba(0,0,0,0.1),_-10px_0_30px_rgba(0,0,0,0.1)]"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col items-center justify-center gap-4">
             <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
               <Phone className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-xl font-bold">Не нашли ответ?</h3>
-              <p className="mt-2">Напишите нам в поддержку</p>
+              <h3 className="text-lg sm:text-xl font-bold">Не нашли ответ?</h3>
+              <p className="mt-2 text-sm sm:text-base">Напишите нам в поддержку</p>
             </div>
             <a 
               href="https://t.me/AIBRO_Support" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="mt-4 md:mt-0 px-6 py-3 bg-[#00DDFD] text-white font-bold rounded-lg hover:opacity-90 transition-colors"
+              className="mt-4 px-6 py-3 bg-[#00DDFD] text-white font-bold rounded-lg hover:opacity-90 transition-colors w-full sm:w-auto"
             >
               Написать в поддержку
             </a>

@@ -4,9 +4,16 @@ import { User, Mail, Lock, Smartphone, ArrowRight, CheckCircle, ArrowLeft, Loade
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
+import { loginSchema, registerSchema } from '../lib/validation/auth';
+import type { LoginInput, RegisterInput } from '../lib/validation/auth';
+import { z } from 'zod';
+import { analytics } from '../lib/analytics';
+
+type AuthFormData = LoginInput & Partial<RegisterInput>;
+
 const AuthPage: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<AuthFormData>({
     name: '',
     email: '',
     password: '',
@@ -15,7 +22,8 @@ const AuthPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   
-  const { login, register } = useAuth();
+  const authContext = useAuth();
+  const { login, register } = authContext;
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,14 +38,26 @@ const AuthPage: React.FC = () => {
 
     try {
       if (isLogin) {
-        await login(formData.email, formData.password);
+        const validatedData = loginSchema.parse(formData);
+        await login(validatedData.email, validatedData.password);
+        analytics.trackLogin('email');
+        if (authContext.user?.id) analytics.setUserId(authContext.user.id);
         navigate('/account'); // Перенаправляем в личный кабинет
       } else {
-        await register(formData.name, formData.email, formData.password, formData.telegram);
+        const validatedData = registerSchema.parse(formData);
+        await register(validatedData.name, validatedData.email, validatedData.password, validatedData.telegram);
+        analytics.trackSignup('email');
+        if (authContext.user?.id) analytics.setUserId(authContext.user.id);
         navigate('/account'); // Перенаправляем в личный кабинет
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Произошла ошибка');
+      if (err instanceof z.ZodError) {
+        setError(err.issues.map(e => e.message).join(', '));
+      } else if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Произошла ошибка');
+      }
     } finally {
       setLoading(false);
     }

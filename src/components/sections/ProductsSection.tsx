@@ -1,10 +1,71 @@
-import React, { useState } from 'react';
+import React, { useState, memo, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Users, Calendar, Star, Bot, Video, Coins } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import ModulePopup from '../common/ModulePopup';
 
-const ProductsSection: React.FC = () => {
+// Define a basic Product interface for now, will be replaced by actual API types later
+interface Product {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+  icon: React.ReactNode;
+  price: string;
+  status: string;
+  statusText: string;
+}
+
+// Memoized ProductCard component
+const ProductCard = memo<{ product: Product; onSelect: (product: Product) => void }>(({ product, onSelect }) => {
+  const handleClick = useCallback(() => {
+    onSelect(product);
+  }, [product, onSelect]);
+
+  return (
+    <motion.div
+      key={product.id}
+      className="glass rounded-2xl p-6 border border-border/50 hover:scale-105 transition-transform duration-300"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: 0.1 }}
+      onClick={handleClick}
+    >
+      <div className="flex items-center mb-4">
+        <div className="bg-primary-electric/20 w-12 h-12 rounded-xl flex items-center justify-center text-primary-electric mr-4">
+          {product.icon}
+        </div>
+        <div>
+          <h4 className="font-bold text-lg text-text-primary">{product.name}</h4>
+          <span className={`text-xs px-2 py-1 rounded-full ${
+            product.status === 'available' ? 'bg-green-500/20 text-green-600' :
+            product.status === 'coming' ? 'bg-yellow-500/20 text-yellow-600' :
+            'bg-red-500/20 text-red-600'
+          }`}>
+            {product.statusText}
+          </span>
+        </div>
+      </div>
+      
+      <p className="text-text-secondary text-sm mb-4">{product.tagline}</p>
+      <p className="text-text-secondary text-xs mb-6">{product.description}</p>
+      
+      <div className="text-primary-telegram font-bold text-lg mb-4">{product.price}</div>
+      
+      <button 
+        className="w-full py-2 bg-white/10 text-white rounded-lg font-medium hover:bg-white/20 transition-colors"
+        onClick={handleClick} // Use handleClick for the button as well
+      >
+        Узнать больше
+      </button>
+    </motion.div>
+  );
+});
+
+ProductCard.displayName = 'ProductCard';
+
+const ProductsSection = memo(() => {
   const { t } = useTranslation('products');
   const [activeModule, setActiveModule] = useState<{id: string, name: string, icon: string, tagline: string, price: string, status: string} | null>(null);
 
@@ -29,7 +90,7 @@ const ProductsSection: React.FC = () => {
   };
 
   // Tier 2 Products
-  const tier2Products = [
+  const tier2Products: Product[] = [
     {
       id: "conversation-bot",
       name: "Conversation Bot",
@@ -72,7 +133,18 @@ const ProductsSection: React.FC = () => {
     }
   ];
 
-
+  const handleProductSelect = useCallback((product: Product) => {
+    setActiveModule({
+      id: product.id,
+      name: product.name,
+      icon: product.id === 'conversation-bot' ? '💬' : 
+           product.id === 'booking-bot' ? '📅' : 
+           product.id === 'feedback-bot' ? '⭐' : '📹',
+      tagline: product.tagline,
+      price: product.price,
+      status: product.statusText
+    });
+  }, []);
 
   return (
     <section id="products" className="py-20 bg-gradient-to-b from-bg-primary to-bg-secondary">
@@ -200,51 +272,11 @@ const ProductsSection: React.FC = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {tier2Products.map((product, index) => (
-              <motion.div
+              <ProductCard
                 key={product.id}
-                className="glass rounded-2xl p-6 border border-border/50 hover:scale-105 transition-transform duration-300"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="bg-primary-electric/20 w-12 h-12 rounded-xl flex items-center justify-center text-primary-electric mr-4">
-                    {product.icon}
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-lg text-text-primary">{product.name}</h4>
-                    <span className={`text-xs px-2 py-1 rounded-full ${
-                      product.status === 'available' ? 'bg-green-500/20 text-green-600' :
-                      product.status === 'coming' ? 'bg-yellow-500/20 text-yellow-600' :
-                      'bg-red-500/20 text-red-600'
-                    }`}>
-                      {product.statusText}
-                    </span>
-                  </div>
-                </div>
-                
-                <p className="text-text-secondary text-sm mb-4">{product.tagline}</p>
-                <p className="text-text-secondary text-xs mb-6">{product.description}</p>
-                
-                <div className="text-primary-telegram font-bold text-lg mb-4">{product.price}</div>
-                
-                <button 
-                  className="w-full py-2 bg-white/10 text-white rounded-lg font-medium hover:bg-white/20 transition-colors"
-                  onClick={() => setActiveModule({
-                    id: product.id,
-                    name: product.name,
-                    icon: product.id === 'conversation-bot' ? '💬' : 
-                         product.id === 'booking-bot' ? '📅' : 
-                         product.id === 'feedback-bot' ? '⭐' : '📹',
-                    tagline: product.tagline,
-                    price: product.price,
-                    status: product.statusText
-                  })}
-                >
-                  Узнать больше
-                </button>
-              </motion.div>
+                product={product}
+                onSelect={handleProductSelect}
+              />
             ))}
           </div>
         </motion.div>
@@ -265,6 +297,8 @@ const ProductsSection: React.FC = () => {
       </div>
     </section>
   );
-};
+});
+
+ProductsSection.displayName = 'ProductsSection';
 
 export default ProductsSection;
