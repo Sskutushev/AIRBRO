@@ -14,14 +14,16 @@ const CTASection: React.FC = () => {
     telegram: '',
     business: '',
     product: 'AI PostMaster',
-    description: ''
+    description: '',
   });
   const [consent, setConsent] = useState(false);
   const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus>('idle');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -30,7 +32,7 @@ const CTASection: React.FC = () => {
       alert(t('form.consent_alert'));
       return;
     }
-    
+
     setSubmissionStatus('loading');
 
     try {
@@ -47,20 +49,19 @@ const CTASection: React.FC = () => {
       }
 
       setSubmissionStatus('success');
-      
+
       setTimeout(() => {
-        setFormData({ 
-          name: '', 
-          email: '', 
-          telegram: '', 
-          business: '', 
-          product: 'AI PostMaster', 
-          description: '' 
+        setFormData({
+          name: '',
+          email: '',
+          telegram: '',
+          business: '',
+          product: 'AI PostMaster',
+          description: '',
         });
         setConsent(false);
         setSubmissionStatus('idle');
       }, 5000);
-
     } catch (error) {
       console.error('Failed to send message:', error);
       setSubmissionStatus('error');
@@ -71,7 +72,7 @@ const CTASection: React.FC = () => {
     switch (submissionStatus) {
       case 'success':
         return (
-          <motion.div 
+          <motion.div
             className="glass rounded-2xl p-12 text-center border border-border/50"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -83,7 +84,7 @@ const CTASection: React.FC = () => {
         );
       case 'error':
         return (
-          <motion.div 
+          <motion.div
             className="glass rounded-2xl p-12 text-center border border-border/50"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -91,7 +92,7 @@ const CTASection: React.FC = () => {
             <div className="text-6xl mb-6">⚠️</div>
             <h3 className="text-3xl font-bold text-red-500 mb-4">{t('error.title')}</h3>
             <p className="text-text-secondary mb-6">{t('error.message')}</p>
-            <button 
+            <button
               onClick={() => setSubmissionStatus('idle')}
               className="px-6 py-3 bg-primary-telegram text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
             >
@@ -101,134 +102,177 @@ const CTASection: React.FC = () => {
         );
       default:
         return (
-          <form onSubmit={handleSubmit} className="glass rounded-2xl p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4 border border-border/50">
-            <div className="grid grid-cols-1 gap-3 sm:gap-4">
+          <form
+            onSubmit={handleSubmit}
+            className="glass rounded-2xl p-2 sm:p-3 md:p-6 space-y-2 sm:space-y-3 border border-border/50"
+          >
+            <div className="grid grid-cols-1 gap-2 sm:gap-3">
               <div>
-                <label htmlFor="name" className="block text-text-primary font-medium mb-1 text-xs sm:text-sm flex items-center">
-                  <User size={14} className="mr-1 sm:mr-2 text-primary-telegram" /> 
+                <label
+                  htmlFor="name"
+                  className="block text-text-primary font-medium mb-1 text-xs sm:text-sm flex items-center"
+                >
+                  <User size={14} className="mr-1 sm:mr-2 text-primary-telegram" />
                   {t('form.name')} *
                 </label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  name="name" 
-                  value={formData.name} 
-                  onChange={handleChange} 
-                  required 
-                  className="w-full px-2 sm:px-3 py-2 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary text-xs sm:text-sm" 
-                  placeholder={t('form.name_placeholder')} 
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-2 py-1.5 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary text-xs"
+                  placeholder={t('form.name_placeholder')}
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="email" className="block text-text-primary font-medium mb-1 text-xs sm:text-sm flex items-center">
-                  <Mail size={14} className="mr-1 sm:mr-2 text-primary-telegram" /> 
+                <label
+                  htmlFor="email"
+                  className="block text-text-primary font-medium mb-1 text-xs sm:text-sm flex items-center"
+                >
+                  <Mail size={14} className="mr-1 sm:mr-2 text-primary-telegram" />
                   {t('form.email')} *
                 </label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  name="email" 
-                  value={formData.email} 
-                  onChange={handleChange} 
-                  required 
-                  className="w-full px-2 sm:px-3 py-2 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary text-xs sm:text-sm" 
-                  placeholder={t('form.email_placeholder')} 
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-2 py-1.5 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary text-xs"
+                  placeholder={t('form.email_placeholder')}
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="telegram" className="block text-text-primary font-medium mb-1 text-xs sm:text-sm flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" className="mr-1 sm:mr-2 text-primary-telegram">
-                    <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m6.62 5.42l-1.5 7.13c-.11.51-.43.65-.91.41l-3-1.91l-1.48 1.4c-.12.11-.21.2-.28.3l-1.17 2.09c-.21.33-.4.24-.63-.12l-1.89-3.18l-4.4-1.64c-.34-.13-.33-.38.09-.55l11.27-4.4c.33-.13.63.1.5.44l-1.1 2.5l-1.97-.61c-.34-.11-.34.14-.1.3l1.45 1.1l-.58 2.43c-.07.31.12.37.33.22l1.35-1.07l2.93 2.91c.19.19.37.13.44-.15l.86-4.3c.08-.36-.24-.5-.54-.28l-2.18 1.61l-.62-1.86c-.08-.24.12-.33.32-.21l4.94 3.28c.35.2.44.05.36-.34"/>
+                <label
+                  htmlFor="telegram"
+                  className="block text-text-primary font-medium mb-1 text-xs sm:text-sm flex items-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    className="mr-1 sm:mr-2 text-primary-telegram"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m6.62 5.42l-1.5 7.13c-.11.51-.43.65-.91.41l-3-1.91l-1.48 1.4c-.12.11-.21.2-.28.3l-1.17 2.09c-.21.33-.4.24-.63-.12l-1.89-3.18l-4.4-1.64c-.34-.13-.33-.38.09-.55l11.27-4.4c.33-.13.63.1.5.44l-1.1 2.5l-1.97-.61c-.34-.11-.34.14-.1.3l1.45 1.1l-.58 2.43c-.07.31.12.37.33.22l1.35-1.07l2.93 2.91c.19.19.37.13.44-.15l.86-4.3c.08-.36-.24-.5-.54-.28l-2.18 1.61l-.62-1.86c-.08-.24.12-.33.32-.21l4.94 3.28c.35.2.44.05.36-.34"
+                    />
                   </svg>
                   {t('form.telegram')} *
                 </label>
-                <input 
-                  type="text" 
-                  id="telegram" 
-                  name="telegram" 
-                  value={formData.telegram} 
-                  onChange={handleChange} 
-                  required 
+                <input
+                  type="text"
+                  id="telegram"
+                  name="telegram"
+                  value={formData.telegram}
+                  onChange={handleChange}
+                  required
                   pattern="^@[a-zA-Z0-9_]{5,}$"
-                  className="w-full px-2 sm:px-3 py-2 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary text-xs sm:text-sm" 
-                  placeholder={t('form.telegram_placeholder')} 
+                  className="w-full px-2 py-1.5 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary text-xs"
+                  placeholder={t('form.telegram_placeholder')}
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="business" className="block text-text-primary font-medium mb-1 text-xs sm:text-sm flex items-center">
-                  <Building size={14} className="mr-1 sm:mr-2 text-primary-electric" /> 
+                <label
+                  htmlFor="business"
+                  className="block text-text-primary font-medium mb-1 text-xs sm:text-sm flex items-center"
+                >
+                  <Building size={14} className="mr-1 sm:mr-2 text-primary-electric" />
                   {t('form.business')}
                 </label>
-                <input 
-                  type="text" 
-                  id="business" 
-                  name="business" 
-                  value={formData.business} 
-                  onChange={handleChange} 
-                  className="w-full px-2 sm:px-3 py-2 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-electric focus:border-transparent text-text-primary placeholder:text-text-tertiary text-xs sm:text-sm" 
-                  placeholder={t('form.business_placeholder')} 
+                <input
+                  type="text"
+                  id="business"
+                  name="business"
+                  value={formData.business}
+                  onChange={handleChange}
+                  className="w-full px-2 py-1.5 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-electric focus:border-transparent text-text-primary placeholder:text-text-tertiary text-xs"
+                  placeholder={t('form.business_placeholder')}
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="product" className="block text-text-primary font-medium mb-1 text-xs sm:text-sm">
+                <label
+                  htmlFor="product"
+                  className="block text-text-primary font-medium mb-1 text-xs sm:text-sm"
+                >
                   {t('form.product_interest')}
                 </label>
-                <select 
-                  id="product" 
-                  name="product" 
-                  value={formData.product} 
-                  onChange={handleChange} 
-                  className="w-full px-2 sm:px-3 py-2 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-violet focus:border-transparent text-text-primary text-xs sm:text-sm"
+                <select
+                  id="product"
+                  name="product"
+                  value={formData.product}
+                  onChange={handleChange}
+                  className="w-full px-2 py-1.5 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-violet focus:border-transparent text-text-primary text-xs"
                 >
-                  {Object.entries(t('form.products', { returnObjects: true }) as { [key: string]: string }).map(([key, value]) => (
-                    <option key={key} value={value}>{value}</option>
+                  {Object.entries(
+                    t('form.products', { returnObjects: true }) as { [key: string]: string }
+                  ).map(([key, value]) => (
+                    <option key={key} value={value}>
+                      {value}
+                    </option>
                   ))}
                 </select>
               </div>
-              
+
               <div>
-                <label htmlFor="description" className="block text-text-primary font-medium mb-1 text-xs sm:text-sm flex items-center">
-                  <MessageSquare size={14} className="mr-1 sm:mr-2 text-primary-telegram" /> 
+                <label
+                  htmlFor="description"
+                  className="block text-text-primary font-medium mb-1 text-xs sm:text-sm flex items-center"
+                >
+                  <MessageSquare size={14} className="mr-1 sm:mr-2 text-primary-telegram" />
                   {t('form.problem_description')} *
                 </label>
-                <textarea 
-                  id="description" 
-                  name="description" 
-                  value={formData.description} 
-                  onChange={handleChange} 
-                  required 
-                  rows={2} 
-                  className="w-full px-2 sm:px-3 py-2 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary text-xs sm:text-sm" 
+                <textarea
+                  id="description"
+                  name="description"
+                  value={formData.description}
+                  onChange={handleChange}
+                  required
+                  rows={2}
+                  className="w-full px-2 py-1.5 bg-bg-primary border border-border rounded-lg focus:ring-2 focus:ring-primary-telegram focus:border-transparent text-text-primary placeholder:text-text-tertiary text-xs"
                   placeholder={t('form.problem_placeholder')}
                 ></textarea>
               </div>
             </div>
-            
-            <div className="pt-2">
-              <label className="flex items-start mb-3 text-xs sm:text-sm">
-                <input 
-                  type="checkbox" 
-                  checked={consent} 
-                  onChange={() => setConsent(!consent)} 
-                  required 
-                  className="mt-1 mr-1 sm:mt-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4 accent-primary-telegram rounded flex-shrink-0" 
+
+            <div className="pt-1.5">
+              <label className="flex items-start mb-2 text-xs">
+                <input
+                  type="checkbox"
+                  checked={consent}
+                  onChange={() => setConsent(!consent)}
+                  required
+                  className="mt-0.5 mr-1 h-3.5 w-3.5 accent-primary-telegram rounded flex-shrink-0"
                 />
                 <span className="text-text-secondary">
                   {t('form.consent')}{' '}
-                  <a href="/privacy-policy" target="_blank" className="text-primary-telegram hover:underline">{t('form.privacy_policy')}</a>.
+                  <a
+                    href="/privacy-policy"
+                    target="_blank"
+                    className="text-primary-telegram hover:underline"
+                  >
+                    {t('form.privacy_policy')}
+                  </a>
+                  .
                 </span>
               </label>
-              
-              <button 
-                type="submit" 
-                disabled={submissionStatus === 'loading'} 
-                className="w-full py-2 sm:py-3 bg-gradient-to-r from-primary-telegram to-primary-electric text-white font-bold rounded-lg hover:opacity-90 transition-opacity text-sm sm:text-base"
+
+              <button
+                type="submit"
+                disabled={submissionStatus === 'loading'}
+                className="w-full py-2 bg-gradient-to-r from-primary-telegram to-primary-electric text-white font-bold rounded-lg hover:opacity-90 transition-opacity text-sm"
               >
-                {submissionStatus === 'loading' ? t('form.submitting_button') : t('form.submit_button')}
+                {submissionStatus === 'loading'
+                  ? t('form.submitting_button')
+                  : t('form.submit_button')}
               </button>
             </div>
           </form>
@@ -236,10 +280,16 @@ const CTASection: React.FC = () => {
     }
   };
 
-  const features = t('features', { returnObjects: true }) as { title: string; description: string }[];
+  const features = t('features', { returnObjects: true }) as {
+    title: string;
+    description: string;
+  }[];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-primary-telegram to-primary-electric" id="contact">
+    <section
+      className="py-20 bg-gradient-to-br from-primary-telegram to-primary-electric"
+      id="contact"
+    >
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-4 sm:mb-8"
@@ -257,7 +307,7 @@ const CTASection: React.FC = () => {
         </motion.div>
 
         <motion.div
-          className="min-w-[350px] max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-4xl mx-auto w-full px-2"
+          className="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-4xl mx-auto w-full px-2"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -266,7 +316,7 @@ const CTASection: React.FC = () => {
           {renderContent()}
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-5xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -276,7 +326,13 @@ const CTASection: React.FC = () => {
           {features.map((feature, index) => (
             <div key={index} className="glass rounded-xl p-6 text-center border border-border/50">
               <div className="w-16 h-16 bg-primary-mint/10 rounded-full flex items-center justify-center mx-auto mb-4 text-primary-mint">
-                {index === 0 ? <Shield className="w-8 h-8" /> : index === 1 ? <Clock className="w-8 h-8" /> : <div className="text-2xl">💯</div>}
+                {index === 0 ? (
+                  <Shield className="w-8 h-8" />
+                ) : index === 1 ? (
+                  <Clock className="w-8 h-8" />
+                ) : (
+                  <div className="text-2xl">💯</div>
+                )}
               </div>
               <h3 className="font-bold text-white mb-2">{feature.title}</h3>
               <p className="text-white/80">{feature.description}</p>
@@ -291,8 +347,8 @@ const CTASection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <a 
-            href="https://t.me/zayavki_ai" 
+          <a
+            href="https://t.me/zayavki_ai"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center text-white font-bold text-lg hover:opacity-90 transition-opacity"

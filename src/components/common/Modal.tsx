@@ -28,16 +28,14 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         >
           <div className="p-6">
             <div className="flex justify-end">
-              <button 
+              <button
                 onClick={onClose}
                 className="text-text-secondary hover:text-text-primary text-2xl font-bold"
               >
                 &times;
               </button>
             </div>
-            <div className="mt-4">
-              {children}
-            </div>
+            <div className="mt-4">{children}</div>
           </div>
         </motion.div>
       </motion.div>

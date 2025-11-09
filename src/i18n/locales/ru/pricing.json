@@ -17,7 +17,7 @@
   },
   "packages": {
     "restaurant": {
-      "name": "Restaurant Suite",
+      "name": "Пакет для Ресторана",
       "description": "Полный комплект для ресторанов и кафе",
       "products": [
         "AI PostMaster (меню дня, акции)",
@@ -26,14 +26,14 @@
         "Video Inventory Agent (инвентаризация кухни)"
       ],
       "bonuses": [
-        "Menu Management (динамическое меню)",
-        "Table Optimization",
-        "Food Waste Tracking"
+        "Управление меню (динамическое меню)",
+        "Оптимизация столов",
+        "Отслеживание пищевых отходов"
       ],
       "target": "Рестораны, кафе, кофейни (10-100 мест)"
     },
     "beauty": {
-      "name": "Beauty & Wellness Suite",
+      "name": "Пакет для Салона Красоты",
       "description": "Все для салонов красоты и барбершопов",
       "products": [
         "AI PostMaster (до/после, промо)",
@@ -42,14 +42,14 @@
         "Conversation Bot (консультации)"
       ],
       "bonuses": [
-        "Stylist Profiles",
-        "Service Upselling",
-        "Loyalty Program"
+        "Профили стилистов",
+        "Допродажи услуг",
+        "Программа лояльности"
       ],
       "target": "Салоны красоты, барбершопы (2-10 специалистов)"
     },
     "fitness": {
-      "name": "Fitness Suite",
+      "name": "Пакет для Фитнеса",
       "description": "Решение для фитнес-студий и залов",
       "products": [
         "AI PostMaster (советы по тренировкам)",
@@ -58,14 +58,14 @@
         "Conversation Bot (вопросы о членстве)"
       ],
       "bonuses": [
-        "Class Capacity Management",
-        "Membership Renewals",
-        "Progress Tracking"
+        "Управление вместимостью классов",
+        "Продление абонементов",
+        "Отслеживание прогресса"
       ],
       "target": "Спортзалы, йога-студии (50-500 членов)"
     },
     "retail": {
-      "name": "Retail Suite",
+      "name": "Пакет для Ритейла",
       "description": "Решение для розничных магазинов",
       "products": [
         "AI PostMaster (новые поступления, распродажи)",
@@ -74,9 +74,9 @@
         "Video Inventory Agent (отслеживание запасов)"
       ],
       "bonuses": [
-        "Product Catalog",
-        "Order Processing",
-        "Loyalty Points"
+        "Каталог продуктов",
+        "Обработка заказов",
+        "Баллы лояльности"
       ],
       "target": "Бутики, магазины электроники (100-10K SKU)"
     }

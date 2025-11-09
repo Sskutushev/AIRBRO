@@ -7,23 +7,24 @@ interface GlassCardProps {
   elevation?: 'sm' | 'md' | 'lg';
 }
 
-const GlassCard: React.FC<GlassCardProps> = ({ 
-  children, 
-  className = '', 
-  border = true, 
-  elevation = 'md' 
+const GlassCard: React.FC<GlassCardProps> = ({
+  children,
+  className = '',
+  border = true,
+  elevation = 'md',
 }) => {
   const elevationClasses = {
     sm: 'shadow-sm',
     md: 'shadow-md',
-    lg: 'shadow-lg'
+    lg: 'shadow-lg',
   };
 
   const borderClass = border ? 'border border-border' : '';
   const bgClass = 'bg-bg-primary/80 backdrop-blur-xl';
 
   return (
-    <div className={`
+    <div
+      className={`
       ${bgClass} 
       ${borderClass} 
       ${elevationClasses[elevation]} 
@@ -31,7 +32,8 @@ const GlassCard: React.FC<GlassCardProps> = ({
       p-6 
       relative
       ${className}
-    `}>
+    `}
+    >
       {children}
     </div>
   );

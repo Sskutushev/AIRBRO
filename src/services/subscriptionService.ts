@@ -35,9 +35,9 @@ export const subscriptionPlans: SubscriptionPlan[] = [
       '1 Telegram-канал',
       '30 постов/месяц',
       'Базовая персонализация',
-      'Стандартная поддержка'
+      'Стандартная поддержка',
     ],
-    productId: 'ai_postmaster'
+    productId: 'ai_postmaster',
   },
   {
     id: 'business',
@@ -51,9 +51,9 @@ export const subscriptionPlans: SubscriptionPlan[] = [
       '3 Telegram-канала',
       'Неограниченные посты',
       'Продвинутая персонализация',
-      'Приоритетная поддержка'
+      'Приоритетная поддержка',
     ],
-    productId: 'ai_postmaster_conversation'
+    productId: 'ai_postmaster_conversation',
   },
   {
     id: 'premium',
@@ -68,10 +68,10 @@ export const subscriptionPlans: SubscriptionPlan[] = [
       '5 Telegram-каналов',
       'Продвинутая аналитика',
       'White-label опции',
-      'Персональный менеджер'
+      'Персональный менеджер',
     ],
-    productId: 'full_suite'
-  }
+    productId: 'full_suite',
+  },
 ];
 
 // Моковая функция для получения подписки пользователя
@@ -91,10 +91,13 @@ export const getUserSubscription = async (userId: string): Promise<UserSubscript
 };
 
 // Моковая функция для оформления подписки
-export const createSubscription = async (userId: string, planId: string): Promise<UserSubscription> => {
+export const createSubscription = async (
+  userId: string,
+  planId: string
+): Promise<UserSubscription> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const plan = subscriptionPlans.find(p => p.id === planId);
+      const plan = subscriptionPlans.find((p) => p.id === planId);
       if (!plan) {
         reject(new Error('План подписки не найден'));
         return;
@@ -104,7 +107,7 @@ export const createSubscription = async (userId: string, planId: string): Promis
       const startDate = new Date().toISOString();
       const endDate = new Date();
       endDate.setMonth(endDate.getMonth() + 1); // Подписка на 1 месяц
-      
+
       const newSubscription: UserSubscription = {
         id: `sub_${Date.now()}`,
         userId,
@@ -113,7 +116,7 @@ export const createSubscription = async (userId: string, planId: string): Promis
         endDate: endDate.toISOString(),
         status: 'active',
         nextPaymentDate: endDate.toISOString(),
-        amount: plan.price
+        amount: plan.price,
       };
 
       // Сохраняем в localStorage
@@ -140,7 +143,7 @@ export const cancelSubscription = async (subscriptionId: string): Promise<UserSu
       // Просто меняем статус на cancelled
       const cancelledSubscription: UserSubscription = {
         ...subscription,
-        status: 'cancelled'
+        status: 'cancelled',
       };
 
       // Обновляем в localStorage
@@ -152,10 +155,13 @@ export const cancelSubscription = async (subscriptionId: string): Promise<UserSu
 };
 
 // Моковая функция для обновления подписки
-export const updateSubscription = async (subscriptionId: string, newPlanId: string): Promise<UserSubscription> => {
+export const updateSubscription = async (
+  subscriptionId: string,
+  newPlanId: string
+): Promise<UserSubscription> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const plan = subscriptionPlans.find(p => p.id === newPlanId);
+      const plan = subscriptionPlans.find((p) => p.id === newPlanId);
       if (!plan) {
         reject(new Error('План подписки не найден'));
         return;
@@ -174,7 +180,7 @@ export const updateSubscription = async (subscriptionId: string, newPlanId: stri
       const updatedSubscription = {
         ...currentSub,
         planId: newPlanId,
-        amount: plan.price
+        amount: plan.price,
       };
 
       // Обновляем в localStorage
@@ -197,7 +203,7 @@ export const getPaymentHistory = async () => {
           amount: 2490,
           plan: 'Business',
           status: 'completed',
-          method: 'card'
+          method: 'card',
         },
         {
           id: 'pay_2',
@@ -205,7 +211,7 @@ export const getPaymentHistory = async () => {
           amount: 2490,
           plan: 'Business',
           status: 'completed',
-          method: 'card'
+          method: 'card',
         },
         {
           id: 'pay_3',
@@ -213,8 +219,8 @@ export const getPaymentHistory = async () => {
           amount: 990,
           plan: 'Starter',
           status: 'completed',
-          method: 'card'
-        }
+          method: 'card',
+        },
       ];
       resolve(history);
     }, 300);

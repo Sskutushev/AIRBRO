@@ -14,16 +14,13 @@ const CaseSection: React.FC = () => {
           viewport={{ once: true, amount: 0.3 }}
           variants={staggerContainer}
         >
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold mb-4 gradient-text"
             variants={fadeInUp}
           >
             Математика нашего партнёрства
           </motion.h2>
-          <motion.p 
-            className="text-2xl text-text-secondary max-w-3xl mx-auto"
-            variants={fadeInUp}
-          >
+          <motion.p className="text-2xl text-text-secondary max-w-3xl mx-auto" variants={fadeInUp}>
             Реальный кейс автоматизации
           </motion.p>
         </motion.div>
@@ -220,10 +217,12 @@ const CaseSection: React.FC = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="mt-8 pt-8 border-t border-gray-200">
               <div className="flex flex-col items-center gap-4">
-                <div className="text-xl font-bold">Пример: $17500 экономия → $8750 нам → $8750 ваша чистая экономия</div>
+                <div className="text-xl font-bold">
+                  Пример: $17500 экономия → $8750 нам → $8750 ваша чистая экономия
+                </div>
                 <div className="flex justify-between items-center w-full">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-blue-500">

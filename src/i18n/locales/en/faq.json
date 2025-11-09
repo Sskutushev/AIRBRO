@@ -1,14 +1,80 @@
 {
   "frequently_asked": "Frequently Asked Questions",
-  "not_found": "Can't find an answer? Message us on Telegram.",
+  "search_placeholder": "Search questions...",
+  "load_more": "Show More",
+  "categories": {
+    "all": "All",
+    "general": "General",
+    "products": "Products",
+    "pricing": "Pricing",
+    "security": "Security",
+    "support": "Support"
+  },
   "questions": {
     "what_is_aibro": {
       "question": "What is AIBRO Business?",
-      "answer": "AIBRO Business is an ecosystem of AI tools for automating small and medium business, fully integrated into Telegram. We help automate content creation, customer communication, booking and other routine tasks."
+      "answer": "AIBRO Business is an ecosystem of AI tools for automating small and medium businesses, fully integrated into Telegram. We help automate content creation, customer communication, booking, and other routine tasks.",
+      "category": "general"
     },
     "why_telegram": {
       "question": "Why Telegram?",
-      "answer": "Telegram is not just a messenger. It's a full business platform with channels, groups, bots and built-in payments. 70% of Russian businesses already use Telegram to communicate with customers. We make this work automatic."
+      "answer": "Telegram is not just a messenger. It's a full-fledged business platform with channels, groups, bots, and built-in payments. We make this work automatic.",
+      "category": "general"
+    },
+    "tech_knowledge": {
+      "question": "Do I need technical knowledge?",
+      "answer": "No. If you know how to use Telegram, you can use AIBRO Business. Everything is managed through simple commands and buttons in the bot.",
+      "category": "general"
+    },
+    "postmaster_features": {
+      "question": "What is included in AI PostMaster?",
+      "answer": "AI PostMaster automatically creates and publishes content for your Telegram channels. It includes: text generation (Gemini 2.0 Flash), image generation (Imagen 4 Fast), smart scheduling, and brand personalization.",
+      "category": "products"
+    },
+    "can_edit_posts": {
+      "question": "Can I edit posts before publication?",
+      "answer": "Yes! By default, 'human-in-the-loop' mode is enabled—you see the post before publication and can edit or reject it. You can also enable auto-publication for full automation.",
+      "category": "products"
+    },
+    "other_products_eta": {
+      "question": "When will other products (Conversation Bot, etc.) be available?",
+      "answer": "Conversation Bot is planned for Q1 2026, Booking Bot for Q2 2026, and Feedback Bot for Q2 2026. Subscribe to updates to be the first to know.",
+      "category": "products"
+    },
+    "free_trial": {
+      "question": "Is there a free trial?",
+      "answer": "Yes! 7 days of free access to AI PostMaster. No credit card required. After the trial, you can choose a suitable plan or cancel.",
+      "category": "pricing"
+    },
+    "cancel_anytime": {
+      "question": "Can I cancel my subscription at any time?",
+      "answer": "Yes. There are no long-term contracts. Cancel your subscription at any time through the bot. Access will remain until the end of the paid period.",
+      "category": "pricing"
+    },
+    "custom_plan": {
+      "question": "What if I need more/fewer products?",
+      "answer": "The modular system allows you to add or remove products at any time. You only pay for what you use.",
+      "category": "pricing"
+    },
+    "data_security": {
+      "question": "Is my data secure?",
+      "answer": "Yes. All data is stored in encrypted form. We use Google Cloud infrastructure with SOC 2 Type II certification. Your personal Data Store is accessible only to you.",
+      "category": "security"
+    },
+    "content_access": {
+      "question": "Who has access to my posts and content?",
+      "answer": "Only you. The AI generates content based on your data, but we do not store or use your content for training models.",
+      "category": "security"
+    },
+    "get_help": {
+      "question": "How can I get help?",
+      "answer": "Message @AIBRO_Support on Telegram. The average response time is 2 hours (on Pro/Business plans). A knowledge base and video tutorials are also available.",
+      "category": "support"
     }
+  },
+  "not_found_banner": {
+    "title": "Didn't find an answer?",
+    "subtitle": "Write to our support team",
+    "button": "Contact Support"
   }
 }

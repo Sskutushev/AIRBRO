@@ -1,0 +1,223 @@
+/**
+ * @file Integration tests for the AuthPage component.
+ * @module pages/__tests__/AuthPage.test
+ */
+
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { render, screen, fireEvent, waitFor } from '../../test/utils'; // Custom render with providers
+import AuthPage from '../AuthPage';
+import { useLogin, useRegister } from '../../hooks/useAuth';
+import { showToast } from '../../lib/toast';
+import { AuthProvider } from '../../context/AuthContext'; // Import AuthProvider for context mocking
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from '../../lib/queryClient';
+
+// Mock react-router-dom's useNavigate
+const mockNavigate = vi.fn();
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-router-dom')>();
+  return {
+    ...actual,
+    useNavigate: () => mockNavigate,
+    Link: ({ to, children }: { to: string; children: React.ReactNode }) => (
+      <a href={to}>{children}</a>
+    ),
+  };
+});
+
+// Mock useLogin and useRegister hooks
+vi.mock('../../hooks/useAuth', () => ({
+  useLogin: vi.fn(),
+  useRegister: vi.fn(),
+}));
+
+// Mock showToast
+vi.mock('../../lib/toast', () => ({
+  showToast: {
+    success: vi.fn(),
+    error: vi.fn(),
+  },
+}));
+
+describe('AuthPage', () => {
+  const mockLoginMutation = {
+    mutateAsync: vi.fn(),
+    isPending: false,
+  };
+  const mockRegisterMutation = {
+    mutateAsync: vi.fn(),
+    isPending: false,
+  };
+
+  beforeEach(() => {
+    mockNavigate.mockClear();
+    mockLoginMutation.mutateAsync.mockClear();
+    mockRegisterMutation.mutateAsync.mockClear();
+    (useLogin as vi.Mock).mockReturnValue(mockLoginMutation);
+    (useRegister as vi.Mock).mockReturnValue(mockRegisterMutation);
+    (showToast.success as vi.Mock).mockClear();
+    (showToast.error as vi.Mock).mockClear();
+  });
+
+  it('should render login form by default', () => {
+    render(<AuthPage />);
+    expect(screen.getByRole('heading', { name: /Вход в аккаунт/i })).toBeInTheDocument();
+    expect(screen.getByLabelText(/Email/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Пароль/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Войти в аккаунт/i })).toBeInTheDocument();
+  });
+
+  it('should switch to registration form when "Регистрация" tab is clicked', () => {
+    render(<AuthPage />);
+    fireEvent.click(screen.getByRole('button', { name: /Регистрация/i }));
+    expect(screen.getByRole('heading', { name: /Создать аккаунт/i })).toBeInTheDocument();
+    expect(screen.getByLabelText(/Имя/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Telegram-аккаунт/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Создать аккаунт/i })).toBeInTheDocument();
+  });
+
+  it('should show validation errors for login form', async () => {
+    render(<AuthPage />);
+    fireEvent.click(screen.getByRole('button', { name: /Войти в аккаунт/i }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Email обязателен')).toBeInTheDocument();
+      expect(screen.getByText('Пароль обязателен')).toBeInTheDocument();
+    });
+  });
+
+  it('should call login mutation on valid login submission', async () => {
+    mockLoginMutation.mutateAsync.mockResolvedValue({ user: { id: '123' }, token: 'abc' });
+    render(<AuthPage />);
+
+    fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test@example.com' } });
+    fireEvent.change(screen.getByLabelText(/Пароль/i), { target: { value: 'Password123!' } });
+    fireEvent.click(screen.getByRole('button', { name: /Войти в аккаунт/i }));
+
+    await waitFor(() => {
+      expect(mockLoginMutation.mutateAsync).toHaveBeenCalledWith({
+        email: 'test@example.com',
+        password: 'Password123!',
+      });
+      expect(mockNavigate).toHaveBeenCalledWith('/account');
+      // showToast.success is called inside useLogin hook, so we don't expect it here directly
+    });
+  });
+
+  it('should display login error message from mutation', async () => {
+    mockLoginMutation.mutateAsync.mockRejectedValue(new Error('Invalid credentials'));
+    render(<AuthPage />);
+
+    fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test@example.com' } });
+    fireEvent.change(screen.getByLabelText(/Пароль/i), { target: { value: 'Password123!' } });
+    fireEvent.click(screen.getByRole('button', { name: /Войти в аккаунт/i }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Invalid credentials')).toBeInTheDocument();
+      // showToast.error is called inside useLogin hook, so we don't expect it here directly
+    });
+  });
+
+  it('should show validation errors for registration form', async () => {
+    render(<AuthPage />);
+    fireEvent.click(screen.getByRole('button', { name: /Регистрация/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Создать аккаунт/i }));
+
+    expect(await screen.findByText('Имя обязательно')).toBeInTheDocument();
+    expect(await screen.findByText('Email обязателен')).toBeInTheDocument();
+    expect(await screen.findByText('Telegram-аккаунт обязателен')).toBeInTheDocument();
+    expect(await screen.findByText('Пароль должен быть не менее 8 символов')).toBeInTheDocument();
+    expect(await screen.findByText('Подтверждение пароля обязательно')).toBeInTheDocument();
+  });
+
+  it('should call register mutation on valid registration submission', async () => {
+    mockRegisterMutation.mutateAsync.mockResolvedValue({ user: { id: '456' }, token: 'def' });
+    render(<AuthPage />);
+    fireEvent.click(screen.getByRole('button', { name: /Регистрация/i }));
+
+    fireEvent.change(screen.getByLabelText(/Имя/i), { target: { value: 'John Doe' } });
+    fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'john@example.com' } });
+    fireEvent.change(screen.getByLabelText(/Telegram-аккаунт/i), { target: { value: '@johndoe' } });
+    fireEvent.change(screen.getByLabelText(/Пароль/i, { selector: 'input[name="password"]' }), {
+      target: { value: 'StrongPass123!' },
+    });
+    fireEvent.change(screen.getByLabelText(/Подтвердите пароль/i), {
+      target: { value: 'StrongPass123!' },
+    });
+    fireEvent.click(screen.getByRole('button', { name: /Создать аккаунт/i }));
+
+    await waitFor(() => {
+      expect(mockRegisterMutation.mutateAsync).toHaveBeenCalledWith({
+        name: 'John Doe',
+        email: 'john@example.com',
+        telegram: '@johndoe',
+        password: 'StrongPass123!',
+        confirmPassword: 'StrongPass123!',
+      });
+      expect(mockNavigate).toHaveBeenCalledWith('/account');
+      // showToast.success is called inside useRegister hook
+    });
+  });
+
+  it('should display registration error message from mutation', async () => {
+    mockRegisterMutation.mutateAsync.mockRejectedValue(new Error('Email already registered'));
+    render(<AuthPage />);
+    fireEvent.click(screen.getByRole('button', { name: /Регистрация/i }));
+
+    fireEvent.change(screen.getByLabelText(/Имя/i), { target: { value: 'John Doe' } });
+    fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'john@example.com' } });
+    fireEvent.change(screen.getByLabelText(/Telegram-аккаунт/i), { target: { value: '@johndoe' } });
+    fireEvent.change(screen.getByLabelText(/Пароль/i, { selector: 'input[name="password"]' }), {
+      target: { value: 'StrongPass123!' },
+    });
+    fireEvent.change(screen.getByLabelText(/Подтвердите пароль/i), {
+      target: { value: 'StrongPass123!' },
+    });
+    fireEvent.click(screen.getByRole('button', { name: /Создать аккаунт/i }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Email already registered')).toBeInTheDocument();
+      // showToast.error is called inside useRegister hook
+    });
+  });
+
+  it('should toggle password visibility', async () => {
+    render(<AuthPage />);
+    const passwordInput = screen.getByLabelText(/Пароль/i, { selector: 'input[name="password"]' });
+    // The toggle button is inside the password input component and uses an aria-label
+    const toggleButton = screen.getByRole('button', { name: 'Show password' });
+
+    expect(passwordInput).toHaveAttribute('type', 'password');
+    fireEvent.click(toggleButton);
+    await waitFor(() => {
+      expect(passwordInput).toHaveAttribute('type', 'text');
+      expect(screen.getByRole('button', { name: 'Hide password' })).toBeInTheDocument();
+    });
+    fireEvent.click(screen.getByRole('button', { name: 'Hide password' }));
+    await waitFor(() => {
+      expect(passwordInput).toHaveAttribute('type', 'password');
+    });
+  });
+
+  it('should display password strength indicator for registration form', async () => {
+    render(<AuthPage />);
+    fireEvent.click(screen.getByRole('button', { name: /Регистрация/i }));
+
+    const passwordInput = screen.getByLabelText(/Пароль/i, { selector: 'input[name="password"]' });
+
+    fireEvent.change(passwordInput, { target: { value: 'weak' } });
+    await waitFor(() => {
+      expect(screen.getByText('Слабый')).toBeInTheDocument();
+    });
+
+    fireEvent.change(passwordInput, { target: { value: 'Medium1' } });
+    await waitFor(() => {
+      expect(screen.getByText('Средний')).toBeInTheDocument();
+    });
+
+    fireEvent.change(passwordInput, { target: { value: 'StrongPass1!' } });
+    await waitFor(() => {
+      expect(screen.getByText('Сильный')).toBeInTheDocument();
+    });
+  });
+});

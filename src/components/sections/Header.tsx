@@ -62,8 +62,8 @@ const Header = () => {
   return (
     <motion.header
       className={`fixed w-full z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-bg-secondary bg-opacity-90 backdrop-blur-md py-3 shadow-sm' 
+        isScrolled
+          ? 'bg-bg-secondary bg-opacity-90 backdrop-blur-md py-3 shadow-sm'
           : 'bg-transparent py-5'
       }`}
       initial={{ y: -100 }}
@@ -77,17 +77,19 @@ const Header = () => {
             <div key={link.name} className="relative">
               <button
                 className={`font-medium transition-colors duration-300 ${
-                  activeLink === link.name 
-                    ? 'text-primary-telegram' 
+                  activeLink === link.name
+                    ? 'text-primary-telegram'
                     : 'text-text-primary hover:text-primary-telegram'
                 }`}
                 onClick={() => handleNavClick(link.href, link.name)}
               >
                 {link.name}
               </button>
-              <span className={`absolute bottom-0 left-0 h-0.5 bg-primary-telegram transition-all duration-300 ${
-                activeLink === link.name ? 'w-full' : 'w-0 hover:w-full'
-              }`}></span>
+              <span
+                className={`absolute bottom-0 left-0 h-0.5 bg-primary-telegram transition-all duration-300 ${
+                  activeLink === link.name ? 'w-full' : 'w-0 hover:w-full'
+                }`}
+              ></span>
             </div>
           ))}
         </nav>
@@ -98,8 +100,8 @@ const Header = () => {
             <button
               onClick={() => changeLanguage('ru')}
               className={`text-sm font-medium ${
-                localStorage.getItem('language') === 'ru' 
-                  ? 'text-primary-telegram' 
+                localStorage.getItem('language') === 'ru'
+                  ? 'text-primary-telegram'
                   : 'text-text-secondary hover:text-text-primary'
               }`}
             >
@@ -109,8 +111,8 @@ const Header = () => {
             <button
               onClick={() => changeLanguage('en')}
               className={`text-sm font-medium ${
-                localStorage.getItem('language') === 'en' 
-                  ? 'text-primary-telegram' 
+                localStorage.getItem('language') === 'en'
+                  ? 'text-primary-telegram'
                   : 'text-text-secondary hover:text-text-primary'
               }`}
             >
@@ -133,28 +135,34 @@ const Header = () => {
 
           {user ? (
             <>
-              <Link to="/account" className="flex items-center text-text-primary hover:text-primary-telegram font-medium transition-colors">
+              <Link
+                to="/account"
+                className="flex items-center text-text-primary hover:text-primary-telegram font-medium transition-colors"
+              >
                 <User className="w-5 h-5 mr-1" />
                 {t('dashboard', { ns: 'common' })}
               </Link>
-              <button 
+              <button
                 onClick={logout}
                 className="flex items-center text-text-primary hover:text-primary-telegram font-medium transition-colors"
               >
-{t('logout', { ns: 'common' })}
+                {t('logout', { ns: 'common' })}
               </button>
             </>
           ) : (
             <>
-              <Link to="/auth" className="flex items-center text-text-primary hover:text-primary-telegram font-medium transition-colors">
+              <Link
+                to="/auth"
+                className="flex items-center text-text-primary hover:text-primary-telegram font-medium transition-colors"
+              >
                 <User className="w-5 h-5 mr-1" />
                 {t('login', { ns: 'common' })}
               </Link>
             </>
           )}
-          
-          <Button 
-            variant="gradient-primary" 
+
+          <Button
+            variant="gradient-primary"
             size="md"
             className="relative overflow-hidden group"
             glow={true}
@@ -171,17 +179,14 @@ const Header = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden text-text-primary"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
+        <button className="md:hidden text-text-primary" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <motion.div 
+        <motion.div
           className="md:hidden bg-bg-secondary py-4 px-4 absolute top-full left-0 right-0 shadow-lg"
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
@@ -200,7 +205,7 @@ const Header = () => {
                 {link.name}
               </button>
             ))}
-            
+
             <div className="w-full max-w-[300px] pt-3 border-t border-border flex flex-col space-y-3 items-center">
               {/* Mobile Language Switcher */}
               <div className="flex items-center justify-center space-x-4 py-2">
@@ -210,8 +215,8 @@ const Header = () => {
                     setIsMenuOpen(false);
                   }}
                   className={`text-sm font-medium ${
-                    localStorage.getItem('language') === 'ru' 
-                      ? 'text-primary-telegram' 
+                    localStorage.getItem('language') === 'ru'
+                      ? 'text-primary-telegram'
                       : 'text-text-secondary hover:text-text-primary'
                   }`}
                 >
@@ -224,15 +229,15 @@ const Header = () => {
                     setIsMenuOpen(false);
                   }}
                   className={`text-sm font-medium ${
-                    localStorage.getItem('language') === 'en' 
-                      ? 'text-primary-telegram' 
+                    localStorage.getItem('language') === 'en'
+                      ? 'text-primary-telegram'
                       : 'text-text-secondary hover:text-text-primary'
                   }`}
                 >
                   EN
                 </button>
               </div>
-              
+
               {/* Mobile Theme Toggle */}
               <div className="flex justify-center">
                 <button
@@ -249,18 +254,18 @@ const Header = () => {
                   )}
                 </button>
               </div>
-              
+
               {user ? (
                 <>
-                  <Link 
-                    to="/account" 
+                  <Link
+                    to="/account"
                     className="flex items-center text-text-primary hover:text-primary-telegram py-3 justify-center w-full"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <User className="w-5 h-5 mr-2" />
                     {t('dashboard', { ns: 'common' })}
                   </Link>
-                  <button 
+                  <button
                     onClick={() => {
                       logout();
                       setIsMenuOpen(false);
@@ -272,8 +277,8 @@ const Header = () => {
                   </button>
                 </>
               ) : (
-                <Link 
-                  to="/auth" 
+                <Link
+                  to="/auth"
                   className="flex items-center text-text-primary hover:text-primary-telegram py-3 justify-center w-full"
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -281,10 +286,10 @@ const Header = () => {
                   {t('login', { ns: 'common' })}
                 </Link>
               )}
-              
-              <Button 
-                variant="gradient-primary" 
-                size="md" 
+
+              <Button
+                variant="gradient-primary"
+                size="md"
                 className="w-full mt-2 py-3"
                 onClick={() => {
                   setIsMenuOpen(false);

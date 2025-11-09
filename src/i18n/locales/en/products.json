@@ -10,7 +10,54 @@
       "image_gen": "Image Generation",
       "smart_scheduling": "Smart Scheduling",
       "brand_personalization": "Brand Personalization"
+    },
+    "cta_button": "Try free for 7 days",
+    "pricing_title": "Plans",
+    "pricing": {
+      "starter": {
+        "price": "$15",
+        "features": ["1 channel", "30 posts/month"]
+      },
+      "pro": {
+        "price": "$40",
+        "features": ["1 channel", "Unlimited", "Analytics"]
+      },
+      "business": {
+        "price": "$80",
+        "features": ["3 channels", "Unlimited", "Priority Support"]
+      }
     }
   },
-  "recommended_badge": "We recommend"
+  "recommended_badge": "We recommend",
+  "additional_modules": {
+    "title": "Additional Modules",
+    "conversation_bot": {
+      "name": "Conversation Bot",
+      "tagline": "24/7 AI Employee",
+      "description": "Answers questions, qualifies leads, and escalates complex cases to a human.",
+      "price": "from $35/month",
+      "status": "🟡 Coming Q1 2026"
+    },
+    "booking_bot": {
+      "name": "Booking Bot",
+      "tagline": "Reservation Manager",
+      "description": "Automated appointments, reminders, and calendar management.",
+      "price": "from $45/month",
+      "status": "🟡 Coming Q2 2026"
+    },
+    "feedback_bot": {
+      "name": "Feedback Bot",
+      "tagline": "Turn customers into promoters",
+      "description": "Automated review collection, reputation management, and NPS tracking.",
+      "price": "from $25/month",
+      "status": "🟡 Coming Q2 2026"
+    },
+    "video_inventory": {
+      "name": "Video Inventory Agent",
+      "tagline": "Smart Inventory Assistant",
+      "description": "Video-based inventory, expiration date OCR, and auto-ordering.",
+      "price": "from $85/month",
+      "status": "🔴 R&D, Q3 2026"
+    }
+  }
 }

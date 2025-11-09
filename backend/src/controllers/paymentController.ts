@@ -29,7 +29,7 @@ export const createCryptoPayment = async (req: Request, res: Response) => {
     const totalAmount = userCartItems.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
 
     // Get crypto configuration
-    const cryptoConfig = getCryptoConfig(paymentMethod);
+    const cryptoConfig = await getCryptoConfig(paymentMethod);
 
     // Calculate crypto amount
     const cryptoAmount = calculateCryptoAmount(totalAmount, cryptoConfig.rate);

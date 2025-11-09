@@ -16,12 +16,13 @@ const Card: React.FC<CardProps> = ({
   hover = false,
   delay = 0,
   className = '',
-  onClick
+  onClick,
 }) => {
   const variantClasses = {
     default: 'bg-white border border-gray-200',
-    glass: 'bg-white bg-opacity-70 backdrop-filter backdrop-blur-lg border border-white border-opacity-30 shadow-lg',
-    gradient: 'bg-gradient-to-br from-primary-purple to-primary-blue text-white'
+    glass:
+      'bg-white bg-opacity-70 backdrop-filter backdrop-blur-lg border border-white border-opacity-30 shadow-lg',
+    gradient: 'bg-gradient-to-br from-primary-purple to-primary-blue text-white',
   };
 
   const baseClasses = `
@@ -33,10 +34,7 @@ const Card: React.FC<CardProps> = ({
   `;
 
   const cardElement = (
-    <div 
-      className={baseClasses}
-      onClick={onClick}
-    >
+    <div className={baseClasses} onClick={onClick}>
       {children}
     </div>
   );

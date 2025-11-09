@@ -1,13 +1,10 @@
 import QRCode from 'qrcode';
+import { getRubToUsdRate } from '../services/currencyService';
 
 // Crypto wallet addresses from environment
 const USDT_TRC20_WALLET = process.env.USDT_TRC20_WALLET || 'TYourWalletAddressHere';
 const USDT_ERC20_WALLET = process.env.USDT_ERC20_WALLET || '0xYourWalletAddressHere';
 const TON_WALLET = process.env.TON_WALLET || 'EQYourTonWalletAddressHere';
-
-// Exchange rates from environment
-const RUB_TO_USDT_RATE = parseFloat(process.env.RUB_TO_USDT_RATE || '0.011');
-const RUB_TO_TON_RATE = parseFloat(process.env.RUB_TO_TON_RATE || '0.17');
 
 export interface CryptoNetworkConfig {
   wallet: string;
@@ -16,28 +13,21 @@ export interface CryptoNetworkConfig {
   network: 'TRC20' | 'ERC20' | 'TON';
 }
 
-export const getCryptoConfig = (paymentMethod: string): CryptoNetworkConfig => {
+export const getCryptoConfig = async (paymentMethod: string): Promise<CryptoNetworkConfig> => {
   switch (paymentMethod) {
     case 'crypto_usdt_trc20':
       return {
         wallet: USDT_TRC20_WALLET,
         currency: 'USDT',
-        rate: RUB_TO_USDT_RATE,
+        rate: await getRubToUsdRate(),
         network: 'TRC20'
       };
     case 'crypto_usdt_erc20':
       return {
         wallet: USDT_ERC20_WALLET,
         currency: 'USDT',
-        rate: RUB_TO_USDT_RATE,
+        rate: await getRubToUsdRate(),
         network: 'ERC20'
-      };
-    case 'crypto_ton':
-      return {
-        wallet: TON_WALLET,
-        currency: 'TON',
-        rate: RUB_TO_TON_RATE,
-        network: 'TON'
       };
     default:
       throw new Error(`Unsupported payment method: ${paymentMethod}`);
@@ -62,10 +52,12 @@ export const generateQRCode = async (data: string): Promise<string> => {
 };
 
 export const calculateCryptoAmount = (rubAmount: number, rate: number): number => {
-  // Convert from kopecks to rubles, then to crypto, then back to "kopecks" for crypto
+  // Convert from kopecks to rubles, then to crypto
+  // The rate is how many RUB for 1 USD. So we need to divide.
   const rubValue = rubAmount / 100; // Convert from kopecks to rubles
-  const cryptoValue = rubValue * rate;
-  return Math.round(cryptoValue * 100); // Return in "kopecks" for crypto amount
+  const cryptoValue = rubValue / rate; // Convert RUB to USD(T)
+  // We need to round to a reasonable precision for crypto, e.g., 6 decimal places for USDT
+  return Math.round(cryptoValue * 1_000_000) / 1_000_000;
 };
 
 export const getPaymentWarnings = (): string[] => {

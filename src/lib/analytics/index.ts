@@ -2,57 +2,79 @@ class AnalyticsService {
   private initialized = false;
 
   init() {
-    if (this.initialized || !import.meta.env.PROD) return;
+    const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
 
-    // Google Analytics
-    if (import.meta.env.VITE_GA_MEASUREMENT_ID) {
-      this.initGoogleAnalytics();
+    if (!measurementId) {
+      console.warn('GA Measurement ID not configured');
+      return;
     }
 
-    this.initialized = true;
-  }
-
-  private initGoogleAnalytics() {
-    const script = document.createElement('script');
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GA_MEASUREMENT_ID}`;
-    script.async = true;
-    document.head.appendChild(script);
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag(...args: any[]) {
-      window.dataLayer.push(args);
+    if (import.meta.env.MODE !== 'production') {
+      console.log('Analytics disabled in development');
+      return;
     }
-    gtag('js', new Date());
-    gtag('config', import.meta.env.VITE_GA_MEASUREMENT_ID);
-  }
 
-  trackPageView(page: string) {
-    if (!this.initialized) return;
+    try {
+      // Load gtag.js
+      const script = document.createElement('script');
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+      script.async = true;
+      document.head.appendChild(script);
 
-    if (window.gtag) {
-      window.gtag('event', 'page_view', {
-        page_path: page,
+      // Initialize gtag
+      window.dataLayer = window.dataLayer || [];
+      function gtag(...args: any[]) {
+        window.dataLayer.push(args);
+      }
+      window.gtag = gtag;
+
+      gtag('js', new Date());
+      gtag('config', measurementId, {
+        send_page_view: false, // manual page tracking
       });
+
+      this.initialized = true;
+      console.log('✅ Google Analytics initialized');
+    } catch (error) {
+      console.error('Failed to initialize Analytics:', error);
     }
   }
 
-  trackEvent(eventName: string, parameters?: Record<string, any>) {
-    if (!this.initialized) return;
+  trackPageView(path: string, title?: string) {
+    if (!this.initialized || !window.gtag) return;
 
-    if (window.gtag) {
-      window.gtag('event', eventName, parameters);
-    }
-  }
-
-  trackPurchase(transactionId: string, value: number, currency: string = 'RUB') {
-    this.trackEvent('purchase', {
-      transaction_id: transactionId,
-      value,
-      currency,
+    window.gtag('event', 'page_view', {
+      page_path: path,
+      page_title: title || document.title,
     });
   }
 
-  trackSignup(method: string) {
+  trackEvent(name: string, params?: Record<string, any>) {
+    if (!this.initialized || !window.gtag) return;
+
+    window.gtag('event', name, params);
+  }
+
+  // E-commerce events
+  trackAddToCart(item: { id: string; name: string; price: number; quantity: number }) {
+    this.trackEvent('add_to_cart', {
+      currency: 'RUB',
+      value: item.price * item.quantity,
+      items: [item],
+    });
+  }
+
+  trackPurchase(transaction: { id: string; value: number; items: any[] }) {
+    this.trackEvent('purchase', {
+      currency: 'RUB',
+      transaction_id: transaction.id,
+      value: transaction.value,
+      items: transaction.items,
+    });
+  }
+
+  // User events
+  trackSignUp(method: string) {
     this.trackEvent('sign_up', { method });
   }
 
@@ -61,19 +83,17 @@ class AnalyticsService {
   }
 
   setUserId(userId: string) {
-    if (!this.initialized) return;
+    if (!this.initialized || !window.gtag) return;
 
-    if (window.gtag) {
-      window.gtag('config', import.meta.env.VITE_GA_MEASUREMENT_ID, {
-        user_id: userId,
-      });
-    }
+    window.gtag('config', import.meta.env.VITE_GA_MEASUREMENT_ID!, {
+      user_id: userId,
+    });
   }
 }
 
 export const analytics = new AnalyticsService();
 
-// Типы для window
+// Types
 declare global {
   interface Window {
     gtag: (...args: any[]) => void;

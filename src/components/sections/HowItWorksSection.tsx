@@ -8,7 +8,13 @@ const HowItWorksSection: React.FC = () => {
   const { t } = useTranslation('how_it_works');
   const [showVideoModal, setShowVideoModal] = useState(false);
 
-  const steps = t('steps', { returnObjects: true }) as { title: string; description: string; duration: string; icon: string; mockup: string }[];
+  const steps = t('steps', { returnObjects: true }) as {
+    title: string;
+    description: string;
+    duration: string;
+    icon: string;
+    mockup: string;
+  }[];
 
   const icons: { [key: string]: React.ReactNode } = {
     MessageCircle: <MessageCircle className="w-8 h-8" />,
@@ -19,7 +25,7 @@ const HowItWorksSection: React.FC = () => {
   return (
     <section id="how-it-works" className="py-20 bg-gradient-to-b from-bg-primary to-bg-secondary">
       <div className="container mx-auto px-4">
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -37,10 +43,10 @@ const HowItWorksSection: React.FC = () => {
         <div className="relative">
           {/* Timeline line */}
           <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary-telegram to-primary-electric"></div>
-          
+
           <div className="space-y-20">
             {steps.map((step, index) => (
-              <motion.div 
+              <motion.div
                 key={step.title}
                 className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-start gap-12`}
                 initial={{ opacity: 0, y: 50 }}
@@ -68,19 +74,19 @@ const HowItWorksSection: React.FC = () => {
                   <div className="glass rounded-2xl p-4 sm:p-6 border border-border/50">
                     <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-auto flex items-center justify-center mx-auto overflow-hidden max-h-[400px]">
                       {index === 0 ? (
-                        <img 
+                        <img
                           src="/images/Frame 7486.svg"
                           alt="Telegram Chat Mockup"
                           className="w-full h-auto object-contain max-h-[400px]"
                         />
                       ) : index === 1 ? (
-                        <img 
+                        <img
                           src="/images/Рассказ.jpg"
                           alt="Onboarding Form Mockup"
                           className="w-full h-auto object-contain max-h-[400px]"
                         />
                       ) : index === 2 ? (
-                        <img 
+                        <img
                           src="/images/пост.jpg"
                           alt="Post Preview Mockup"
                           className="w-full h-auto object-contain max-h-[400px]"
@@ -97,7 +103,7 @@ const HowItWorksSection: React.FC = () => {
         </div>
 
         {/* Pro Tip Banner */}
-        <motion.div 
+        <motion.div
           className="mt-20 bg-gradient-to-r from-primary-mint/10 to-primary-neon/10 rounded-2xl p-6 border border-border/50"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -116,14 +122,14 @@ const HowItWorksSection: React.FC = () => {
         </motion.div>
 
         {/* CTA Buttons */}
-        <motion.div 
+        <motion.div
           className="flex flex-col sm:flex-row gap-4 justify-center mt-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <button 
+          <button
             className="px-8 py-4 bg-gradient-to-r from-primary-telegram to-primary-electric text-white font-bold rounded-lg hover:opacity-90 transition-opacity text-lg"
             onClick={() => {
               const element = document.getElementById('contact');
@@ -134,7 +140,7 @@ const HowItWorksSection: React.FC = () => {
           >
             {t('cta.primary')}
           </button>
-          <button 
+          <button
             className="px-8 py-4 border border-text-secondary text-text-primary font-bold rounded-lg hover:border-primary-telegram hover:text-primary-telegram transition-colors text-lg"
             onClick={() => setShowVideoModal(true)}
           >
@@ -147,7 +153,7 @@ const HowItWorksSection: React.FC = () => {
         <div className="relative pt-[56.25%] w-full">
           <iframe
             className="absolute top-0 left-0 w-full h-full rounded-lg"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

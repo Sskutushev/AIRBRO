@@ -14,16 +14,13 @@ const TeamSection: React.FC = () => {
           viewport={{ once: true, amount: 0.3 }}
           variants={staggerContainer}
         >
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold mb-4 gradient-text"
             variants={fadeInUp}
           >
             Фаза 100: Поддержка
           </motion.h2>
-          <motion.p 
-            className="text-2xl text-text-secondary max-w-3xl mx-auto"
-            variants={fadeInUp}
-          >
+          <motion.p className="text-2xl text-text-secondary max-w-3xl mx-auto" variants={fadeInUp}>
             Не расход, а аренда элитного R&D
           </motion.p>
         </motion.div>
@@ -37,7 +34,9 @@ const TeamSection: React.FC = () => {
             transition={{ duration: 0.6 }}
           >
             <Card variant="default" className="h-full p-8">
-              <h3 className="text-2xl font-bold text-center mb-6 text-red-500">Нанять 1 AI-инженера</h3>
+              <h3 className="text-2xl font-bold text-center mb-6 text-red-500">
+                Нанять 1 AI-инженера
+              </h3>
               <div className="text-center mb-6">
                 <div className="text-5xl font-bold text-red-500 mb-2">$10,000-15,000/мес</div>
                 <div className="text-text-secondary">стоимость</div>
@@ -75,11 +74,16 @@ const TeamSection: React.FC = () => {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
           >
-            <Card variant="glass" className="h-full p-8 border-2 border-green-500 relative overflow-hidden min-h-[538px]">
+            <Card
+              variant="glass"
+              className="h-full p-8 border-2 border-green-500 relative overflow-hidden min-h-[538px]"
+            >
               <div className="absolute top-[24px] right-[-7px] bg-gradient-to-r from-primary-coral to-primary-teal text-white text-xs px-4 py-1 font-bold transform rotate-45 translate-x-4 -translate-y-2">
                 Наш выбор
               </div>
-              <h3 className="text-2xl font-bold text-center mb-6 text-green-500">Арендовать AI-Spetsnaz</h3>
+              <h3 className="text-2xl font-bold text-center mb-6 text-green-500">
+                Арендовать AI-Spetsnaz
+              </h3>
               <div className="text-center mb-6">
                 <div className="text-5xl font-bold text-green-500 mb-2">$12,500/мес</div>
                 <div className="text-text-secondary">стоимость</div>

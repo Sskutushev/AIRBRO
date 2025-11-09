@@ -17,18 +17,14 @@ const HeroSection: React.FC = () => {
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-telegram/10 via-primary-electric/10 to-primary-neon/10 animate-gradient-shift"></div>
         {/* Grid overlay */}
-        <div 
-          className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"
-        ></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
       </div>
 
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12">
           {/* Left content */}
           <div className="w-full lg:w-1/2 text-center lg:text-left">
-
-            
-            <motion.h1 
+            <motion.h1
               className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 gradient-text"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -36,7 +32,7 @@ const HeroSection: React.FC = () => {
             >
               {t('title')}
             </motion.h1>
-            
+
             <motion.p
               className="text-xl md:text-2xl text-text-secondary mb-10 max-w-2xl mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 20 }}
@@ -45,34 +41,34 @@ const HeroSection: React.FC = () => {
             >
               {t('subtitle')}
             </motion.p>
-            
+
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-16"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <Button 
-                variant="gradient-primary" 
-                size="xl" 
+              <Button
+                variant="gradient-primary"
+                size="xl"
                 className="text-lg px-8 py-4"
                 glow={true}
                 onClick={() => {
-                  window.open('https://t.me/AIBROBusinessBot', '_blank');
+                  window.open('https://t.me/aipostmaster_bot', '_blank');
                 }}
               >
                 {t('cta.primary')}
               </Button>
-              <Button 
-                variant="outline" 
-                size="xl" 
+              <Button
+                variant="outline"
+                size="xl"
                 className="text-lg px-8 py-4 border-text-secondary text-text-primary hover:border-primary-telegram hover:text-primary-telegram"
                 onClick={() => setShowVideoModal(true)}
               >
                 {t('cta.secondary')} →
               </Button>
             </motion.div>
-            
+
             {/* Additional "Start Small" Button */}
             <motion.div
               className="mt-4 text-center lg:text-left"
@@ -82,7 +78,7 @@ const HeroSection: React.FC = () => {
             >
               <div className="inline-flex flex-col items-center lg:items-start">
                 <div className="text-text-secondary text-sm mb-2">{t('low_barrier')}</div>
-                <Button 
+                <Button
                   variant="ghost"
                   size="md"
                   className="text-primary-telegram hover:bg-primary-telegram/10 px-0 underline"
@@ -98,9 +94,9 @@ const HeroSection: React.FC = () => {
                 </Button>
               </div>
             </motion.div>
-            
+
             {/* Stats */}
-            <motion.div 
+            <motion.div
               className="grid grid-cols-3 gap-4 max-w-xs mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -126,7 +122,7 @@ const HeroSection: React.FC = () => {
               </div>
             </motion.div>
           </div>
-          
+
           {/* Right content - 3D Visual */}
           <div className="w-full lg:w-1/2 flex justify-center mt-8 lg:mt-0">
             <motion.div
@@ -143,10 +139,10 @@ const HeroSection: React.FC = () => {
                 playsInline
                 className="w-full h-full object-cover rounded-2xl relative z-10"
               />
-              
+
               {/* Floating particles */}
               {[...Array(5)].map((_, i) => (
-                <motion.div 
+                <motion.div
                   key={i}
                   className="absolute rounded-full bg-primary-electric/20 backdrop-blur-sm border border-white/30 flex items-center justify-center"
                   style={{
@@ -155,42 +151,42 @@ const HeroSection: React.FC = () => {
                     top: `${20 + i * 15}%`,
                     left: `${10 + i * 15}%`,
                   }}
-                  animate={{ 
+                  animate={{
                     y: [0, -20 - i * 5, 0],
                     x: [0, 10 + i * 5, 0],
-                    rotate: [0, 360]
+                    rotate: [0, 360],
                   }}
-                  transition={{ 
+                  transition={{
                     duration: 6 + i * 2,
                     repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: i * 0.5
+                    ease: 'easeInOut',
+                    delay: i * 0.5,
                   }}
                 >
                   <div className="text-white text-xs">💬</div>
                 </motion.div>
               ))}
-              
+
               {/* Gradient mesh effect */}
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary-mint/20 via-primary-electric/20 to-primary-neon/20 animate-gradient-x"></div>
             </motion.div>
           </div>
         </div>
-        
+
         {/* Scroll indicator */}
-        <motion.div 
+        <motion.div
           className="hidden md:flex absolute bottom-[45px] left-1/2 transform -translate-x-1/2 flex-col items-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.5 }}
         >
-          <span className="text-text-tertiary text-sm mb-2">Прокрутите вниз</span>
+          <span className="text-text-tertiary text-sm mb-2">{t('scroll_down')}</span>
           <motion.div
             animate={{ y: [0, 10, 0] }}
-            transition={{ 
+            transition={{
               duration: 1.5,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: 'easeInOut',
             }}
           >
             <div className="w-6 h-10 rounded-full border-2 border-primary-telegram flex justify-center p-1">
@@ -199,12 +195,12 @@ const HeroSection: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
-      
+
       <Modal isOpen={showVideoModal} onClose={() => setShowVideoModal(false)}>
         <div className="relative pt-[56.25%] w-full">
           <iframe
             className="absolute top-0 left-0 w-full h-full rounded-lg"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

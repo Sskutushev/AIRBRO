@@ -1,13 +1,13 @@
 import React, { createContext, useContext, type ReactNode, useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { 
-  type UserSubscription, 
-  type SubscriptionPlan, 
-  getUserSubscription, 
-  createSubscription, 
-  cancelSubscription, 
+import {
+  type UserSubscription,
+  type SubscriptionPlan,
+  getUserSubscription,
+  createSubscription,
+  cancelSubscription,
   updateSubscription,
-  subscriptionPlans 
+  subscriptionPlans,
 } from '../services/subscriptionService';
 import { type PaymentMethod, getSavedPaymentMethods } from '../services/paymentService';
 
@@ -50,7 +50,7 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({ chil
 
   const fetchUserSubscription = async () => {
     if (!user) return;
-    
+
     try {
       setLoading(true);
       const subscription = await getUserSubscription(user.id);
@@ -64,7 +64,7 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({ chil
 
   const fetchPaymentMethods = async () => {
     if (!user) return;
-    
+
     try {
       const methods = await getSavedPaymentMethods(user.id);
       setPaymentMethods(methods);
@@ -75,7 +75,7 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({ chil
 
   const subscribeToPlan = async (planId: string): Promise<UserSubscription> => {
     if (!user) throw new Error('User not authenticated');
-    
+
     try {
       const subscription = await createSubscription(user.id, planId);
       setUserSubscription(subscription);
@@ -88,7 +88,7 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({ chil
 
   const cancelCurrentSubscription = async (): Promise<UserSubscription> => {
     if (!userSubscription?.id) throw new Error('No active subscription');
-    
+
     try {
       const cancelledSub = await cancelSubscription(userSubscription.id);
       setUserSubscription(cancelledSub);
@@ -101,7 +101,7 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({ chil
 
   const updateCurrentSubscription = async (newPlanId: string): Promise<UserSubscription> => {
     if (!userSubscription?.id) throw new Error('No active subscription');
-    
+
     try {
       const updatedSub = await updateSubscription(userSubscription.id, newPlanId);
       setUserSubscription(updatedSub);
@@ -124,11 +124,7 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({ chil
     updateCurrentSubscription,
   };
 
-  return (
-    <SubscriptionContext.Provider value={value}>
-      {children}
-    </SubscriptionContext.Provider>
-  );
+  return <SubscriptionContext.Provider value={value}>{children}</SubscriptionContext.Provider>;
 };
 
 export const useSubscription = () => {

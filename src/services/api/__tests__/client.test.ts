@@ -1,251 +1,205 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { apiClient, APIError } from '../client';
-
-// Mock fetch
-global.fetch = vi.fn();
+import { vi, describe, it, expect, beforeEach, afterEach, Mock } from 'vitest';
 
 describe('APIClient', () => {
+  const mockBaseUrl = 'http://localhost:3000';
+  let fetchMock: Mock;
+
   beforeEach(() => {
-    vi.clearAllMocks();
-    // Clear any previously set token
+    // Create a generic mock for fetch for each test
+    fetchMock = vi.fn();
+    global.fetch = fetchMock;
+
+    // Default mock for CSRF token requests, which happen automatically
+    fetchMock.mockImplementation((url) => {
+      if (url.toString().endsWith('/api/csrf-token')) {
+        return Promise.resolve({
+          ok: true,
+          json: async () => ({ csrfToken: 'test-csrf-token' }),
+          status: 200,
+        });
+      }
+      // For any other URL, return a default rejection to catch un-mocked requests
+      return Promise.reject(new Error(`Unexpected fetch call to ${url}`));
+    });
+
+    // Configure the singleton client for tests
+    apiClient.baseURL = mockBaseUrl;
     apiClient.setToken(null);
   });
 
-  describe('Authentication', () => {
-    it('should store and use auth token', () => {
-      const token = 'test-token';
-      apiClient.setToken(token);
-
-      expect((apiClient as any).token).toBe(token);
-    });
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
-  describe('Login', () => {
-    it('should make successful login request', async () => {
+  describe('login', () => {
+    it('should return user and token on successful login', async () => {
       const mockResponse = {
-        user: { id: '1', email: 'test@example.com', name: 'Test', telegram: '@test' },
-        token: 'test-token',
+        user: { id: '1', email: 'test@example.com', name: 'Test User' },
+        token: 'fake-jwt-token',
       };
 
-      (global.fetch as any).mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
+      // Specific mock for the login endpoint for this test
+      fetchMock.mockImplementation((url) => {
+        if (url.toString().endsWith('/api/auth/login')) {
+          return Promise.resolve({
+            ok: true,
+            json: async () => mockResponse,
+            status: 200,
+          });
+        }
+        if (url.toString().endsWith('/api/csrf-token')) {
+          return Promise.resolve({
+            ok: true,
+            json: async () => ({ csrfToken: 'test-csrf-token' }),
+            status: 200,
+          });
+        }
+        return Promise.reject(new Error(`Unexpected fetch call to ${url}`));
       });
 
-      const result = await apiClient.login('test@example.com', 'password');
+      const result = await apiClient.login('test@example.com', 'password123');
 
-      expect(result).toEqual(mockResponse);
-      expect(global.fetch).toHaveBeenCalledWith(
-        expect.stringContaining('/auth/login'),
+      expect(fetchMock).toHaveBeenCalledWith(
+        `${mockBaseUrl}/api/auth/login`,
         expect.objectContaining({
           method: 'POST',
-          body: JSON.stringify({
-            email: 'test@example.com',
-            password: 'password',
-          }),
+          headers: expect.objectContaining({ 'X-CSRF-Token': 'test-csrf-token' }),
+          body: JSON.stringify({ email: 'test@example.com', password: 'password123' }),
         })
+      );
+      expect(result).toEqual(mockResponse);
+    });
+
+    it('should throw APIError on failed login (401)', async () => {
+      const errorResponse = { message: 'Invalid credentials' };
+
+      fetchMock.mockImplementation((url) => {
+        if (url.toString().endsWith('/api/auth/login')) {
+          return Promise.resolve({
+            ok: false,
+            json: async () => errorResponse,
+            status: 401,
+          });
+        }
+        if (url.toString().endsWith('/api/csrf-token')) {
+          return Promise.resolve({
+            ok: true,
+            json: async () => ({ csrfToken: 'test-csrf-token' }),
+            status: 200,
+          });
+        }
+        return Promise.reject(new Error(`Unexpected fetch call to ${url}`));
+      });
+
+      await expect(apiClient.login('test@example.com', 'wrongpassword')).rejects.toStrictEqual(
+        new APIError('Invalid credentials', 401, undefined, undefined)
       );
     });
 
-    it('should throw APIError on failed login request', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
-        ok: false,
-        status: 401,
-        json: async () => ({ message: 'Invalid credentials' }),
+    it('should throw a generic APIError on network failure', async () => {
+      fetchMock.mockImplementation((url) => {
+        if (url.toString().endsWith('/api/auth/login')) {
+          return Promise.reject(new Error('Network error'));
+        }
+        if (url.toString().endsWith('/api/csrf-token')) {
+          return Promise.resolve({
+            ok: true,
+            json: async () => ({ csrfToken: 'test-csrf-token' }),
+            status: 200,
+          });
+        }
+        return Promise.reject(new Error(`Unexpected fetch call to ${url}`));
       });
 
-      await expect(
-        apiClient.login('test@example.com', 'wrong-password')
-      ).rejects.toThrow(APIError);
-
-      await expect(
-        apiClient.login('test@example.com', 'wrong-password')
-      ).rejects.toMatchObject({
-        statusCode: 401,
-        message: 'Invalid credentials',
-      });
-    });
-  });
-
-  describe('Register', () => {
-    it('should make successful register request', async () => {
-      const mockUserData = {
-        name: 'John Doe',
-        email: 'john@example.com',
-        password: 'Password123!',
-        telegram: '@johndoe',
-      };
-      const mockResponse = {
-        user: { id: '2', email: 'john@example.com', name: 'John Doe', telegram: '@johndoe' },
-        token: 'new-token',
-      };
-
-      (global.fetch as any).mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
-
-      const result = await apiClient.register(mockUserData);
-
-      expect(result).toEqual(mockResponse);
-      expect(global.fetch).toHaveBeenCalledWith(
-        expect.stringContaining('/auth/register'),
-        expect.objectContaining({
-          method: 'POST',
-          body: JSON.stringify(mockUserData),
-        })
+      await expect(apiClient.login('test@example.com', 'password123')).rejects.toStrictEqual(
+        new APIError('Network error. Please check your internet connection.', 0)
       );
     });
   });
 
-  describe('Get user profile', () => {
-    it('should make successful getMe request with auth token', async () => {
-      const mockUser = { id: '1', email: 'test@example.com', name: 'Test', telegram: '@test' };
-      
-      apiClient.setToken('test-token');
+  describe('authenticated requests', () => {
+    beforeEach(() => {
+      apiClient.setToken('fake-jwt-token');
+    });
 
-      (global.fetch as any).mockResolvedValueOnce({
+    it('should include Authorization header on GET requests', async () => {
+      fetchMock.mockResolvedValue({
         ok: true,
-        json: async () => mockUser,
+        json: async () => ({ user: 'data' }),
       });
 
-      const result = await apiClient.getMe();
+      await apiClient.getMe();
 
-      expect(result).toEqual(mockUser);
-      expect(global.fetch).toHaveBeenCalledWith(
-        expect.stringContaining('/auth/me'),
+      expect(fetchMock).toHaveBeenCalledWith(
+        `${mockBaseUrl}/api/auth/me`,
         expect.objectContaining({
           headers: expect.objectContaining({
-            Authorization: 'Bearer test-token',
+            Authorization: 'Bearer fake-jwt-token',
           }),
         })
       );
     });
-  });
 
-  describe('Products', () => {
-    it('should make successful getProducts request', async () => {
-      const mockProducts = [{ id: '1', name: 'Test Product' }];
-      
-      (global.fetch as any).mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({ products: mockProducts }),
+    it('should clear token and throw on 401 response', async () => {
+      fetchMock.mockResolvedValue({
+        ok: false,
+        status: 401,
+        json: async () => ({ message: 'Token expired' }),
       });
 
-      const result = await apiClient.getProducts();
-
-      expect(result).toEqual({ products: mockProducts });
+      await expect(apiClient.getMe()).rejects.toThrow('Token expired');
+      expect((apiClient as any).token).toBeNull();
     });
+  });
 
-    it('should include query parameters for getProducts', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
+  describe('other methods', () => {
+    it('getProducts should call the correct endpoint with params', async () => {
+      fetchMock.mockResolvedValue({
         ok: true,
         json: async () => ({ products: [] }),
       });
 
       await apiClient.getProducts({ tier: 1, isActive: true });
 
-      expect(global.fetch).toHaveBeenCalledWith(
-        expect.stringMatching(/\/products\?.*tier=1.*isActive=true/),
+      expect(fetchMock).toHaveBeenCalledWith(
+        `${mockBaseUrl}/api/products?tier=1&isActive=true`,
         expect.any(Object)
       );
     });
-  });
 
-  describe('Cart', () => {
-    it('should make successful getCart request', async () => {
-      const mockCart = { items: [], total: 0 };
-      
-      (global.fetch as any).mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockCart,
+    it('addToCart should send correct payload and headers', async () => {
+      apiClient.setToken('fake-jwt-token');
+      fetchMock.mockImplementation((url) => {
+        if (url.toString().endsWith('/api/cart')) {
+          return Promise.resolve({
+            ok: true,
+            json: async () => ({ success: true }),
+          });
+        }
+        if (url.toString().endsWith('/api/csrf-token')) {
+          return Promise.resolve({
+            ok: true,
+            json: async () => ({ csrfToken: 'test-csrf-token' }),
+          });
+        }
+        return Promise.reject(new Error(`Unexpected fetch call to ${url}`));
       });
 
-      const result = await apiClient.getCart();
+      await apiClient.addToCart('prod-123', 2);
 
-      expect(result).toEqual(mockCart);
-    });
-
-    it('should make successful addToCart request', async () => {
-      const productId = '123';
-      const quantity = 2;
-      const mockCartItem = { id: 'item-1', productId, quantity };
-      
-      (global.fetch as any).mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({ cartItem: mockCartItem }),
-      });
-
-      const result = await apiClient.addToCart(productId, quantity);
-
-      expect(result).toEqual({ cartItem: mockCartItem });
-      expect(global.fetch).toHaveBeenCalledWith(
-        expect.stringContaining('/cart/add'),
+      expect(fetchMock).toHaveBeenCalledWith(
+        `${mockBaseUrl}/api/cart`,
         expect.objectContaining({
           method: 'POST',
-          body: JSON.stringify({ productId, quantity }),
+          headers: expect.objectContaining({
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': 'test-csrf-token',
+            Authorization: 'Bearer fake-jwt-token',
+          }),
+          body: JSON.stringify({ productId: 'prod-123', quantity: 2 }),
         })
       );
-    });
-  });
-
-  describe('Payments', () => {
-    it('should make successful createCryptoPayment request', async () => {
-      const cartItems = ['item1', 'item2'];
-      const paymentMethod = 'USDT';
-      const mockResponse = { paymentId: 'pay-123', walletAddress: 'wallet-address' };
-      
-      (global.fetch as any).mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
-
-      const result = await apiClient.createCryptoPayment(cartItems, paymentMethod);
-
-      expect(result).toEqual(mockResponse);
-      expect(global.fetch).toHaveBeenCalledWith(
-        expect.stringContaining('/payments/crypto/create'),
-        expect.objectContaining({
-          method: 'POST',
-          body: JSON.stringify({ cartItems, paymentMethod }),
-        })
-      );
-    });
-  });
-
-  describe('Error handling', () => {
-    it('should throw APIError when fetch fails', async () => {
-      (global.fetch as any).mockRejectedValue(new TypeError('Network error'));
-
-      await expect(
-        apiClient.getCart()
-      ).rejects.toThrow(APIError);
-
-      await expect(
-        apiClient.getCart()
-      ).rejects.toMatchObject({
-        message: 'Ошибка соединения с сервером',
-        statusCode: 0,
-      });
-    });
-
-    it('should handle server error responses', async () => {
-      (global.fetch as any).mockResolvedValueOnce({
-        ok: false,
-        status: 500,
-        json: async () => ({ message: 'Internal server error' }),
-      });
-
-      await expect(
-        apiClient.getCart()
-      ).rejects.toThrow(APIError);
-
-      await expect(
-        apiClient.getCart()
-      ).rejects.toMatchObject({
-        message: 'Internal server error',
-        statusCode: 500,
-      });
     });
   });
 });

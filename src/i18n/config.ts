@@ -46,7 +46,7 @@ i18n
         success_metrics: ruSuccessMetrics,
         roadmap: ruRoadmap,
         cta: ruCta,
-        footer: ruFooter
+        footer: ruFooter,
       },
       en: {
         common: enCommon,
@@ -60,7 +60,7 @@ i18n
         success_metrics: enSuccessMetrics,
         roadmap: enRoadmap,
         cta: enCta,
-        footer: enFooter
+        footer: enFooter,
       },
     },
     fallbackLng: 'ru',

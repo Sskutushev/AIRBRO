@@ -30,12 +30,13 @@ export interface Subscription {
   id: string;
   userId: string;
   productId: string;
-  status: "active" | "cancelled" | "expired" | "trial";
+  status: 'active' | 'cancelled' | 'expired' | 'trial';
   startDate: string; // ISO 8601 date string
   endDate: string; // ISO 8601 date string
   nextPaymentDate: string | null; // ISO 8601 date string
   cancelledAt: string | null; // ISO 8601 date string
-  product: { // Simplified product for subscription list
+  product: {
+    // Simplified product for subscription list
     name: string;
     description: string;
   };
@@ -46,7 +47,7 @@ export interface Payment {
   userId: string;
   amount: number; // In kopecks
   currency: string; // "RUB", "USD", "USDT", "TON"
-  status: "pending" | "completed" | "failed" | "expired";
+  status: 'pending' | 'completed' | 'failed' | 'expired';
   paymentMethod: string;
   walletAddress: string | null;
   txHash: string | null;
@@ -70,15 +71,15 @@ export interface CryptoPaymentResponse {
   walletAddress: string;
   amountRub: number;
   amountCrypto: number;
-  currency: "USDT" | "TON";
+  currency: 'USDT' | 'TON';
   qrCode: string; // Base64 data URL
   expiresAt: string; // ISO 8601
-  network: "TRC20" | "ERC20" | "TON";
+  network: 'TRC20' | 'ERC20' | 'TON';
   warnings: string[];
 }
 
 export interface PaymentStatusResponse {
-  status: "pending" | "completed" | "failed" | "expired";
+  status: 'pending' | 'completed' | 'failed' | 'expired';
   txHash: string | null;
   expiresAt: string | null;
   timeLeft: number; // Seconds until expiration
@@ -93,8 +94,6 @@ export interface ProductsResponse {
   products: Product[];
 }
 
-export interface SingleProductResponse extends Product {}
-
 export interface UserProfileResponse {
   user: User;
 }
@@ -108,9 +107,9 @@ export interface UserPaymentsResponse {
 }
 
 export interface SubscriptionCancellationResponse {
-  subscription: { 
+  subscription: {
     id: string;
-    status: "cancelled";
+    status: 'cancelled';
     cancelledAt: string;
   };
 }

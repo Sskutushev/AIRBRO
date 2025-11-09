@@ -19,12 +19,17 @@ export const isStrongPassword = (password: string): boolean => {
 };
 
 export const validatePhoneNumber = (phone: string): boolean => {
-  // Basic phone validation (can be enhanced based on requirements)
-  const re = /^\+?[1-9]\d{1,14}$/;
-  return re.test(phone.replace(/[\s\-\(\)]/g, ''));
+  // Stricter phone validation: optional +, then 7 to 15 digits
+  const re = /^\+?\d{7,15}$/;
+  return re.test(phone.replace(/[\s\-()]/g, ''));
 };
 
 export const validateUrl = (url: string): boolean => {
+  // Regex to check for a valid protocol (http, https, ftp, etc.)
+  const protocolRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+  if (!protocolRegex.test(url)) {
+    return false;
+  }
   try {
     new URL(url);
     return true;

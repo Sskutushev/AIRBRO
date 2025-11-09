@@ -27,16 +27,37 @@ const VotingModal: React.FC<VotingModalProps> = ({ isOpen, onClose }) => {
   const [voteResults, setVoteResults] = useState<VoteResult[]>([]);
 
   const featureOptions: FeatureOption[] = [
-    { id: 'feature1', title: t('voting.options.feature1.title'), description: t('voting.options.feature1.description') },
-    { id: 'feature2', title: t('voting.options.feature2.title'), description: t('voting.options.feature2.description') },
-    { id: 'feature3', title: t('voting.options.feature3.title'), description: t('voting.options.feature3.description') },
-    { id: 'feature4', title: t('voting.options.feature4.title'), description: t('voting.options.feature4.description') },
-    { id: 'feature5', title: t('voting.options.feature5.title'), description: t('voting.options.feature5.description') },
+    {
+      id: 'feature1',
+      title: t('voting.options.feature1.title'),
+      description: t('voting.options.feature1.description'),
+    },
+    {
+      id: 'feature2',
+      title: t('voting.options.feature2.title'),
+      description: t('voting.options.feature2.description'),
+    },
+    {
+      id: 'feature3',
+      title: t('voting.options.feature3.title'),
+      description: t('voting.options.feature3.description'),
+    },
+    {
+      id: 'feature4',
+      title: t('voting.options.feature4.title'),
+      description: t('voting.options.feature4.description'),
+    },
+    {
+      id: 'feature5',
+      title: t('voting.options.feature5.title'),
+      description: t('voting.options.feature5.description'),
+    },
   ];
 
   useEffect(() => {
     // Initialize vote results with random values only when modal opens
-    if (isOpen && voteResults.length === 0) { // Only run if results are not already set
+    if (isOpen && voteResults.length === 0) {
+      // Only run if results are not already set
       // Check if user has already voted in this session
       const userHasVoted = localStorage.getItem('featureVote');
       if (userHasVoted) {
@@ -50,17 +71,20 @@ const VotingModal: React.FC<VotingModalProps> = ({ isOpen, onClose }) => {
 
       // Generate random vote distribution
       const votes: { [key: string]: number } = {};
-      
+
       // Distribute votes randomly to all options
       let remainingVotes = initialTotalVotes;
       const voteCounts: number[] = [];
-      
+
       // Distribute votes randomly to all options except one (to ensure some votes remain)
       for (let i = 0; i < featureOptions.length - 1; i++) {
         // Random vote count between 10% and 40% of remaining votes
         const maxVotes = Math.floor(remainingVotes * 0.4);
         const minVotes = Math.max(100, Math.floor(remainingVotes * 0.1));
-        const voteCount = Math.min(remainingVotes, Math.floor(Math.random() * (maxVotes - minVotes + 1)) + minVotes);
+        const voteCount = Math.min(
+          remainingVotes,
+          Math.floor(Math.random() * (maxVotes - minVotes + 1)) + minVotes
+        );
         votes[featureOptions[i].id] = voteCount;
         voteCounts.push(voteCount);
         remainingVotes -= voteCount;
@@ -74,15 +98,16 @@ const VotingModal: React.FC<VotingModalProps> = ({ isOpen, onClose }) => {
       if (userHasVoted) {
         votes[userHasVoted] = (votes[userHasVoted] || 0) + 1;
         // Update total votes
-        setTotalVotes(prev => prev + 1);
+        setTotalVotes((prev) => prev + 1);
       }
 
       // Calculate percentages
-      const results = featureOptions.map(option => ({
+      const results = featureOptions.map((option) => ({
         optionId: option.id,
-        percentage: (votes[option.id] / (userHasVoted ? initialTotalVotes + 1 : initialTotalVotes)) * 100,
+        percentage:
+          (votes[option.id] / (userHasVoted ? initialTotalVotes + 1 : initialTotalVotes)) * 100,
       }));
-      
+
       setVoteResults(results);
     }
   }, [isOpen]); // Only re-run when isOpen changes
@@ -100,25 +125,25 @@ const VotingModal: React.FC<VotingModalProps> = ({ isOpen, onClose }) => {
     // Store that the user has voted
     localStorage.setItem('featureVote', selectedOption);
     setHasVoted(true);
-    setTotalVotes(prev => prev + 1);
+    setTotalVotes((prev) => prev + 1);
 
     // Update the vote count for the selected option
-    const updatedResults = voteResults.map(result => {
+    const updatedResults = voteResults.map((result) => {
       if (result.optionId === selectedOption) {
         // Calculate new percentage with the added vote
         return {
           ...result,
-          percentage: ((result.percentage * totalVotes / 100) + 1) / (totalVotes + 1) * 100
+          percentage: (((result.percentage * totalVotes) / 100 + 1) / (totalVotes + 1)) * 100,
         };
       } else {
         // Recalculate other percentages based on new total
         return {
           ...result,
-          percentage: (result.percentage * totalVotes) / (totalVotes + 1)
+          percentage: (result.percentage * totalVotes) / (totalVotes + 1),
         };
       }
     });
-    
+
     setVoteResults(updatedResults);
   };
 
@@ -132,24 +157,35 @@ const VotingModal: React.FC<VotingModalProps> = ({ isOpen, onClose }) => {
 
         {hasVoted ? (
           <div className="space-y-4">
-            <p className="text-lg font-medium text-green-600">{t('voting.voted_for', { option: featureOptions.find(opt => opt.id === selectedOption)?.title })}</p>
-            {voteResults.map(result => (
+            <p className="text-lg font-medium text-green-600">
+              {t('voting.voted_for', {
+                option: featureOptions.find((opt) => opt.id === selectedOption)?.title,
+              })}
+            </p>
+            {voteResults.map((result) => (
               <div key={result.optionId} className="flex items-center">
-                <span className="w-1/2 text-text-primary">{featureOptions.find(opt => opt.id === result.optionId)?.title}</span>
+                <span className="w-1/2 text-text-primary">
+                  {featureOptions.find((opt) => opt.id === result.optionId)?.title}
+                </span>
                 <div className="w-1/2 bg-gray-200 rounded-full h-4 relative">
                   <div
                     className="bg-primary-telegram h-4 rounded-full"
                     style={{ width: `${result.percentage.toFixed(1)}%` }}
                   ></div>
-                  <span className="absolute right-2 top-0 text-xs font-bold text-[#000000]">{result.percentage.toFixed(1)}%</span>
+                  <span className="absolute right-2 top-0 text-xs font-bold text-[#000000]">
+                    {result.percentage.toFixed(1)}%
+                  </span>
                 </div>
               </div>
             ))}
           </div>
         ) : (
           <div className="space-y-4">
-            {featureOptions.map(option => (
-              <label key={option.id} className="flex items-start p-4 border border-border rounded-lg cursor-pointer hover:bg-bg-tertiary transition-colors">
+            {featureOptions.map((option) => (
+              <label
+                key={option.id}
+                className="flex items-start p-4 border border-border rounded-lg cursor-pointer hover:bg-bg-tertiary transition-colors"
+              >
                 <input
                   type="radio"
                   name="featureVote"

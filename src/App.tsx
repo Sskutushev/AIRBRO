@@ -1,8 +1,13 @@
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect, lazy, Suspense } from 'react';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { Toaster } from './lib/toast';
 import { AuthProvider } from './context/AuthContext';
 import { SubscriptionProvider } from './context/SubscriptionContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { queryClient } from './lib/queryClient';
+import { analytics } from './lib/analytics';
 import Header from './components/sections/Header';
 import HeroSection from './components/sections/HeroSection';
 import ProblemSection from './components/sections/ProblemSection';
@@ -51,46 +56,93 @@ function ScrollToAnchor() {
   return null;
 }
 
+// Компонент для отслеживания просмотров страниц
+function AnalyticsTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    analytics.init();
+  }, []);
+
+  useEffect(() => {
+    analytics.trackPageView(location.pathname);
+  }, [location]);
+
+  return null;
+}
+
 function App() {
   return (
-    <ErrorBoundary>
-      <ThemeProvider>
-        <AuthProvider>
-          <SubscriptionProvider>
-            <Router>
-              <div className="min-h-screen flex flex-col App">
-                <div className="flex-1">
-                  <Suspense fallback={<PageLoader />}>
-                    <Routes>
-                      <Route path="/" element={
-                        <>
-                          <Header />
-                          <ScrollToAnchor />
-                          <HeroSection />
-                          <ProblemSection />
-                          <SolutionSection />
-                          <ProductsSection />
-                          <HowItWorksSection />
-                          <PricingSection />
-                          <SuccessMetricsSection />
-                          <RoadmapSection />
-                          <FAQSection />
-                          <CTASection />
-                        </>
-                      } />
-                      <Route path="/account" element={<AccountPage />} />
-                      <Route path="/payment" element={<PaymentPage />} />
-                      <Route path="/auth" element={<AuthPage />} />
-                    </Routes>
-                  </Suspense>
+    <QueryClientProvider client={queryClient}>
+      <ErrorBoundary>
+        <ThemeProvider>
+          <AuthProvider>
+            <SubscriptionProvider>
+              <Router>
+                <div className="min-h-screen flex flex-col App">
+                  <div className="flex-1">
+                    <Suspense fallback={<PageLoader />}>
+                      <Routes>
+                        <Route
+                          path="/"
+                          element={
+                            <>
+                              <AnalyticsTracker />
+                              <Header />
+                              <ScrollToAnchor />
+                              <HeroSection />
+                              <ProblemSection />
+                              <SolutionSection />
+                              <ProductsSection />
+                              <HowItWorksSection />
+                              <PricingSection />
+                              <SuccessMetricsSection />
+                              <RoadmapSection />
+                              <FAQSection />
+                              <CTASection />
+                            </>
+                          }
+                        />
+                        <Route
+                          path="/account"
+                          element={
+                            <>
+                              <AnalyticsTracker />
+                              <AccountPage />
+                            </>
+                          }
+                        />
+                        <Route
+                          path="/payment"
+                          element={
+                            <>
+                              <AnalyticsTracker />
+                              <PaymentPage />
+                            </>
+                          }
+                        />
+                        <Route
+                          path="/auth"
+                          element={
+                            <>
+                              <AnalyticsTracker />
+                              <AuthPage />
+                            </>
+                          }
+                        />
+                      </Routes>
+                    </Suspense>
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
-              </div>
-            </Router>
-          </SubscriptionProvider>
-        </AuthProvider>
-      </ThemeProvider>
-    </ErrorBoundary>
+              </Router>
+            </SubscriptionProvider>
+          </AuthProvider>
+        </ThemeProvider>
+        <Toaster />
+      </ErrorBoundary>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 

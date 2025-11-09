@@ -14,8 +14,8 @@ const LanguageSwitcher: React.FC = () => {
       <button
         onClick={() => changeLanguage('ru')}
         className={`text-sm font-medium ${
-          i18n.language === 'ru' 
-            ? 'text-primary-telegram' 
+          i18n.language === 'ru'
+            ? 'text-primary-telegram'
             : 'text-text-secondary hover:text-text-primary'
         }`}
       >
@@ -25,8 +25,8 @@ const LanguageSwitcher: React.FC = () => {
       <button
         onClick={() => changeLanguage('en')}
         className={`text-sm font-medium ${
-          i18n.language === 'en' 
-            ? 'text-primary-telegram' 
+          i18n.language === 'en'
+            ? 'text-primary-telegram'
             : 'text-text-secondary hover:text-text-primary'
         }`}
       >

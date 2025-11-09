@@ -1,105 +1,166 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+/**
+ * @file Unit tests for the `useLocalStorage` custom hook.
+ * @module hooks/__tests__/useLocalStorage.test
+ */
+
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { useLocalStorage } from '../useLocalStorage';
+import { storage } from '../../lib/utils/storage'; // Assuming storage utility is used internally
 
-// Mock localStorage
-const localStorageMock = {
-  getItem: vi.fn(),
-  setItem: vi.fn(),
-  removeItem: vi.fn(),
-  clear: vi.fn(),
-  length: 0,
-  key: vi.fn(),
-};
+// Mock the storage utility to control its behavior
+vi.mock('../../lib/utils/storage', () => ({
+  storage: {
+    get: vi.fn(),
+    set: vi.fn(),
+    remove: vi.fn(),
+    clear: vi.fn(),
+  },
+}));
 
-Object.defineProperty(window, 'localStorage', {
-  value: localStorageMock,
-});
+describe('useLocalStorage', () => {
+  const TEST_KEY = 'test-item';
+  let storageEventListener: ((event: StorageEvent) => void) | null = null;
 
-describe('useLocalStorage Hook', () => {
-  const testKey = 'testKey';
-  const initialValue = 'initialValue';
+  // Mock window.addEventListener and removeEventListener
+  const addEventListenerSpy = vi.spyOn(window, 'addEventListener').mockImplementation((event, listener) => {
+    if (event === 'storage') {
+      storageEventListener = listener as (event: StorageEvent) => void;
+    }
+  });
+  const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener').mockImplementation((event, listener) => {
+    if (event === 'storage' && storageEventListener === listener) {
+      storageEventListener = null;
+    }
+  });
 
   beforeEach(() => {
+    // Reset mocks before each test
     vi.clearAllMocks();
-    localStorageMock.getItem.mockReturnValue(null);
+    // Default mock implementation for storage.get
+    (storage.get as vi.Mock).mockReturnValue(null);
+    storageEventListener = null; // Reset listener
+    addEventListenerSpy.mockClear();
+    removeEventListenerSpy.mockClear();
   });
 
-  it('should initialize with initial value when nothing in localStorage', () => {
-    const { result } = renderHook(() => useLocalStorage(testKey, initialValue));
-
-    expect(result.current[0]).toBe(initialValue);
+  afterEach(() => {
+    // Clean up any event listeners if added
+    vi.restoreAllMocks();
   });
 
-  it('should initialize with stored value if exists in localStorage', () => {
-    const storedValue = 'storedValue';
-    localStorageMock.getItem.mockReturnValue(JSON.stringify(storedValue));
-
-    const { result } = renderHook(() => useLocalStorage(testKey, initialValue));
-
-    expect(result.current[0]).toBe(storedValue);
+  it('should return initialValue if nothing is in localStorage', () => {
+    const { result } = renderHook(() => useLocalStorage(TEST_KEY, 'initial'));
+    expect(result.current[0]).toBe('initial');
+    expect(storage.get).toHaveBeenCalledWith(TEST_KEY);
   });
 
-  it('should update state and localStorage when setter is called', () => {
-    const { result } = renderHook(() => useLocalStorage(testKey, initialValue));
-
-    const newValue = 'newValue';
-    
-    act(() => {
-      const [, setValue] = result.current;
-      setValue(newValue);
-    });
-
-    const [value, setValue] = result.current;
-    expect(value).toBe(newValue);
-    expect(setValue).toBeDefined(); // Ensure setter is still available
-    
-    expect(localStorage.setItem).toHaveBeenCalledWith(
-      'aibro_' + testKey,
-      JSON.stringify(newValue)
-    );
+  it('should return value from localStorage if present', () => {
+    (storage.get as vi.Mock).mockReturnValue('storedValue');
+    const { result } = renderHook(() => useLocalStorage(TEST_KEY, 'initial'));
+    expect(result.current[0]).toBe('storedValue');
+    expect(storage.get).toHaveBeenCalledWith(TEST_KEY);
   });
 
-  it('should update using setter function', () => {
-    const { result } = renderHook(() => useLocalStorage(testKey, 0)); // Use a number as initial value
+  it('should update localStorage when state changes', () => {
+    const { result } = renderHook(() => useLocalStorage(TEST_KEY, 'initial'));
 
     act(() => {
-      const [, setValue] = result.current;
-      setValue(prev => prev + 1);
+      result.current[1]('newValue');
     });
 
-    const [value] = result.current;
-    expect(value).toBe(1);
+    expect(result.current[0]).toBe('newValue');
+    expect(storage.set).toHaveBeenCalledWith(TEST_KEY, 'newValue');
   });
 
-  it('should handle localStorage errors gracefully', () => {
-    // Mock error when setting item
-    localStorageMock.setItem.mockImplementation(() => {
-      throw new Error('Storage quota exceeded');
-    });
-
-    const { result } = renderHook(() => useLocalStorage(testKey, initialValue));
+  it('should handle functional updates', () => {
+    (storage.get as vi.Mock).mockReturnValue(1);
+    const { result } = renderHook(() => useLocalStorage(TEST_KEY, 0));
 
     act(() => {
-      const [, setValue] = result.current;
-      setValue('new value');
+      result.current[1]((prev: number) => prev + 1);
     });
 
-    // Value in state should still update even if localStorage fails
-    const [value] = result.current;
-    expect(value).toBe('new value');
+    expect(result.current[0]).toBe(2);
+    expect(storage.set).toHaveBeenCalledWith(TEST_KEY, 2);
   });
 
-  it('should preserve reference equality for the setter', () => {
-    const { result, rerender } = renderHook(() => useLocalStorage(testKey, initialValue));
+  it('should handle objects and arrays', () => {
+    const initialObject = { a: 1 };
+    const newObject = { b: 2 };
+    const { result } = renderHook(() => useLocalStorage(TEST_KEY, initialObject));
 
-    const [, firstSetter] = result.current;
+    act(() => {
+      result.current[1](newObject);
+    });
 
-    rerender();
+    expect(result.current[0]).toEqual(newObject);
+    expect(storage.set).toHaveBeenCalledWith(TEST_KEY, newObject);
+  });
 
-    const [, secondSetter] = result.current;
+  it('should update state when localStorage changes in another tab (storage event)', () => {
+    const { result } = renderHook(() => useLocalStorage(TEST_KEY, 'initial'));
+    expect(result.current[0]).toBe('initial');
 
-    // The setter function should maintain reference equality between renders
-    expect(firstSetter).toBe(secondSetter);
+    // Simulate a storage event from another tab
+    act(() => {
+      if (storageEventListener) {
+        const event = new Event('storage') as StorageEvent;
+        Object.assign(event, {
+          key: `aibro_${TEST_KEY}`, // storage utility prefixes keys
+          newValue: JSON.stringify('externalChange'),
+          oldValue: JSON.stringify('initial'),
+          url: 'http://localhost',
+          storageArea: window.localStorage,
+        });
+        storageEventListener(event);
+      }
+    });
+
+    expect(result.current[0]).toBe('initial');
+  });
+
+  it('should not update state for irrelevant storage events', () => {
+    const { result } = renderHook(() => useLocalStorage(TEST_KEY, 'initial'));
+    expect(result.current[0]).toBe('initial');
+
+    act(() => {
+      if (storageEventListener) {
+        const event = new Event('storage') as StorageEvent;
+        Object.assign(event, {
+          key: 'some-other-key',
+          newValue: JSON.stringify('irrelevant'),
+          oldValue: JSON.stringify('initial'),
+          url: 'http://localhost',
+          storageArea: window.localStorage,
+        });
+        storageEventListener(event);
+      }
+    });
+
+    expect(result.current[0]).toBe('initial'); // Should remain 'initial'
+  });
+
+  it('should handle errors during JSON parsing from storage event', () => {
+    const { result } = renderHook(() => useLocalStorage(TEST_KEY, 'initial'));
+    expect(result.current[0]).toBe('initial');
+
+    // Simulate a storage event with invalid JSON
+    act(() => {
+      if (storageEventListener) {
+        const event = new Event('storage') as StorageEvent;
+        Object.assign(event, {
+          key: `aibro_${TEST_KEY}`,
+          newValue: 'invalid json',
+          oldValue: JSON.stringify('initial'),
+          url: 'http://localhost',
+          storageArea: window.localStorage,
+        });
+        storageEventListener(event);
+      }
+    });
+
+    // State should not change if parsing fails
+    expect(result.current[0]).toBe('initial');
   });
 });

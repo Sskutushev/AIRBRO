@@ -1,31 +1,167 @@
-lfdfq ntgthm gj flfgnfwbzv? ltcrnjg b gkfyitnrf vtyz ecnhfbdf.n gjkyjcnm.? ye;yj njkmrj
-  vj,bkmye. ljhf,jnfnm vtcnfvb, смотри следующее уточнения, в бургер меню все кнпоки-вкладки
-  проудкты цены кейсы фак и кнопку войти нужно центрировать, далее секция хиро тут элемент мышки
-  текстом "Прокрутите вниз" нужно на мобильной скрыть, это не нужно там. далее секция Знакомая
-  боль?, тут в карточках нужно расположение текстов сделать следующим образом, иконка-эмодзи
-  отсается где есть, спарва заголвоок картчоки тоже как есть остается(надо сделать только чтобы
-  шрифт размером меньше становился на моибльной адаптаиции чтоыб все лаконично умещалось) под ни
-  внизу на всю ширину карточки идут текста, начинаясь снизу под иконкой-эмодзи и дна всю ширину
-  карточки, также и уточняющие плашки, следующая секция которой надо поправить мобильную адаптац
-  это сравнительная таблица AIBRO Business vs Альтернативы, нужно уборать скрол горизонтальны,
-  скрыть 1 столбец корп ПО и оставшиеся фринласре и AIBRO адаптировать чтобы былов се читаемо и
-  лакончино, чтобы не было никаких горизонтальных скролов(это касается всего сайта, чтобы на люб
-  адаптации не было горизонтальных скролов), сразу под таблицей идет блок "Готовы начать?" тут
-  блока фоновый конетйнер надо адаптивным сделать на мобильной версии, под 350 ширину, кнопку
-  изаголовок центрирваоьть и тоже сделать адаптивными под мобильную версию, чтобы со смартфонов
-  открывалось все лаконично и читаемо, скрин прилагаю как сейчас, нужно
-  исправитьc:\Users\sskut\Desktop\AIRBRO\public\пробелма.jpg, в след секции блок Дополнительные    
-  модули, в нем именно открытие попап, нужно сделать адаптивным под мобильные, для смартфонов,     
-  тоже убрать горизонтальный скрол, сужение сделать адекватное, плюс адаптации полные под
-  мобильные устройства, чтобы все было читаемо и отображаемо и лаконично, можно размер шрифтов     
-  меньше сделать и расположение элементов, убрать обязательно горизонтальный скрол, следующая      
-  секция 3 шага к автоматизации, тут нужно адаптировать блоки с картинками-скринами которые        
-  содеражтся, не умещаются на мобильной адатпации и появляется скрол горизонтальный и выходят за   
-  границы, прилагаю скрин
-  c:\Users\sskut\Desktop\AIRBRO\public\проблема1.jpgc:\Users\sskut\Desktop\AIRBRO\public\проблем   
-  .jpgc:\Users\sskut\Desktop\AIRBRO\public\проблема3.jpg. далее в секции роадмапа Что дальше?      
-  необходимо убрать элементы кварталов, на мобильной адаптации скрываем их и между карточек        
-  информации делаем меньше отступы, квартала элементы это q4 2025, q1 2026 и тд, далее секция      
-  Частые вопросы в ней блок внизу "Не нашли ответ?" тут полную адаптацию мобильную сделать,        
-  конетйнер фоновый кривой, заголовки и текста тоже с иконкой, нормально только кнопка, скрин      
-  прилагаюc:\Users\sskut\Desktop\AIRBRO\public\проблмеа4.jpg,, все остальное вроде нормально.
+PS C:\Users\sskut\Desktop\AIRBRO> npm run test
+
+> airbro-business-landing@1.0.0 test
+> vitest
+
+
+ DEV  v4.0.8 C:/Users/sskut/Desktop/AIRBRO
+
+ ❯ src/lib/validation/__tests__/auth.test.ts (17 tests | 1 failed) 44ms
+       ✓ should validate a correct login input 6ms
+       ✓ should invalidate login with an invalid email format 3ms
+       ✓ should invalidate login with a password shorter than 8 characters 1ms
+       ✓ should invalidate login with missing email 1ms
+       ✓ should invalidate login with missing password 3ms
+       ✓ should validate a correct registration input 2ms
+       ✓ should invalidate registration with missing name 2ms
+       ✓ should invalidate registration with invalid email format 3ms
+       ✓ should invalidate registration with missing telegram username 1ms
+       ✓ should invalidate registration with invalid telegram username format 1ms
+       ✓ should invalidate registration with password shorter than 8 characters 1ms
+       ✓ should invalidate registration with password missing uppercase 1ms
+       ✓ should invalidate registration with password missing lowercase 1ms
+       ✓ should invalidate registration with password missing number 1ms
+       ✓ should invalidate registration with password missing special character 1ms
+       ✓ should invalidate registration when passwords do not match 1ms
+       × should validate a correct email 9ms
+ ✓ src/pages/__tests__/SolutionsPage.test.tsx (6 tests) 953ms
+     ✓ should display page title and description  453ms
+ ✓ src/components/common/__tests__/OptimizedImage.test.tsx (9 tests) 830ms
+     ✓ should render a picture element with source tags for AVIF and WebP  377ms
+stderr | src/hooks/__tests__/useAsync.test.ts > useAsync > should handle async function execution with error
+An update to TestComponent inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/hooks/__tests__/useAsync.test.ts > useAsync > should call onError callback on error  
+An update to TestComponent inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ ✓ src/hooks/__tests__/useAsync.test.ts (9 tests) 567ms
+ ✓ src/pages/__tests__/AccountPage.test.tsx (8 tests) 2282ms
+     ✓ should redirect to auth page if user is not logged in  459ms
+     ✓ should display user information when logged in  301ms
+     ✓ should display navigation tabs  589ms
+     ✓ should display quick actions  330ms
+ ✓ src/pages/__tests__/PaymentPage.test.tsx (9 tests) 3020ms
+     ✓ should display access denied message if user is not logged in and plan is not found  414ms 
+     ✓ should switch payment methods  561ms
+       ✓ should process card payment successfully  374ms
+       ✓ should show error message if card payment fails  342ms
+       ✓ should show error message if Telegram payment fails  352ms
+     ✓ should allow retrying payment after an error  484ms
+ ✓ src/pages/__tests__/AuthPage.test.tsx (10 tests) 3230ms
+     ✓ should render login form by default  699ms
+     ✓ should switch to registration form when "Регистрация" tab is clicked  460ms
+     ✓ should show validation errors for registration form  362ms
+     ✓ should call register mutation on valid registration submission  324ms
+     ✓ should display registration error message from mutation  329ms
+ ✓ src/components/__tests__/ErrorBoundary.test.tsx (6 tests) 595ms
+     ✓ should catch errors and display fallback UI  389ms
+ ✓ src/components/common/__tests__/Button.test.tsx (11 tests) 507ms
+ ✓ src/components/common/__tests__/Skeleton.test.tsx (13 tests) 489ms
+ ✓ src/components/common/__tests__/SafeHTML.test.tsx (9 tests) 219ms
+ ✓ src/hooks/__tests__/useLocalStorage.test.ts (8 tests) 72ms
+stdout | src/lib/utils/__tests__/dom.test.ts > DOM Utilities > formatCurrency > should format currency with specified currency
+Expected USD: $123
+Actual USD: $123
+
+ ✓ src/lib/utils/__tests__/dom.test.ts (13 tests) 59ms
+ ✓ src/hooks/__tests__/useDebounce.test.ts (5 tests) 58ms
+stdout | src/services/api/__tests__/client.test.ts > APIClient > login > should return user and token on successful login
+Making request to: http://localhost:3000/api/auth/login with method: POST
+CSRF token missing for mutating request, fetching...
+Fetching CSRF token from: http://localhost:3000/api/csrf-token
+
+stdout | src/services/api/__tests__/client.test.ts > APIClient > login > should return user and token on successful login
+CSRF token fetched: test-csrf-token
+
+stdout | src/services/api/__tests__/client.test.ts > APIClient > login > should return user and token on successful login
+X-CSRF-Token header added.
+
+stdout | src/services/api/__tests__/client.test.ts > APIClient > login > should throw APIError on failed login (401)
+Making request to: http://localhost:3000/api/auth/login with method: POST
+X-CSRF-Token header added.
+
+stdout | src/services/api/__tests__/client.test.ts > APIClient > login > should throw a generic APIError on network failure
+Making request to: http://localhost:3000/api/auth/login with method: POST
+X-CSRF-Token header added.
+
+stderr | src/services/api/__tests__/client.test.ts > APIClient > login > should throw a generic APIError on network failure                                                                         
+Network error: Error: Network error                                                               
+    at C:/Users/sskut/Desktop/AIRBRO/src/services/api/__tests__/client.test.ts:103:33             
+    at Mock (file:///C:/Users/sskut/Desktop/AIRBRO/node_modules/@vitest/spy/dist/index.js:280:34) 
+    at APIClient.request (C:/Users/sskut/Desktop/AIRBRO/src/services/api/client.ts:219:30)        
+    at APIClient.login (C:/Users/sskut/Desktop/AIRBRO/src/services/api/client.ts:250:17)          
+    at C:/Users/sskut/Desktop/AIRBRO/src/services/api/__tests__/client.test.ts:115:30             
+    at file:///C:/Users/sskut/Desktop/AIRBRO/node_modules/@vitest/runner/dist/index.js:157:11     
+    at file:///C:/Users/sskut/Desktop/AIRBRO/node_modules/@vitest/runner/dist/index.js:753:26     
+    at file:///C:/Users/sskut/Desktop/AIRBRO/node_modules/@vitest/runner/dist/index.js:1636:20    
+    at new Promise (<anonymous>)
+    at runWithTimeout (file:///C:/Users/sskut/Desktop/AIRBRO/node_modules/@vitest/runner/dist/index.js:1602:10)
+
+stdout | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should include Authorization header on GET requests                                                       
+Making request to: http://localhost:3000/api/auth/me with method: GET                             
+Authorization header added.                                                                       
+                                                                                                  
+stdout | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should clear token and throw on 401 response                                                              
+Making request to: http://localhost:3000/api/auth/me with method: GET                             
+Authorization header added.
+
+stdout | src/services/api/__tests__/client.test.ts > APIClient > other methods > getProducts should call the correct endpoint with params
+Making request to: http://localhost:3000/api/products?tier=1&isActive=true with method: GET       
+
+stdout | src/services/api/__tests__/client.test.ts > APIClient > other methods > addToCart should send correct payload and headers
+Making request to: http://localhost:3000/api/cart with method: POST
+Authorization header added.
+X-CSRF-Token header added.
+
+ ✓ src/services/api/__tests__/client.test.ts (7 tests) 45ms
+ ✓ src/lib/utils/__tests__/cn.test.ts (9 tests) 17ms
+ ✓ src/lib/utils/__tests__/storage.test.ts (8 tests) 14ms
+ ✓ src/lib/__tests__/toast.test.tsx (8 tests) 11ms
+ ✓ src/lib/utils/__tests__/validators.test.ts (10 tests) 9ms
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/lib/validation/__tests__/auth.test.ts > Auth Validation Schemas > resetPasswordSchema > should validate a correct email
+AssertionError: expected [Function] to not throw an error but 'ReferenceError: resetPasswordSchema i…' was thrown
+
+- Expected:
+undefined
+
++ Received:
+"ReferenceError: resetPasswordSchema is not defined"
+
+ ❯ src/lib/validation/__tests__/auth.test.ts:167:65
+    165|       it('should validate a correct email', () => {
+    166|         const validEmail = { email: 'test@example.com' };
+    167|         expect(() => resetPasswordSchema.parse(validEmail)).not.toThrow();
+       |                                                                 ^
+    168|       });
+    169|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 18 passed (19)
+      Tests  1 failed | 174 passed (175)
+   Start at  21:02:44
+   Duration  11.15s (transform 2.03s, setup 6.82s, collect 8.83s, tests 13.02s, environment 25.95s, prepare 701ms)
+
+ FAIL  Tests failed. Watching for file changes...

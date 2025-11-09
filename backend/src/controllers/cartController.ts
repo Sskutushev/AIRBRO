@@ -56,7 +56,7 @@ export const addToCart = async (req: Request, res: Response) => {
     }
 
     // Check if item already in cart
-    let existingCartItem = await prisma.cartItem.findUnique({
+    const existingCartItem = await prisma.cartItem.findUnique({
       where: {
         userId_productId: {
           userId,

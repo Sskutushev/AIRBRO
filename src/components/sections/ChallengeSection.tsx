@@ -6,23 +6,23 @@ import { staggerContainer, fadeInUp } from '../../lib/motionPresets';
 const ChallengeSection: React.FC = () => {
   const steps = [
     {
-      id: "01",
-      title: "Вы даёте 100 документов",
-      description: "Под полным NDA. Реальные, грязные сканы договоров или отчётов",
-      icon: "📄"
+      id: '01',
+      title: 'Вы даёте 100 документов',
+      description: 'Под полным NDA. Реальные, грязные сканы договоров или отчётов',
+      icon: '📄',
     },
     {
-      id: "02",
-      title: "Мы возвращаемся с прототипом",
-      description: "Работающий AI, обученный на ваших данных",
-      icon: "⚡"
+      id: '02',
+      title: 'Мы возвращаемся с прототипом',
+      description: 'Работающий AI, обученный на ваших данных',
+      icon: '⚡',
     },
     {
-      id: "03",
-      title: "Вы задаёте вопрос — получаете ответ",
+      id: '03',
+      title: 'Вы задаёте вопрос — получаете ответ',
       description: "'Условия оплаты ООО Ромашка?' → Мгновенный ответ с цитатой",
-      icon: "✓"
-    }
+      icon: '✓',
+    },
   ];
 
   return (
@@ -35,19 +35,16 @@ const ChallengeSection: React.FC = () => {
           viewport={{ once: true, amount: 0.3 }}
           variants={staggerContainer}
         >
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold mb-4 gradient-text"
             variants={fadeInUp}
           >
             Мы не делаем "Демо"
           </motion.h2>
-          <motion.p 
-            className="text-2xl text-text-secondary max-w-3xl mx-auto"
-            variants={fadeInUp}
-          >
+          <motion.p className="text-2xl text-text-secondary max-w-3xl mx-auto" variants={fadeInUp}>
             Мы запускаем 72-Hour Challenge
           </motion.p>
-          <motion.p 
+          <motion.p
             className="text-xl text-text-secondary max-w-2xl mx-auto mt-4"
             variants={fadeInUp}
           >
@@ -58,10 +55,10 @@ const ChallengeSection: React.FC = () => {
         <div className="relative">
           {/* Timeline line */}
           <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-coral to-primary-teal transform -translate-x-1/2"></div>
-          
+
           <div className="space-y-12 md:space-y-0">
             {steps.map((step, index) => (
-              <motion.div 
+              <motion.div
                 key={step.id}
                 className={`relative flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                 initial={{ opacity: 0, y: 30 }}
@@ -80,13 +77,13 @@ const ChallengeSection: React.FC = () => {
                     <p className="text-text-secondary">{step.description}</p>
                   </Card>
                 </div>
-                
+
                 <div className="md:w-2/12 flex justify-center my-4 md:my-0">
                   <div className="w-16 h-16 rounded-full bg-white border-4 border-primary-coral flex items-center justify-center text-2xl shadow-lg z-10">
                     {step.icon}
                   </div>
                 </div>
-                
+
                 <div className="md:w-5/12"></div>
               </motion.div>
             ))}

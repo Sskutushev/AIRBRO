@@ -1,19 +1,17 @@
+// Now, validate and import other modules
+import './config/environment'; // This validates env variables
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import rateLimit from 'express-rate-limit';
 import cookieParser from 'cookie-parser';
-
-// Load environment variables
-dotenv.config();
-
-// Import routes
+import { csrfProtection, csrfTokenHandler } from './middleware/csrf';
 import authRoutes from './routes/auth';
 import productRoutes from './routes/products';
 import cartRoutes from './routes/cart';
 import paymentRoutes from './routes/payments';
 import userRoutes from './routes/user';
 import telegramRoutes from './routes/telegram';
+import logger from './utils/logger';
 
 // Initialize Express app
 const app = express();
@@ -26,34 +24,25 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// Parse cookies
+// General middleware
 app.use(cookieParser());
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true }));
 
-// Rate limiting
+// Security middleware
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // Limit each IP to 100 requests per windowMs
   message: 'Too many requests from this IP, please try again later.'
 });
 app.use(limiter);
-
-// Body parsing middleware
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true }));
-
-// Simple CSRF protection for non-GET requests
-app.use('/api', (req, res, next) => {
-  // Check for CSRF token in header for non-GET requests
-  if (req.method !== 'GET' && req.method !== 'HEAD' && req.method !== 'OPTIONS') {
-    // In a real implementation, you would verify a CSRF token here
-    // For now, this is a placeholder - implement proper CSRF protection later
-    const csrfToken = req.headers['x-csrf-token'];
-    // Add more sophisticated CSRF protection as needed
-  }
-  next();
-});
+app.use(csrfProtection);
+app.use(csrfTokenHandler);
 
 // API routes
+app.get('/api/csrf-token', (req, res) => {
+  res.json({ csrfToken: req.csrfToken() });
+});
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
@@ -66,18 +55,27 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
-// Error handling middleware
-import logger from './utils/logger';
-
-// Error handling middleware
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  logger.error('Unhandled server error', err);
-  res.status(500).json({ error: 'Something went wrong!' });
+// 404 handler for API routes
+app.use('/api/*', (req, res) => {
+  res.status(404).json({ error: 'Route not found' });
 });
 
-// 404 handler
-app.use('*', (req, res) => {
-  res.status(404).json({ error: 'Route not found' });
+// Error handling middleware
+app.use((err: any, req: express.Request, res: express.Response, _next: express.NextFunction) => {
+  // CSRF error handling
+  if (err.code === 'EBADCSRFTOKEN') {
+    logger.warn('CSRF token validation failed', { url: req.originalUrl, ip: req.ip });
+    return res.status(403).json({ error: 'Invalid CSRF token' });
+  }
+
+  // General error logging
+  if (err instanceof Error) {
+    logger.error('Unhandled server error', { message: err.message, stack: err.stack });
+  } else {
+    logger.error('Unhandled server error (non-Error object)', { error: err });
+  }
+  
+  res.status(500).json({ error: 'Something went wrong!' });
 });
 
 // Start server

@@ -1,108 +1,101 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+/**
+ * @file Unit tests for the `useDebounce` custom hook.
+ * @module hooks/__tests__/useDebounce.test
+ */
+
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { useDebounce } from '../useDebounce';
 
-describe('useDebounce Hook', () => {
+describe('useDebounce', () => {
   beforeEach(() => {
-    vi.useFakeTimers();
+    vi.useFakeTimers(); // Use fake timers for controlling setTimeout/clearTimeout
   });
 
   afterEach(() => {
-    vi.restoreAllMocks();
+    vi.runOnlyPendingTimers(); // Clear any pending timers
+    vi.useRealTimers(); // Restore real timers
   });
 
-  it('should return initial value immediately', () => {
+  it('should return the initial value immediately', () => {
     const { result } = renderHook(() => useDebounce('initial', 500));
-
     expect(result.current).toBe('initial');
   });
 
-  it('should return the same value when unchanged', () => {
+  it('should not update the debounced value until after the delay', () => {
     const { result, rerender } = renderHook(({ value, delay }) => useDebounce(value, delay), {
-      initialProps: { value: 'test', delay: 500 },
+      initialProps: { value: 'first', delay: 500 },
     });
 
-    expect(result.current).toBe('test');
+    expect(result.current).toBe('first');
 
-    // Rerender with same value
-    rerender({ value: 'test', delay: 500 });
+    rerender({ value: 'second', delay: 500 });
+    expect(result.current).toBe('first'); // Value should still be 'first'
 
-    expect(result.current).toBe('test');
+    act(() => {
+      vi.advanceTimersByTime(499); // Advance just before the delay
+    });
+    expect(result.current).toBe('first');
+
+    act(() => {
+      vi.advanceTimersByTime(1); // Advance past the delay
+    });
+    expect(result.current).toBe('second'); // Now it should be 'second'
   });
 
-  it('should debounce value changes', () => {
-    const { result, rerender } = renderHook(({ value, delay }) => useDebounce(value, delay), {
-      initialProps: { value: 'initial', delay: 500 },
-    });
-
-    expect(result.current).toBe('initial');
-
-    // Change value
-    rerender({ value: 'updated', delay: 500 });
-
-    // Should still be initial value because timer hasn't fired yet
-    expect(result.current).toBe('initial');
-
-    // Advance timers to trigger update
-    act(() => {
-      vi.advanceTimersByTime(500);
-    });
-
-    // Should now be updated value
-    expect(result.current).toBe('updated');
-  });
-
-  it('should respect different delays', () => {
-    const { result, rerender } = renderHook(({ value, delay }) => useDebounce(value, delay), {
-      initialProps: { value: 'initial', delay: 1000 },
-    });
-
-    expect(result.current).toBe('initial');
-
-    // Change value
-    rerender({ value: 'updated', delay: 1000 });
-
-    // Should still be initial value because timer hasn't fired yet
-    expect(result.current).toBe('initial');
-
-    // Advance timers only partway
-    act(() => {
-      vi.advanceTimersByTime(500);
-    });
-
-    // Should still be initial value 
-    expect(result.current).toBe('initial');
-
-    // Advance remaining time
-    act(() => {
-      vi.advanceTimersByTime(500);
-    });
-
-    // Should now be updated value
-    expect(result.current).toBe('updated');
-  });
-
-  it('should handle rapid updates correctly', () => {
+  it('should reset the timer if the value changes before the delay', () => {
     const { result, rerender } = renderHook(({ value, delay }) => useDebounce(value, delay), {
       initialProps: { value: 'initial', delay: 500 },
     });
 
     expect(result.current).toBe('initial');
 
-    // Rapidly update value multiple times
-    rerender({ value: 'updated1', delay: 500 });
-    rerender({ value: 'updated2', delay: 500 });
-    rerender({ value: 'updated3', delay: 500 });
-
-    // Should still be initial value because timers keep getting reset
+    rerender({ value: 'first change', delay: 500 });
+    act(() => {
+      vi.advanceTimersByTime(200);
+    });
     expect(result.current).toBe('initial');
 
-    // Advance timers to trigger the final update
+    rerender({ value: 'second change', delay: 500 }); // Change again, timer should reset
     act(() => {
-      vi.advanceTimersByTime(500);
+      vi.advanceTimersByTime(400); // Not enough for the second change
+    });
+    expect(result.current).toBe('initial'); // Still initial
+
+    act(() => {
+      vi.advanceTimersByTime(100); // Now enough for the second change
+    });
+    expect(result.current).toBe('second change');
+  });
+
+  it('should handle a delay of 0 correctly (immediate update)', () => {
+    const { result, rerender } = renderHook(({ value, delay }) => useDebounce(value, delay), {
+      initialProps: { value: 'initial', delay: 0 },
     });
 
-    // Should now be the final updated value
-    expect(result.current).toBe('updated3');
+    expect(result.current).toBe('initial');
+
+    act(() => {
+      rerender({ value: 'new value', delay: 0 });
+    });
+    expect(result.current).toBe('new value'); // Should update immediately
+  });
+
+  it('should handle unmounting correctly (cleanup timer)', () => {
+    const { result, rerender, unmount } = renderHook(
+      ({ value, delay }) => useDebounce(value, delay),
+      {
+        initialProps: { value: 'initial', delay: 500 },
+      }
+    );
+
+    rerender({ value: 'changed', delay: 500 });
+    unmount();
+
+    act(() => {
+      vi.advanceTimersByTime(500); // Advance time, but timer should have been cleared
+    });
+
+    expect(result.current).toBe('initial'); // Should not update after unmount
   });
 });

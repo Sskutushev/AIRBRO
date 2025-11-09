@@ -5,12 +5,18 @@ import { useTranslation } from 'react-i18next';
 const ProblemSection: React.FC = () => {
   const { t } = useTranslation('problem');
 
-  const problems = t('problems', { returnObjects: true }) as { emoji: string; title: string; description: string; stat: string; color: string; }[];
+  const problems = t('problems', { returnObjects: true }) as {
+    emoji: string;
+    title: string;
+    description: string;
+    stat: string;
+    color: string;
+  }[];
 
   return (
     <section id="problem" className="py-20 bg-gradient-to-b from-bg-primary to-bg-secondary">
       <div className="container mx-auto px-4">
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -57,7 +63,7 @@ const ProblemSection: React.FC = () => {
         </div>
 
         {/* Transition element */}
-        <motion.div 
+        <motion.div
           className="mt-20 text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -66,7 +72,7 @@ const ProblemSection: React.FC = () => {
         >
           <div className="inline-flex items-center text-text-secondary">
             <span>{t('transition')}</span>
-            <motion.div 
+            <motion.div
               className="ml-2"
               animate={{ x: [0, 5, 0] }}
               transition={{ repeat: Infinity, duration: 1.5 }}

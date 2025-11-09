@@ -32,11 +32,7 @@ const SolutionDetailModal: React.FC<SolutionDetailModalProps> = ({ solution, isO
       <div className="max-w-4xl mx-auto">
         <div className="flex flex-col md:flex-row items-start gap-6 mb-8">
           <div className="w-full md:w-[500px] h-[250px] flex-shrink-0">
-            <img 
-              src={solution.icon} 
-              alt={solution.name} 
-              className="w-full h-full object-contain"
-            />
+            <img src={solution.icon} alt={solution.name} className="w-full h-full object-contain" />
           </div>
           <div className="flex-1 w-full">
             <h2 className="text-3xl font-bold text-text-primary mb-2">{solution.name}</h2>
@@ -61,8 +57,8 @@ const SolutionDetailModal: React.FC<SolutionDetailModalProps> = ({ solution, isO
           <div className="flex flex-wrap space-x-4">
             <button
               className={`py-2 px-4 font-medium ${
-                activeTab === 'solution' 
-                  ? 'text-primary-coral border-b-2 border-primary-coral' 
+                activeTab === 'solution'
+                  ? 'text-primary-coral border-b-2 border-primary-coral'
                   : 'text-text-secondary hover:text-text-primary'
               }`}
               onClick={() => setActiveTab('solution')}
@@ -71,8 +67,8 @@ const SolutionDetailModal: React.FC<SolutionDetailModalProps> = ({ solution, isO
             </button>
             <button
               className={`py-2 px-4 font-medium ${
-                activeTab === 'benefits' 
-                  ? 'text-primary-coral border-b-2 border-primary-coral' 
+                activeTab === 'benefits'
+                  ? 'text-primary-coral border-b-2 border-primary-coral'
                   : 'text-text-secondary hover:text-text-primary'
               }`}
               onClick={() => setActiveTab('benefits')}
@@ -90,7 +86,9 @@ const SolutionDetailModal: React.FC<SolutionDetailModalProps> = ({ solution, isO
             </div>
             <div>
               <h3 className="text-2xl font-bold text-text-primary mb-4">Подробное решение</h3>
-              <p className="text-text-secondary text-lg leading-relaxed">{solution.solutionDetails}</p>
+              <p className="text-text-secondary text-lg leading-relaxed">
+                {solution.solutionDetails}
+              </p>
             </div>
           </div>
         )}

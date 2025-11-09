@@ -12,9 +12,11 @@ const AccountPage: React.FC = () => {
       <div className="min-h-screen bg-bg-secondary py-12 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-text-primary mb-4">Доступ запрещен</h1>
-          <p className="text-text-secondary mb-8">Пожалуйста, войдите в свой аккаунт для доступа к личному кабинету</p>
-          <Link 
-            to="/auth" 
+          <p className="text-text-secondary mb-8">
+            Пожалуйста, войдите в свой аккаунт для доступа к личному кабинету
+          </p>
+          <Link
+            to="/auth"
             className="inline-block bg-gradient-to-r from-primary-electric to-primary-violet text-white px-6 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity"
           >
             Войти в аккаунт
@@ -48,7 +50,7 @@ const AccountPage: React.FC = () => {
                 </div>
               </div>
             </div>
-            
+
             {/* Navigation */}
             <div className="border-b border-gray-200">
               <nav className="flex space-x-8 px-6">
@@ -69,7 +71,7 @@ const AccountPage: React.FC = () => {
                 </button>
               </nav>
             </div>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-6">
               {/* Main Content */}
               <div className="lg:col-span-2 space-y-6">
@@ -86,7 +88,7 @@ const AccountPage: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="bg-gradient-to-br from-primary-violet/10 to-primary-violet/5 p-5 rounded-xl">
                     <div className="flex items-center">
                       <div className="w-10 h-10 bg-primary-violet/20 rounded-lg flex items-center justify-center">
@@ -98,7 +100,7 @@ const AccountPage: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="bg-gradient-to-br from-primary-coral/10 to-primary-coral/5 p-5 rounded-xl">
                     <div className="flex items-center">
                       <div className="w-10 h-10 bg-primary-coral/20 rounded-lg flex items-center justify-center">
@@ -111,7 +113,7 @@ const AccountPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Active Products */}
                 <div className="bg-white border border-gray-200 rounded-xl p-6">
                   <h2 className="text-xl font-bold text-text-primary mb-4">Активные продукты</h2>
@@ -131,7 +133,7 @@ const AccountPage: React.FC = () => {
                         <p className="text-text-secondary text-sm">Активна до 05.12.2025</p>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center justify-between p-4 bg-bg-primary rounded-lg">
                       <div className="flex items-center">
                         <div className="w-12 h-12 bg-primary-violet/10 rounded-lg flex items-center justify-center mr-4">
@@ -150,7 +152,7 @@ const AccountPage: React.FC = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Sidebar */}
               <div className="space-y-6">
                 {/* Quick Actions */}
@@ -171,7 +173,7 @@ const AccountPage: React.FC = () => {
                     </button>
                   </div>
                 </div>
-                
+
                 {/* Billing */}
                 <div className="bg-white border border-gray-200 rounded-xl p-6">
                   <h2 className="text-lg font-bold text-text-primary mb-4">Платежная информация</h2>
@@ -201,10 +203,10 @@ const AccountPage: React.FC = () => {
                     Обновить платежную информацию
                   </button>
                 </div>
-                
+
                 {/* Logout */}
                 <div className="bg-white border border-gray-200 rounded-xl p-6">
-                  <button 
+                  <button
                     onClick={() => {
                       logout();
                       window.location.href = '/';
