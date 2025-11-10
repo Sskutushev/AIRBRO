@@ -103,10 +103,13 @@ class APIClient {
     this.token = storage.get<string>('authToken') || null; // Load token from storage on init
 
     // Check if we should use mock API (for development/testing)
+    // Don't use mock API in test environment
     this.useMockAPI =
-      import.meta.env.VITE_USE_MOCK_API === 'true' ||
-      (import.meta.env.PROD && !import.meta.env.VITE_API_URL) ||
-      (typeof window !== 'undefined' && window.location.hostname === 'localhost');
+      (import.meta.env.VITE_USE_MOCK_API === 'true' && typeof process === 'undefined') ||
+      (typeof process !== 'undefined' &&
+        process.env.NODE_ENV !== 'test' &&
+        typeof window !== 'undefined' &&
+        window.location.hostname === 'localhost');
   }
 
   /**
