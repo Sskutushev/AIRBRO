@@ -104,12 +104,8 @@ class APIClient {
 
     // Check if we should use mock API (for development/testing)
     // Don't use mock API in test environment
-    // Use mock API only in development with explicit flag or on localhost
-    // Use mock API only in development when explicitly enabled and not in test environment
-    this.useMockAPI =
-      import.meta.env.VITE_USE_MOCK_API === 'true' &&
-      import.meta.env.DEV === true &&
-      typeof process === 'undefined';
+    // Use mock API only in development when explicitly enabled
+    this.useMockAPI = import.meta.env.VITE_USE_MOCK_API === 'true' && import.meta.env.DEV === true;
   }
 
   /**
