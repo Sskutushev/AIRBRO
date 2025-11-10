@@ -19,7 +19,11 @@ const PORT = process.env.PORT || 3000;
 
 // CORS configuration
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: [
+    process.env.FRONTEND_URL || 'http://localhost:5173',
+    'https://airbro-mrqs.vercel.app',
+    'http://localhost:5173',
+  ],
   credentials: true,
 };
 app.use(cors(corsOptions));
