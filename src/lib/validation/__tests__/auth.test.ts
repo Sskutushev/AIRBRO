@@ -75,13 +75,11 @@ describe('Auth Validation Schemas', () => {
       telegram: '@testuser',
       password: 'StrongPassword123!',
       confirmPassword: 'StrongPassword123!',
-      // agreement: true, // Removed as per UI changes
+      agreement: true,
     };
 
     it('should validate a correct registration input', () => {
-      // Remove agreement from baseValidRegister for this test
-      const { agreement, ...validRegisterWithoutAgreement } = baseValidRegister;
-      expect(() => registerSchema.parse(validRegisterWithoutAgreement)).not.toThrow();
+      expect(() => registerSchema.parse(baseValidRegister)).not.toThrow();
     });
 
     it('should invalidate registration with missing name', () => {
@@ -158,7 +156,10 @@ describe('Auth Validation Schemas', () => {
     });
 
     it('should invalidate registration when passwords do not match', () => {
-      const invalidRegister = { ...baseValidRegister, confirmPassword: 'wrongpassword' };
+      const invalidRegister = { 
+        ...baseValidRegister, 
+        confirmPassword: 'wrongpassword' 
+      };
       expect(() => registerSchema.parse(invalidRegister)).toThrow('Пароли не совпадают');
     });
   });

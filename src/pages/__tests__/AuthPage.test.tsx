@@ -144,6 +144,9 @@ describe('AuthPage', () => {
     fireEvent.change(screen.getByLabelText(/Подтвердите пароль/i), {
       target: { value: 'StrongPass123!' },
     });
+    // Check the agreement checkbox - it should be present as a checkbox now
+    const agreementCheckbox = screen.getByRole('checkbox');
+    fireEvent.click(agreementCheckbox);
     fireEvent.click(screen.getByRole('button', { name: /Создать аккаунт/i }));
 
     await waitFor(() => {
@@ -153,6 +156,7 @@ describe('AuthPage', () => {
         telegram: '@johndoe',
         password: 'StrongPass123!',
         confirmPassword: 'StrongPass123!',
+        agreement: true,
       });
       expect(mockNavigate).toHaveBeenCalledWith('/account');
       // showToast.success is called inside useRegister hook
@@ -173,6 +177,9 @@ describe('AuthPage', () => {
     fireEvent.change(screen.getByLabelText(/Подтвердите пароль/i), {
       target: { value: 'StrongPass123!' },
     });
+    // Check the agreement checkbox
+    const agreementCheckbox = screen.getByRole('checkbox');
+    fireEvent.click(agreementCheckbox);
     fireEvent.click(screen.getByRole('button', { name: /Создать аккаунт/i }));
 
     await waitFor(() => {
