@@ -14,26 +14,26 @@ export const getCart = async (req: Request, res: Response) => {
             id: true,
             name: true,
             price: true,
-            description: true
-          }
-        }
-      }
+            description: true,
+          },
+        },
+      },
     });
 
     // Calculate total
-    const total = cartItems.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+    const total = cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
 
-    res.status(200).json({
-      items: cartItems.map(item => ({
+    return res.status(200).json({
+      items: cartItems.map((item) => ({
         id: item.id,
         product: item.product,
-        quantity: item.quantity
+        quantity: item.quantity,
       })),
-      total
+      total,
     });
   } catch (error) {
     console.error('Get cart error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };
 
@@ -44,7 +44,7 @@ export const addToCart = async (req: Request, res: Response) => {
 
     // Check if product exists
     const product = await prisma.product.findUnique({
-      where: { id: productId }
+      where: { id: productId },
     });
 
     if (!product) {
@@ -60,9 +60,9 @@ export const addToCart = async (req: Request, res: Response) => {
       where: {
         userId_productId: {
           userId,
-          productId
-        }
-      }
+          productId,
+        },
+      },
     });
 
     if (existingCartItem) {
@@ -74,14 +74,14 @@ export const addToCart = async (req: Request, res: Response) => {
       data: {
         userId,
         productId,
-        quantity
-      }
+        quantity,
+      },
     });
 
-    res.status(200).json({ cartItem });
+    return res.status(200).json({ cartItem });
   } catch (error) {
     console.error('Add to cart error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };
 
@@ -94,8 +94,8 @@ export const removeFromCart = async (req: Request, res: Response) => {
     const item = await prisma.cartItem.findFirst({
       where: {
         id: itemId,
-        userId
-      }
+        userId,
+      },
     });
 
     if (!item) {
@@ -103,13 +103,13 @@ export const removeFromCart = async (req: Request, res: Response) => {
     }
 
     await prisma.cartItem.delete({
-      where: { id: itemId }
+      where: { id: itemId },
     });
 
-    res.status(200).json({ message: 'Товар удален из корзины' });
+    return res.status(200).json({ message: 'Товар удален из корзины' });
   } catch (error) {
     console.error('Remove from cart error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };
 
@@ -118,12 +118,12 @@ export const clearCart = async (req: Request, res: Response) => {
     const userId = (req as any).userId;
 
     await prisma.cartItem.deleteMany({
-      where: { userId }
+      where: { userId },
     });
 
-    res.status(200).json({ message: 'Корзина очищена' });
+    return res.status(200).json({ message: 'Корзина очищена' });
   } catch (error) {
     console.error('Clear cart error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };

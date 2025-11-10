@@ -7,18 +7,19 @@ export const validate = (schema: ZodSchema) => {
       schema.parse({
         body: req.body,
         query: req.query,
-        params: req.params
+        params: req.params,
       });
       next();
+      return;
     } catch (error: any) {
       const errors = error.errors?.map((err: any) => ({
         field: err.path.join('.'),
-        message: err.message
+        message: err.message,
       })) || [{ field: 'validation', message: 'Invalid request format' }];
-      
-      return res.status(400).json({ 
-        error: 'Validation failed', 
-        details: errors 
+
+      return res.status(400).json({
+        error: 'Validation failed',
+        details: errors,
       });
     }
   };

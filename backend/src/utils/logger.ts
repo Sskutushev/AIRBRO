@@ -1,6 +1,6 @@
 import winston from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
-import { sendTelegramNotification } from '../config/telegram';
+// import { sendTelegramNotification } from '../config/telegram';
 
 // Custom format
 const customFormat = winston.format.combine(
@@ -17,10 +17,7 @@ const transports: winston.transport[] = [];
 if (process.env.NODE_ENV !== 'production') {
   transports.push(
     new winston.transports.Console({
-      format: winston.format.combine(
-        winston.format.colorize(),
-        winston.format.simple()
-      ),
+      format: winston.format.combine(winston.format.colorize(), winston.format.simple()),
     })
   );
 }
@@ -64,10 +61,10 @@ export const logError = (message: string, error?: any, context?: any) => {
     error: redactSensitive(error),
     context: redactSensitive(context),
   });
-  
+
   // Send Telegram notification for errors
-  const errorMessage = `🚨 **Ошибка на сервере:**\n${message}\n${error ? error.stack || error.message : ''}`;
-  sendTelegramNotification(errorMessage).catch(console.error);
+  // const errorMessage = `🚨 **Ошибка на сервере:**\n${message}\n${error ? error.stack || error.message : ''}`;
+  // sendTelegramNotification(errorMessage).catch(console.error);
 };
 
 export const logWarn = (message: string, meta?: any) => {
@@ -96,7 +93,7 @@ function redactSensitive(obj: any): any {
 
   for (const [key, value] of Object.entries(obj)) {
     const keyLower = key.toLowerCase();
-    const isSensitive = sensitiveKeys.some(s => keyLower.includes(s));
+    const isSensitive = sensitiveKeys.some((s) => keyLower.includes(s));
 
     if (isSensitive) {
       (redacted as any)[key] = '[REDACTED]';

@@ -4,13 +4,13 @@ import express from 'express';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import cookieParser from 'cookie-parser';
-import { csrfProtection, csrfTokenHandler } from './middleware/csrf';
+// import { csrfProtection, csrfTokenHandler } from './middleware/csrf';
 import authRoutes from './routes/auth';
 import productRoutes from './routes/products';
 import cartRoutes from './routes/cart';
 import paymentRoutes from './routes/payments';
 import userRoutes from './routes/user';
-import telegramRoutes from './routes/telegram';
+// import telegramRoutes from './routes/telegram';
 import logger from './utils/logger';
 
 // Initialize Express app
@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 3000;
 // CORS configuration
 const corsOptions = {
   origin: process.env.FRONTEND_URL || 'http://localhost:5173',
-  credentials: true
+  credentials: true,
 };
 app.use(cors(corsOptions));
 
@@ -33,22 +33,22 @@ app.use(express.urlencoded({ extended: true }));
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // Limit each IP to 100 requests per windowMs
-  message: 'Too many requests from this IP, please try again later.'
+  message: 'Too many requests from this IP, please try again later.',
 });
 app.use(limiter);
-app.use(csrfProtection);
-app.use(csrfTokenHandler);
+// app.use(csrfProtection);
+// app.use(csrfTokenHandler);
 
 // API routes
-app.get('/api/csrf-token', (req, res) => {
-  res.json({ csrfToken: req.csrfToken() });
-});
+// app.get('/api/csrf-token', (req, res) => {
+//   res.json({ csrfToken: req.csrfToken() });
+// });
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/user', userRoutes);
-app.use('/api/telegram', telegramRoutes);
+// app.use('/api/telegram', telegramRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -63,10 +63,10 @@ app.use('/api/*', (req, res) => {
 // Error handling middleware
 app.use((err: any, req: express.Request, res: express.Response, _next: express.NextFunction) => {
   // CSRF error handling
-  if (err.code === 'EBADCSRFTOKEN') {
-    logger.warn('CSRF token validation failed', { url: req.originalUrl, ip: req.ip });
-    return res.status(403).json({ error: 'Invalid CSRF token' });
-  }
+  // if (err.code === 'EBADCSRFTOKEN') {
+  //   logger.warn('CSRF token validation failed', { url: req.originalUrl, ip: req.ip });
+  //   return res.status(403).json({ error: 'Invalid CSRF token' });
+  // }
 
   // General error logging
   if (err instanceof Error) {
@@ -74,7 +74,7 @@ app.use((err: any, req: express.Request, res: express.Response, _next: express.N
   } else {
     logger.error('Unhandled server error (non-Error object)', { error: err });
   }
-  
+
   res.status(500).json({ error: 'Something went wrong!' });
 });
 

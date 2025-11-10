@@ -93,7 +93,7 @@ export class APIError extends Error {
 class APIClient {
   public baseURL: string; // Made public for testing purposes
   private token: string | null = null;
-  private csrfToken: string | null = null; // For CSRF protection
+  // private csrfToken: string | null = null; // For CSRF protection
 
   constructor() {
     this.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
@@ -129,22 +129,22 @@ class APIClient {
    * @returns {Promise<string>} The CSRF token.
    * @throws {APIError} If fetching the token fails.
    */
-  private async fetchCSRFToken(): Promise<string> {
-    console.log('Fetching CSRF token from:', `${this.baseURL}/api/csrf-token`);
-    try {
-      const response = await fetch(`${this.baseURL}/api/csrf-token`, { credentials: 'include' });
-      if (!response.ok) {
-        throw new APIError('Failed to fetch CSRF token', response.status);
-      }
-      const data = await response.json();
-      this.csrfToken = data.csrfToken;
-      console.log('CSRF token fetched:', this.csrfToken);
-      return this.csrfToken || '';
-    } catch (error) {
-      console.error('Error fetching CSRF token:', error);
-      throw error;
-    }
-  }
+  // private async fetchCSRFToken(): Promise<string> {
+  //   console.log('Fetching CSRF token from:', `${this.baseURL}/api/csrf-token`);
+  //   try {
+  //     const response = await fetch(`${this.baseURL}/api/csrf-token`, { credentials: 'include' });
+  //     if (!response.ok) {
+  //       throw new APIError('Failed to fetch CSRF token', response.status);
+  //     }
+  //     const data = await response.json();
+  //     this.csrfToken = data.csrfToken;
+  //     console.log('CSRF token fetched:', this.csrfToken);
+  //     return this.csrfToken || '';
+  //   } catch (error) {
+  //     console.error('Error fetching CSRF token:', error);
+  //     throw error;
+  //   }
+  // }
 
   /**
    * Handles the HTTP response, checking for errors and parsing JSON.
@@ -168,8 +168,8 @@ class APIClient {
       this.setToken(null); // Clear token on 401
       showToast.error('Сессия истекла. Пожалуйста, войдите снова.');
       // Optionally, redirect to login page
-    } else if (response.status === 403 && errorData.code === 'EBADCSRFTOKEN') {
-      showToast.error('Ошибка безопасности (CSRF). Пожалуйста, попробуйте еще раз.');
+      // } else if (response.status === 403 && errorData.code === 'EBADCSRFTOKEN') {
+      //   showToast.error('Ошибка безопасности (CSRF). Пожалуйста, попробуйте еще раз.');
     } else {
       showToast.error(errorMessage);
     }
@@ -206,29 +206,29 @@ class APIClient {
     }
 
     // Add CSRF token for non-GET requests
-    const isMutatingRequest =
-      options.method &&
-      options.method !== 'GET' &&
-      options.method !== 'HEAD' &&
-      options.method !== 'OPTIONS';
-    if (isMutatingRequest) {
-      if (!this.csrfToken) {
-        console.log('CSRF token missing for mutating request, fetching...');
-        try {
-          await this.fetchCSRFToken(); // Fetch if missing
-        } catch (error) {
-          console.error('Failed to fetch CSRF token before request:', error);
-          throw new APIError('Failed to obtain security token.', 0);
-        }
-      }
-      if (this.csrfToken) {
-        (headers as Record<string, string>)['X-CSRF-Token'] = this.csrfToken;
-        console.log('X-CSRF-Token header added.');
-      } else {
-        console.warn('CSRF token is missing for a mutating request despite attempt to fetch.');
-        throw new APIError('Missing security token for request.', 0);
-      }
-    }
+    // const isMutatingRequest =
+    //   options.method &&
+    //   options.method !== 'GET' &&
+    //   options.method !== 'HEAD' &&
+    //   options.method !== 'OPTIONS';
+    // if (isMutatingRequest) {
+    //   if (!this.csrfToken) {
+    //     console.log('CSRF token missing for mutating request, fetching...');
+    //     try {
+    //       await this.fetchCSRFToken(); // Fetch if missing
+    //     } catch (error) {
+    //       console.error('Failed to fetch CSRF token before request:', error);
+    //       throw new APIError('Failed to obtain security token.', 0);
+    //     }
+    //   }
+    //   if (this.csrfToken) {
+    //     (headers as Record<string, string>)['X-CSRF-Token'] = this.csrfToken;
+    //     console.log('X-CSRF-Token header added.');
+    //   } else {
+    //     console.warn('CSRF token is missing for a mutating request despite attempt to fetch.');
+    //     throw new APIError('Missing security token for request.', 0);
+    //   }
+    // }
 
     try {
       const response = await fetch(`${this.baseURL}${endpoint}`, {
@@ -238,17 +238,17 @@ class APIClient {
       });
       return this.handleResponse<T>(response);
     } catch (error) {
-      if (
-        error instanceof APIError &&
-        error.statusCode === 403 &&
-        error.code === 'EBADCSRFTOKEN' &&
-        retryOnCsrf
-      ) {
-        console.warn('CSRF token invalid, attempting to refresh and retry...');
-        this.csrfToken = null; // Invalidate current token
-        await this.fetchCSRFToken(); // Fetch a new one
-        return this.request<T>(endpoint, options, false); // Retry once, without further retries
-      }
+      // if (
+      //   error instanceof APIError &&
+      //   error.statusCode === 403 &&
+      //   error.code === 'EBADCSRFTOKEN' &&
+      //   retryOnCsrf
+      // ) {
+      //   console.warn('CSRF token invalid, attempting to refresh and retry...');
+      //   this.csrfToken = null; // Invalidate current token
+      //   await this.fetchCSRFToken(); // Fetch a new one
+      //   return this.request<T>(endpoint, options, false); // Retry once, without further retries
+      // }
       if (error instanceof APIError) {
         throw error;
       }

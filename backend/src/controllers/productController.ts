@@ -4,13 +4,13 @@ import prisma from '../config/database';
 export const getProducts = async (req: Request, res: Response) => {
   try {
     const { tier, isActive } = req.query;
-    
+
     const whereClause: any = {};
-    
+
     if (tier !== undefined) {
       whereClause.tier = Number(tier);
     }
-    
+
     if (isActive !== undefined) {
       whereClause.isActive = isActive === 'true';
     }
@@ -25,20 +25,20 @@ export const getProducts = async (req: Request, res: Response) => {
         price: true,
         interval: true,
         features: true,
-        tier: true
-      }
+        tier: true,
+      },
     });
 
     // Parse features JSON
-    const parsedProducts = products.map(product => ({
+    const parsedProducts = products.map((product) => ({
       ...product,
-      features: JSON.parse(product.features) as string[]
+      features: JSON.parse(product.features) as string[],
     }));
 
-    res.status(200).json({ products: parsedProducts });
+    return res.status(200).json({ products: parsedProducts });
   } catch (error) {
     console.error('Get products error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };
 
@@ -56,20 +56,20 @@ export const getProductBySlug = async (req: Request, res: Response) => {
         price: true,
         interval: true,
         features: true,
-        tier: true
-      }
+        tier: true,
+      },
     });
 
     if (!product) {
       return res.status(404).json({ error: 'Product not found' });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       ...product,
-      features: JSON.parse(product.features) as string[]
+      features: JSON.parse(product.features) as string[],
     });
   } catch (error) {
     console.error('Get product by slug error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };

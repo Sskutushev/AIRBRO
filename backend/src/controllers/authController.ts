@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import { UserRegistration, UserLogin } from '../models/user';
 import { generateToken } from '../config/jwt';
 import prisma from '../config/database';
-import { sendTelegramNotification } from '../config/telegram';
+// import { sendTelegramNotification } from '../config/telegram';
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -12,16 +12,13 @@ export const register = async (req: Request, res: Response) => {
     // Check if user already exists
     const existingUser = await prisma.user.findFirst({
       where: {
-        OR: [
-          { email },
-          { telegram }
-        ]
-      }
+        OR: [{ email }, { telegram }],
+      },
     });
 
     if (existingUser) {
-      return res.status(409).json({ 
-        error: 'User with this email or telegram already exists' 
+      return res.status(409).json({
+        error: 'User with this email or telegram already exists',
       });
     }
 
@@ -35,40 +32,40 @@ export const register = async (req: Request, res: Response) => {
         email,
         passwordHash,
         name,
-        telegram
+        telegram,
       },
       select: {
         id: true,
         email: true,
         name: true,
         telegram: true,
-        createdAt: true
-      }
+        createdAt: true,
+      },
     });
 
     // Generate JWT token
     const token = generateToken({ userId: user.id });
 
     // Send Telegram notification about new registration
-    try {
-      await sendTelegramNotification(
-        `🆕 Новый пользователь\n\n` +
-        `👤 Имя: ${user.name}\n` +
-        `📧 Email: ${user.email}\n` +
-        `💬 Telegram: ${user.telegram}\n` +
-        `📅 Дата: ${user.createdAt}`
-      );
-    } catch (notificationError) {
-      console.error('Failed to send Telegram notification:', notificationError);
-    }
+    // try {
+    //   await sendTelegramNotification(
+    //     `🆕 Новый пользователь\n\n` +
+    //     `👤 Имя: ${user.name}\n` +
+    //     `📧 Email: ${user.email}\n` +
+    //     `💬 Telegram: ${user.telegram}\n` +
+    //     `📅 Дата: ${user.createdAt}`
+    //   );
+    // } catch (notificationError) {
+    //   console.error('Failed to send Telegram notification:', notificationError);
+    // }
 
-    res.status(201).json({
+    return res.status(201).json({
       user,
-      token
+      token,
     });
   } catch (error) {
     console.error('Registration error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };
 
@@ -84,8 +81,8 @@ export const login = async (req: Request, res: Response) => {
         email: true,
         name: true,
         telegram: true,
-        passwordHash: true
-      }
+        passwordHash: true,
+      },
     });
 
     if (!user) {
@@ -104,13 +101,13 @@ export const login = async (req: Request, res: Response) => {
     // Return user data without password hash
     const { passwordHash, ...userWithoutPassword } = user;
 
-    res.status(200).json({
+    return res.status(200).json({
       user: userWithoutPassword,
-      token
+      token,
     });
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };
 
@@ -125,17 +122,17 @@ export const getMe = async (req: Request, res: Response) => {
         email: true,
         name: true,
         telegram: true,
-        createdAt: true
-      }
+        createdAt: true,
+      },
     });
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    res.status(200).json(user);
+    return res.status(200).json(user);
   } catch (error) {
     console.error('Get me error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };

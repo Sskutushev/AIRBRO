@@ -12,18 +12,18 @@ export const getProfile = async (req: Request, res: Response) => {
         email: true,
         name: true,
         telegram: true,
-        createdAt: true
-      }
+        createdAt: true,
+      },
     });
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    res.status(200).json(user);
+    return res.status(200).json(user);
   } catch (error) {
     console.error('Get profile error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };
 
@@ -37,8 +37,8 @@ export const updateProfile = async (req: Request, res: Response) => {
       const existingUser = await prisma.user.findFirst({
         where: {
           telegram,
-          id: { not: userId }  // Exclude current user
-        }
+          id: { not: userId }, // Exclude current user
+        },
       });
 
       if (existingUser) {
@@ -50,21 +50,21 @@ export const updateProfile = async (req: Request, res: Response) => {
       where: { id: userId },
       data: {
         ...(name && { name }),
-        ...(telegram && { telegram })
+        ...(telegram && { telegram }),
       },
       select: {
         id: true,
         email: true,
         name: true,
         telegram: true,
-        createdAt: true
-      }
+        createdAt: true,
+      },
     });
 
-    res.status(200).json({ user });
+    return res.status(200).json({ user });
   } catch (error) {
     console.error('Update profile error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };
 
@@ -78,29 +78,29 @@ export const getSubscriptions = async (req: Request, res: Response) => {
         product: {
           select: {
             name: true,
-            description: true
-          }
-        }
+            description: true,
+          },
+        },
       },
-      orderBy: { createdAt: 'desc' }
+      orderBy: { createdAt: 'desc' },
     });
 
-    res.status(200).json({
-      subscriptions: subscriptions.map(sub => ({
+    return res.status(200).json({
+      subscriptions: subscriptions.map((sub) => ({
         id: sub.id,
         product: {
           name: sub.product.name,
-          description: sub.product.description
+          description: sub.product.description,
         },
         status: sub.status,
         startDate: sub.startDate,
         endDate: sub.endDate,
-        nextPaymentDate: sub.nextPaymentDate
-      }))
+        nextPaymentDate: sub.nextPaymentDate,
+      })),
     });
   } catch (error) {
     console.error('Get subscriptions error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };
 
@@ -110,22 +110,22 @@ export const getPayments = async (req: Request, res: Response) => {
 
     const payments = await prisma.payment.findMany({
       where: { userId },
-      orderBy: { createdAt: 'desc' }
+      orderBy: { createdAt: 'desc' },
     });
 
-    res.status(200).json({
-      payments: payments.map(payment => ({
+    return res.status(200).json({
+      payments: payments.map((payment) => ({
         id: payment.id,
         amount: payment.amount,
         currency: payment.currency,
         status: payment.status,
         paymentMethod: payment.paymentMethod,
-        createdAt: payment.createdAt
-      }))
+        createdAt: payment.createdAt,
+      })),
     });
   } catch (error) {
     console.error('Get payments error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };
 
@@ -138,8 +138,8 @@ export const cancelSubscription = async (req: Request, res: Response) => {
     const subscription = await prisma.subscription.findFirst({
       where: {
         id,
-        userId
-      }
+        userId,
+      },
     });
 
     if (!subscription) {
@@ -150,19 +150,19 @@ export const cancelSubscription = async (req: Request, res: Response) => {
       where: { id },
       data: {
         status: 'cancelled',
-        cancelledAt: new Date()
-      }
+        cancelledAt: new Date(),
+      },
     });
 
-    res.status(200).json({
+    return res.status(200).json({
       subscription: {
         id: updatedSubscription.id,
         status: updatedSubscription.status,
-        cancelledAt: updatedSubscription.cancelledAt
-      }
+        cancelledAt: updatedSubscription.cancelledAt,
+      },
     });
   } catch (error) {
     console.error('Cancel subscription error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 };
