@@ -31,8 +31,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@v3
+        uses: snyk/actions/node@v4
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
@@ -63,7 +68,7 @@ jobs:
           fetch-depth: 0
 
       - name: TruffleHog
-        uses: trufflesecurity/trufflehog@main
+        uses: trufflesecurity/trufflehog@v3.8.0  # Use specific version instead of main
         with:
           path: ./
           base: ${{ github.event.repository.default_branch }}
