@@ -110,5 +110,11 @@
     "vite": "^7.1.7",
     "vite-plugin-pwa": "^1.1.0",
     "vitest": "^4.0.8"
+  },
+  "overrides": {
+    "esbuild": "^0.26.0",
+    "path-to-regexp": "^6.2.3",
+    "node-fetch": "^2.6.7",
+    "undici": "^5.28.6"
   }
 }
