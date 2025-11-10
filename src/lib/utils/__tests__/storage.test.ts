@@ -121,9 +121,9 @@ describe('StorageService', () => {
 
   it('should warn if localStorage is not available during set', () => {
     const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-    const originalWindow = global.window;
+    const originalWindow = (globalThis as any).window;
     // Temporarily make window.localStorage undefined
-    Object.defineProperty(global, 'window', {
+    Object.defineProperty(globalThis, 'window', {
       value: { localStorage: undefined },
       writable: true,
     });
@@ -131,13 +131,13 @@ describe('StorageService', () => {
     storage.set(TEST_KEY, TEST_VALUE);
     expect(consoleWarnSpy).toHaveBeenCalledWith('localStorage is not available.');
     consoleWarnSpy.mockRestore();
-    global.window = originalWindow; // Restore original window
+    (globalThis as any).window = originalWindow; // Restore original window
   });
 
   it('should warn if localStorage is not available during get', () => {
     const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-    const originalWindow = global.window;
-    Object.defineProperty(global, 'window', {
+    const originalWindow = (globalThis as any).window;
+    Object.defineProperty(globalThis, 'window', {
       value: { localStorage: undefined },
       writable: true,
     });
@@ -146,6 +146,6 @@ describe('StorageService', () => {
     expect(consoleWarnSpy).toHaveBeenCalledWith('localStorage is not available.');
     expect(retrieved).toBeNull();
     consoleWarnSpy.mockRestore();
-    global.window = originalWindow;
+    (globalThis as any).window = originalWindow;
   });
 });

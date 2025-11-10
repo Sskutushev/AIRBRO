@@ -9,8 +9,6 @@ import PaymentPage from '../PaymentPage';
 import { useAuth } from '../../context/AuthContext';
 import { useSubscription } from '../../context/SubscriptionContext';
 import * as paymentService from '../../services/paymentService'; // Import all from paymentService
-import { QueryClientProvider } from '@tanstack/react-query';
-import { queryClient } from '../../lib/queryClient';
 
 // Mock react-router-dom's useNavigate and Link
 const mockNavigate = vi.fn();
@@ -63,14 +61,14 @@ describe('PaymentPage', () => {
   beforeEach(() => {
     mockNavigate.mockClear();
     mockSubscribeToPlan.mockClear();
-    (useAuth as vi.Mock).mockReturnValue({ user: mockUser });
-    (useSubscription as vi.Mock).mockReturnValue({
+    (useAuth as any).mockReturnValue({ user: mockUser });
+    (useSubscription as any).mockReturnValue({
       subscriptionPlans: mockSubscriptionPlans,
       subscribeToPlan: mockSubscribeToPlan,
     });
-    (paymentService.createPaymentIntent as vi.Mock).mockClear();
-    (paymentService.confirmPayment as vi.Mock).mockClear();
-    (paymentService.createTelegramPayment as vi.Mock).mockClear();
+    (paymentService.createPaymentIntent as any).mockClear();
+    (paymentService.confirmPayment as any).mockClear();
+    (paymentService.createTelegramPayment as any).mockClear();
     // Mock window.location.href for Telegram payment redirect
     Object.defineProperty(window, 'location', {
       writable: true,
@@ -79,14 +77,14 @@ describe('PaymentPage', () => {
   });
 
   it('should redirect to auth page if user is not logged in', () => {
-    (useAuth as vi.Mock).mockReturnValue({ user: null });
+    (useAuth as any).mockReturnValue({ user: null });
     render(<PaymentPage />);
     expect(mockNavigate).toHaveBeenCalledWith('/auth');
   });
 
   it('should display access denied message if user is not logged in and plan is not found', () => {
-    (useAuth as vi.Mock).mockReturnValue({ user: null });
-    (useSubscription as vi.Mock).mockReturnValue({
+    (useAuth as any).mockReturnValue({ user: null });
+    (useSubscription as any).mockReturnValue({
       subscriptionPlans: [], // No plans
       subscribeToPlan: mockSubscribeToPlan,
     });
@@ -106,7 +104,7 @@ describe('PaymentPage', () => {
       const hasPrice = content.includes('5') && content.includes('000');
       const hasCurrency = element?.textContent?.includes('₽');
       const hasCorrectClass = element?.classList.contains('text-2xl');
-      return hasPrice && hasCurrency && hasCorrectClass;
+      return Boolean(hasPrice && hasCurrency && hasCorrectClass);
     });
     expect(priceElement).toBeInTheDocument();
   });
@@ -123,11 +121,11 @@ describe('PaymentPage', () => {
 
   describe('Card Payment', () => {
     it('should process card payment successfully', async () => {
-      (paymentService.createPaymentIntent as vi.Mock).mockResolvedValue({
+      (paymentService.createPaymentIntent as any).mockResolvedValue({
         success: true,
         paymentIntent: { id: 'pi_123' },
       });
-      (paymentService.confirmPayment as vi.Mock).mockResolvedValue({ success: true });
+      (paymentService.confirmPayment as any).mockResolvedValue({ success: true });
 
       render(<PaymentPage />);
 
@@ -155,11 +153,11 @@ describe('PaymentPage', () => {
     });
 
     it('should show error message if card payment fails', async () => {
-      (paymentService.createPaymentIntent as vi.Mock).mockResolvedValue({
+      (paymentService.createPaymentIntent as any).mockResolvedValue({
         success: true,
         paymentIntent: { id: 'pi_123' },
       });
-      (paymentService.confirmPayment as vi.Mock).mockResolvedValue({
+      (paymentService.confirmPayment as any).mockResolvedValue({
         success: false,
         error: 'Card declined',
       });
@@ -184,7 +182,7 @@ describe('PaymentPage', () => {
 
   describe('Telegram Payment', () => {
     it('should initiate Telegram payment and redirect', async () => {
-      (paymentService.createTelegramPayment as vi.Mock).mockResolvedValue({
+      (paymentService.createTelegramPayment as any).mockResolvedValue({
         success: true,
         redirectUrl: 'https://t.me/bot?start=payload',
       });
@@ -206,7 +204,7 @@ describe('PaymentPage', () => {
     });
 
     it('should show error message if Telegram payment fails', async () => {
-      (paymentService.createTelegramPayment as vi.Mock).mockResolvedValue({
+      (paymentService.createTelegramPayment as any).mockResolvedValue({
         success: false,
         error: 'Telegram payment failed',
       });
@@ -223,11 +221,11 @@ describe('PaymentPage', () => {
   });
 
   it('should allow retrying payment after an error', async () => {
-    (paymentService.createPaymentIntent as vi.Mock).mockResolvedValue({
+    (paymentService.createPaymentIntent as any).mockResolvedValue({
       success: true,
       paymentIntent: { id: 'pi_123' },
     });
-    (paymentService.confirmPayment as vi.Mock).mockResolvedValue({
+    (paymentService.confirmPayment as any).mockResolvedValue({
       success: false,
       error: 'Card declined',
     });

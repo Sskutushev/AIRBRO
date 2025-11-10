@@ -1,5 +1,6 @@
 import { apiClient, APIError } from '../client';
-import { vi, describe, it, expect, beforeEach, afterEach, Mock } from 'vitest';
+import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
+import type { Mock } from 'vitest';
 
 describe('APIClient', () => {
   const mockBaseUrl = 'http://localhost:3000';
@@ -8,7 +9,7 @@ describe('APIClient', () => {
   beforeEach(() => {
     // Create a generic mock for fetch for each test
     fetchMock = vi.fn();
-    global.fetch = fetchMock;
+    (globalThis as any).fetch = fetchMock;
 
     // Default mock for CSRF token requests, which happen automatically
     fetchMock.mockImplementation((url) => {

@@ -8,9 +8,6 @@ import { render, screen, fireEvent, waitFor } from '../../test/utils'; // Custom
 import AuthPage from '../AuthPage';
 import { useLogin, useRegister } from '../../hooks/useAuth';
 import { showToast } from '../../lib/toast';
-import { AuthProvider } from '../../context/AuthContext'; // Import AuthProvider for context mocking
-import { QueryClientProvider } from '@tanstack/react-query';
-import { queryClient } from '../../lib/queryClient';
 
 // Mock react-router-dom's useNavigate
 const mockNavigate = vi.fn();
@@ -53,10 +50,10 @@ describe('AuthPage', () => {
     mockNavigate.mockClear();
     mockLoginMutation.mutateAsync.mockClear();
     mockRegisterMutation.mutateAsync.mockClear();
-    (useLogin as vi.Mock).mockReturnValue(mockLoginMutation);
-    (useRegister as vi.Mock).mockReturnValue(mockRegisterMutation);
-    (showToast.success as vi.Mock).mockClear();
-    (showToast.error as vi.Mock).mockClear();
+    (useLogin as any).mockReturnValue(mockLoginMutation);
+    (useRegister as any).mockReturnValue(mockRegisterMutation);
+    (showToast.success as any).mockClear();
+    (showToast.error as any).mockClear();
   });
 
   it('should render login form by default', () => {

@@ -41,14 +41,14 @@ describe('Auth Validation Schemas', () => {
         email: '',
         password: 'Password123!',
       };
-      let error;
+      let error: unknown;
       try {
         loginSchema.parse(invalidLogin);
-      } catch (e) {
+      } catch (e: unknown) {
         error = e;
       }
       expect(error).toBeInstanceOf(z.ZodError);
-      expect(error.issues[0].message).toBe('Email обязателен');
+      expect((error as z.ZodError).issues[0].message).toBe('Email обязателен');
     });
 
     it('should invalidate login with missing password', () => {
@@ -56,14 +56,14 @@ describe('Auth Validation Schemas', () => {
         email: 'test@example.com',
         password: '',
       };
-      let error;
+      let error: unknown;
       try {
         loginSchema.parse(invalidLogin);
-      } catch (e) {
+      } catch (e: unknown) {
         error = e;
       }
       expect(error).toBeInstanceOf(z.ZodError);
-      expect(error.issues[0].message).toBe('Пароль обязателен');
+      expect((error as z.ZodError).issues[0].message).toBe('Пароль обязателен');
     });
   });
 
@@ -156,9 +156,9 @@ describe('Auth Validation Schemas', () => {
     });
 
     it('should invalidate registration when passwords do not match', () => {
-      const invalidRegister = { 
-        ...baseValidRegister, 
-        confirmPassword: 'wrongpassword' 
+      const invalidRegister = {
+        ...baseValidRegister,
+        confirmPassword: 'wrongpassword',
       };
       expect(() => registerSchema.parse(invalidRegister)).toThrow('Пароли не совпадают');
     });

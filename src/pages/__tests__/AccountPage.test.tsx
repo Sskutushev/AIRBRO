@@ -7,8 +7,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '../../test/utils'; // Custom render with providers
 import AccountPage from '../AccountPage';
 import { useAuth } from '../../context/AuthContext';
-import { QueryClientProvider } from '@tanstack/react-query';
-import { queryClient } from '../../lib/queryClient';
 
 // Mock react-router-dom's useNavigate and Link
 const mockNavigate = vi.fn();
@@ -41,7 +39,7 @@ describe('AccountPage', () => {
   beforeEach(() => {
     mockNavigate.mockClear();
     mockLogout.mockClear();
-    (useAuth as vi.Mock).mockReturnValue({ user: mockUser, logout: mockLogout });
+    (useAuth as any).mockReturnValue({ user: mockUser, logout: mockLogout });
     // Mock window.location.href for logout test
     Object.defineProperty(window, 'location', {
       writable: true,
@@ -50,7 +48,7 @@ describe('AccountPage', () => {
   });
 
   it('should redirect to auth page if user is not logged in', () => {
-    (useAuth as vi.Mock).mockReturnValue({ user: null, logout: mockLogout });
+    (useAuth as any).mockReturnValue({ user: null, logout: mockLogout });
     render(<AccountPage />);
 
     expect(screen.getByRole('heading', { name: /Доступ запрещен/i })).toBeInTheDocument();
