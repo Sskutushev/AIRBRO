@@ -43,6 +43,6 @@ jobs:
         if: always()
         with:
           status: ${{ job.status }}
-          text: 'Backend deployment ${{ job.status }}'
+          text: 'Backend deployment ${{ job.status }}' # Corrected notification
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

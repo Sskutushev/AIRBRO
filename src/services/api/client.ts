@@ -227,7 +227,7 @@ class APIClient {
     // }
 
     try {
-      const response = await fetch(`${this.baseURL}${endpoint}`, {
+      const response = await fetch(`${this.baseURL}/api${endpoint}`, {
         ...options,
         headers,
         credentials: 'include',
@@ -258,7 +258,7 @@ class APIClient {
 
   // AUTH
   async login(email: string, password: string): Promise<AuthResponse> {
-    return this.request<AuthResponse>('/api/auth/login', {
+    return this.request<AuthResponse>('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     });
@@ -267,14 +267,14 @@ class APIClient {
   async register(
     data: Omit<RegisterInput, 'confirmPassword' | 'agreement'>
   ): Promise<AuthResponse> {
-    return this.request<AuthResponse>('/api/auth/register', {
+    return this.request<AuthResponse>('/auth/register', {
       method: 'POST',
       body: JSON.stringify(data),
     });
   }
 
   async getMe(): Promise<UserData> {
-    return this.request<UserData>('/api/auth/me');
+    return this.request<UserData>('/auth/me');
   }
 
   // PRODUCTS
@@ -286,27 +286,27 @@ class APIClient {
             .map(([key, value]) => [key, String(value)])
         ).toString()
       : '';
-    return this.request<Product[]>(`/api/products${query ? `?${query}` : ''}`);
+    return this.request<Product[]>(`/products${query ? `?${query}` : ''}`);
   }
 
   async getProductBySlug(slug: string): Promise<Product> {
-    return this.request<Product>(`/api/products/${slug}`);
+    return this.request<Product>(`/products/${slug}`);
   }
 
   // CART
   async getCart(): Promise<CartItem[]> {
-    return this.request<CartItem[]>('/api/cart');
+    return this.request<CartItem[]>('/cart');
   }
 
   async addToCart(productId: string, quantity: number = 1): Promise<CartItem> {
-    return this.request<CartItem>('/api/cart', {
+    return this.request<CartItem>('/cart', {
       method: 'POST',
       body: JSON.stringify({ productId, quantity }),
     });
   }
 
   async removeFromCart(productId: string): Promise<void> {
-    return this.request<void>(`/api/cart/${productId}`, {
+    return this.request<void>(`/cart/${productId}`, {
       method: 'DELETE',
     });
   }
@@ -314,7 +314,7 @@ class APIClient {
   async clearCart(): Promise<void> {
     // Assuming a backend endpoint exists for clearing the entire cart
     // This might need to be implemented on the backend if it doesn't exist
-    return this.request<void>('/api/cart/clear', {
+    return this.request<void>('/cart/clear', {
       method: 'DELETE',
     });
   }
@@ -324,23 +324,23 @@ class APIClient {
     cartItems: CartItem[],
     paymentMethod: string
   ): Promise<CryptoPaymentResponse> {
-    return this.request<CryptoPaymentResponse>('/api/payments/crypto', {
+    return this.request<CryptoPaymentResponse>('/payments/crypto', {
       method: 'POST',
       body: JSON.stringify({ cartItems, paymentMethod }),
     });
   }
 
   async getPaymentStatus(paymentId: string): Promise<PaymentStatus> {
-    return this.request<PaymentStatus>(`/api/payments/${paymentId}/status`);
+    return this.request<PaymentStatus>(`/payments/${paymentId}/status`);
   }
 
   // USER (Simplified, full implementation would be more complex)
   async getUserProfile(): Promise<UserData> {
-    return this.request<UserData>('/api/user/profile'); // Assuming this endpoint exists
+    return this.request<UserData>('/user/profile'); // Assuming this endpoint exists
   }
 
   async updateUserProfile(data: Partial<UserData>): Promise<UserData> {
-    return this.request<UserData>('/api/user/profile', {
+    return this.request<UserData>('/user/profile', {
       method: 'PUT',
       body: JSON.stringify(data),
     });
@@ -348,16 +348,16 @@ class APIClient {
 
   async getUserSubscriptions(): Promise<any[]> {
     // Define proper subscription type if needed
-    return this.request<any[]>('/api/user/subscriptions');
+    return this.request<any[]>('/user/subscriptions');
   }
 
   async getUserPayments(): Promise<any[]> {
     // Define proper payment type if needed
-    return this.request<any[]>('/api/user/payments');
+    return this.request<any[]>('/user/payments');
   }
 
   async cancelSubscription(subscriptionId: string): Promise<void> {
-    return this.request<void>(`/api/user/subscriptions/${subscriptionId}/cancel`, {
+    return this.request<void>(`/user/subscriptions/${subscriptionId}/cancel`, {
       method: 'POST',
     });
   }
