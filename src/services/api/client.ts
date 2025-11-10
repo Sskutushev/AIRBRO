@@ -105,7 +105,8 @@ class APIClient {
     // Check if we should use mock API (for development/testing)
     this.useMockAPI =
       import.meta.env.VITE_USE_MOCK_API === 'true' ||
-      (import.meta.env.PROD && !import.meta.env.VITE_API_URL);
+      (import.meta.env.PROD && !import.meta.env.VITE_API_URL) ||
+      (typeof window !== 'undefined' && window.location.hostname === 'localhost');
   }
 
   /**
