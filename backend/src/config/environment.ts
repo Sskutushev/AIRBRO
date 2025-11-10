@@ -3,18 +3,25 @@ import { z } from 'zod';
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   PORT: z.coerce.number().default(3000),
-  FRONTEND_URL: z.string().url(),
-  DATABASE_URL: z.string().url(),
-  JWT_SECRET: z.string().min(32, {
-    message: 'JWT_SECRET must be at least 32 characters long',
-  }),
+  FRONTEND_URL: z.string().url().default('http://localhost:5173'),
+  DATABASE_URL: z.string().url().default('file:./prisma/dev.db'),
+  JWT_SECRET: z
+    .string()
+    .min(32, {
+      message: 'JWT_SECRET must be at least 32 characters long',
+    })
+    .default('d5f014ab7534ff7fe23c4f9d761bc640'),
   JWT_EXPIRES_IN: z.string().default('7d'),
-  TELEGRAM_BOT_TOKEN: z.string().min(1, 'Telegram bot token is required'),
-  TELEGRAM_ADMIN_CHANNEL: z.string().min(1, 'Telegram admin channel is required'),
-  USDT_TRC20_WALLET: z.string().min(1, 'USDT TRC20 wallet is required'),
-  USDT_ERC20_WALLET: z.string().min(1, 'USDT ERC20 wallet is required'),
-  TON_WALLET: z.string().min(1, 'TON wallet is required'),
-  
+
+  // Optional Telegram integration
+  TELEGRAM_BOT_TOKEN: z.string().optional(),
+  TELEGRAM_ADMIN_CHANNEL: z.string().optional(),
+
+  // Optional crypto wallets
+  USDT_TRC20_WALLET: z.string().optional(),
+  USDT_ERC20_WALLET: z.string().optional(),
+  TON_WALLET: z.string().optional(),
+
   // Currency rates (optional)
   RUB_TO_USDT_RATE: z.coerce.number().optional(),
   RUB_TO_TON_RATE: z.coerce.number().optional(),
