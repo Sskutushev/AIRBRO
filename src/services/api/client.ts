@@ -283,7 +283,13 @@ class APIClient {
 
   // PRODUCTS
   async getProducts(params?: { tier?: number; isActive?: boolean }): Promise<Product[]> {
-    const query = params ? new URLSearchParams(params).toString() : '';
+    const query = params
+      ? new URLSearchParams(
+          Object.entries(params)
+            .filter(([_, value]) => value !== undefined && value !== null)
+            .map(([key, value]) => [key, String(value)])
+        ).toString()
+      : '';
     return this.request<Product[]>(`/api/products${query ? `?${query}` : ''}`);
   }
 

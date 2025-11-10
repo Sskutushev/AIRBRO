@@ -1,353 +1,60 @@
-CI / Lint & Format Check (push) Failing after 25s- Run npm run lint
-
-> airbro-business-landing@1.0.0 lint
-> eslint . --ext .ts,.tsx
-
-
-/home/runner/work/AIRBRO/AIRBRO/backend/getChatId.ts
-  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
-The file was not found in any of the provided project(s): backend/getChatId.ts
-
-/home/runner/work/AIRBRO/AIRBRO/backend/prisma/seed.ts
-  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
-The file was not found in any of the provided project(s): backend/prisma/seed.ts
-
-/home/runner/work/AIRBRO/AIRBRO/backend/scripts/cleanup-logs.js
-  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
-The file was not found in any of the provided project(s): backend/scripts/cleanup-logs.js
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/config/jwt.ts
-Warning:    5:40  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   11:45  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   14:12  warning  'error' is defined but never used         @typescript-eslint/no-unused-vars
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/authController.ts
-Warning:   105:13  warning  'passwordHash' is assigned a value but never used  @typescript-eslint/no-unused-vars
-Warning:   119:28  warning  Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/cartController.ts
-Warning:     7:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    42:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    90:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   118:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/paymentController.ts
-Warning:     9:28  warning  Unexpected any. Specify a different type                                @typescript-eslint/no-explicit-any
-Warning:    85:37  warning  Unexpected any. Specify a different type                                @typescript-eslint/no-explicit-any
-Warning:   201:47  warning  'item' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
-Warning:   201:53  warning  Unexpected any. Specify a different type                                @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/productController.ts
-Warning:   8:24  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/userController.ts
-Warning:     6:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    32:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    73:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   109:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   134:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/middleware/auth.ts
-Warning:   20:12  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/middleware/validation.ts
-Warning:   13:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   14:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/routes/products.ts
-Warning:   3:10  warning  'authenticateToken' is defined but never used  @typescript-eslint/no-unused-vars
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/server.ts
-Warning:   64:15  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/utils/crypto.ts
-Warning:   7:7  warning  'TON_WALLET' is assigned a value but never used  @typescript-eslint/no-unused-vars
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/utils/logger.ts
-Warning:    58:49  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    62:51  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    62:66  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    73:49  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    77:50  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    82:31  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    82:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   102:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   104:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   106:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/utils/securityLogger.ts
-Warning:   11:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   35:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/e2e/example.spec.ts
-  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
-The file was not found in any of the provided project(s): e2e/example.spec.ts
-
-/home/runner/work/AIRBRO/AIRBRO/eslint.config.js
-  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
-The file was not found in any of the provided project(s): eslint.config.js
-
-/home/runner/work/AIRBRO/AIRBRO/playwright.config.ts
-Warning:   2:31  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/postcss.config.js
-  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
-The file was not found in any of the provided project(s): postcss.config.js
-
-/home/runner/work/AIRBRO/AIRBRO/scripts/optimize-images.js
-  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
-The file was not found in any of the provided project(s): scripts/optimize-images.js
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/__tests__/ErrorBoundary.test.tsx
-Warning:   31:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   32:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/ModulePopup.tsx
-Warning:    33:36  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   176:45  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/OptimizedImage.tsx
-  81:7  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
-
-Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
-* Update external systems with the latest state from React.
-* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
-
-Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/OptimizedImage.tsx:81:7
-  79 |   useEffect(() => {
-  80 |     if (imgRef.current?.complete) {
-> 81 |       setLoaded(true);
-     |       ^^^^^^^^^ Avoid calling setState() directly within an effect
-  82 |     }
-  83 |   }, [src]);
-  84 |  react-hooks/set-state-in-effect
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/PWAPrompt.tsx
-  21:5   warning  Error: Calling setState synchronously within an effect can trigger cascading renders
-
-Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
-* Update external systems with the latest state from React.
-* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
-
-Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/PWAPrompt.tsx:21:5
-  19 |     };
-  20 |
-> 21 |     setIsIOS(isIos());
-     |     ^^^^^^^^ Avoid calling setState() directly within an effect
-  22 |
-  23 |     // Handle beforeinstallprompt event for non-iOS devices
-  24 |     const handleBeforeInstallPrompt = (e: Event) => {  react-hooks/set-state-in-effect
-Warning:   45:52  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-explicit-any
-Warning:   87:41  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/VotingModal.tsx
-   64:9  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
-
-Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
-* Update external systems with the latest state from React.
-* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
-
-Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/VotingModal.tsx:64:9
-  62 |       const userHasVoted = localStorage.getItem('featureVote');
-  63 |       if (userHasVoted) {
-> 64 |         setHasVoted(true);
-     |         ^^^^^^^^^^^ Avoid calling setState() directly within an effect
-  65 |         setSelectedOption(userHasVoted);
-  66 |       }
-  67 |  react-hooks/set-state-in-effect
-Warning:   113:6  warning  React Hook useEffect has missing dependencies: 'featureOptions' and 'voteResults.length'. Either include them or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 react-hooks/exhaustive-deps
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/forms/FormCheckbox.tsx
-Warning:   18:65  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/forms/FormInput.tsx
-Warning:   19:62  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   52:18  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   78:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/forms/FormSelect.tsx
-Warning:   18:63  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/forms/FormTextarea.tsx
-Warning:   18:65  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/sections/PricingSection.tsx
-Warning:   13:66  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/sections/ProductsSection.tsx
-Warning:   100:84  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   103:85  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/context/AuthContext.tsx
-  51:7   warning  Error: Calling setState synchronously within an effect can trigger cascading renders
-
-Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
-* Update external systems with the latest state from React.
-* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
-
-Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
-
-/home/runner/work/AIRBRO/AIRBRO/src/context/AuthContext.tsx:51:7
-  49 |         });
-  50 |     } else {
-> 51 |       setLoading(false);
-     |       ^^^^^^^^^^ Avoid calling setState() directly within an effect
-  52 |     }
-  53 |   }, []);
-  54 |  react-hooks/set-state-in-effect
-Warning:   92:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              react-refresh/only-export-components
-
-/home/runner/work/AIRBRO/AIRBRO/src/context/SubscriptionContext.tsx
-Warning:    49:6   warning  React Hook useEffect has missing dependencies: 'fetchPaymentMethods' and 'fetchUserSubscription'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
-Warning:   130:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components                        react-refresh/only-export-components
-
-/home/runner/work/AIRBRO/AIRBRO/src/context/ThemeContext.tsx
-Warning:   33:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
-
-/home/runner/work/AIRBRO/AIRBRO/src/hooks/useAsync.ts
-Warning:   52:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   79:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   91:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/hooks/useAuth.ts
-Warning:   35:15  warning  'confirmPassword' is assigned a value but never used  @typescript-eslint/no-unused-vars
-Warning:   35:32  warning  'agreement' is assigned a value but never used        @typescript-eslint/no-unused-vars
-
-/home/runner/work/AIRBRO/AIRBRO/src/hooks/useDebounce.ts
-  28:7  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
-
-Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
-* Update external systems with the latest state from React.
-* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
-
-Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
-
-/home/runner/work/AIRBRO/AIRBRO/src/hooks/useDebounce.ts:28:7
-  26 |     // If delay is 0, update immediately
-  27 |     if (delay === 0) {
-> 28 |       setDebouncedValue(value);
-     |       ^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
-  29 |       return;
-  30 |     }
-  31 |  react-hooks/set-state-in-effect
-
-/home/runner/work/AIRBRO/AIRBRO/src/lib/__tests__/toast.test.tsx
-Warning:   7:10  warning  'render' is defined but never used   @typescript-eslint/no-unused-vars
-Warning:   7:18  warning  'screen' is defined but never used   @typescript-eslint/no-unused-vars
-Warning:   7:26  warning  'waitFor' is defined but never used  @typescript-eslint/no-unused-vars
-
-/home/runner/work/AIRBRO/AIRBRO/src/lib/analytics/index.ts
-Warning:    26:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    52:52  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    67:66  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    99:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   100:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/lib/monitoring/sentry.ts
-Warning:   42:85  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   57:65  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/lib/toast.ts
-Warning:    88:32  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   109:38  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/lib/utils/__tests__/storage.test.ts
-Warning:   120:43  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   130:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   135:43  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   145:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/pages/AuthPage.tsx
-   66:25  warning  Compilation Skipped: Use of incompatible library
-
-This API returns functions which cannot be memoized without leading to stale UI. To prevent this, by default React Compiler will skip memoizing this component/hook. However, you may see issues if values from this API are passed to other components/hooks that are memoized.
-
-/home/runner/work/AIRBRO/AIRBRO/src/pages/AuthPage.tsx:66:25
-  64 |   } = registerForm;
-  65 |
-> 66 |   const passwordValue = registerWatch('password'); // Watch password field for strength calculation
-     |                         ^^^^^^^^^^^^^ React Hook Form's `useForm()` API returns a `watch()` function which cannot be memoized safely.
-  67 |
-  68 |   /**
-  69 |    * Handles the submission of the login form  react-hooks/incompatible-library
-Warning:    79:21  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
-Warning:    96:21  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
-Warning:   206:33  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
-Warning:   209:48  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/pages/__tests__/AccountPage.test.tsx
-Warning:   42:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   51:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/pages/__tests__/AuthPage.test.tsx
-Warning:   53:18  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   54:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   55:27  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   56:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/pages/__tests__/PaymentPage.test.tsx
-Warning:    64:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    65:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    69:44  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    70:39  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    71:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    80:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    86:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    87:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   124:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   128:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   156:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   160:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   185:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   207:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   224:44  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   228:39  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/pages/__tests__/SolutionsPage.test.tsx
-Warning:   82:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/services/api/__tests__/client.test.ts
-Warning:    12:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   153:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/services/api/client.ts
-Warning:   267:58  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   302:40  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   302:79  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   303:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   309:54  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   310:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   325:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   326:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   329:36  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   330:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/test/setup.ts
-Warning:   71:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/test/utils.tsx
-Warning:   25:5   warning  'initialState' is assigned a value but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
-Warning:   27:55  warning  Unexpected any. Specify a different type                                                 @typescript-eslint/no-explicit-any
-Warning:   60:1   warning  This rule can't verify that `export *` only exports components                           react-refresh/only-export-components
-
-/home/runner/work/AIRBRO/AIRBRO/src/types/forms.ts
-Warning:   12:68  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   18:49  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   18:57  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   38:68  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   68:69  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   82:71  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/tailwind.config.js
-  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
-The file was not found in any of the provided project(s): tailwind.config.js
-
-✖ 142 problems (8 errors, 134 warnings)
-
+Run npm audit --audit-level=moderate
+found 0 vulnerabilities
+# npm audit report
+
+cookie  <0.7.0
+cookie accepts cookie name, path, and domain with out of bounds characters - https://github.com/advisories/GHSA-pxg6-pf52-xh8x
+fix available via `npm audit fix --force`
+Will install csurf@1.2.2, which is a breaking change
+node_modules/csurf/node_modules/cookie
+  csurf  >=1.3.0
+  Depends on vulnerable versions of cookie
+  node_modules/csurf
+
+form-data  <2.5.4
+Severity: critical
+form-data uses unsafe random function in form-data for choosing boundary - https://github.com/advisories/GHSA-fjxv-7rqg-78g4
+fix available via `npm audit fix --force`
+Will install node-telegram-bot-api@0.66.0, which is a breaking change
+node_modules/request/node_modules/form-data
+  request  *
+  Depends on vulnerable versions of form-data
+  Depends on vulnerable versions of tough-cookie
+  node_modules/request
+    node-telegram-bot-api  <=0.63.0
+    Depends on vulnerable versions of request
+    Depends on vulnerable versions of request-promise
+    node_modules/node-telegram-bot-api
+    request-promise  >=0.0.2
+    Depends on vulnerable versions of request
+    Depends on vulnerable versions of request-promise-core
+    Depends on vulnerable versions of tough-cookie
+    node_modules/request-promise
+    request-promise-core  *
+    Depends on vulnerable versions of request
+    node_modules/request-promise-core
+
+
+tough-cookie  <4.1.3
+Severity: moderate
+tough-cookie Prototype Pollution vulnerability - https://github.com/advisories/GHSA-72xf-g2v4-qvf3
+fix available via `npm audit fix --force`
+Will install node-telegram-bot-api@0.66.0, which is a breaking change
+node_modules/tough-cookie
+
+8 vulnerabilities (2 low, 4 moderate, 2 critical)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
 Error: Process completed with exit code 1.
+
+Security Scan / Snyk Security Scan (push) Failing after 2s- Current runner version: '2.329.0'
+Runner Image Provisioner
+Operating System
+Runner Image
+GITHUB_TOKEN Permissions
+Secret source: Actions
+Prepare workflow directory
+Prepare all required actions
+Getting action download info
+Error: Unable to resolve action `snyk/actions@v4`, unable to find version `v4`

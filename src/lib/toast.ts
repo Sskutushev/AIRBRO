@@ -106,7 +106,7 @@ export const showToast = {
    * @param {ToastOptions} [options] - Optional toast options to override defaults.
    */
   custom(component: ReactNode, options?: ToastOptions): string {
-    return toast.custom(component, { ...defaultToastOptions, ...options });
+    return toast.custom(component as any, { ...defaultToastOptions, ...options });
   },
 };
 

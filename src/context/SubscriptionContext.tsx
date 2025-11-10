@@ -42,19 +42,7 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({ chil
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
 
-  // Загружаем подписку пользователя при изменении user
-  useEffect(() => {
-    if (user) {
-      fetchUserSubscription();
-      fetchPaymentMethods();
-    } else {
-      // Если пользователь не авторизован, сбрасываем данные
-      setUserSubscription(null);
-      setPaymentMethods([]);
-      setLoading(false);
-    }
-  }, [user, fetchUserSubscription, fetchPaymentMethods]);
-
+  // Define callbacks before the useEffect that uses them
   const fetchUserSubscription = useCallback(async () => {
     if (!user) return;
 
@@ -79,6 +67,19 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({ chil
       console.error('Error fetching payment methods:', error);
     }
   }, [user]);
+
+  // Загружаем подписку пользователя при изменении user
+  useEffect(() => {
+    if (user) {
+      fetchUserSubscription();
+      fetchPaymentMethods();
+    } else {
+      // Если пользователь не авторизован, сбрасываем данные
+      setUserSubscription(null);
+      setPaymentMethods([]);
+      setLoading(false);
+    }
+  }, [user, fetchUserSubscription, fetchPaymentMethods]);
 
   const subscribeToPlan = useCallback(
     async (planId: string): Promise<UserSubscription> => {
