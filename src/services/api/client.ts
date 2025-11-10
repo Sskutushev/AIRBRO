@@ -96,7 +96,10 @@ class APIClient {
   // private csrfToken: string | null = null; // For CSRF protection
 
   constructor() {
-    this.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+    // Production fallback to hardcoded URL if env var is not set
+    this.baseURL =
+      import.meta.env.VITE_API_URL ||
+      (import.meta.env.PROD ? 'https://api.aibrobusiness.com' : 'http://localhost:3000');
     this.token = storage.get<string>('authToken') || null; // Load token from storage on init
   }
 
