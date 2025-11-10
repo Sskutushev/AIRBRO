@@ -14,9 +14,7 @@ describe('StorageService', () => {
   // Mock localStorage before each test
   let localStorageMock: Storage;
   let setItemSpy: ReturnType<typeof vi.spyOn>;
-  let getItemSpy: ReturnType<typeof vi.spyOn>;
   let removeItemSpy: ReturnType<typeof vi.spyOn>;
-  let clearSpy: ReturnType<typeof vi.spyOn>;
   let store: Record<string, string>; // Internal store for the mock
 
   beforeEach(() => {
@@ -42,9 +40,7 @@ describe('StorageService', () => {
     };
 
     setItemSpy = vi.spyOn(localStorageMock, 'setItem');
-    getItemSpy = vi.spyOn(localStorageMock, 'getItem');
     removeItemSpy = vi.spyOn(localStorageMock, 'removeItem');
-    clearSpy = vi.spyOn(localStorageMock, 'clear');
 
     Object.defineProperty(window, 'localStorage', {
       value: localStorageMock,

@@ -79,7 +79,7 @@ describe('SolutionsPage', () => {
       key: 'default',
     });
     window.scrollTo = vi.fn(); // Mock window.scrollTo
-    (SolutionDetailModal as vi.Mock).mockClear();
+    (SolutionDetailModal as any).mockClear();
   });
 
   afterEach(() => {

@@ -6,7 +6,7 @@
 import React from 'react';
 import { render, screen, waitFor, act } from '@testing-library/react';
 import { showToast } from '../toast';
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 // Mock react-hot-toast to control its behavior
 vi.mock('react-hot-toast', () => ({
