@@ -100,8 +100,15 @@ describe('PaymentPage', () => {
     expect(screen.getByText('Выбранный план')).toBeInTheDocument();
     expect(screen.getByText(mockPlan.name)).toBeInTheDocument();
     expect(screen.getByText(mockPlan.name)).toBeInTheDocument();
-    expect(screen.getByText('5\xa000')).toBeInTheDocument(); // Найдет элемент с неразрывным пробелом
-    expect(screen.getByText('₽')).toBeInTheDocument();
+    expect(screen.getByText('Pro Plan')).toBeInTheDocument();
+    // Найдем нужный элемент по содержанию и классу одновременно
+    const priceElement = screen.getByText((content, element) => {
+      const hasPrice = content.includes('5') && content.includes('000');
+      const hasCurrency = element?.textContent?.includes('₽');
+      const hasCorrectClass = element?.classList.contains('text-2xl');
+      return hasPrice && hasCurrency && hasCorrectClass;
+    });
+    expect(priceElement).toBeInTheDocument();
   });
 
   it('should switch payment methods', () => {
