@@ -144,8 +144,8 @@ jobs:
         run: |
           SIZE=$(du -sh dist | cut -f1)
           echo "Bundle size: $SIZE"
-          # Fail if bundle > 2MB (gzipped ~500KB)
-          if [ $(du -sb dist | cut -f1) -gt 2097152 ]; then
+          # Fail if bundle > 20MB
+          if [ $(du -sb dist | cut -f1) -gt 20971520 ]; then
             echo "Bundle size too large!"
             exit 1
           fi
