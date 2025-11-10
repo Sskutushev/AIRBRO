@@ -13,13 +13,6 @@ describe('APIClient', () => {
 
     // Default mock for CSRF token requests, which happen automatically
     fetchMock.mockImplementation((url) => {
-      if (url.toString().endsWith('/api/csrf-token')) {
-        return Promise.resolve({
-          ok: true,
-          json: async () => ({ csrfToken: 'test-csrf-token' }),
-          status: 200,
-        });
-      }
       // For any other URL, return a default rejection to catch un-mocked requests
       return Promise.reject(new Error(`Unexpected fetch call to ${url}`));
     });
@@ -49,13 +42,6 @@ describe('APIClient', () => {
             status: 200,
           });
         }
-        if (url.toString().endsWith('/api/csrf-token')) {
-          return Promise.resolve({
-            ok: true,
-            json: async () => ({ csrfToken: 'test-csrf-token' }),
-            status: 200,
-          });
-        }
         return Promise.reject(new Error(`Unexpected fetch call to ${url}`));
       });
 
@@ -65,7 +51,6 @@ describe('APIClient', () => {
         `${mockBaseUrl}/api/auth/login`,
         expect.objectContaining({
           method: 'POST',
-          headers: expect.objectContaining({ 'X-CSRF-Token': 'test-csrf-token' }),
           body: JSON.stringify({ email: 'test@example.com', password: 'password123' }),
         })
       );
@@ -178,12 +163,6 @@ describe('APIClient', () => {
             json: async () => ({ success: true }),
           });
         }
-        if (url.toString().endsWith('/api/csrf-token')) {
-          return Promise.resolve({
-            ok: true,
-            json: async () => ({ csrfToken: 'test-csrf-token' }),
-          });
-        }
         return Promise.reject(new Error(`Unexpected fetch call to ${url}`));
       });
 
@@ -195,7 +174,6 @@ describe('APIClient', () => {
           method: 'POST',
           headers: expect.objectContaining({
             'Content-Type': 'application/json',
-            'X-CSRF-Token': 'test-csrf-token',
             Authorization: 'Bearer fake-jwt-token',
           }),
           body: JSON.stringify({ productId: 'prod-123', quantity: 2 }),
