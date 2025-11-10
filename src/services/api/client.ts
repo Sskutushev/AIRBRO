@@ -186,11 +186,7 @@ class APIClient {
    * @returns {Promise<T>} The parsed response data.
    * @throws {APIError} For network errors or API-specific errors.
    */
-  private async request<T>(
-    endpoint: string,
-    options: RequestInit = {},
-    retryOnCsrf: boolean = true
-  ): Promise<T> {
+  private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
     console.log(
       `Making request to: ${this.baseURL}${endpoint} with method: ${options.method || 'GET'}`
     );

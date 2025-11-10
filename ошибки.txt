@@ -1,132 +1,36 @@
-CI / TypeScript Type Check (push) Failing after 18s- Run npx tsc --noEmit
-Error: src/config/database.ts(1,30): error TS2307: Cannot find module '@prisma/client' or its corresponding type declarations.
-Error: src/config/environment.ts(38,13): error TS2339: Property 'errors' does not exist on type 'ZodError<unknown>'.
-Error: src/config/environment.ts(38,29): error TS7006: Parameter 'err' implicitly has an 'any' type.
-Error: src/config/jwt.ts(1,17): error TS2307: Cannot find module 'jsonwebtoken' or its corresponding type declarations.
-Error: src/config/telegram.ts(1,25): error TS2307: Cannot find module 'node-telegram-bot-api' or its corresponding type declarations.
-Error: src/config/telegram.ts(34,30): error TS7006: Parameter 'msg' implicitly has an 'any' type.
-Error: src/controllers/authController.ts(1,35): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/controllers/authController.ts(2,20): error TS2307: Cannot find module 'bcrypt' or its corresponding type declarations.
-Error: src/controllers/cartController.ts(1,35): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/controllers/cartController.ts(24,37): error TS7006: Parameter 'sum' implicitly has an 'any' type.
-Error: src/controllers/cartController.ts(24,42): error TS7006: Parameter 'item' implicitly has an 'any' type.
-Error: src/controllers/cartController.ts(27,28): error TS7006: Parameter 'item' implicitly has an 'any' type.
-Error: src/controllers/paymentController.ts(1,35): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/controllers/paymentController.ts(29,47): error TS7006: Parameter 'sum' implicitly has an 'any' type.
-Error: src/controllers/paymentController.ts(29,52): error TS7006: Parameter 'item' implicitly has an 'any' type.
-Error: src/controllers/paymentController.ts(57,40): error TS7006: Parameter 'item' implicitly has an 'any' type.
-Error: src/controllers/productController.ts(1,35): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/controllers/productController.ts(33,41): error TS7006: Parameter 'product' implicitly has an 'any' type.
-Error: src/controllers/telegramController.ts(1,35): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/controllers/userController.ts(1,35): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/controllers/userController.ts(89,40): error TS7006: Parameter 'sub' implicitly has an 'any' type.
-Error: src/controllers/userController.ts(117,30): error TS7006: Parameter 'payment' implicitly has an 'any' type.
-Error: src/middleware/auth.ts(1,49): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/middleware/auth.ts(9,26): error TS2339: Property 'headers' does not exist on type 'AuthenticatedRequest'.
-Error: src/middleware/csrf.ts(6,19): error TS2307: Cannot find module 'csurf' or its corresponding type declarations.
-Error: src/middleware/csrf.ts(7,49): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/middleware/validation.ts(1,49): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/routes/auth.ts(1,24): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/routes/cart.ts(1,24): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/routes/payments.ts(1,24): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/routes/products.ts(1,24): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/routes/telegram.ts(1,24): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/routes/user.ts(1,24): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/server.ts(3,21): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/server.ts(4,18): error TS2307: Cannot find module 'cors' or its corresponding type declarations.
-Error: src/server.ts(5,23): error TS2307: Cannot find module 'express-rate-limit' or its corresponding type declarations.
-Error: src/server.ts(6,26): error TS2307: Cannot find module 'cookie-parser' or its corresponding type declarations.
-Error: src/server.ts(43,29): error TS7006: Parameter 'req' implicitly has an 'any' type.
-Error: src/server.ts(43,34): error TS7006: Parameter 'res' implicitly has an 'any' type.
-Error: src/server.ts(54,21): error TS7006: Parameter 'req' implicitly has an 'any' type.
-Error: src/server.ts(54,26): error TS7006: Parameter 'res' implicitly has an 'any' type.
-Error: src/server.ts(59,20): error TS7006: Parameter 'req' implicitly has an 'any' type.
-Error: src/server.ts(59,25): error TS7006: Parameter 'res' implicitly has an 'any' type.
-Error: src/services/currencyService.ts(1,19): error TS2307: Cannot find module 'axios' or its corresponding type declarations.
-Error: src/utils/logger.ts(1,21): error TS2307: Cannot find module 'winston' or its corresponding type declarations.
-Error: src/utils/logger.ts(2,29): error TS2307: Cannot find module 'winston-daily-rotate-file' or its corresponding type declarations.
-Error: Process completed with exit code 2.
-
-
-
-Security Scan / Snyk Security Scan (push) Failing after 2s- Current runner version: '2.329.0'
-Runner Image Provisioner
-Operating System
-Runner Image
-GITHUB_TOKEN Permissions
-Secret source: Actions
-Prepare workflow directory
-Prepare all required actions
-Getting action download info
-Error: Unable to resolve action `snyk/actions@v3`, unable to find version `v3`
-
-
-CI / E2E Tests (push) Failing after 2m- Run npm run test:e2e
-npm error Missing script: "test:e2e"
-npm error
-npm error Did you mean this?
-npm error   npm run test:ui # run the "test:ui" package script
-npm error
-npm error To see a list of scripts, run:
-npm error   npm run
-npm error A complete log of this run can be found in: /home/runner/.npm/_logs/2025-11-10T18_18_06_428Z-debug-0.log
-Error: Process completed with exit code 1.
-
-
-Deploy Backend / Deploy to Railway (push) Failing after 8s- Warning: Unexpected input(s) 'webhook_url', valid inputs are ['status', 'fields', 'custom_payload', 'mention', 'if_mention', 'author_name', 'text', 'username', 'icon_emoji', 'icon_url', 'channel', 'job_name', 'success_message', 'cancelled_message', 'failure_message', 'github_token', 'github_base_url']
-Run 8398a7/action-slack@v3
-Error: Specify secrets.SLACK_WEBHOOK_URL
-
-
-CI / Build Check (push) Failing after 1m- Run npm run build
-
-> aibro-backend@1.0.0 build
-> tsc
-
-Error: src/config/database.ts(1,30): error TS2307: Cannot find module '@prisma/client' or its corresponding type declarations.
-Error: src/config/environment.ts(38,13): error TS2339: Property 'errors' does not exist on type 'ZodError<unknown>'.
-Error: src/config/environment.ts(38,29): error TS7006: Parameter 'err' implicitly has an 'any' type.
-Error: src/config/jwt.ts(1,17): error TS2307: Cannot find module 'jsonwebtoken' or its corresponding type declarations.
-Error: src/config/telegram.ts(1,25): error TS2307: Cannot find module 'node-telegram-bot-api' or its corresponding type declarations.
-Error: src/config/telegram.ts(34,30): error TS7006: Parameter 'msg' implicitly has an 'any' type.
-Error: src/controllers/authController.ts(1,35): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/controllers/authController.ts(2,20): error TS2307: Cannot find module 'bcrypt' or its corresponding type declarations.
-Error: src/controllers/cartController.ts(1,35): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/controllers/cartController.ts(24,37): error TS7006: Parameter 'sum' implicitly has an 'any' type.
-Error: src/controllers/cartController.ts(24,42): error TS7006: Parameter 'item' implicitly has an 'any' type.
-Error: src/controllers/cartController.ts(27,28): error TS7006: Parameter 'item' implicitly has an 'any' type.
-Error: src/controllers/paymentController.ts(1,35): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/controllers/paymentController.ts(29,47): error TS7006: Parameter 'sum' implicitly has an 'any' type.
-Error: src/controllers/paymentController.ts(29,52): error TS7006: Parameter 'item' implicitly has an 'any' type.
-Error: src/controllers/paymentController.ts(57,40): error TS7006: Parameter 'item' implicitly has an 'any' type.
-Error: src/controllers/productController.ts(1,35): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/controllers/productController.ts(33,41): error TS7006: Parameter 'product' implicitly has an 'any' type.
-Error: src/controllers/telegramController.ts(1,35): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/controllers/userController.ts(1,35): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/controllers/userController.ts(89,40): error TS7006: Parameter 'sub' implicitly has an 'any' type.
-Error: src/controllers/userController.ts(117,30): error TS7006: Parameter 'payment' implicitly has an 'any' type.
-Error: src/middleware/auth.ts(1,49): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/middleware/auth.ts(9,26): error TS2339: Property 'headers' does not exist on type 'AuthenticatedRequest'.
-Error: src/middleware/csrf.ts(6,19): error TS2307: Cannot find module 'csurf' or its corresponding type declarations.
-Error: src/middleware/csrf.ts(7,49): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/middleware/validation.ts(1,49): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/routes/auth.ts(1,24): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/routes/cart.ts(1,24): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/routes/payments.ts(1,24): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/routes/products.ts(1,24): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/routes/telegram.ts(1,24): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/routes/user.ts(1,24): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/server.ts(3,21): error TS2307: Cannot find module 'express' or its corresponding type declarations.
-Error: src/server.ts(4,18): error TS2307: Cannot find module 'cors' or its corresponding type declarations.
-Error: src/server.ts(5,23): error TS2307: Cannot find module 'express-rate-limit' or its corresponding type declarations.
-Error: src/server.ts(6,26): error TS2307: Cannot find module 'cookie-parser' or its corresponding type declarations.
-Error: src/server.ts(43,29): error TS7006: Parameter 'req' implicitly has an 'any' type.
-Error: src/server.ts(43,34): error TS7006: Parameter 'res' implicitly has an 'any' type.
-Error: src/server.ts(54,21): error TS7006: Parameter 'req' implicitly has an 'any' type.
-Error: src/server.ts(54,26): error TS7006: Parameter 'res' implicitly has an 'any' type.
-Error: src/server.ts(59,20): error TS7006: Parameter 'req' implicitly has an 'any' type.
-Error: src/server.ts(59,25): error TS7006: Parameter 'res' implicitly has an 'any' type.
-Error: src/services/currencyService.ts(1,19): error TS2307: Cannot find module 'axios' or its corresponding type declarations.
-Error: src/utils/logger.ts(1,21): error TS2307: Cannot find module 'winston' or its corresponding type declarations.
-Error: src/utils/logger.ts(2,29): error TS2307: Cannot find module 'winston-daily-rotate-file' or its corresponding type declarations.
-Error: Process completed with exit code 2.
+21:47:12.886 Running build in Washington, D.C., USA (East) – iad1
+21:47:12.887 Build machine configuration: 2 cores, 8 GB
+21:47:13.045 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: f7de7f6)
+21:47:14.240 Cloning completed: 1.194s
+21:47:14.358 Restored build cache from previous deployment (2ZG7jztAqeRiwGJVw2hxFL81T5pt)
+21:47:14.997 Running "vercel build"
+21:47:15.395 Vercel CLI 48.9.0
+21:47:16.201 Installing dependencies...
+21:47:18.518 
+21:47:18.518 > airbro-business-landing@1.0.0 prepare
+21:47:18.518 > husky install
+21:47:18.518 
+21:47:18.568 husky - install command is DEPRECATED
+21:47:18.585 
+21:47:18.585 up to date in 2s
+21:47:18.586 
+21:47:18.586 216 packages are looking for funding
+21:47:18.586   run `npm fund` for details
+21:47:18.621 Running "npm run build"
+21:47:18.730 
+21:47:18.730 > airbro-business-landing@1.0.0 build
+21:47:18.730 > npm run optimize:images && tsc -b && vite build
+21:47:18.730 
+21:47:18.843 
+21:47:18.844 > airbro-business-landing@1.0.0 optimize:images
+21:47:18.844 > node scripts/optimize-images.js
+21:47:18.844 
+21:47:18.986 Starting image optimization...
+21:48:09.383 
+21:48:09.384 Image optimization complete!
+21:48:09.384 Processed 23 images.
+21:48:09.384 Total original size: 6.99 MB
+21:48:09.384 Total optimized size: 4.58 MB
+21:48:09.385 Total size saved: 2.41 MB
+21:48:15.821 src/services/api/client.ts(192,5): error TS6133: 'retryOnCsrf' is declared but its value is never read.
+21:48:16.601 Error: Command "npm run build" exited with 2
