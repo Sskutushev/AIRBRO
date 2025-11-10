@@ -6,6 +6,7 @@
 import { storage } from '../../lib/utils/storage';
 import { showToast } from '../../lib/toast'; // Assuming showToast exists or will be created
 import type { RegisterInput } from '../../lib/validation/auth';
+import { mockAPI } from './mock';
 
 // --- Type Definitions ---
 interface UserData {
@@ -93,14 +94,18 @@ export class APIError extends Error {
 class APIClient {
   public baseURL: string; // Made public for testing purposes
   private token: string | null = null;
+  private useMockAPI: boolean = false;
   // private csrfToken: string | null = null; // For CSRF protection
 
   constructor() {
-    // Production fallback to hardcoded URL if env var is not set
-    this.baseURL =
-      import.meta.env.VITE_API_URL ||
-      (import.meta.env.PROD ? 'https://api.aibrobusiness.com' : 'http://localhost:3000');
+    // Use environment variable or fallback to localhost for development
+    this.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
     this.token = storage.get<string>('authToken') || null; // Load token from storage on init
+
+    // Check if we should use mock API (for development/testing)
+    this.useMockAPI =
+      import.meta.env.VITE_USE_MOCK_API === 'true' ||
+      (import.meta.env.PROD && !import.meta.env.VITE_API_URL);
   }
 
   /**
@@ -261,6 +266,9 @@ class APIClient {
 
   // AUTH
   async login(email: string, password: string): Promise<AuthResponse> {
+    if (this.useMockAPI) {
+      return mockAPI.login(email, password);
+    }
     return this.request<AuthResponse>('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
@@ -270,6 +278,9 @@ class APIClient {
   async register(
     data: Omit<RegisterInput, 'confirmPassword' | 'agreement'>
   ): Promise<AuthResponse> {
+    if (this.useMockAPI) {
+      return mockAPI.register(data);
+    }
     return this.request<AuthResponse>('/auth/register', {
       method: 'POST',
       body: JSON.stringify(data),
@@ -277,6 +288,9 @@ class APIClient {
   }
 
   async getMe(): Promise<UserData> {
+    if (this.useMockAPI) {
+      return mockAPI.getMe();
+    }
     return this.request<UserData>('/auth/me');
   }
 
