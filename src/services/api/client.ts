@@ -41,6 +41,25 @@ interface CartItem {
   product: Product;
 }
 
+interface CryptoPaymentResponse {
+  id: string;
+  amount: number;
+  currency: string;
+  address: string;
+  qrCode?: string;
+  status: string;
+  expiresAt: string;
+}
+
+interface PaymentStatus {
+  id: string;
+  status: 'pending' | 'paid' | 'failed' | 'expired';
+  amount: number;
+  currency: string;
+  transactionId?: string;
+  paidAt?: string;
+}
+
 // RegisterInput interface is no longer needed since we're using the one from validation schema
 
 // --- APIError Class ---
@@ -264,7 +283,7 @@ class APIClient {
 
   // PRODUCTS
   async getProducts(params?: { tier?: number; isActive?: boolean }): Promise<Product[]> {
-    const query = params ? new URLSearchParams(params as any).toString() : '';
+    const query = params ? new URLSearchParams(params).toString() : '';
     return this.request<Product[]>(`/api/products${query ? `?${query}` : ''}`);
   }
 
@@ -299,15 +318,18 @@ class APIClient {
   }
 
   // PAYMENTS (Simplified, full implementation would be more complex)
-  async createCryptoPayment(cartItems: any[], paymentMethod: string): Promise<any> {
-    return this.request<any>('/api/payments/crypto', {
+  async createCryptoPayment(
+    cartItems: CartItem[],
+    paymentMethod: string
+  ): Promise<CryptoPaymentResponse> {
+    return this.request<CryptoPaymentResponse>('/api/payments/crypto', {
       method: 'POST',
       body: JSON.stringify({ cartItems, paymentMethod }),
     });
   }
 
-  async getPaymentStatus(paymentId: string): Promise<any> {
-    return this.request<any>(`/api/payments/${paymentId}/status`);
+  async getPaymentStatus(paymentId: string): Promise<PaymentStatus> {
+    return this.request<PaymentStatus>(`/api/payments/${paymentId}/status`);
   }
 
   // USER (Simplified, full implementation would be more complex)
@@ -323,10 +345,12 @@ class APIClient {
   }
 
   async getUserSubscriptions(): Promise<any[]> {
+    // Define proper subscription type if needed
     return this.request<any[]>('/api/user/subscriptions');
   }
 
   async getUserPayments(): Promise<any[]> {
+    // Define proper payment type if needed
     return this.request<any[]>('/api/user/payments');
   }
 

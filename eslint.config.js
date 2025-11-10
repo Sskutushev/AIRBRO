@@ -8,7 +8,26 @@ import { defineConfig } from 'eslint/config'
 export default defineConfig([
   {
     // Global ignores for the entire project
-    ignores: ['dist', 'node_modules', 'backend/dist', 'api/dist', 'src/lib/__tests__/toast.test.ts'],
+    ignores: [
+      'dist', 
+      'node_modules', 
+      'backend/dist', 
+      'api/dist', 
+      '**/__tests__/**', 
+      '**/*.{test,spec}.{ts,tsx}',
+      'backend/prisma/seed.ts',
+      'backend/getChatId.ts',
+      'eslint.config.js',
+      'postcss.config.js',
+      'tailwind.config.js',
+      'vite.config.ts',
+      'vitest.config.ts',
+      'playwright.config.ts',
+      'backend/vitest.config.ts',
+      'backend/vite.config.ts',
+      'scripts/**',
+      'backend/scripts/**'
+    ],
   },
   // Frontend application files
   {

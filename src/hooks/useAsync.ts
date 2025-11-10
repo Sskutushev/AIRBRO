@@ -42,14 +42,14 @@ interface UseAsyncOptions<T, E = Error> {
  *   data: T | null;
  *   loading: boolean;
  *   error: E | null;
- *   execute: (...args: any[]) => Promise<T>;
+ *   execute: (...args: unknown[]) => Promise<T>;
  *   reset: () => void;
  *   setData: (data: T) => void;
  *   setError: (error: E) => void;
  * }} The current state and control functions for the async operation.
  */
 export function useAsync<T, E = Error>(
-  asyncFunction: (...args: any[]) => Promise<T>,
+  asyncFunction: (...args: unknown[]) => Promise<T>,
   options?: UseAsyncOptions<T, E>
 ) {
   const { onSuccess, onError, immediate = false } = options || {};
@@ -72,11 +72,11 @@ export function useAsync<T, E = Error>(
 
   /**
    * Executes the asynchronous function.
-   * @param {...any[]} args Arguments to pass to the async function.
+   * @param {...unknown[]} args Arguments to pass to the async function.
    * @returns {Promise<T>} A promise that resolves with the data or rejects with an error.
    */
   const execute = useCallback(
-    async (...args: any[]): Promise<T> => {
+    async (...args: unknown[]): Promise<T> => {
       if (mountedRef.current) {
         setState((prevState) => ({ ...prevState, loading: true, error: null }));
       }
@@ -88,7 +88,7 @@ export function useAsync<T, E = Error>(
           onSuccess?.(result);
         }
         return result;
-      } catch (err: any) {
+      } catch (err: unknown) {
         if (mountedRef.current) {
           setState((prevState) => ({ ...prevState, error: err as E, loading: false }));
           onError?.(err as E);

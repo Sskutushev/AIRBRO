@@ -12,27 +12,37 @@ const PWAPrompt: React.FC = () => {
   const [showPrompt, setShowPrompt] = useState(false);
 
   useEffect(() => {
+    // Use ref to track if component is mounted
+    let isMounted = true;
+
     // Detect if the user is on iOS
     const isIos = () => {
       const userAgent = window.navigator.userAgent.toLowerCase();
       return /iphone|ipad|ipod/.test(userAgent);
     };
 
-    setIsIOS(isIos());
+    // Check if component is still mounted before setting state
+    if (isMounted) {
+      setIsIOS(isIos());
+    }
 
     // Handle beforeinstallprompt event for non-iOS devices
     const handleBeforeInstallPrompt = (e: Event) => {
       // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
       // Stash the event so it can be triggered later
-      setDeferredPrompt(e);
-      // Update UI to notify the user they can install the PWA
-      setShowPrompt(true);
+      if (isMounted) {
+        setDeferredPrompt(e);
+        // Update UI to notify the user they can install the PWA
+        setShowPrompt(true);
+      }
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
+    // Cleanup function
     return () => {
+      isMounted = false;
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
     };
   }, []);

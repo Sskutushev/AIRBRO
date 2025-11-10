@@ -32,7 +32,7 @@ export function useRegister() {
   return useMutation({
     mutationFn: (userData: RegisterInput) => {
       // Create a copy of userData without confirmPassword and agreement to send to server
-      const { confirmPassword, agreement, ...apiData } = userData;
+      const { confirmPassword: _, agreement: __, ...apiData } = userData;
       return apiClient.register(apiData);
     },
     onSuccess: (data) => {

@@ -76,7 +76,7 @@ export const showToast = {
    * Displays a promise-based toast notification that updates based on promise resolution.
    * @template T The type of the promise's resolved value.
    * @param {Promise<T>} promise - The promise to track.
-   * @param {{ loading: string; success: string | ((data: T) => string); error: string | ((error: any) => string); }} messages - Messages for loading, success, and error states.
+   * @param {{ loading: string; success: string | ((data: T) => string); error: string | ((error: unknown) => string); }} messages - Messages for loading, success, and error states.
    * @param {ToastOptions} [options] - Optional toast options to override defaults.
    * @returns {Promise<T>} The original promise.
    */
@@ -85,7 +85,7 @@ export const showToast = {
     messages: {
       loading: string;
       success: string | ((data: T) => string);
-      error: string | ((error: any) => string);
+      error: string | ((error: unknown) => string);
     },
     options?: ToastOptions
   ): Promise<T> {
@@ -106,7 +106,7 @@ export const showToast = {
    * @param {ToastOptions} [options] - Optional toast options to override defaults.
    */
   custom(component: ReactNode, options?: ToastOptions): string {
-    return toast.custom(component as any, { ...defaultToastOptions, ...options });
+    return toast.custom(component, { ...defaultToastOptions, ...options });
   },
 };
 

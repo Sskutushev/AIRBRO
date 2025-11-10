@@ -6,6 +6,7 @@ import React, {
   useEffect,
   useMemo,
   useCallback,
+  useRef,
 } from 'react';
 import { apiClient } from '../services/api/client';
 import * as ApiTypes from '../types/api';
@@ -28,28 +29,45 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<ApiTypes.User | null>(null);
   const [loading, setLoading] = useState(true);
+  const mountedRef = useRef(true);
 
   // Check for token and user data on initial load
   useEffect(() => {
+    // Update mounted ref when component mounts/unmounts
+    mountedRef.current = true;
+
     const token = localStorage.getItem('airbro_token');
     if (token) {
       apiClient.setToken(token);
       apiClient
         .getMe()
         .then((userData: ApiTypes.User) => {
-          setUser(userData);
+          if (mountedRef.current) {
+            setUser(userData);
+          }
         })
         .catch((error) => {
           console.error('Error fetching user data:', error);
-          localStorage.removeItem('airbro_token');
-          apiClient.setToken(null);
+          if (mountedRef.current) {
+            localStorage.removeItem('airbro_token');
+            apiClient.setToken(null);
+          }
         })
         .finally(() => {
-          setLoading(false);
+          if (mountedRef.current) {
+            setLoading(false);
+          }
         });
     } else {
-      setLoading(false);
+      if (mountedRef.current) {
+        setLoading(false);
+      }
     }
+
+    // Cleanup function to mark component as unmounted
+    return () => {
+      mountedRef.current = false;
+    };
   }, []);
 
   const setAuthData = useCallback((user: ApiTypes.User, token: string) => {

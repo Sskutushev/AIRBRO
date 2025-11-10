@@ -39,7 +39,13 @@ export const initSentry = () => {
         // Ignore non-critical errors
         if (event.exception) {
           const error = hint.originalException;
-          if (error && typeof error === 'object' && 'message' in error && (error as any).message?.includes('ResizeObserver')) {
+          if (
+            error &&
+            typeof error === 'object' &&
+            'message' in error &&
+            typeof (error as { message?: string }).message === 'string' &&
+            (error as { message?: string }).message?.includes('ResizeObserver')
+          ) {
             return null; // Ignore
           }
         }
@@ -54,7 +60,7 @@ export const initSentry = () => {
   }
 };
 
-export const logError = (error: Error, context?: Record<string, any>) => {
+export const logError = (error: Error, context?: Record<string, unknown>) => {
   console.error('Error:', error);
 
   if (import.meta.env.MODE === 'production') {

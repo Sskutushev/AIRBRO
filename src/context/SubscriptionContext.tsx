@@ -1,4 +1,11 @@
-import React, { createContext, useContext, type ReactNode, useState, useEffect } from 'react';
+import React, {
+  createContext,
+  useContext,
+  type ReactNode,
+  useState,
+  useEffect,
+  useCallback,
+} from 'react';
 import { useAuth } from '../context/AuthContext';
 import {
   type UserSubscription,
@@ -46,9 +53,9 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({ chil
       setPaymentMethods([]);
       setLoading(false);
     }
-  }, [user]);
+  }, [user, fetchUserSubscription, fetchPaymentMethods]);
 
-  const fetchUserSubscription = async () => {
+  const fetchUserSubscription = useCallback(async () => {
     if (!user) return;
 
     try {
@@ -60,9 +67,9 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({ chil
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
 
-  const fetchPaymentMethods = async () => {
+  const fetchPaymentMethods = useCallback(async () => {
     if (!user) return;
 
     try {
@@ -71,22 +78,25 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({ chil
     } catch (error) {
       console.error('Error fetching payment methods:', error);
     }
-  };
+  }, [user]);
 
-  const subscribeToPlan = async (planId: string): Promise<UserSubscription> => {
-    if (!user) throw new Error('User not authenticated');
+  const subscribeToPlan = useCallback(
+    async (planId: string): Promise<UserSubscription> => {
+      if (!user) throw new Error('User not authenticated');
 
-    try {
-      const subscription = await createSubscription(user.id, planId);
-      setUserSubscription(subscription);
-      return subscription;
-    } catch (error) {
-      console.error('Error subscribing to plan:', error);
-      throw error;
-    }
-  };
+      try {
+        const subscription = await createSubscription(user.id, planId);
+        setUserSubscription(subscription);
+        return subscription;
+      } catch (error) {
+        console.error('Error subscribing to plan:', error);
+        throw error;
+      }
+    },
+    [user]
+  );
 
-  const cancelCurrentSubscription = async (): Promise<UserSubscription> => {
+  const cancelCurrentSubscription = useCallback(async (): Promise<UserSubscription> => {
     if (!userSubscription?.id) throw new Error('No active subscription');
 
     try {
@@ -97,20 +107,23 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({ chil
       console.error('Error cancelling subscription:', error);
       throw error;
     }
-  };
+  }, [userSubscription?.id]);
 
-  const updateCurrentSubscription = async (newPlanId: string): Promise<UserSubscription> => {
-    if (!userSubscription?.id) throw new Error('No active subscription');
+  const updateCurrentSubscription = useCallback(
+    async (newPlanId: string): Promise<UserSubscription> => {
+      if (!userSubscription?.id) throw new Error('No active subscription');
 
-    try {
-      const updatedSub = await updateSubscription(userSubscription.id, newPlanId);
-      setUserSubscription(updatedSub);
-      return updatedSub;
-    } catch (error) {
-      console.error('Error updating subscription:', error);
-      throw error;
-    }
-  };
+      try {
+        const updatedSub = await updateSubscription(userSubscription.id, newPlanId);
+        setUserSubscription(updatedSub);
+        return updatedSub;
+      } catch (error) {
+        console.error('Error updating subscription:', error);
+        throw error;
+      }
+    },
+    [userSubscription?.id]
+  );
 
   const value = {
     userSubscription,

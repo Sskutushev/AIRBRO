@@ -67,7 +67,6 @@ const VotingModal: React.FC<VotingModalProps> = ({ isOpen, onClose }) => {
 
       // Generate random total votes between 3000-4000
       const initialTotalVotes = Math.floor(Math.random() * 1001) + 3000;
-      setTotalVotes(initialTotalVotes);
 
       // Generate random vote distribution
       const votes: { [key: string]: number } = {};
@@ -94,18 +93,22 @@ const VotingModal: React.FC<VotingModalProps> = ({ isOpen, onClose }) => {
       votes[featureOptions[featureOptions.length - 1].id] = remainingVotes;
       voteCounts.push(remainingVotes);
 
+      let newTotalVotes = initialTotalVotes;
+
       // If user has voted, add their vote to the appropriate option
       if (userHasVoted) {
         votes[userHasVoted] = (votes[userHasVoted] || 0) + 1;
         // Update total votes
-        setTotalVotes((prev) => prev + 1);
+        newTotalVotes += 1;
       }
+
+      // Set all state updates together
+      setTotalVotes(newTotalVotes);
 
       // Calculate percentages
       const results = featureOptions.map((option) => ({
         optionId: option.id,
-        percentage:
-          (votes[option.id] / (userHasVoted ? initialTotalVotes + 1 : initialTotalVotes)) * 100,
+        percentage: (votes[option.id] / newTotalVotes) * 100,
       }));
 
       setVoteResults(results);

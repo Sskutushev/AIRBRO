@@ -77,9 +77,17 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const finalSrcSet = srcSet || generateSrcSet(src, defaultWidths);
 
   useEffect(() => {
-    if (imgRef.current?.complete) {
+    // Use ref to track if component is mounted
+    let isMounted = true;
+
+    const img = imgRef.current;
+    if (img?.complete && isMounted) {
       setLoaded(true);
     }
+
+    return () => {
+      isMounted = false;
+    };
   }, [src]);
 
   const handleLoad = () => {

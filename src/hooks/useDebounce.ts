@@ -25,7 +25,13 @@ export function useDebounce<T>(value: T, delay: number = 500): T {
   useEffect(() => {
     // If delay is 0, update immediately
     if (delay === 0) {
-      setDebouncedValue(value);
+      setDebouncedValue((prevValue) => {
+        // Only update if value actually changed
+        if (prevValue !== value) {
+          return value;
+        }
+        return prevValue;
+      });
       return;
     }
 
