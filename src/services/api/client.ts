@@ -5,6 +5,7 @@
 
 import { storage } from '../../lib/utils/storage';
 import { showToast } from '../../lib/toast'; // Assuming showToast exists or will be created
+import type { RegisterInput } from '../../lib/validation/auth';
 
 // --- Type Definitions ---
 interface UserData {
@@ -40,14 +41,7 @@ interface CartItem {
   product: Product;
 }
 
-interface RegisterInput {
-  name: string;
-  email: string;
-  telegram: string;
-  password: string;
-  confirmPassword: string;
-  agreement: boolean;
-}
+// RegisterInput interface is no longer needed since we're using the one from validation schema
 
 // --- APIError Class ---
 /**
@@ -178,7 +172,9 @@ class APIClient {
     options: RequestInit = {},
     retryOnCsrf: boolean = true
   ): Promise<T> {
-    console.log(`Making request to: ${this.baseURL}${endpoint} with method: ${options.method || 'GET'}`);
+    console.log(
+      `Making request to: ${this.baseURL}${endpoint} with method: ${options.method || 'GET'}`
+    );
     const headers: HeadersInit = {
       'Content-Type': 'application/json',
       ...options.headers,

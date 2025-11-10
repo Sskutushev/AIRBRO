@@ -33,7 +33,7 @@ export function useRegister() {
     mutationFn: (userData: RegisterInput) => {
       // Create a copy of userData without confirmPassword and agreement to send to server
       const { confirmPassword, agreement, ...apiData } = userData;
-      return apiClient.register(apiData as any); // Using type assertion to match API expectations
+      return apiClient.register(apiData);
     },
     onSuccess: (data) => {
       setAuthData(data.user, data.token);

@@ -58,4 +58,4 @@ jobs:
         with:
           status: ${{ job.status }}
           text: 'Frontend deployment ${{ job.status }}'
-          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}

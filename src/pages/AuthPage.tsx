@@ -5,16 +5,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import {
-  User,
-  Mail,
-  Lock,
-  Smartphone,
-  ArrowRight,
-  CheckCircle,
-  ArrowLeft,
-  Loader2,
-} from 'lucide-react';
+import { User, Mail, Lock, Smartphone, ArrowRight, ArrowLeft, Loader2 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -337,6 +328,14 @@ const AuthPage: React.FC = () => {
                     {registerErrors.root.message}
                   </div>
                 )}
+
+                <FormCheckbox<RegisterInput>
+                  name="agreement"
+                  label=""
+                  register={registerRegister}
+                  errors={registerErrors}
+                  required
+                />
 
                 <button
                   type="submit"
