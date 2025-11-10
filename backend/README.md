@@ -1,176 +1,57 @@
-# AIBRO Business Backend
+# Бэкенд - AIRBRO Business
 
-Backend for AIBRO Business - AI-powered automation ecosystem for Telegram-native businesses.
+Этот раздел содержит бэкенд-сервис для платформы AIRBRO Business. Он построен на Node.js, Express и Prisma.
 
-## 🚀 Quick Start
+## 🚀 Быстрый старт
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
-- SQLite (for development) or PostgreSQL (for production)
+Для полного развертывания проекта (фронтенд + бэкенд) следуйте инструкциям в **[основном руководстве](../docs/02_Getting_Started.md)**.
 
-### Installation
+### Запуск только бэкенда
 
-1. Clone the repository
-2. Install dependencies:
-```bash
-cd backend
-npm install
-```
+1.  **Перейдите в директорию:**
 
-3. Set up environment variables:
-```bash
-cp .env.example .env
-# Edit .env with your configuration
-```
+    ```bash
+    cd backend
+    ```
 
-4. Install Prisma:
-```bash
-npm install -g prisma
-```
+2.  **Установите зависимости:**
 
-5. Set up database:
-```bash
-npm run prisma:generate
-npm run prisma:migrate
-npm run prisma:seed
-```
+    ```bash
+    npm install
+    ```
 
-6. Start the development server:
-```bash
-npm run dev
-```
+3.  **Настройте переменные окружения:**
+    - Создайте файл `.env` в папке `backend`, скопировав содержимое из `.env.example` (если он есть).
+    - Заполните необходимые переменные, в первую очередь `DATABASE_URL`. Для локальной разработки подойдет значение по умолчанию:
+      ```env
+      DATABASE_URL="file:./dev.db"
+      ```
 
-## 📋 API Endpoints
+4.  **Примените миграции базы данных:**
+    Это создаст базу данных SQLite и все необходимые таблицы.
 
-### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - Login user
-- `GET /api/auth/me` - Get current user info
+    ```bash
+    npx prisma migrate dev
+    ```
 
-### Products
-- `GET /api/products` - Get all products
-- `GET /api/products/:slug` - Get product by slug
+5.  **Запустите dev-сервер:**
+    Сервер будет автоматически перезагружаться при изменениях в коде.
+    ```bash
+    npm run dev
+    ```
+    Бэкенд будет доступен по адресу `http://localhost:3000`.
 
-### Cart
-- `GET /api/cart` - Get user's cart
-- `POST /api/cart/add` - Add item to cart
-- `DELETE /api/cart/:itemId` - Remove item from cart
-- `POST /api/cart/clear` - Clear user's cart
+## 🛠 Скрипты
 
-### Payments
-- `POST /api/payments/crypto/create` - Create crypto payment
-- `GET /api/payments/:id/status` - Get payment status
-- `POST /api/payments/:id/confirm` - Confirm payment (admin)
-- `POST /api/payments/card/create` - Create card payment (not implemented)
+- `npm run dev`: Запуск сервера в режиме разработки с `tsx`.
+- `npm run build`: Сборка проекта с помощью `tsc`.
+- `npm run start`: Запуск собранной версии проекта.
+- `npm run prisma:generate`: Генерация клиента Prisma.
+- `npm run prisma:migrate`: Применение миграций базы данных.
+- `npm run prisma:studio`: Открытие Prisma Studio для просмотра и редактирования данных.
+- `npm run prisma:seed`: Заполнение базы данных тестовыми данными (если `prisma/seed.ts` настроен).
 
-### User Profile
-- `GET /api/user/profile` - Get user profile
-- `PUT /api/user/profile` - Update user profile
-- `GET /api/user/subscriptions` - Get user subscriptions
-- `GET /api/user/payments` - Get user payments
-- `POST /api/user/subscriptions/:id/cancel` - Cancel subscription
+## 📚 Подробная документация
 
-## 🛠️ Tech Stack
-
-- **Framework**: Express.js with TypeScript
-- **Database**: SQLite (dev) / PostgreSQL (prod) with Prisma ORM
-- **Authentication**: JWT with bcrypt
-- **Validation**: Zod
-- **Payments**: Crypto payments with QR codes
-- **Telegram**: Node Telegram Bot API
-
-## 🗂️ Project Structure
-
-```
-backend/
-├── src/
-│   ├── config/           # Configuration files
-│   ├── middleware/       # Auth, validation, error handling
-│   ├── routes/           # API routes
-│   ├── controllers/      # Business logic
-│   ├── services/         # Service layer
-│   ├── models/           # TypeScript types
-│   ├── utils/            # Utility functions
-│   ├── prisma/           # Prisma schema and migrations
-│   └── server.ts         # Entry point
-```
-
-## 🚨 Environment Variables
-
-Create a `.env` file based on `.env.example`:
-
-```bash
-# Server
-NODE_ENV=development
-PORT=3000
-FRONTEND_URL=http://localhost:5173
-
-# Database
-DATABASE_URL="file:./dev.db"
-
-# JWT
-JWT_SECRET=your-super-secret-jwt-key-change-in-production
-JWT_EXPIRES_IN=7d
-
-# Crypto Wallets
-USDT_TRC20_WALLET=your_wallet_address
-USDT_ERC20_WALLET=your_wallet_address
-TON_WALLET=your_wallet_address
-
-# Exchange Rates
-RUB_TO_USDT_RATE=0.011
-RUB_TO_TON_RATE=0.17
-
-# Telegram
-TELEGRAM_BOT_TOKEN=your_bot_token
-TELEGRAM_ADMIN_CHANNEL=your_channel_id
-```
-
-## 🧪 Development
-
-Run in development mode:
-```bash
-npm run dev
-```
-
-Build for production:
-```bash
-npm run build
-```
-
-Run production build:
-```bash
-npm start
-```
-
-## 🚀 Deployment
-
-This backend is designed to be easily deployable on platforms like Railway or Render:
-
-1. Change `DATABASE_URL` to PostgreSQL connection string
-2. Set environment variables
-3. Deploy via Git push
-
-## 📝 Notes
-
-1. **Crypto Payments**: Currently using a manual confirmation system. Real blockchain verification would require additional API integrations.
-
-2. **Payment Methods**: Card payments are not implemented yet (placeholder returning 501).
-
-3. **Rate Limiting**: API has rate limiting middleware to prevent abuse.
-
-4. **Security**: All sensitive endpoints are protected with JWT authentication.
-
-## 🎯 Features Implemented
-
-✅ User authentication (register, login, JWT)
-✅ Product catalog management
-✅ Shopping cart functionality
-✅ Crypto payment processing (USDT TRC20/ERC20, TON)
-✅ User profile management
-✅ Subscription management
-✅ Payment history
-✅ Telegram notifications
-✅ Input validation
-✅ Error handling
+- **[API и маршруты](../docs/03_Backend_API.md)**
+- **[Схема базы данных](../docs/04_Database_Schema.md)**
