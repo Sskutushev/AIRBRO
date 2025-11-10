@@ -100,7 +100,7 @@ describe('PaymentPage', () => {
     expect(screen.getByText('Выбранный план')).toBeInTheDocument();
     expect(screen.getByText(mockPlan.name)).toBeInTheDocument();
     expect(screen.getByText(mockPlan.name)).toBeInTheDocument();
-    expect(screen.getByText('5 000')).toBeInTheDocument();
+    expect(screen.getByText(/5\s*000/)).toBeInTheDocument();
     expect(screen.getByText('₽')).toBeInTheDocument();
   });
 
