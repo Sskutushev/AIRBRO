@@ -1,36 +1,10 @@
-21:47:12.886 Running build in Washington, D.C., USA (East) – iad1
-21:47:12.887 Build machine configuration: 2 cores, 8 GB
-21:47:13.045 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: f7de7f6)
-21:47:14.240 Cloning completed: 1.194s
-21:47:14.358 Restored build cache from previous deployment (2ZG7jztAqeRiwGJVw2hxFL81T5pt)
-21:47:14.997 Running "vercel build"
-21:47:15.395 Vercel CLI 48.9.0
-21:47:16.201 Installing dependencies...
-21:47:18.518 
-21:47:18.518 > airbro-business-landing@1.0.0 prepare
-21:47:18.518 > husky install
-21:47:18.518 
-21:47:18.568 husky - install command is DEPRECATED
-21:47:18.585 
-21:47:18.585 up to date in 2s
-21:47:18.586 
-21:47:18.586 216 packages are looking for funding
-21:47:18.586   run `npm fund` for details
-21:47:18.621 Running "npm run build"
-21:47:18.730 
-21:47:18.730 > airbro-business-landing@1.0.0 build
-21:47:18.730 > npm run optimize:images && tsc -b && vite build
-21:47:18.730 
-21:47:18.843 
-21:47:18.844 > airbro-business-landing@1.0.0 optimize:images
-21:47:18.844 > node scripts/optimize-images.js
-21:47:18.844 
-21:47:18.986 Starting image optimization...
-21:48:09.383 
-21:48:09.384 Image optimization complete!
-21:48:09.384 Processed 23 images.
-21:48:09.384 Total original size: 6.99 MB
-21:48:09.384 Total optimized size: 4.58 MB
-21:48:09.385 Total size saved: 2.41 MB
-21:48:15.821 src/services/api/client.ts(192,5): error TS6133: 'retryOnCsrf' is declared but its value is never read.
-21:48:16.601 Error: Command "npm run build" exited with 2
+Security Scan / Snyk Security Scan (push) Failing after 1s- Current runner version: '2.329.0'
+Runner Image Provisioner
+Operating System
+Runner Image
+GITHUB_TOKEN Permissions
+Secret source: Actions
+Prepare workflow directory
+Prepare all required actions
+Getting action download info
+Error: Unable to resolve action `snyk/actions@v3`, unable to find version `v3`

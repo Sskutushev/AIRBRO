@@ -37,7 +37,7 @@ jobs:
           node-version: '20'
 
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/scan@v3
+        uses: snyk/actions/node@latest
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
