@@ -84,6 +84,7 @@
     "@types/dompurify": "^3.0.5",
     "@types/i18next-browser-languagedetector": "^2.0.2",
     "@types/node": "^24.6.0",
+    "@types/qrcode": "^1.5.6",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
     "@typescript-eslint/eslint-plugin": "^8.46.3",
