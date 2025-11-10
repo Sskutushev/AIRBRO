@@ -29,7 +29,7 @@ const mockProducts = [
 
 export const mockAPI = {
   // Auth endpoints
-  async login(email: string, password: string) {
+  async login(_email: string, _password: string) {
     await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate network delay
 
     const user = mockUsers[0];
