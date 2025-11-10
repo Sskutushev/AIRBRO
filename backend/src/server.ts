@@ -22,6 +22,7 @@ const corsOptions = {
   origin: [
     process.env.FRONTEND_URL || 'http://localhost:5173',
     'https://airbro-mrqs.vercel.app',
+    'https://airbro-production.up.railway.app',
     'http://localhost:5173',
   ],
   credentials: true,

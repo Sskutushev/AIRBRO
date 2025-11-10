@@ -36,7 +36,7 @@ jobs:
       - name: Health check
         run: |
           sleep 10
-          curl -f https://api.aibrobusiness.com/health || exit 1
+          curl -f https://airbro-production.up.railway.app/health || exit 1
 
       # - name: Notify deployment
       #   uses: 8398a7/action-slack@v3
