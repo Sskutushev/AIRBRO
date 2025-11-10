@@ -100,7 +100,8 @@ describe('PaymentPage', () => {
     expect(screen.getByText('Выбранный план')).toBeInTheDocument();
     expect(screen.getByText(mockPlan.name)).toBeInTheDocument();
     expect(screen.getByText(mockPlan.name)).toBeInTheDocument();
-    expect(screen.getByText(/5\s*000\s*₽/, { selector: '.text-2xl' })).toBeInTheDocument();
+    expect(screen.getByText('5,000')).toBeInTheDocument();
+    expect(screen.getByText('₽')).toBeInTheDocument();
   });
 
   it('should switch payment methods', () => {

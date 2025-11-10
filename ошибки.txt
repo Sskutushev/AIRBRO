@@ -1,124 +1,112 @@
-
-Security Scan / npm audit (push) Failing after 10s- Run npm audit --audit-level=moderate
+1.Security Scan / CodeQL Analysis (push) Successful in 1m- успех
+2.Security Scan / npm audit (push) Failing after 26s- Run npm audit --audit-level=moderate
 # npm audit report
 
 esbuild  <=0.24.2
 Severity: moderate
 esbuild enables any website to send any requests to the development server and read the response - https://github.com/advisories/GHSA-67mh-4wv8-2f99
-fix available via `npm audit fix --force`
-Will install @vercel/node@2.3.0, which is a breaking change
+fix available via `npm audit fix`
 node_modules/esbuild
   @vercel/node  >=2.3.1
   Depends on vulnerable versions of esbuild
   Depends on vulnerable versions of path-to-regexp
-  Depends on vulnerable versions of undici
   node_modules/@vercel/node
 
 path-to-regexp  4.0.0 - 6.2.2
 Severity: high
 path-to-regexp outputs backtracking regular expressions - https://github.com/advisories/GHSA-9wv6-86v2-598j
-fix available via `npm audit fix --force`
-Will install @vercel/node@2.3.0, which is a breaking change
+fix available via `npm audit fix`
 node_modules/path-to-regexp
 
-undici  <=5.28.5
-Severity: moderate
-Use of Insufficiently Random Values in undici - https://github.com/advisories/GHSA-c76h-2ccp-4975
-undici Denial of Service attack via bad certificate data - https://github.com/advisories/GHSA-cxrh-j4jr-qwg3
-fix available via `npm audit fix --force`
-Will install @vercel/node@2.3.0, which is a breaking change
-node_modules/undici
+3 vulnerabilities (1 moderate, 2 high)
 
-4 vulnerabilities (2 moderate, 2 high)
-
-To address all issues (including breaking changes), run:
-  npm audit fix --force
+To address all issues, run:
+  npm audit fix
 Error: Process completed with exit code 1.
 
-Vercel – airbro-mrqs - Deployment has failed- 21:24:32.051 Running build in Washington, D.C., USA (East) – iad1
-21:24:32.055 Build machine configuration: 2 cores, 8 GB
-21:24:32.344 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: 9b1ae81)
-21:24:33.496 Cloning completed: 1.151s
-21:24:33.639 Restored build cache from previous deployment (AmGiNTJYaWhJnaTK5NyXkfpMd8Ln)
-21:24:34.117 Running "vercel build"
-21:24:34.507 Vercel CLI 48.9.0
-21:24:35.257 Installing dependencies...
-21:24:38.187 npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
-21:24:39.060 npm warn deprecated source-map@0.8.0-beta.0: The work that was done in this beta branch won't be included in future versions
-21:24:40.242 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-21:24:45.330 
-21:24:45.331 > airbro-business-landing@1.0.0 prepare
-21:24:45.331 > husky install
-21:24:45.331 
-21:24:45.377 husky - install command is DEPRECATED
-21:24:45.408 
-21:24:45.409 added 489 packages, removed 49 packages, and changed 68 packages in 10s
-21:24:45.409 
-21:24:45.409 215 packages are looking for funding
-21:24:45.410   run `npm fund` for details
-21:24:45.452 Running "npm run build"
-21:24:45.562 
-21:24:45.563 > airbro-business-landing@1.0.0 build
-21:24:45.563 > npm run optimize:images && tsc -b && vite build
-21:24:45.563 
-21:24:45.678 
-21:24:45.678 > airbro-business-landing@1.0.0 optimize:images
-21:24:45.678 > node scripts/optimize-images.js
-21:24:45.678 
-21:24:45.769 Starting image optimization...
-21:25:36.531 
-21:25:36.532 Image optimization complete!
-21:25:36.532 Processed 23 images.
-21:25:36.533 Total original size: 6.99 MB
-21:25:36.533 Total optimized size: 4.58 MB
-21:25:36.533 Total size saved: 2.41 MB
-21:25:43.090 src/hooks/useAuth.ts(35,32): error TS2339: Property 'agreement' does not exist on type '{ name: string; email: string; telegram: string; password: string; confirmPassword: string; }'.
-21:25:43.090 src/pages/AuthPage.tsx(14,3): error TS6133: 'CheckCircle' is declared but its value is never read.
-21:25:43.886 Error: Command "npm run build" exited with 2
+3.Vercel – airbro-mrqs - Deployment has failed-13:11:37.491 Running build in Washington, D.C., USA (East) – iad1
+13:11:37.492 Build machine configuration: 2 cores, 8 GB
+13:11:38.641 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: 36e90e8)
+13:11:39.686 Cloning completed: 1.045s
+13:11:39.832 Restored build cache from previous deployment (AmGiNTJYaWhJnaTK5NyXkfpMd8Ln)
+13:11:40.348 Running "vercel build"
+13:11:40.790 Vercel CLI 48.9.0
+13:11:41.821 Installing dependencies...
+13:11:45.500 npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+13:11:45.672 npm warn deprecated source-map@0.8.0-beta.0: The work that was done in this beta branch won't be included in future versions
+13:11:48.426 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+13:11:52.551 
+13:11:52.552 > airbro-business-landing@1.0.0 prepare
+13:11:52.552 > husky install
+13:11:52.552 
+13:11:52.602 husky - install command is DEPRECATED
+13:11:52.632 
+13:11:52.633 added 498 packages, removed 71 packages, and changed 62 packages in 10s
+13:11:52.633 
+13:11:52.633 216 packages are looking for funding
+13:11:52.633   run `npm fund` for details
+13:11:52.686 Running "npm run build"
+13:11:52.822 
+13:11:52.823 > airbro-business-landing@1.0.0 build
+13:11:52.823 > npm run optimize:images && tsc -b && vite build
+13:11:52.823 
+13:11:52.949 
+13:11:52.949 > airbro-business-landing@1.0.0 optimize:images
+13:11:52.949 > node scripts/optimize-images.js
+13:11:52.950 
+13:11:53.044 Starting image optimization...
+13:12:43.666 
+13:12:43.666 Image optimization complete!
+13:12:43.667 Processed 23 images.
+13:12:43.667 Total original size: 6.99 MB
+13:12:43.667 Total optimized size: 4.58 MB
+13:12:43.667 Total size saved: 2.41 MB
+13:12:50.002 src/hooks/useAuth.ts(36,33): error TS2345: Argument of type '{ name: string; email: string; telegram: string; password: string; }' is not assignable to parameter of type '{ name: string; email: string; telegram: string; password: string; confirmPassword: string; agreement: boolean; }'.
+13:12:50.002   Type '{ name: string; email: string; telegram: string; password: string; }' is missing the following properties from type '{ name: string; email: string; telegram: string; password: string; confirmPassword: string; agreement: boolean; }': confirmPassword, agreement
+13:12:50.723 Error: Command "npm run build" exited with 2
 
-Vercel – airbro - Deployment has failed- 21:23:18.939 Running build in Washington, D.C., USA (East) – iad1
-21:23:18.939 Build machine configuration: 2 cores, 8 GB
-21:23:19.066 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: 9b1ae81)
-21:23:20.658 Cloning completed: 1.592s
-21:23:20.806 Restored build cache from previous deployment (FiWh3KNtyACTYGxaQksgpsTu21sg)
-21:23:21.336 Running "vercel build"
-21:23:21.726 Vercel CLI 48.9.0
-21:23:22.504 Installing dependencies...
-21:23:25.500 npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
-21:23:26.975 npm warn deprecated source-map@0.8.0-beta.0: The work that was done in this beta branch won't be included in future versions
-21:23:27.565 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-21:23:32.091 
-21:23:32.092 > airbro-business-landing@1.0.0 prepare
-21:23:32.092 > husky install
-21:23:32.092 
-21:23:32.164 husky - install command is DEPRECATED
-21:23:32.192 
-21:23:32.193 added 489 packages, removed 49 packages, and changed 68 packages in 9s
-21:23:32.194 
-21:23:32.194 215 packages are looking for funding
-21:23:32.194   run `npm fund` for details
-21:23:32.244 Running "npm run build"
-21:23:32.355 
-21:23:32.356 > airbro-business-landing@1.0.0 build
-21:23:32.356 > npm run optimize:images && tsc -b && vite build
-21:23:32.356 
-21:23:32.470 
-21:23:32.470 > airbro-business-landing@1.0.0 optimize:images
-21:23:32.471 > node scripts/optimize-images.js
-21:23:32.471 
-21:23:32.560 Starting image optimization...
-21:24:23.274 
-21:24:23.274 Image optimization complete!
-21:24:23.275 Processed 23 images.
-21:24:23.275 Total original size: 6.99 MB
-21:24:23.275 Total optimized size: 4.58 MB
-21:24:23.275 Total size saved: 2.41 MB
-21:24:29.883 src/hooks/useAuth.ts(35,32): error TS2339: Property 'agreement' does not exist on type '{ name: string; email: string; telegram: string; password: string; confirmPassword: string; }'.
-21:24:29.884 src/pages/AuthPage.tsx(14,3): error TS6133: 'CheckCircle' is declared but its value is never read.
-21:24:30.661 Error: Command "npm run build" exited with 2
+4.Vercel – airbro - Deployment has failed- 13:12:53.606 Running build in Washington, D.C., USA (East) – iad1
+13:12:53.607 Build machine configuration: 2 cores, 8 GB
+13:12:53.803 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: 36e90e8)
+13:12:54.803 Cloning completed: 1.000s
+13:12:54.948 Restored build cache from previous deployment (FiWh3KNtyACTYGxaQksgpsTu21sg)
+13:12:55.978 Running "vercel build"
+13:12:56.376 Vercel CLI 48.9.0
+13:12:57.645 Installing dependencies...
+13:13:01.186 npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+13:13:02.787 npm warn deprecated source-map@0.8.0-beta.0: The work that was done in this beta branch won't be included in future versions
+13:13:03.296 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+13:13:07.682 
+13:13:07.683 > airbro-business-landing@1.0.0 prepare
+13:13:07.683 > husky install
+13:13:07.683 
+13:13:07.733 husky - install command is DEPRECATED
+13:13:07.762 
+13:13:07.763 added 498 packages, removed 71 packages, and changed 62 packages in 10s
+13:13:07.763 
+13:13:07.764 216 packages are looking for funding
+13:13:07.764   run `npm fund` for details
+13:13:07.807 Running "npm run build"
+13:13:07.923 
+13:13:07.923 > airbro-business-landing@1.0.0 build
+13:13:07.924 > npm run optimize:images && tsc -b && vite build
+13:13:07.924 
+13:13:08.037 
+13:13:08.037 > airbro-business-landing@1.0.0 optimize:images
+13:13:08.037 > node scripts/optimize-images.js
+13:13:08.037 
+13:13:08.127 Starting image optimization...
+13:13:58.494 
+13:13:58.495 Image optimization complete!
+13:13:58.495 Processed 23 images.
+13:13:58.496 Total original size: 6.99 MB
+13:13:58.496 Total optimized size: 4.58 MB
+13:13:58.496 Total size saved: 2.41 MB
+13:14:04.821 src/hooks/useAuth.ts(36,33): error TS2345: Argument of type '{ name: string; email: string; telegram: string; password: string; }' is not assignable to parameter of type '{ name: string; email: string; telegram: string; password: string; confirmPassword: string; agreement: boolean; }'.
+13:14:04.821   Type '{ name: string; email: string; telegram: string; password: string; }' is missing the following properties from type '{ name: string; email: string; telegram: string; password: string; confirmPassword: string; agreement: boolean; }': confirmPassword, agreement
+13:14:05.578 Error: Command "npm run build" exited with 2
 
-
-CI / Unit Tests (push) Failing after 33s-Run npm run test:coverage
+5.CI / Unit Tests (push) Failing after 35s- Run npm run test:coverage
 
 > airbro-business-landing@1.0.0 test:coverage
 > vitest --coverage
@@ -127,7 +115,7 @@ CI / Unit Tests (push) Failing after 33s-Run npm run test:coverage
  RUN  v4.0.8 /home/runner/work/AIRBRO/AIRBRO
       Coverage enabled with v8
 
- ✓ src/lib/validation/__tests__/auth.test.ts (19 tests) 22ms
+ ✓ src/lib/validation/__tests__/auth.test.ts (19 tests) 18ms
 stdout | src/services/api/__tests__/client.test.ts > APIClient > login > should return user and token on successful login
 Making request to: http://localhost:3000/api/auth/login with method: POST
 CSRF token missing for mutating request, fetching...
@@ -148,49 +136,49 @@ Making request to: http://localhost:3000/api/auth/login with method: POST
 X-CSRF-Token header added.
 
 stderr | src/services/api/__tests__/client.test.ts > APIClient > login > should throw a generic APIError on network failure
-stdout | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should include Authorization header on GET requests
 Network error: Error: Network error
-Making request to: http://localhost:3000/api/auth/me with method: GET
     at /home/runner/work/AIRBRO/AIRBRO/src/services/api/__tests__/client.test.ts:103:33
-Authorization header added.
     at Mock (file:///home/runner/work/AIRBRO/AIRBRO/node_modules/@vitest/spy/dist/index.js:280:34)
-
-    at APIClient.request (/home/runner/work/AIRBRO/AIRBRO/src/services/api/client.ts:219:30)
-stdout | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should clear token and throw on 401 response
-    at APIClient.login (/home/runner/work/AIRBRO/AIRBRO/src/services/api/client.ts:250:17)
-Making request to: http://localhost:3000/api/auth/me with method: GET
+    at APIClient.request (/home/runner/work/AIRBRO/AIRBRO/src/services/api/client.ts:215:30)
+    at APIClient.login (/home/runner/work/AIRBRO/AIRBRO/src/services/api/client.ts:246:17)
     at /home/runner/work/AIRBRO/AIRBRO/src/services/api/__tests__/client.test.ts:115:30
-Authorization header added.
     at file:///home/runner/work/AIRBRO/AIRBRO/node_modules/@vitest/runner/dist/index.js:157:11
-
     at file:///home/runner/work/AIRBRO/AIRBRO/node_modules/@vitest/runner/dist/index.js:753:26
-stdout | src/services/api/__tests__/client.test.ts > APIClient > other methods > getProducts should call the correct endpoint with params
     at file:///home/runner/work/AIRBRO/AIRBRO/node_modules/@vitest/runner/dist/index.js:1636:20
-Making request to: http://localhost:3000/api/products?tier=1&isActive=true with method: GET
     at new Promise (<anonymous>)
     at runWithTimeout (file:///home/runner/work/AIRBRO/AIRBRO/node_modules/@vitest/runner/dist/index.js:1602:10)
+
+stdout | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should include Authorization header on GET requests
+Making request to: http://localhost:3000/api/auth/me with method: GET
+Authorization header added.
+
+stdout | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should clear token and throw on 401 response
+Making request to: http://localhost:3000/api/auth/me with method: GET
+Authorization header added.
+
+stdout | src/services/api/__tests__/client.test.ts > APIClient > other methods > getProducts should call the correct endpoint with params
+Making request to: http://localhost:3000/api/products?tier=1&isActive=true with method: GET
 
 stdout | src/services/api/__tests__/client.test.ts > APIClient > other methods > addToCart should send correct payload and headers
 Making request to: http://localhost:3000/api/cart with method: POST
 Authorization header added.
 X-CSRF-Token header added.
 
-
- ✓ src/services/api/__tests__/client.test.ts (7 tests) 44ms
- ❯ src/pages/__tests__/PaymentPage.test.tsx (9 tests | 1 failed) 2129ms
-     ✓ should redirect to auth page if user is not logged in 32ms
-     ✓ should display access denied message if user is not logged in and plan is not found 259ms
-     × should display selected plan details 86ms
-     ✓ should switch payment methods  458ms
-       ✓ should process card payment successfully 232ms
-       ✓ should show error message if card payment fails 277ms
-       ✓ should initiate Telegram payment and redirect 206ms
-       ✓ should show error message if Telegram payment fails 235ms
-     ✓ should allow retrying payment after an error  341ms
- ✓ src/hooks/__tests__/useLocalStorage.test.ts (8 tests) 56ms
- ✓ src/pages/__tests__/AuthPage.test.tsx (10 tests) 2171ms
-     ✓ should render login form by default  543ms
- ✓ src/lib/utils/__tests__/storage.test.ts (8 tests) 16ms
+ ✓ src/services/api/__tests__/client.test.ts (7 tests) 40ms
+ ✓ src/hooks/__tests__/useLocalStorage.test.ts (8 tests) 53ms
+ ❯ src/pages/__tests__/PaymentPage.test.tsx (9 tests | 1 failed) 2333ms
+     ✓ should redirect to auth page if user is not logged in 48ms
+     ✓ should display access denied message if user is not logged in and plan is not found 269ms
+     × should display selected plan details 130ms
+     ✓ should switch payment methods  498ms
+       ✓ should process card payment successfully 225ms
+       ✓ should show error message if card payment fails 273ms
+       ✓ should initiate Telegram payment and redirect 246ms
+       ✓ should show error message if Telegram payment fails 281ms
+     ✓ should allow retrying payment after an error  360ms
+ ✓ src/pages/__tests__/AuthPage.test.tsx (10 tests) 2544ms
+     ✓ should render login form by default  564ms
+     ✓ should switch to registration form when "Регистрация" tab is clicked  309ms
 stderr | src/hooks/__tests__/useAsync.test.ts > useAsync > should handle async function execution with error
 An update to TestComponent inside a test was not wrapped in act(...).
 
@@ -203,7 +191,7 @@ act(() => {
 
 This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
 
- ✓ src/lib/utils/__tests__/validators.test.ts (10 tests) 7ms
+ ✓ src/lib/utils/__tests__/storage.test.ts (8 tests) 13ms
 stderr | src/hooks/__tests__/useAsync.test.ts > useAsync > should call onError callback on error
 An update to TestComponent inside a test was not wrapped in act(...).
 
@@ -216,24 +204,28 @@ act(() => {
 
 This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
 
- ✓ src/hooks/__tests__/useAsync.test.ts (9 tests) 415ms
- ✓ src/components/common/__tests__/Skeleton.test.tsx (13 tests) 351ms
- ✓ src/pages/__tests__/SolutionsPage.test.tsx (6 tests) 715ms
-     ✓ should display page title and description  341ms
+ ✓ src/lib/utils/__tests__/validators.test.ts (10 tests) 7ms
+ ✓ src/hooks/__tests__/useAsync.test.ts (9 tests) 417ms
+ ✓ src/components/common/__tests__/Skeleton.test.tsx (13 tests) 414ms
+ ✓ src/pages/__tests__/SolutionsPage.test.tsx (6 tests) 713ms
+     ✓ should display page title and description  313ms
 stdout | src/lib/utils/__tests__/dom.test.ts > DOM Utilities > formatCurrency > should format currency with specified currency
 Expected USD: $123
 Actual USD: $123
 
- ✓ src/lib/utils/__tests__/dom.test.ts (13 tests) 36ms
- ✓ src/pages/__tests__/AccountPage.test.tsx (8 tests) 1435ms
-     ✓ should display navigation tabs  301ms
- ✓ src/components/common/__tests__/OptimizedImage.test.tsx (9 tests) 599ms
- ✓ src/components/__tests__/ErrorBoundary.test.tsx (6 tests) 406ms
- ✓ src/components/common/__tests__/Button.test.tsx (11 tests) 338ms
- ✓ src/lib/__tests__/toast.test.tsx (8 tests) 15ms
- ✓ src/hooks/__tests__/useDebounce.test.ts (5 tests) 41ms
- ✓ src/components/common/__tests__/SafeHTML.test.tsx (9 tests) 92ms
- ✓ src/lib/utils/__tests__/cn.test.ts (9 tests) 11ms
+ ✓ src/lib/utils/__tests__/dom.test.ts (13 tests) 53ms
+ ✓ src/pages/__tests__/AccountPage.test.tsx (8 tests) 1651ms
+     ✓ should redirect to auth page if user is not logged in  325ms
+     ✓ should display navigation tabs  337ms
+ ✓ src/components/common/__tests__/OptimizedImage.test.tsx (9 tests) 750ms
+     ✓ should render a picture element with source tags for AVIF and WebP  301ms
+ ✓ src/components/__tests__/ErrorBoundary.test.tsx (6 tests) 475ms
+     ✓ should catch errors and display fallback UI  307ms
+ ✓ src/components/common/__tests__/Button.test.tsx (11 tests) 266ms
+ ✓ src/lib/__tests__/toast.test.tsx (8 tests) 10ms
+ ✓ src/hooks/__tests__/useDebounce.test.ts (5 tests) 48ms
+ ✓ src/components/common/__tests__/SafeHTML.test.tsx (9 tests) 85ms
+ ✓ src/lib/utils/__tests__/cn.test.ts (9 tests) 15ms
 
 ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
 
@@ -405,8 +397,8 @@ Ignored nodes: comments, script, style
 
  Test Files  1 failed | 18 passed (19)
       Tests  1 failed | 176 passed (177)
-   Start at  18:23:42
-   Duration  11.54s (transform 1.01s, setup 4.28s, collect 4.00s, tests 8.90s, environment 11.50s, prepare 839ms)
+   Start at  10:12:00
+   Duration  12.60s (transform 944ms, setup 4.56s, collect 4.33s, tests 9.91s, environment 12.78s, prepare 838ms)
 
 
 Error: TestingLibraryElementError: Unable to find an element with the text: /5\s*000\s*₽/, which matches selector '.text-2xl'. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
@@ -528,7 +520,7 @@ Ignored nodes: comments, script, style
                          
 Error: Process completed with exit code 1.
 
-CI / TypeScript Type Check (push) Failing after 19s- Run npx tsc --noEmit
+6.CI / TypeScript Type Check (push) Failing after 18s- Run npx tsc --noEmit
 error TS6059: File '/home/runner/work/AIRBRO/AIRBRO/backend/getChatId.ts' is not under 'rootDir' '/home/runner/work/AIRBRO/AIRBRO/backend/src'. 'rootDir' is expected to contain all source files.
   The file is in the program because:
     Matched by include pattern 'getChatId.ts' in '/home/runner/work/AIRBRO/AIRBRO/backend/tsconfig.json'
@@ -537,8 +529,8 @@ error TS6059: File '/home/runner/work/AIRBRO/AIRBRO/backend/prisma/seed.ts' is n
     Matched by include pattern 'prisma/seed.ts' in '/home/runner/work/AIRBRO/AIRBRO/backend/tsconfig.json'
 Error: Process completed with exit code 2.
 
-Security Scan / Snyk Security Scan (push) Failing after 30s- Run snyk/actions/node@master
-/usr/bin/docker run --name snyksnyknode_0946bd --label f7f31f --workdir /github/workspace --rm -e "SNYK_TOKEN" -e "INPUT_ARGS" -e "INPUT_COMMAND" -e "INPUT_JSON" -e "FORCE_COLOR" -e "SNYK_INTEGRATION_NAME" -e "SNYK_INTEGRATION_VERSION" -e "HOME" -e "GITHUB_JOB" -e "GITHUB_REF" -e "GITHUB_SHA" -e "GITHUB_REPOSITORY" -e "GITHUB_REPOSITORY_OWNER" -e "GITHUB_REPOSITORY_OWNER_ID" -e "GITHUB_RUN_ID" -e "GITHUB_RUN_NUMBER" -e "GITHUB_RETENTION_DAYS" -e "GITHUB_RUN_ATTEMPT" -e "GITHUB_ACTOR_ID" -e "GITHUB_ACTOR" -e "GITHUB_WORKFLOW" -e "GITHUB_HEAD_REF" -e "GITHUB_BASE_REF" -e "GITHUB_EVENT_NAME" -e "GITHUB_SERVER_URL" -e "GITHUB_API_URL" -e "GITHUB_GRAPHQL_URL" -e "GITHUB_REF_NAME" -e "GITHUB_REF_PROTECTED" -e "GITHUB_REF_TYPE" -e "GITHUB_WORKFLOW_REF" -e "GITHUB_WORKFLOW_SHA" -e "GITHUB_REPOSITORY_ID" -e "GITHUB_TRIGGERING_ACTOR" -e "GITHUB_WORKSPACE" -e "GITHUB_ACTION" -e "GITHUB_EVENT_PATH" -e "GITHUB_ACTION_REPOSITORY" -e "GITHUB_ACTION_REF" -e "GITHUB_PATH" -e "GITHUB_ENV" -e "GITHUB_STEP_SUMMARY" -e "GITHUB_STATE" -e "GITHUB_OUTPUT" -e "RUNNER_OS" -e "RUNNER_ARCH" -e "RUNNER_NAME" -e "RUNNER_ENVIRONMENT" -e "RUNNER_TOOL_CACHE" -e "RUNNER_TEMP" -e "RUNNER_WORKSPACE" -e "ACTIONS_RUNTIME_URL" -e "ACTIONS_RUNTIME_TOKEN" -e "ACTIONS_CACHE_URL" -e "ACTIONS_RESULTS_URL" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/AIRBRO/AIRBRO":"/github/workspace" snyk/snyk:node  "snyk" "test" "--severity-threshold=high"
+7.Security Scan / Snyk Security Scan (push) Failing after 28s- Run snyk/actions/node@master
+/usr/bin/docker run --name snyksnyknode_6d5891 --label 1ee7fc --workdir /github/workspace --rm -e "SNYK_TOKEN" -e "INPUT_ARGS" -e "INPUT_COMMAND" -e "INPUT_JSON" -e "FORCE_COLOR" -e "SNYK_INTEGRATION_NAME" -e "SNYK_INTEGRATION_VERSION" -e "HOME" -e "GITHUB_JOB" -e "GITHUB_REF" -e "GITHUB_SHA" -e "GITHUB_REPOSITORY" -e "GITHUB_REPOSITORY_OWNER" -e "GITHUB_REPOSITORY_OWNER_ID" -e "GITHUB_RUN_ID" -e "GITHUB_RUN_NUMBER" -e "GITHUB_RETENTION_DAYS" -e "GITHUB_RUN_ATTEMPT" -e "GITHUB_ACTOR_ID" -e "GITHUB_ACTOR" -e "GITHUB_WORKFLOW" -e "GITHUB_HEAD_REF" -e "GITHUB_BASE_REF" -e "GITHUB_EVENT_NAME" -e "GITHUB_SERVER_URL" -e "GITHUB_API_URL" -e "GITHUB_GRAPHQL_URL" -e "GITHUB_REF_NAME" -e "GITHUB_REF_PROTECTED" -e "GITHUB_REF_TYPE" -e "GITHUB_WORKFLOW_REF" -e "GITHUB_WORKFLOW_SHA" -e "GITHUB_REPOSITORY_ID" -e "GITHUB_TRIGGERING_ACTOR" -e "GITHUB_WORKSPACE" -e "GITHUB_ACTION" -e "GITHUB_EVENT_PATH" -e "GITHUB_ACTION_REPOSITORY" -e "GITHUB_ACTION_REF" -e "GITHUB_PATH" -e "GITHUB_ENV" -e "GITHUB_STEP_SUMMARY" -e "GITHUB_STATE" -e "GITHUB_OUTPUT" -e "RUNNER_OS" -e "RUNNER_ARCH" -e "RUNNER_NAME" -e "RUNNER_ENVIRONMENT" -e "RUNNER_TOOL_CACHE" -e "RUNNER_TEMP" -e "RUNNER_WORKSPACE" -e "ACTIONS_RUNTIME_URL" -e "ACTIONS_RUNTIME_TOKEN" -e "ACTIONS_CACHE_URL" -e "ACTIONS_RESULTS_URL" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/AIRBRO/AIRBRO":"/github/workspace" snyk/snyk:node  "snyk" "test" "--severity-threshold=high"
 
  ERROR   Authentication error (SNYK-0005)
          Authentication credentials not recognized, or user access is not provisioned.  
@@ -550,14 +542,14 @@ Security Scan / Snyk Security Scan (push) Failing after 30s- Run snyk/actions/no
 Status:  401 Unauthorized 
 Docs:    https://docs.snyk.io/scan-with-snyk/error-catalog#snyk-0005 
                                                                      
-ID:      urn:snyk:interaction:10fd434f-c974-4e06-9446-61786a4e4956 
+ID:      urn:snyk:interaction:76b2533c-cb71-471c-88e9-b25055ca7016 
 
-Security Scan / Secret Scanning (push) Failing after 7s- Run trufflesecurity/trufflehog@main
+8.Security Scan / Secret Scanning (push) Failing after 6s- Run trufflesecurity/trufflehog@main
 Run ##########################################
 Error: BASE and HEAD commits are the same. TruffleHog won't scan anything. Please see documentation (https://github.com/trufflesecurity/trufflehog#octocat-trufflehog-github-action).
 Error: Process completed with exit code 1.
 
-CI / Lint & Format Check (push) Failing after 24s- Run npm run lint
+9.CI / Lint & Format Check (push) Failing after 29s- Run npm run lint
 
 > airbro-business-landing@1.0.0 lint
 > eslint . --ext .ts,.tsx
@@ -777,7 +769,6 @@ Warning:   91:21  warning  Unexpected any. Specify a different type  @typescript
 /home/runner/work/AIRBRO/AIRBRO/src/hooks/useAuth.ts
 Warning:   35:15  warning  'confirmPassword' is assigned a value but never used  @typescript-eslint/no-unused-vars
 Warning:   35:32  warning  'agreement' is assigned a value but never used        @typescript-eslint/no-unused-vars
-Warning:   36:44  warning  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
 
 /home/runner/work/AIRBRO/AIRBRO/src/hooks/useDebounce.ts
   28:7  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
@@ -837,23 +828,22 @@ The file was not found in any of the provided project(s): src/lib/utils/__tests_
 The file was not found in any of the provided project(s): src/lib/validation/__tests__/auth.test.ts
 
 /home/runner/work/AIRBRO/AIRBRO/src/pages/AuthPage.tsx
-Warning:    14:3   warning  'CheckCircle' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
-   75:25  warning  Compilation Skipped: Use of incompatible library
+   66:25  warning  Compilation Skipped: Use of incompatible library
 
 This API returns functions which cannot be memoized without leading to stale UI. To prevent this, by default React Compiler will skip memoizing this component/hook. However, you may see issues if values from this API are passed to other components/hooks that are memoized.
 
-/home/runner/work/AIRBRO/AIRBRO/src/pages/AuthPage.tsx:75:25
-  73 |   } = registerForm;
-  74 |
-> 75 |   const passwordValue = registerWatch('password'); // Watch password field for strength calculation
+/home/runner/work/AIRBRO/AIRBRO/src/pages/AuthPage.tsx:66:25
+  64 |   } = registerForm;
+  65 |
+> 66 |   const passwordValue = registerWatch('password'); // Watch password field for strength calculation
      |                         ^^^^^^^^^^^^^ React Hook Form's `useForm()` API returns a `watch()` function which cannot be memoized safely.
-  76 |
-  77 |   /**
-  78 |    * Handles the submission of the login form  react-hooks/incompatible-library
-   88:21  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
-  105:21  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
-  215:33  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
-  218:48  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
+  67 |
+  68 |   /**
+  69 |    * Handles the submission of the login form  react-hooks/incompatible-library
+   79:21  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
+   96:21  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
+  206:33  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
+  209:48  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
 
 /home/runner/work/AIRBRO/AIRBRO/src/pages/__tests__/AccountPage.test.tsx
   0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
@@ -876,16 +866,16 @@ The file was not found in any of the provided project(s): src/pages/__tests__/So
 The file was not found in any of the provided project(s): src/services/api/__tests__/client.test.ts
 
 /home/runner/work/AIRBRO/AIRBRO/src/services/api/client.ts
-Warning:   269:58  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   304:40  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   304:79  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   305:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   311:54  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   312:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   327:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   265:58  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   300:40  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   300:79  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   301:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   307:54  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   308:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   323:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   324:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   327:36  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 Warning:   328:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   331:36  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   332:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /home/runner/work/AIRBRO/AIRBRO/src/test/setup.ts
 Warning:   71:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
@@ -903,12 +893,12 @@ Warning:   38:68  warning  Unexpected any. Specify a different type  @typescript
 Warning:   68:69  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 Warning:   82:71  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-✖ 121 problems (19 errors, 102 warnings)
+✖ 119 problems (19 errors, 100 warnings)
 
 Error: Process completed with exit code 1.
 
 
-CI / E2E Tests (push) Failing after 2s- Current runner version: '2.329.0'
+10.CI / E2E Tests (push) Failing after 2s-Current runner version: '2.329.0'
 Runner Image Provisioner
 Operating System
 Runner Image
@@ -920,17 +910,11 @@ Getting action download info
 Error: This request has been automatically failed because it uses a deprecated version of `actions/upload-artifact: v3`. Learn more: https://github.blog/changelog/2024-04-16-deprecation-notice-v3-of-the-artifact-actions/
 
 
-Deploy Frontend / Deploy to Vercel (push) Failing after 1m- Warning: Unexpected input(s) 'webhook_url', valid inputs are ['status', 'fields', 'custom_payload', 'mention', 'if_mention', 'author_name', 'text', 'username', 'icon_emoji', 'icon_url', 'channel', 'job_name', 'success_message', 'cancelled_message', 'failure_message', 'github_token', 'github_base_url']
+11.Deploy Frontend / Deploy to Vercel (push) Failing after 1m- Warning: Unexpected input(s) 'webhook_url', valid inputs are ['status', 'fields', 'custom_payload', 'mention', 'if_mention', 'author_name', 'text', 'username', 'icon_emoji', 'icon_url', 'channel', 'job_name', 'success_message', 'cancelled_message', 'failure_message', 'github_token', 'github_base_url']
 Run 8398a7/action-slack@v3
 Error: Specify secrets.SLACK_WEBHOOK_URL
 
-
-Deploy Backend / Deploy to Railway (push) Failing after 10s- Warning: Unexpected input(s) 'webhook_url', valid inputs are ['status', 'fields', 'custom_payload', 'mention', 'if_mention', 'author_name', 'text', 'username', 'icon_emoji', 'icon_url', 'channel', 'job_name', 'success_message', 'cancelled_message', 'failure_message', 'github_token', 'github_base_url']
-Run 8398a7/action-slack@v3
-Error: Specify secrets.SLACK_WEBHOOK_URL
-
-
-CI / Build Check (push) Failing after 1m- Run npm run build
+12.CI / Build Check (push) Failing after 1m- Run npm run build
 
 > airbro-business-landing@1.0.0 build
 > npm run optimize:images && tsc -b && vite build
@@ -946,29 +930,6 @@ Processed 23 images.
 Total original size: 6.99 MB
 Total optimized size: 4.58 MB
 Total size saved: 2.41 MB
-Error: src/hooks/useAuth.ts(35,32): error TS2339: Property 'agreement' does not exist on type '{ name: string; email: string; telegram: string; password: string; confirmPassword: string; }'.
-Error: src/pages/AuthPage.tsx(14,3): error TS6133: 'CheckCircle' is declared but its value is never read.
+Error: src/hooks/useAuth.ts(36,33): error TS2345: Argument of type '{ name: string; email: string; telegram: string; password: string; }' is not assignable to parameter of type '{ name: string; email: string; telegram: string; password: string; confirmPassword: string; agreement: boolean; }'.
+  Type '{ name: string; email: string; telegram: string; password: string; }' is missing the following properties from type '{ name: string; email: string; telegram: string; password: string; confirmPassword: string; agreement: boolean; }': confirmPassword, agreement
 Error: Process completed with exit code 2.
-
-Telegram Bot Token-GitHub
-detected a
-secret
-4 days ago
-Publicly leaked secret
-7689714723:AAGnAFlL_skB5_HSaH-TXshS38fnGg6QSW0
-Remediation steps
-Follow the steps below before you close this alert.
-1 (1)Rotate the secret if it's in use to prevent breaking workflows.
-2 (2)Revoke this Telegram Bot Token through Telegram to prevent unauthorized access. Learn more about Telegram tokens.
-3 (3)Check security logs for potential breaches.
-4 (4)Close the alert as revoked.
-Detected in 5 locations
-Plan.md
-
-```typescript
-// src/api/telegram.ts
-const TELEGRAM_BOT_TOKEN = "7689714723:AAGnAFlL_skB5_HSaH-TXshS38fnGg6QSW0";
-const TELEGRAM_CHANNEL_ID = "-1002293972627"; // для канала t.me/c/3293972627/3
-
-export const sendToTelegram = async (formData: FormData) => {
-Инициализация проекта AIRBRO Business: создание основы лендинга с инт…c6c3a23(нужно удалить этот комит!)

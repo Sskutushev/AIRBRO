@@ -12,7 +12,7 @@ export default defineConfig([
   },
   // Frontend application files
   {
-    files: ['src/**/*.{ts,tsx}'],
+    files: ['src/**/*.{ts,tsx}', '!src/**/*.{test,spec}.{ts,tsx}'],
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
@@ -46,6 +46,51 @@ export default defineConfig([
           jsx: true,
         },
         project: './tsconfig.app.json', // Frontend tsconfig
+      },
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+  },
+  // Test files
+  {
+    files: ['src/**/*.{test,spec}.{ts,tsx}'],
+    plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    extends: [
+      js.configs.recommended,
+      ...tseslint.configs.recommended,
+    ],
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
+      // Additional test-specific rules
+      '@typescript-eslint/no-explicit-any': 'warn', // Allow 'any' with a warning
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }], // Warn on unused vars, ignore args starting with _
+      'react-hooks/exhaustive-deps': 'off', // Disable exhaustive deps for tests
+      'react-hooks/rules-of-hooks': 'off', // Disable rules of hooks for tests
+      'react-hooks/set-state-in-effect': 'warn', // Warn on setState in effect
+    },
+    languageOptions: {
+      ecmaVersion: 2020,
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+        ...globals.vitest,
+      },
+      parser: tseslint.parser,
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+        project: './tsconfig.test.json', // Test tsconfig
       },
     },
     settings: {

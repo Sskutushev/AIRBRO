@@ -249,7 +249,9 @@ class APIClient {
     });
   }
 
-  async register(data: RegisterInput): Promise<AuthResponse> {
+  async register(
+    data: Omit<RegisterInput, 'confirmPassword' | 'agreement'>
+  ): Promise<AuthResponse> {
     return this.request<AuthResponse>('/api/auth/register', {
       method: 'POST',
       body: JSON.stringify(data),
