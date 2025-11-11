@@ -99,31 +99,10 @@ class APIClient {
 
   constructor() {
     // Use environment variable or fallback to localhost for development
-    const envAPIUrl = import.meta.env.VITE_API_URL;
-    console.log('🔍 Environment API URL:', envAPIUrl);
-
-    // Ensure URL has proper protocol
-    if (envAPIUrl && !envAPIUrl.startsWith('http')) {
-      console.warn('⚠️ VITE_API_URL missing protocol, adding https://');
-      this.baseURL = `https://${envAPIUrl}`;
-    } else {
-      this.baseURL = envAPIUrl || 'http://localhost:3000';
-    }
-
+    this.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
     this.token = storage.get<string>('authToken') || null; // Load token from storage on init
 
-    // Debug: Log the actual API URL being used
-    console.log('🔍 API Configuration Debug:', {
-      rawEnvVar: envAPIUrl,
-      finalBaseURL: this.baseURL,
-      hostname: typeof window !== 'undefined' ? window.location.hostname : 'server',
-      isDev: import.meta.env.DEV,
-      isProd: import.meta.env.PROD,
-    });
-
     // Check if we should use mock API (for development/testing)
-    // Don't use mock API in test environment
-    // Use mock API only in development when explicitly enabled
     this.useMockAPI = import.meta.env.VITE_USE_MOCK_API === 'true' && import.meta.env.DEV === true;
   }
 
@@ -254,15 +233,7 @@ class APIClient {
     // }
 
     try {
-      const fullURL = `${this.baseURL}/api${endpoint}`;
-      console.log('🌐 Making API request:', {
-        baseURL: this.baseURL,
-        endpoint: endpoint,
-        fullURL: fullURL,
-        method: options.method || 'GET',
-      });
-
-      const response = await fetch(fullURL, {
+      const response = await fetch(`${this.baseURL}/api${endpoint}`, {
         ...options,
         headers,
         credentials: 'include',
