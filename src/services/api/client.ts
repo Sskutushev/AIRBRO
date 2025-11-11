@@ -99,11 +99,20 @@ class APIClient {
 
   constructor() {
     // Use environment variable or fallback to localhost for development
-    this.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+    let apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
+    // Ensure URL has protocol
+    if (apiUrl && !apiUrl.startsWith('http://') && !apiUrl.startsWith('https://')) {
+      apiUrl = `https://${apiUrl}`;
+    }
+
+    this.baseURL = apiUrl;
     this.token = storage.get<string>('authToken') || null; // Load token from storage on init
 
     // Check if we should use mock API (for development/testing)
     this.useMockAPI = import.meta.env.VITE_USE_MOCK_API === 'true' && import.meta.env.DEV === true;
+
+    console.log('APIClient initialized with baseURL:', this.baseURL);
   }
 
   /**

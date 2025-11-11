@@ -6,7 +6,7 @@ import rateLimit from 'express-rate-limit';
 import cookieParser from 'cookie-parser';
 // Note: Helmet.js should be installed for security: npm install helmet
 import helmet from 'helmet';
-import { csrfProtection, csrfTokenHandler } from './middleware/csrf';
+// import { csrfProtection, csrfTokenHandler } from './middleware/csrf'; // CSRF disabled for now
 import { httpsRedirect } from './middleware/httpsRedirect';
 import { sanitizeInput } from './middleware/sanitization';
 import authRoutes from './routes/auth';
@@ -20,6 +20,11 @@ import logger from './utils/logger';
 // Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Add body parser middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // CORS configuration
 // CORS middleware
@@ -60,13 +65,15 @@ app.use(generalLimiter);
 
 // Apply auth-specific rate limiting only to auth routes
 app.use('/api/auth', authLimiter);
-app.use(csrfProtection);
-app.use(csrfTokenHandler);
+// CSRF protection disabled for now - uncomment when implementing on frontend
+// app.use(csrfProtection);
+// app.use(csrfTokenHandler);
 
 // API routes
-app.get('/api/csrf-token', (req, res) => {
-  res.json({ csrfToken: req.csrfToken() });
-});
+// CSRF token endpoint - disabled for now
+// app.get('/api/csrf-token', (req, res) => {
+//   res.json({ csrfToken: req.csrfToken() });
+// });
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
