@@ -18,19 +18,15 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // CORS configuration
-const corsOptions = {
-  origin: [
-    process.env.FRONTEND_URL || 'http://localhost:5173',
-    'https://airbro-mrqs.vercel.app',
-    'https://airbro-production.up.railway.app',
-    'http://localhost:5173',
-  ],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token'],
-  exposedHeaders: ['X-CSRF-Token'],
-};
-app.use(cors(corsOptions));
+// CORS middleware - allow all origins for now
+app.use(
+  cors({
+    origin: '*',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+);
 
 // General middleware
 app.use(cookieParser());
