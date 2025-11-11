@@ -32,7 +32,7 @@ const ModulePopup: React.FC<ModulePopupProps> = ({
 
   if (!isOpen) return null;
 
-  const data = moduleData[moduleId] || {
+  const data = moduleData[moduleId as keyof typeof moduleData] || {
     keyBenefits: [],
     howItWorksKeys: [],
     useCasesKeys: [],

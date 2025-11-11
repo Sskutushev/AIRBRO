@@ -269,12 +269,59 @@ npm run test:e2e
 - ✅ Internationalization
 - ✅ Code splitting for performance
 
+## [2025-11-11] - Critical TypeScript Fixes for CI/CD
+
+### What was done:
+
+- Fixed all 13 TypeScript compilation errors blocking build:
+  1. **GlobalApiErrorBoundary.tsx** - Changed to `import type` for ErrorInfo and ReactNode
+  2. **ErrorContext.tsx** - Changed to `import type` for ReactNode
+  3. **ModulePopup.tsx** - Added type assertion `as keyof typeof moduleData`
+  4. **queryClient.ts** - Removed deprecated `onError` from defaultOptions (TanStack Query v5)
+  5. **mocks/handlers.ts** - Added LoginBody and RegisterBody interfaces for type safety
+  6. **playwright.config.ts** - Removed unused `devices` import
+  7. **backend/tsconfig.json** - Excluded getChatId.ts and prisma files from rootDir
+
+### Why:
+
+- TypeScript errors were blocking ALL CI/CD pipelines
+- Vercel deployment FAILED
+- Railway deployment FAILED
+- GitHub Actions build FAILED
+- Needed for successful deployment and production readiness
+
+### How it works now:
+
+- ✅ TypeScript compiles: `npx tsc --noEmit` - 0 errors
+- ✅ Build succeeds: `npm run build` - bundle 796 KB
+- ✅ All imports follow verbatimModuleSyntax rules
+- ✅ Mock handlers have proper type safety
+
+### Files changed:
+
+- `src/components/GlobalApiErrorBoundary.tsx`
+- `src/context/ErrorContext.tsx`
+- `src/components/common/ModulePopup.tsx`
+- `src/lib/queryClient.ts`
+- `src/mocks/handlers.ts`
+- `playwright.config.ts`
+- `backend/tsconfig.json`
+
+### Tests:
+
+```bash
+npx tsc --noEmit  # ✅ PASSED
+npm run build     # ✅ PASSED
+```
+
+---
+
 ## Next Steps (Optional Further Improvements)
 
+- Fix unit test expectations (Russian vs English text)
+- Add missing supertest dependency for backend tests
 - Migrate backend tests from Jest to Vitest (consistency)
 - Add visual regression testing with Playwright
 - Improve ESLint warnings (replace `any` with proper types)
-- Add performance monitoring
-- Add more unit test coverage
 
 ---

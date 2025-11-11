@@ -1,9 +1,21 @@
 import { http, HttpResponse } from 'msw';
 
+interface LoginBody {
+  email: string;
+  password: string;
+}
+
+interface RegisterBody {
+  email: string;
+  password: string;
+  name: string;
+  telegram: string;
+}
+
 export const handlers = [
   // Auth handlers
   http.post('/api/auth/login', async ({ request }) => {
-    const { email, password } = await request.json();
+    const { email, password } = (await request.json()) as LoginBody;
 
     if (email === 'test@example.com' && password === 'password123') {
       return HttpResponse.json(
@@ -19,7 +31,7 @@ export const handlers = [
   }),
 
   http.post('/api/auth/register', async ({ request }) => {
-    const { email, password, name, telegram } = await request.json();
+    const { email, password, name, telegram } = (await request.json()) as RegisterBody;
 
     if (email === 'existing@example.com' || telegram === '@existing') {
       return HttpResponse.json(
