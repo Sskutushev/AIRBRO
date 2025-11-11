@@ -4,6 +4,9 @@ import prisma from '../../src/config/database'; // Mocked Prisma client
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
+// Mock the environment module
+jest.mock('@/config/environment');
+
 // Mock bcrypt and jsonwebtoken
 jest.mock('bcrypt');
 jest.mock('jsonwebtoken');

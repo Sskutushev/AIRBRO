@@ -7,6 +7,10 @@ export const getCart = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = req.userId;
 
+    if (!userId) {
+      return res.status(403).json({ error: 'Forbidden' });
+    }
+
     const cartItems = await prisma.cartItem.findMany({
       where: { userId },
       include: {
@@ -42,6 +46,10 @@ export const addToCart = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = req.userId;
     const { productId, quantity = 1 }: CartItemAdd = req.body;
+
+    if (!userId) {
+      return res.status(403).json({ error: 'Forbidden' });
+    }
 
     // Check if product exists
     const product = await prisma.product.findUnique({
@@ -91,6 +99,10 @@ export const removeFromCart = async (req: AuthenticatedRequest, res: Response) =
     const userId = req.userId;
     const { itemId } = req.params;
 
+    if (!userId) {
+      return res.status(403).json({ error: 'Forbidden' });
+    }
+
     // Verify that the item belongs to the user
     const item = await prisma.cartItem.findFirst({
       where: {
@@ -117,6 +129,10 @@ export const removeFromCart = async (req: AuthenticatedRequest, res: Response) =
 export const clearCart = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = req.userId;
+
+    if (!userId) {
+      return res.status(403).json({ error: 'Forbidden' });
+    }
 
     await prisma.cartItem.deleteMany({
       where: { userId },

@@ -5,6 +5,9 @@ import jwt from 'jsonwebtoken';
 import { authenticateToken } from '../../src/middleware/auth'; // Import authenticateToken
 import * as cryptoUtils from '../../src/utils/crypto'; // Import crypto utility functions
 
+// Mock the environment module
+jest.mock('@/config/environment');
+
 // Mock jsonwebtoken for token generation
 jest.mock('jsonwebtoken');
 // Mock the authentication middleware

@@ -70,6 +70,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install backend dependencies
+        run: npm ci --prefix backend
+
       - name: Run unit tests
         run: npm run test:coverage
 

@@ -15,6 +15,10 @@ export const createCryptoPayment = async (req: AuthenticatedRequest, res: Respon
     const userId = req.userId;
     const { cartItems, paymentMethod }: CryptoPaymentCreate = req.body;
 
+    if (!userId) {
+      return res.status(403).json({ error: 'Forbidden' });
+    }
+
     // Get user cart items to calculate total
     const userCartItems = await prisma.cartItem.findMany({
       where: {

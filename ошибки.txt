@@ -1,79 +1,159 @@
-CI / Unit Tests (push) Failing after 40s-Run npm run test:coverage
+ RERUN  src/pages/__tests__/AccountPage.test.tsx x1 
 
-> airbro-business-landing@1.0.0 test:coverage
-> vitest --coverage
+ ❯ backend/src/controllers/paymentController.test.ts (0 test)
+ ❯ backend/src/controllers/authController.test.ts (0 test)
+ ❯ backend/src/controllers/cartController.test.ts (0 test)
+ ✓ src/pages/__tests__/AccountPage.test.tsx (8 tests) 779ms
+   ✓ AccountPage (8)
+     ✓ should redirect to auth page if user is not logged in 182ms
+     ✓ should display user information when logged in 110ms
+     ✓ should display navigation tabs 178ms
+     ✓ should display stats cards 51ms
+     ✓ should display active products 51ms
+     ✓ should display quick actions 98ms
+     ✓ should display billing information 51ms
+     ✓ should call logout and redirect on "Log Out" click 53ms
+
+ Test Files  3 failed | 1 passed (4)
+      Tests  8 passed (8)
+   Start at  22:58:43
+   Duration  1.55s
+
+ PASS  Waiting for file changes...
+       press h to show help, press q to quit
+PS C:\Users\sskut\Desktop\AIRBRO> npm run test
+
+> airbro-business-landing@1.0.0 test
+> vitest
 
 
- RUN  v4.0.8 /home/runner/work/AIRBRO/AIRBRO
-      Coverage enabled with v8
+ DEV  v4.0.8 C:/Users/sskut/Desktop/AIRBRO
 
 stdout | src/pages/__tests__/AuthPage.test.tsx
-APIClient initialized with baseURL: http://localhost:3000
+APIClient initialized with baseURL: https://airbro-production.up.railway.app
 
- ✓ src/lib/validation/__tests__/auth.test.ts (19 tests) 14ms
-stdout | src/services/api/__tests__/client.test.ts
-APIClient initialized with baseURL: http://localhost:3000
+stderr | backend/src/controllers/authController.test.ts                                           
+Environment validation failed:                                                                    
+  JWT_SECRET: Required                                                                            
+                                                                                                  
+stderr | backend/src/controllers/paymentController.test.ts                                        
+Environment validation failed:                                                                    
+  JWT_SECRET: Required                                                                            
+                                                                                                  
+stderr | backend/src/controllers/cartController.test.ts                                           
+Environment validation failed:                                                                    
+  JWT_SECRET: Required                                                                            
+                                                                                                  
+ ✓ src/pages/__tests__/AccountPage.test.tsx (8 tests) 1841ms
+     ✓ should display stats cards  776ms
+ ✓ src/pages/__tests__/PaymentPage.test.tsx (9 tests) 2539ms
+       ✓ should process card payment successfully  892ms
+     ✓ should allow retrying payment after an error  529ms
+ ✓ src/pages/__tests__/AuthPage.test.tsx (10 tests) 2656ms
+     ✓ should render login form by default  376ms
+     ✓ should switch to registration form when "Register" tab is clicked  914ms
+     ✓ should call register mutation on valid registration submission  489ms
+Cancelling test run. Press CTRL+c again to exit forcefully.
 
-stdout | src/services/api/__tests__/client.test.ts > APIClient > login > should return user and token on successful login
-Making request to: http://localhost:3000/auth/login with method: POST
 
-stdout | src/services/api/__tests__/client.test.ts > APIClient > login > should throw APIError on failed login (401)
-Making request to: http://localhost:3000/auth/login with method: POST
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 3 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
 
-stdout | src/services/api/__tests__/client.test.ts > APIClient > login > should throw a generic APIError on network failure
-Making request to: http://localhost:3000/auth/login with method: POST
+ FAIL  backend/src/controllers/authController.test.ts [ backend/src/controllers/authController.test.ts ]
+ FAIL  backend/src/controllers/cartController.test.ts [ backend/src/controllers/cartController.test.ts ]
+ FAIL  backend/src/controllers/paymentController.test.ts [ backend/src/controllers/paymentController.test.ts ]
+Error: process.exit unexpectedly called with "1"
+ ❯ validateEnvironment backend/src/config/environment.ts:45:15
+     43|         console.error(`  ${err.path.join('.')}: ${err.message}`);
+     44|       });
+     45|       process.exit(1);
+       |               ^
+     46|     }
+     47|     throw error;
+ ❯ backend/src/config/environment.ts:51:20
+ ❯ backend/src/server.ts:2:1
 
-stderr | src/services/api/__tests__/client.test.ts > APIClient > login > should throw a generic APIError on network failure
-Network error: Error: Network error
-    at /home/runner/work/AIRBRO/AIRBRO/src/services/api/__tests__/client.test.ts:89:33
-    at Mock (file:///home/runner/work/AIRBRO/AIRBRO/node_modules/@vitest/spy/dist/index.js:280:34)
-    at APIClient.request (/home/runner/work/AIRBRO/AIRBRO/src/services/api/client.ts:245:30)
-    at APIClient.login (/home/runner/work/AIRBRO/AIRBRO/src/services/api/client.ts:279:17)
-    at /home/runner/work/AIRBRO/AIRBRO/src/services/api/__tests__/client.test.ts:101:30
-    at file:///home/runner/work/AIRBRO/AIRBRO/node_modules/@vitest/runner/dist/index.js:157:11
-    at file:///home/runner/work/AIRBRO/AIRBRO/node_modules/@vitest/runner/dist/index.js:753:26
-    at file:///home/runner/work/AIRBRO/AIRBRO/node_modules/@vitest/runner/dist/index.js:1636:20
-    at new Promise (<anonymous>)
-    at runWithTimeout (file:///home/runner/work/AIRBRO/AIRBRO/node_modules/@vitest/runner/dist/index.js:1602:10)
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
 
-stdout | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should include Authorization header on GET requests
-Making request to: http://localhost:3000/auth/me with method: GET
-Authorization header added.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
 
-stdout | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should clear token and throw on 401 response
-Making request to: http://localhost:3000/auth/me with method: GET
-Authorization header added.
+Vitest caught 6 unhandled errors during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
 
-stdout | src/services/api/__tests__/client.test.ts > APIClient > other methods > getProducts should call the correct endpoint with params
-Making request to: http://localhost:3000/products?tier=1&isActive=true with method: GET
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Timeout starting forks runner.
+ ❯ Timeout.<anonymous> node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
+ ❯ listOnTimeout node:internal/timers:581:17
+ ❯ processTimers node:internal/timers:519:7
 
-stdout | src/services/api/__tests__/client.test.ts > APIClient > other methods > addToCart should send correct payload and headers
-Making request to: http://localhost:3000/cart with method: POST
-Authorization header added.
 
- ❯ src/pages/__tests__/AuthPage.test.tsx (10 tests | 9 failed) 3152ms
-     × should render login form by default 638ms
-     × should switch to registration form when "Регистрация" tab is clicked 269ms
-     × should show validation errors for login form 1220ms
-     × should call login mutation on valid login submission 41ms
-     × should display login error message from mutation 35ms
-     × should show validation errors for registration form 184ms
-     × should call register mutation on valid registration submission 168ms
-     × should display registration error message from mutation 179ms
-     ✓ should toggle password visibility 290ms
-     × should display password strength indicator for registration form 114ms
- ✓ src/services/api/__tests__/client.test.ts (7 tests) 35ms
- ❯ src/pages/__tests__/PaymentPage.test.tsx (9 tests | 7 failed) 4527ms
-     ✓ should redirect to auth page if user is not logged in 46ms
-     × should display access denied message if user is not logged in and plan is not found 622ms
-     × should display selected plan details 162ms
-     × should switch payment methods 2069ms
-       × should process card payment successfully 50ms
-       × should show error message if card payment fails 35ms
-       ✓ should initiate Telegram payment and redirect 295ms
-       × should show error message if Telegram payment fails 1178ms
-     × should allow retrying payment after an error 62ms
- ✓ src/hooks/__tests__/useLocalStorage.test.ts (8 tests) 57ms
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Timeout starting forks runner.
+ ❯ Timeout.<anonymous> node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
+ ❯ listOnTimeout node:internal/timers:581:17
+ ❯ processTimers node:internal/timers:519:7
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Timeout starting forks runner.
+ ❯ Timeout.<anonymous> node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
+ ❯ listOnTimeout node:internal/timers:581:17
+ ❯ processTimers node:internal/timers:519:7
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Timeout starting forks runner.
+ ❯ Timeout.<anonymous> node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
+ ❯ listOnTimeout node:internal/timers:581:17
+ ❯ processTimers node:internal/timers:519:7
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Timeout starting forks runner.
+ ❯ Timeout.<anonymous> node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
+ ❯ listOnTimeout node:internal/timers:581:17
+ ❯ processTimers node:internal/timers:519:7
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Timeout starting forks runner.
+ ❯ Timeout.<anonymous> node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
+ ❯ listOnTimeout node:internal/timers:581:17
+ ❯ processTimers node:internal/timers:519:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  3 failed | 3 passed (22)
+      Tests  27 passed (27)
+     Errors  6 errors
+   Start at  23:05:27
+   Duration  90.66s (transform 1.29s, setup 2.71s, collect 6.40s, tests 7.04s, environment 39.50s, prepare 320ms)
+
+ FAIL  Tests failed. Watching for file changes...
+       press h to show help, press q to quit
+PS C:\Users\sskut\Desktop\AIRBRO> npm run test
+
+> airbro-business-landing@1.0.0 test
+> vitest
+
+
+ DEV  v4.0.8 C:/Users/sskut/Desktop/AIRBRO
+
+stderr | backend/src/controllers/authController.test.ts
+Environment validation failed:
+  JWT_SECRET: Required
+
+stderr | backend/src/controllers/cartController.test.ts
+Environment validation failed:
+  JWT_SECRET: Required
+
+stdout | src/pages/__tests__/AuthPage.test.tsx                                                    
+APIClient initialized with baseURL: https://airbro-production.up.railway.app                      
+                                                                                                  
+stderr | backend/src/controllers/paymentController.test.ts                                        
+Environment validation failed:                                                                    
+  JWT_SECRET: Required                                                                            
+                                                                                                  
 stderr | src/hooks/__tests__/useAsync.test.ts > useAsync > should handle async function execution with error
 An update to TestComponent inside a test was not wrapped in act(...).
 
@@ -86,7 +166,7 @@ act(() => {
 
 This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
 
-stderr | src/hooks/__tests__/useAsync.test.ts > useAsync > should call onError callback on error
+stderr | src/hooks/__tests__/useAsync.test.ts > useAsync > should call onError callback on error  
 An update to TestComponent inside a test was not wrapped in act(...).
 
 When testing, code that causes React state updates should be wrapped into act(...):
@@ -98,451 +178,96 @@ act(() => {
 
 This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
 
- ✓ src/hooks/__tests__/useAsync.test.ts (9 tests) 431ms
- ✓ src/lib/utils/__tests__/storage.test.ts (8 tests) 11ms
- ✓ src/lib/utils/__tests__/validators.test.ts (10 tests) 11ms
- ✓ src/components/common/__tests__/Skeleton.test.tsx (13 tests) 389ms
+ ✓ src/pages/__tests__/AccountPage.test.tsx (8 tests) 1428ms
+     ✓ should redirect to auth page if user is not logged in  339ms
+     ✓ should display navigation tabs  309ms
+ ✓ src/hooks/__tests__/useAsync.test.ts (9 tests) 531ms
+ ✓ src/pages/__tests__/PaymentPage.test.tsx (9 tests) 1787ms
+     ✓ should switch payment methods  321ms
+ ✓ src/components/common/__tests__/OptimizedImage.test.tsx (9 tests) 536ms
+ ✓ src/pages/__tests__/SolutionsPage.test.tsx (6 tests) 640ms
+ ✓ src/pages/__tests__/AuthPage.test.tsx (10 tests) 2180ms
+     ✓ should render login form by default  479ms
+ ✓ src/components/common/__tests__/Skeleton.test.tsx (13 tests) 328ms
+ ✓ src/components/__tests__/ErrorBoundary.test.tsx (6 tests) 352ms
 stdout | src/lib/utils/__tests__/dom.test.ts > DOM Utilities > formatCurrency > should format currency with specified currency
 Expected USD: $123
 Actual USD: $123
 
- ✓ src/lib/utils/__tests__/dom.test.ts (13 tests) 48ms
- ✓ src/pages/__tests__/SolutionsPage.test.tsx (6 tests) 684ms
-     ✓ should display page title and description  336ms
- ✓ src/components/common/__tests__/OptimizedImage.test.tsx (9 tests) 672ms
- ✓ src/components/__tests__/ErrorBoundary.test.tsx (6 tests) 408ms
- ✓ src/components/common/__tests__/Button.test.tsx (11 tests) 320ms
- ✓ src/lib/__tests__/toast.test.tsx (8 tests) 15ms
- ✓ src/hooks/__tests__/useDebounce.test.ts (5 tests) 48ms
- ✓ src/components/common/__tests__/SafeHTML.test.tsx (9 tests) 125ms
- ✓ src/lib/utils/__tests__/cn.test.ts (9 tests) 11ms
- ❯ src/pages/__tests__/AccountPage.test.tsx (8 tests | 8 failed) 10419ms
-     × should redirect to auth page if user is not logged in 497ms
-     × should display user information when logged in 2311ms
-     × should display navigation tabs 1927ms
-     × should display stats cards 1172ms
-     × should display active products 1122ms
-     × should display quick actions 1128ms
-     × should display billing information 1121ms
-     × should call logout and redirect on "Выйти из аккаунта" click 1135ms
+ ✓ src/lib/utils/__tests__/dom.test.ts (13 tests) 59ms
+ ✓ src/components/common/__tests__/SafeHTML.test.tsx (9 tests) 112ms
+ ✓ src/hooks/__tests__/useLocalStorage.test.ts (8 tests) 52ms
+ ✓ src/components/common/__tests__/Button.test.tsx (11 tests) 325ms
+ ✓ src/hooks/__tests__/useDebounce.test.ts (5 tests) 42ms
+stdout | src/services/api/__tests__/client.test.ts
+APIClient initialized with baseURL: https://airbro-production.up.railway.app
 
-⎯⎯⎯⎯⎯⎯ Failed Suites 3 ⎯⎯⎯⎯⎯⎯⎯
+stdout | src/services/api/__tests__/client.test.ts > APIClient > login > should return user and token on successful login
+Making request to: http://localhost:3000/auth/login with method: POST
+
+stdout | src/services/api/__tests__/client.test.ts > APIClient > login > should throw APIError on failed login (401)
+Making request to: http://localhost:3000/auth/login with method: POST
+
+stdout | src/services/api/__tests__/client.test.ts > APIClient > login > should throw a generic APIError on network failure
+Making request to: http://localhost:3000/auth/login with method: POST
+
+stderr | src/services/api/__tests__/client.test.ts > APIClient > login > should throw a generic APIError on network failure                                                                         
+Network error: Error: Network error                                                               
+    at C:/Users/sskut/Desktop/AIRBRO/src/services/api/__tests__/client.test.ts:89:33              
+    at Mock (file:///C:/Users/sskut/Desktop/AIRBRO/node_modules/@vitest/spy/dist/index.js:280:34) 
+    at APIClient.request (C:/Users/sskut/Desktop/AIRBRO/src/services/api/client.ts:245:30)        
+    at APIClient.login (C:/Users/sskut/Desktop/AIRBRO/src/services/api/client.ts:279:17)          
+    at C:/Users/sskut/Desktop/AIRBRO/src/services/api/__tests__/client.test.ts:101:30             
+    at file:///C:/Users/sskut/Desktop/AIRBRO/node_modules/@vitest/runner/dist/index.js:157:11     
+    at file:///C:/Users/sskut/Desktop/AIRBRO/node_modules/@vitest/runner/dist/index.js:753:26     
+    at file:///C:/Users/sskut/Desktop/AIRBRO/node_modules/@vitest/runner/dist/index.js:1636:20    
+    at new Promise (<anonymous>)                                                                  
+    at runWithTimeout (file:///C:/Users/sskut/Desktop/AIRBRO/node_modules/@vitest/runner/dist/index.js:1602:10)
+
+stdout | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should include Authorization header on GET requests                                                       
+Making request to: http://localhost:3000/auth/me with method: GET                                 
+Authorization header added.                                                                       
+                                                                                                  
+stdout | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should clear token and throw on 401 response                                                              
+Making request to: http://localhost:3000/auth/me with method: GET                                 
+Authorization header added.                                                                       
+                                                                                                  
+stdout | src/services/api/__tests__/client.test.ts > APIClient > other methods > getProducts should call the correct endpoint with params                                                           
+Making request to: http://localhost:3000/products?tier=1&isActive=true with method: GET
+
+stdout | src/services/api/__tests__/client.test.ts > APIClient > other methods > addToCart should send correct payload and headers
+Making request to: http://localhost:3000/cart with method: POST
+Authorization header added.
+
+ ✓ src/services/api/__tests__/client.test.ts (7 tests) 29ms
+ ✓ src/lib/utils/__tests__/cn.test.ts (9 tests) 15ms
+ ✓ src/lib/validation/__tests__/auth.test.ts (19 tests) 20ms
+ ✓ src/lib/utils/__tests__/storage.test.ts (8 tests) 11ms
+ ✓ src/lib/__tests__/toast.test.tsx (8 tests) 9ms
+ ✓ src/lib/utils/__tests__/validators.test.ts (10 tests) 6ms
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 3 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
 
  FAIL  backend/src/controllers/authController.test.ts [ backend/src/controllers/authController.test.ts ]
-Error: Failed to resolve import "supertest" from "backend/src/controllers/authController.test.ts". Does the file exist?
-  Plugin: vite:import-analysis
-  File: /home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/authController.test.ts:1:20
-  1  |  import request from "supertest";
-     |                       ^
-  2  |  import app from "../../src/server";
-  3  |  import prisma from "../../src/config/database";
- ❯ TransformPluginContext._formatLog node_modules/vite/dist/node/chunks/config.js:29618:43
- ❯ TransformPluginContext.error node_modules/vite/dist/node/chunks/config.js:29615:14
- ❯ normalizeUrl node_modules/vite/dist/node/chunks/config.js:27738:18
- ❯ node_modules/vite/dist/node/chunks/config.js:27796:32
- ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/config.js:27764:4
- ❯ EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/config.js:29416:14
- ❯ loadAndTransform node_modules/vite/dist/node/chunks/config.js:23287:26
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/27]⎯
-
  FAIL  backend/src/controllers/cartController.test.ts [ backend/src/controllers/cartController.test.ts ]
-Error: Failed to resolve import "supertest" from "backend/src/controllers/cartController.test.ts". Does the file exist?
-  Plugin: vite:import-analysis
-  File: /home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/cartController.test.ts:1:20
-  1  |  import request from "supertest";
-     |                       ^
-  2  |  import app from "../../src/server";
-  3  |  import prisma from "../../src/config/database";
- ❯ TransformPluginContext._formatLog node_modules/vite/dist/node/chunks/config.js:29618:43
- ❯ TransformPluginContext.error node_modules/vite/dist/node/chunks/config.js:29615:14
- ❯ normalizeUrl node_modules/vite/dist/node/chunks/config.js:27738:18
- ❯ node_modules/vite/dist/node/chunks/config.js:27796:32
- ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/config.js:27764:4
- ❯ EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/config.js:29416:14
- ❯ loadAndTransform node_modules/vite/dist/node/chunks/config.js:23287:26
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/27]⎯
-
  FAIL  backend/src/controllers/paymentController.test.ts [ backend/src/controllers/paymentController.test.ts ]
-Error: Failed to resolve import "supertest" from "backend/src/controllers/paymentController.test.ts". Does the file exist?
-  Plugin: vite:import-analysis
-  File: /home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/paymentController.test.ts:1:20
-  1  |  import request from "supertest";
-     |                       ^
-  2  |  import app from "../../src/server";
-  3  |  import prisma from "../../src/config/database";
- ❯ TransformPluginContext._formatLog node_modules/vite/dist/node/chunks/config.js:29618:43
- ❯ TransformPluginContext.error node_modules/vite/dist/node/chunks/config.js:29615:14
- ❯ normalizeUrl node_modules/vite/dist/node/chunks/config.js:27738:18
- ❯ node_modules/vite/dist/node/chunks/config.js:27796:32
- ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/config.js:27764:4
- ❯ EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/config.js:29416:14
- ❯ loadAndTransform node_modules/vite/dist/node/chunks/config.js:23287:26
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/27]⎯
-
-
-⎯⎯⎯⎯⎯⎯ Failed Tests 24 ⎯⎯⎯⎯⎯⎯⎯
-
- FAIL  src/pages/__tests__/AccountPage.test.tsx > AccountPage > should redirect to auth page if user is not logged in
-TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name `/Доступ запрещен/i`
-
- (10853 строка) Error: Process completed with exit code 1.
-
-
- 
-CI / TypeScript Type Check (push) Failing after 33s- Run npx tsc --noEmit
-Error: src/repositories/CartItemRepository.ts(6,11): error TS2552: Cannot find name 'BaseRepository'. Did you mean 'BaseRepositoryImpl'?
-Error: src/repositories/PaymentRepository.ts(6,11): error TS2552: Cannot find name 'BaseRepository'. Did you mean 'BaseRepositoryImpl'?
-Error: src/repositories/PaymentRepository.ts(48,7): error TS2322: Type '{ txHash: string; }' is not assignable to type 'PaymentWhereUniqueInput'.
-  Type '{ txHash: string; }' is not assignable to type '{ id: string; } & { id?: string | undefined; AND?: PaymentWhereInput | PaymentWhereInput[] | undefined; OR?: PaymentWhereInput[] | undefined; ... 13 more ...; user?: (Without<...> & UserWhereInput) | ... 1 more ... | undefined; }'.
-    Property 'id' is missing in type '{ txHash: string; }' but required in type '{ id: string; }'.
-Error: src/repositories/ProductRepository.ts(6,11): error TS2552: Cannot find name 'BaseRepository'. Did you mean 'BaseRepositoryImpl'?
-Error: src/repositories/SubscriptionRepository.ts(6,11): error TS2552: Cannot find name 'BaseRepository'. Did you mean 'BaseRepositoryImpl'?
-Error: src/repositories/UserRepository.ts(5,41): error TS2552: Cannot find name 'BaseRepository'. Did you mean 'BaseRepositoryImpl'?
-Error: src/server.ts(95,9): error TS7030: Not all code paths return a value.
-Error: src/services/CartService.ts(26,7): error TS2561: Object literal may only specify known properties, but 'userId' does not exist in type 'CartItemCreateInput'. Did you mean to write 'user'?
-Error: Process completed with exit code 2.
-
-
-CI / Lint & Format Check (push) Failing after 30s- Run npm run lint
-
-> airbro-business-landing@1.0.0 lint
-> eslint . --ext .ts,.tsx
-
-
-/home/runner/work/AIRBRO/AIRBRO/backend/getChatId.ts
-  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
-The file was not found in any of the provided project(s): backend/getChatId.ts
-
-/home/runner/work/AIRBRO/AIRBRO/backend/prisma/seed.ts
-  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
-The file was not found in any of the provided project(s): backend/prisma/seed.ts
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/config/jwt.ts
-Warning:   16:45  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   19:12  warning  'error' is defined but never used         @typescript-eslint/no-unused-vars
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/authController.ts
-Warning:   102:13  warning  'passwordHash' is assigned a value but never used  @typescript-eslint/no-unused-vars
-Warning:   116:28  warning  Unexpected any. Specify a different type           @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/cartController.ts
-Warning:     7:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    42:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    90:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   118:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/paymentController.ts
-Warning:   14:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/productController.ts
-Warning:   8:24  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/userController.ts
-Warning:     6:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    32:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    73:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   109:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   134:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/middleware/auth.ts
-Warning:   21:12  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/middleware/sanitization.ts
-Warning:   32:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   32:36  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   49:22  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/middleware/validation.ts
-Warning:   14:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   15:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/routes/products.ts
-Warning:   3:10  warning  'authenticateToken' is defined but never used  @typescript-eslint/no-unused-vars
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/server.ts
-Warning:   95:15  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/utils/crypto.ts
-Warning:   7:7  warning  'TON_WALLET' is assigned a value but never used  @typescript-eslint/no-unused-vars
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/utils/logger.ts
-Warning:    55:49  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    59:51  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    59:66  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    70:49  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    74:50  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    79:31  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    79:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    99:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   101:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   103:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/utils/securityLogger.ts
-Warning:   11:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   35:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/__tests__/ErrorBoundary.test.tsx
-Warning:   31:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   32:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/ModulePopup.tsx
-Warning:   46:45  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/OptimizedImage.tsx
-  85:7  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
-
-Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
-* Update external systems with the latest state from React.
-* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
-
-Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/OptimizedImage.tsx:85:7
-  83 |     const img = imgRef.current;
-  84 |     if (img?.complete && isMounted) {
-> 85 |       setLoaded(true);
-     |       ^^^^^^^^^ Avoid calling setState() directly within an effect
-  86 |     }
-  87 |
-  88 |     return () => {  react-hooks/set-state-in-effect
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/PWAPrompt.tsx
-  26:7   warning  Error: Calling setState synchronously within an effect can trigger cascading renders
-
-Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
-* Update external systems with the latest state from React.
-* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
-
-Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/PWAPrompt.tsx:26:7
-  24 |     // Check if component is still mounted before setting state
-  25 |     if (isMounted) {
-> 26 |       setIsIOS(isIos());
-     |       ^^^^^^^^ Avoid calling setState() directly within an effect
-  27 |     }
-  28 |
-  29 |     // Handle beforeinstallprompt event for non-iOS devices  react-hooks/set-state-in-effect
-Warning:   55:52  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        @typescript-eslint/no-explicit-any
-Warning:   97:41  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/VotingModal.tsx
-   64:9  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
-
-Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
-* Update external systems with the latest state from React.
-* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
-
-Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/VotingModal.tsx:64:9
-  62 |       const userHasVoted = localStorage.getItem('featureVote');
-  63 |       if (userHasVoted) {
-> 64 |         setHasVoted(true);
-     |         ^^^^^^^^^^^ Avoid calling setState() directly within an effect
-  65 |         setSelectedOption(userHasVoted);
-  66 |       }
-  67 |  react-hooks/set-state-in-effect
-Warning:   116:6  warning  React Hook useEffect has missing dependencies: 'featureOptions' and 'voteResults.length'. Either include them or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 react-hooks/exhaustive-deps
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/forms/FormCheckbox.tsx
-Warning:   18:65  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/forms/FormInput.tsx
-Warning:   19:62  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   52:18  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   78:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/forms/FormSelect.tsx
-Warning:   18:63  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/forms/FormTextarea.tsx
-Warning:   18:65  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/sections/PricingSection.tsx
-Warning:   13:66  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/sections/ProductsSection.tsx
-Warning:   100:84  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   103:85  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/context/AuthContext.tsx
-   63:9   warning  Error: Calling setState synchronously within an effect can trigger cascading renders
-
-Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
-* Update external systems with the latest state from React.
-* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
-
-Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
-
-/home/runner/work/AIRBRO/AIRBRO/src/context/AuthContext.tsx:63:9
-  61 |     } else {
-  62 |       if (mountedRef.current) {
-> 63 |         setLoading(false);
-     |         ^^^^^^^^^^ Avoid calling setState() directly within an effect
-  64 |       }
-  65 |     }
-  66 |  react-hooks/set-state-in-effect
-Warning:   110:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    react-refresh/only-export-components
-
-/home/runner/work/AIRBRO/AIRBRO/src/context/ErrorContext.tsx
-Warning:   54:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
-Warning:   63:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
-Warning:   63:45  warning  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/context/SubscriptionContext.tsx
-Warning:   144:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
-
-/home/runner/work/AIRBRO/AIRBRO/src/context/ThemeContext.tsx
-Warning:   33:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
-
-/home/runner/work/AIRBRO/AIRBRO/src/hooks/useAuth.ts
-Warning:   45:32  warning  '_' is assigned a value but never used   @typescript-eslint/no-unused-vars
-Warning:   45:46  warning  '__' is assigned a value but never used  @typescript-eslint/no-unused-vars
-
-/home/runner/work/AIRBRO/AIRBRO/src/hooks/useDebounce.ts
-  28:7  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
-
-Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
-* Update external systems with the latest state from React.
-* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
-
-Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
-
-/home/runner/work/AIRBRO/AIRBRO/src/hooks/useDebounce.ts:28:7
-  26 |     // If delay is 0, update immediately
-  27 |     if (delay === 0) {
-> 28 |       setDebouncedValue((prevValue) => {
-     |       ^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
-  29 |         // Only update if value actually changed
-  30 |         if (prevValue !== value) {
-  31 |           return value;  react-hooks/set-state-in-effect
-
-/home/runner/work/AIRBRO/AIRBRO/src/lib/analytics/index.ts
-Warning:    26:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    52:52  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    67:66  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    99:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   100:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/lib/queryClient.ts
-Warning:   7:10  warning  'showToast' is defined but never used  @typescript-eslint/no-unused-vars
-
-/home/runner/work/AIRBRO/AIRBRO/src/lib/toast.ts
-Warning:   109:38  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/lib/utils/__tests__/storage.test.ts
-Warning:   120:43  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   130:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   135:43  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   145:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/pages/AuthPage.tsx
-   66:25  warning  Compilation Skipped: Use of incompatible library
-
-This API returns functions which cannot be memoized without leading to stale UI. To prevent this, by default React Compiler will skip memoizing this component/hook. However, you may see issues if values from this API are passed to other components/hooks that are memoized.
-
-/home/runner/work/AIRBRO/AIRBRO/src/pages/AuthPage.tsx:66:25
-  64 |   } = registerForm;
-  65 |
-> 66 |   const passwordValue = registerWatch('password'); // Watch password field for strength calculation
-     |                         ^^^^^^^^^^^^^ React Hook Form's `useForm()` API returns a `watch()` function which cannot be memoized safely.
-  67 |
-  68 |   /**
-  69 |    * Handles the submission of the login form  react-hooks/incompatible-library
-Warning:    79:21  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
-Warning:    96:21  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
-Warning:   206:33  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
-Warning:   209:48  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/pages/__tests__/AccountPage.test.tsx
-Warning:   42:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   51:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/pages/__tests__/AuthPage.test.tsx
-Warning:   53:18  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   54:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   55:27  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   56:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/pages/__tests__/PaymentPage.test.tsx
-Warning:    64:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    65:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    69:44  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    70:39  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    71:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    80:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    86:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    87:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   124:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   154:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   158:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   183:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   204:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   221:44  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   225:39  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/pages/__tests__/SolutionsPage.test.tsx
-Warning:   82:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/services/api/__tests__/client.test.ts
-Warning:    12:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   138:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/services/api/client.ts
-Warning:   373:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   375:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   378:36  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   380:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/services/api/mock.ts
-Warning:   42:24  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/test/setup.ts
-Warning:   71:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/test/utils.tsx
-Warning:   31:5   warning  'initialState' is assigned a value but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
-Warning:   33:55  warning  Unexpected any. Specify a different type                                                 @typescript-eslint/no-explicit-any
-Warning:   66:1   warning  This rule can't verify that `export *` only exports components                           react-refresh/only-export-components
-
-/home/runner/work/AIRBRO/AIRBRO/src/types/forms.ts
-Warning:   12:68  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   18:49  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   18:57  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   38:68  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   68:69  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   82:71  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-✖ 121 problems (2 errors, 119 warnings)
-
-Error: Process completed with exit code 1.(предупреждения все уничтоить тоже, чтобы было чисто и без них!)
-
-
-Deploy Backend / Deploy to Railway (push) Failing after 9s- Run echo "Deploying to Railway..."
-Deploying to Railway...
-/home/runner/work/_temp/1db3aa83-a5d4-4543-8ab2-8211315c0900.sh: line 2: cd: backend: No such file or directory
-Error: Process completed with exit code 1.
-
-
-CI / Build Check (push) Failing after 1m- Run npm run build
-
-> aibro-backend@1.0.0 build
-> tsc
-
-Error: src/repositories/CartItemRepository.ts(6,11): error TS2552: Cannot find name 'BaseRepository'. Did you mean 'BaseRepositoryImpl'?
-Error: src/repositories/PaymentRepository.ts(6,11): error TS2552: Cannot find name 'BaseRepository'. Did you mean 'BaseRepositoryImpl'?
-Error: src/repositories/PaymentRepository.ts(48,7): error TS2322: Type '{ txHash: string; }' is not assignable to type 'PaymentWhereUniqueInput'.
-  Type '{ txHash: string; }' is not assignable to type '{ id: string; } & { id?: string | undefined; AND?: PaymentWhereInput | PaymentWhereInput[] | undefined; OR?: PaymentWhereInput[] | undefined; ... 13 more ...; user?: (Without<...> & UserWhereInput) | ... 1 more ... | undefined; }'.
-    Property 'id' is missing in type '{ txHash: string; }' but required in type '{ id: string; }'.
-Error: src/repositories/ProductRepository.ts(6,11): error TS2552: Cannot find name 'BaseRepository'. Did you mean 'BaseRepositoryImpl'?
-Error: src/repositories/SubscriptionRepository.ts(6,11): error TS2552: Cannot find name 'BaseRepository'. Did you mean 'BaseRepositoryImpl'?
-Error: src/repositories/UserRepository.ts(5,41): error TS2552: Cannot find name 'BaseRepository'. Did you mean 'BaseRepositoryImpl'?
-Error: src/server.ts(95,9): error TS7030: Not all code paths return a value.
-Error: src/services/CartService.ts(26,7): error TS2561: Object literal may only specify known properties, but 'userId' does not exist in type 'CartItemCreateInput'. Did you mean to write 'user'?
-Error: Process completed with exit code 2.
-
-
+Error: process.exit unexpectedly called with "1"
+ ❯ validateEnvironment backend/src/config/environment.ts:45:15
+     43|         console.error(`  ${err.path.join('.')}: ${err.message}`);
+     44|       });
+     45|       process.exit(1);
+       |               ^
+     46|     }
+     47|     throw error;
+ ❯ backend/src/config/environment.ts:51:20
+ ❯ backend/src/server.ts:2:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+
+ Test Files  3 failed | 19 passed (22)
+      Tests  177 passed (177)
+   Start at  23:07:31
+   Duration  8.80s (transform 1.93s, setup 6.03s, collect 5.59s, tests 8.46s, environment 19.39s, prepare 612ms)
+
+ FAIL  Tests failed. Watching for file changes...

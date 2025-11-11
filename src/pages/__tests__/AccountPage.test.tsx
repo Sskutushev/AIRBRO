@@ -51,15 +51,15 @@ describe('AccountPage', () => {
     (useAuth as any).mockReturnValue({ user: null, logout: mockLogout });
     render(<AccountPage />);
 
-    expect(screen.getByRole('heading', { name: /Доступ запрещен/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /Войти в аккаунт/i })).toHaveAttribute('href', '/auth');
+    expect(screen.getByRole('heading', { name: /Access Denied/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /Log In/i })).toHaveAttribute('href', '/auth');
   });
 
   it('should display user information when logged in', () => {
     render(<AccountPage />);
 
-    expect(screen.getByRole('heading', { name: /Личный кабинет/i })).toBeInTheDocument();
-    expect(screen.getByText(`Добро пожаловать, ${mockUser.name}`)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Account Dashboard/i })).toBeInTheDocument();
+    expect(screen.getByText(`Welcome, ${mockUser.name}`)).toBeInTheDocument();
     expect(screen.getByText(mockUser.email)).toBeInTheDocument();
     expect(screen.getByText(mockUser.telegram)).toBeInTheDocument();
   });
@@ -67,25 +67,25 @@ describe('AccountPage', () => {
   it('should display navigation tabs', () => {
     render(<AccountPage />);
 
-    expect(screen.getByRole('button', { name: /Обзор/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Подписки/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Платежи/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Интеграции/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Настройки/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Overview/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Subscriptions/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Payments/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Integrations/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Settings/i })).toBeInTheDocument();
   });
 
   it('should display stats cards', () => {
     render(<AccountPage />);
 
-    expect(screen.getByRole('heading', { name: /Активные продукты/i })).toBeInTheDocument();
-    expect(screen.getByText('Подписка до')).toBeInTheDocument();
-    expect(screen.getAllByText('След. платеж')[0]).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Active Products/i })).toBeInTheDocument();
+    expect(screen.getByText(/Subscription until/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Next payment/i)[0]).toBeInTheDocument();
   });
 
   it('should display active products', () => {
     render(<AccountPage />);
 
-    expect(screen.getByRole('heading', { name: /Активные продукты/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Active Products/i })).toBeInTheDocument();
     expect(screen.getByText('AI PostMaster')).toBeInTheDocument();
     expect(screen.getByText('Conversation Bot')).toBeInTheDocument();
   });
@@ -93,22 +93,22 @@ describe('AccountPage', () => {
   it('should display quick actions', () => {
     render(<AccountPage />);
 
-    expect(screen.getByRole('heading', { name: /Быстрые действия/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Управление подписками/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Добавить Telegram-канал/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Quick Actions/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Subscription Management/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Add Telegram Channel/i })).toBeInTheDocument();
   });
 
   it('should display billing information', () => {
     render(<AccountPage />);
 
-    expect(screen.getByRole('heading', { name: /Платежная информация/i })).toBeInTheDocument();
-    expect(screen.getByText('Текущий план')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Billing Information/i })).toBeInTheDocument();
+    expect(screen.getByText(/Current Plan/i)).toBeInTheDocument();
     expect(screen.getByText('Starter')).toBeInTheDocument();
   });
 
-  it('should call logout and redirect on "Выйти из аккаунта" click', () => {
+  it('should call logout and redirect on "Log Out" click', () => {
     render(<AccountPage />);
-    const logoutButton = screen.getByRole('button', { name: /Выйти из аккаунта/i });
+    const logoutButton = screen.getByRole('button', { name: /Log Out/i });
     fireEvent.click(logoutButton);
 
     expect(mockLogout).toHaveBeenCalledTimes(1);
