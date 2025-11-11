@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to Railway (Temporarily Disabled)
+    name: Deploy to Railway
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,34 +18,28 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Check Railway Services
+      - name: Install Railway CLI
+        run: npm i -g @railway/cli
+
+      - name: Deploy to Railway
         run: |
-          echo "Railway deployment temporarily disabled for CORS testing"
-          echo "Backend changes will be deployed manually"
-          echo "Please check Railway dashboard manually"
+          echo "Deploying to Railway..."
+          cd backend
+          railway up
+        working-directory: ./backend
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
-      # - name: Install Railway CLI
-      #   run: npm i -g @railway/cli
+      - name: Run migrations
+        run: |
+          echo "Running migrations..."
+          cd backend
+          railway run npx prisma migrate deploy
+        working-directory: ./backend
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
-      # - name: Deploy to Railway
-      #   run: |
-      #     echo "Deploying to Railway..."
-      #     cd backend
-      #     railway up
-      #   working-directory: ./backend
-      #   env:
-      #     RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-
-      # - name: Run migrations
-      #   run: |
-      #     echo "Running migrations..."
-      #     cd backend
-      #     railway run npx prisma migrate deploy
-      #   working-directory: ./backend
-      #   env:
-      #     RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-
-      # - name: Health check
-      #   run: |
-      #     sleep 10
-      #     curl -f https://airbro-production.up.railway.app/health || exit 1
+      - name: Health check
+        run: |
+          sleep 10
+          curl -f https://airbro-production.up.railway.app/health || exit 1
