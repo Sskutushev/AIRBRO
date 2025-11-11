@@ -1,9 +1,10 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
+import type { AuthenticatedRequest } from '../middleware/auth';
 import prisma from '../config/database';
 
-export const getProfile = async (req: Request, res: Response) => {
+export const getProfile = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = (req as any).userId;
+    const userId = req.userId;
 
     const user = await prisma.user.findUnique({
       where: { id: userId },
@@ -27,9 +28,9 @@ export const getProfile = async (req: Request, res: Response) => {
   }
 };
 
-export const updateProfile = async (req: Request, res: Response) => {
+export const updateProfile = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = (req as any).userId;
+    const userId = req.userId;
     const { name, telegram } = req.body;
 
     // Check if new telegram is already taken by another user
@@ -68,9 +69,9 @@ export const updateProfile = async (req: Request, res: Response) => {
   }
 };
 
-export const getSubscriptions = async (req: Request, res: Response) => {
+export const getSubscriptions = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = (req as any).userId;
+    const userId = req.userId;
 
     const subscriptions = await prisma.subscription.findMany({
       where: { userId },
@@ -104,9 +105,9 @@ export const getSubscriptions = async (req: Request, res: Response) => {
   }
 };
 
-export const getPayments = async (req: Request, res: Response) => {
+export const getPayments = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = (req as any).userId;
+    const userId = req.userId;
 
     const payments = await prisma.payment.findMany({
       where: { userId },
@@ -129,9 +130,9 @@ export const getPayments = async (req: Request, res: Response) => {
   }
 };
 
-export const cancelSubscription = async (req: Request, res: Response) => {
+export const cancelSubscription = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = (req as any).userId;
+    const userId = req.userId;
     const { id } = req.params;
 
     // Verify that the subscription belongs to the user

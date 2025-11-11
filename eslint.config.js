@@ -21,7 +21,9 @@ export default defineConfig([
       'backend/vitest.config.ts',
       'backend/vite.config.ts',
       'scripts/**',
-      'backend/scripts/**'
+      'backend/scripts/**',
+      'backend/getChatId.ts',
+      'backend/prisma/**'
     ],
   },
   // Frontend application files

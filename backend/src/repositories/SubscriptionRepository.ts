@@ -1,5 +1,5 @@
 import { Subscription, Prisma } from '@prisma/client';
-import { BaseRepositoryImpl } from './BaseRepository';
+import { BaseRepositoryImpl, BaseRepository } from './BaseRepository';
 import prisma from '../config/database';
 
 export interface SubscriptionRepository

@@ -106,7 +106,7 @@ app.use((err: any, req: express.Request, res: express.Response, _next: express.N
     logger.error('Unhandled server error (non-Error object)', { error: err });
   }
 
-  res.status(500).json({ error: 'Something went wrong!' });
+  return res.status(500).json({ error: 'Something went wrong!' });
 });
 
 // Start server

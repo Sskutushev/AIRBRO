@@ -28,7 +28,7 @@ const customRender = (
   ui: ReactElement,
   {
     route = '/',
-    initialState = {}, // Placeholder for any initial state if needed
+    initialState: _initialState = {}, // Placeholder for any initial state if needed
     ...renderOptions
   }: RenderOptions & { route?: string; initialState?: any } = {}
 ): RenderResult => {

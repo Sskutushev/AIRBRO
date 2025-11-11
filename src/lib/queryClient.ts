@@ -4,7 +4,6 @@
  */
 
 import { QueryClient } from '@tanstack/react-query';
-import { showToast } from './toast'; // Import showToast
 
 /**
  * Configured instance of QueryClient for TanStack Query.

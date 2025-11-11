@@ -1,5 +1,5 @@
 import { Payment, Prisma } from '@prisma/client';
-import { BaseRepositoryImpl } from './BaseRepository';
+import { BaseRepositoryImpl, BaseRepository } from './BaseRepository';
 import prisma from '../config/database';
 
 export interface PaymentRepository
@@ -44,7 +44,7 @@ export class PaymentRepositoryImpl
   }
 
   async findByTxHash(txHash: string): Promise<Payment | null> {
-    return this.prisma.payment.findUnique({
+    return this.prisma.payment.findFirst({
       where: { txHash },
     });
   }

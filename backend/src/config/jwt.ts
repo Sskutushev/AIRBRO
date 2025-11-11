@@ -13,10 +13,10 @@ export const generateToken = (payload: object): string => {
   return jwt.sign(payload, JWT_SECRET, options);
 };
 
-export const verifyToken = (token: string): any => {
+export const verifyToken = (token: string): jwt.JwtPayload | string => {
   try {
     return jwt.verify(token, JWT_SECRET);
-  } catch (error) {
+  } catch {
     throw new Error('Invalid or expired token');
   }
 };

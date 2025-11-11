@@ -1,4 +1,5 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
+import type { AuthenticatedRequest } from '../middleware/auth';
 import { CryptoPaymentCreate } from '../models/payment';
 import prisma from '../config/database';
 import {
@@ -9,9 +10,9 @@ import {
 } from '../utils/crypto';
 // import { sendTelegramNotification } from '../config/telegram';
 
-export const createCryptoPayment = async (req: Request, res: Response) => {
+export const createCryptoPayment = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = (req as any).userId;
+    const userId = req.userId;
     const { cartItems, paymentMethod }: CryptoPaymentCreate = req.body;
 
     // Get user cart items to calculate total

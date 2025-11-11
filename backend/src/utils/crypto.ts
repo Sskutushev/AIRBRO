@@ -4,6 +4,7 @@ import { getRubToUsdRate } from '../services/currencyService';
 // Crypto wallet addresses from environment
 const USDT_TRC20_WALLET = process.env.USDT_TRC20_WALLET || 'TYourWalletAddressHere';
 const USDT_ERC20_WALLET = process.env.USDT_ERC20_WALLET || '0xYourWalletAddressHere';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const TON_WALLET = process.env.TON_WALLET || 'EQYourTonWalletAddressHere';
 
 export interface CryptoNetworkConfig {

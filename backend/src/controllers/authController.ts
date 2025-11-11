@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import type { AuthenticatedRequest } from '../middleware/auth';
 import bcrypt from 'bcrypt';
 import { UserRegistration, UserLogin } from '../models/user';
 import { generateToken } from '../config/jwt';
@@ -99,7 +100,8 @@ export const login = async (req: Request, res: Response) => {
     const token = generateToken({ userId: user.id });
 
     // Return user data without password hash
-    const { passwordHash, ...userWithoutPassword } = user;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { passwordHash: _passwordHash, ...userWithoutPassword } = user;
 
     return res.status(200).json({
       user: userWithoutPassword,
@@ -111,9 +113,9 @@ export const login = async (req: Request, res: Response) => {
   }
 };
 
-export const getMe = async (req: Request, res: Response) => {
+export const getMe = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = (req as any).userId;
+    const userId = req.userId;
 
     const user = await prisma.user.findUnique({
       where: { id: userId },

@@ -23,8 +23,12 @@ export class CartServiceImpl implements CartService {
 
   async addProductToCart(userId: string, productId: string, quantity: number): Promise<CartItem> {
     return this.cartItemRepository.create({
-      userId,
-      productId,
+      user: {
+        connect: { id: userId },
+      },
+      product: {
+        connect: { id: productId },
+      },
       quantity,
     });
   }

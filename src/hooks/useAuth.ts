@@ -42,7 +42,8 @@ export function useRegister() {
   return useMutation({
     mutationFn: (userData: RegisterInput) => {
       // Create a copy of userData without confirmPassword and agreement to send to server
-      const { confirmPassword: _, agreement: __, ...apiData } = userData;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { confirmPassword: _confirmPassword, agreement: _agreement, ...apiData } = userData;
       return apiClient.register(apiData);
     },
     onSuccess: (data) => {

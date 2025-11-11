@@ -24,7 +24,6 @@ jobs:
       - name: Deploy to Railway
         run: |
           echo "Deploying to Railway..."
-          cd backend
           railway up
         working-directory: ./backend
         env:
@@ -33,7 +32,6 @@ jobs:
       - name: Run migrations
         run: |
           echo "Running migrations..."
-          cd backend
           railway run npx prisma migrate deploy
         working-directory: ./backend
         env:

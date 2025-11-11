@@ -1,10 +1,11 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
+import type { AuthenticatedRequest } from '../middleware/auth';
 import { CartItemAdd } from '../models/cart';
 import prisma from '../config/database';
 
-export const getCart = async (req: Request, res: Response) => {
+export const getCart = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = (req as any).userId;
+    const userId = req.userId;
 
     const cartItems = await prisma.cartItem.findMany({
       where: { userId },
@@ -37,9 +38,9 @@ export const getCart = async (req: Request, res: Response) => {
   }
 };
 
-export const addToCart = async (req: Request, res: Response) => {
+export const addToCart = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = (req as any).userId;
+    const userId = req.userId;
     const { productId, quantity = 1 }: CartItemAdd = req.body;
 
     // Check if product exists
@@ -85,9 +86,9 @@ export const addToCart = async (req: Request, res: Response) => {
   }
 };
 
-export const removeFromCart = async (req: Request, res: Response) => {
+export const removeFromCart = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = (req as any).userId;
+    const userId = req.userId;
     const { itemId } = req.params;
 
     // Verify that the item belongs to the user
@@ -113,9 +114,9 @@ export const removeFromCart = async (req: Request, res: Response) => {
   }
 };
 
-export const clearCart = async (req: Request, res: Response) => {
+export const clearCart = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = (req as any).userId;
+    const userId = req.userId;
 
     await prisma.cartItem.deleteMany({
       where: { userId },

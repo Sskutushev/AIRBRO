@@ -15,10 +15,12 @@ export const authenticateToken = (req: AuthenticatedRequest, res: Response, next
 
   try {
     const decoded = verifyToken(token);
-    req.userId = decoded.userId;
+    if (typeof decoded !== 'string' && decoded.userId) {
+      req.userId = decoded.userId;
+    }
     next();
     return;
-  } catch (error) {
+  } catch {
     return res.status(403).json({ error: 'Invalid or expired token' });
   }
 };
