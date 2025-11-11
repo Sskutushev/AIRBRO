@@ -22,14 +22,14 @@
 //     console.log('Telegram notification sent successfully to:', TELEGRAM_ADMIN_CHANNEL);
 //   } catch (error) {
 //     console.error('Failed to send Telegram notification:', error);
-//     // Попробуем получить информацию об ошибке
+//     // Try to get error information
 //     if (error instanceof Error) {
 //       console.error('Error details:', error.message);
 //     }
 //   }
 // };
 
-// // Добавим обработчик для получения ID чата при первом сообщении боту
+// // Add handler to get chat ID on first bot message
 // if (telegramBot) {
 //   telegramBot.on('message', (msg) => {
 //     const chatId = msg.chat.id;

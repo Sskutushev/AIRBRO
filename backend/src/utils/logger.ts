@@ -10,10 +10,10 @@ const customFormat = winston.format.combine(
   winston.format.json()
 );
 
-// Транспорты
+// Transports
 const transports: winston.transport[] = [];
 
-// Console (только dev)
+// Console (dev only)
 if (process.env.NODE_ENV !== 'production') {
   transports.push(
     new winston.transports.Console({
@@ -63,7 +63,7 @@ export const logError = (message: string, error?: any, context?: any) => {
   });
 
   // Send Telegram notification for errors
-  // const errorMessage = `🚨 **Ошибка на сервере:**\n${message}\n${error ? error.stack || error.message : ''}`;
+  // const errorMessage = `🚨 **Server Error:**\n${message}\n${error ? error.stack || error.message : ''}`;
   // sendTelegramNotification(errorMessage).catch(console.error);
 };
 

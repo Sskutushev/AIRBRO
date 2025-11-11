@@ -1,5 +1,5 @@
-// Mock API для тестирования фронтенда
-// Этот файл можно использовать для имитации ответов бэкенда
+// Mock API for frontend testing
+// This file can be used to simulate backend responses
 
 const mockUsers = [
   {

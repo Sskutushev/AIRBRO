@@ -106,7 +106,7 @@ export const removeFromCart = async (req: Request, res: Response) => {
       where: { id: itemId },
     });
 
-    return res.status(200).json({ message: 'Товар удален из корзины' });
+    return res.status(200).json({ message: 'Product removed from cart' });
   } catch (error) {
     console.error('Remove from cart error:', error);
     return res.status(500).json({ error: 'Internal server error' });
@@ -121,7 +121,7 @@ export const clearCart = async (req: Request, res: Response) => {
       where: { userId },
     });
 
-    return res.status(200).json({ message: 'Корзина очищена' });
+    return res.status(200).json({ message: 'Cart cleared' });
   } catch (error) {
     console.error('Clear cart error:', error);
     return res.status(500).json({ error: 'Internal server error' });

@@ -1,41 +1,41 @@
-# 1. Введение в AIRBRO Business
+# 1. Introduction to AIRBRO Business
 
-## Что такое AIRBRO?
+## What is AIRBRO?
 
-**AIRBRO Business** — это комплексная платформа, разработанная для предпринимателей и компаний, которые строят свой бизнес в экосистеме Telegram. Наша цель — предоставить мощный, но интуитивно понятный набор инструментов для автоматизации продаж, управления подписками и взаимодействия с клиентами прямо в мессенджере.
+**AIRBRO Business** is a comprehensive platform designed for entrepreneurs and companies building their business in the Telegram ecosystem. Our goal is to provide a powerful yet intuitive set of tools for automating sales, managing subscriptions, and interacting with customers directly in the messenger.
 
-Проект представляет собой монорепозиторий, включающий в себя:
+The project is a monorepo that includes:
 
-- **Фронтенд:** Современное веб-приложение на React, которое служит как маркетинговой целевой страницей, так и личным кабинетом для пользователей.
-- **Бэкенд:** Надежный API-сервис на Node.js/Express, который управляет всей бизнес-логикой, данными пользователей и платежами.
+- **Frontend:** A modern React web application that serves as both a marketing landing page and a user dashboard.
+- **Backend:** A reliable Node.js/Express API service that manages all business logic, user data, and payments.
 
-## Архитектурная философия
+## Architectural Philosophy
 
-При проектировании системы мы руководствовались следующими принципами:
+When designing the system, we followed these principles:
 
-1.  **Надежность и стабильность:** Код должен быть строго типизирован (TypeScript), покрыт тестами и проходить автоматические проверки CI/CD перед каждым деплоем.
-2.  **Производительность:** Мы используем современные инструменты (Vite, React) и подходы (ленивая загрузка, оптимизация изображений), чтобы обеспечить быструю загрузку и отзывчивость интерфейса.
-3.  **Масштабируемость:** Архитектура бэкенда построена на сервисной модели, что позволяет легко добавлять новую функциональность. Использование Prisma ORM обеспечивает гибкость при работе с базой данных.
-4.  **Безопасность:** Мы уделяем внимание безопасности на всех уровнях: от защиты API (rate limiting, CORS) до автоматического сканирования кода на наличие уязвимостей (Snyk, CodeQL) и секретов (TruffleHog).
-5.  **Удобство разработки (Developer Experience):** Проект настроен так, чтобы новый разработчик мог быстро начать работу. Этому способствуют готовые скрипты, подробная документация и автоматизация рутинных задач.
+1.  **Reliability and Stability:** Code should be strictly typed (TypeScript), covered with tests, and pass automated CI/CD checks before each deployment.
+2.  **Performance:** We use modern tools (Vite, React) and approaches (lazy loading, image optimization) to ensure fast loading and responsive interfaces.
+3.  **Scalability:** The backend architecture is built on a service model, allowing easy addition of new functionality. Using Prisma ORM provides flexibility when working with the database.
+4.  **Security:** We pay attention to security at all levels: from API protection (rate limiting, CORS) to automatic code scanning for vulnerabilities (Snyk, CodeQL) and secrets (TruffleHog).
+5.  **Developer Experience:** The project is configured so that new developers can start working quickly. This is facilitated by ready scripts, detailed documentation, and automation of routine tasks.
 
-## Основной технологический стек
+## Main Technology Stack
 
-| Категория        | Технология                          | Причина выбора                                                                |
-| ---------------- | ----------------------------------- | ----------------------------------------------------------------------------- |
-| **Фронтенд**     | React, Vite, TypeScript             | Скорость, строгая типизация, современная экосистема.                          |
-|                  | Tailwind CSS                        | Быстрая и консистентная разработка UI.                                        |
-|                  | Tanstack Query                      | Эффективное управление серверным состоянием, кэширование и синхронизация.     |
-|                  | Framer Motion                       | Создание плавных и выразительных анимаций.                                    |
-| **Бэкенд**       | Node.js, Express.js, TypeScript     | Высокая производительность, асинхронность, строгая типизация.                 |
-|                  | Prisma                              | Удобная и типобезопасная работа с базой данных, простая миграция схемы.       |
-|                  | SQLite                              | Простота настройки для локальной разработки и небольших продакшн-окружений.   |
-|                  | JWT (JSON Web Tokens)               | Стандартный и безопасный способ аутентификации для stateless API.             |
-| **CI/CD**        | GitHub Actions                      | Глубокая интеграция с GitHub, гибкость в настройке воркфлоу.                  |
-| **Тестирование** | Vitest, React Testing Library       | Быстрые и надежные юнит/интеграционные тесты для фронтенда.                   |
-|                  | Playwright                          | Мощные и стабильные E2E-тесты.                                                |
-| **Хостинг**      | Vercel (фронтенд), Railway (бэкенд) | Оптимальные платформы для хостинга full-stack приложений с CI/CD интеграцией. |
+| Category     | Technology                           | Reason for choice                                                             |
+| ------------ | ------------------------------------ | ----------------------------------------------------------------------------- |
+| **Frontend** | React, Vite, TypeScript              | Speed, strict typing, modern ecosystem.                                       |
+|              | Tailwind CSS                         | Fast and consistent UI development.                                           |
+|              | Tanstack Query                       | Effective server state management, caching, and synchronization.              |
+|              | Framer Motion                        | Creating smooth and expressive animations.                                    |
+| **Backend**  | Node.js, Express.js, TypeScript      | High performance, asynchrony, strict typing.                                  |
+|              | Prisma                               | Convenient and type-safe database work, simple schema migration.              |
+|              | PostgreSQL                           | Production-ready database solution for scalability and reliability.           |
+|              | JWT (JSON Web Tokens)                | Standard and secure way of authentication for stateless API.                  |
+| **CI/CD**    | GitHub Actions                       | Deep integration with GitHub, flexibility in workflow setup.                  |
+| **Testing**  | Vitest, React Testing Library        | Fast and reliable unit/integration tests for the frontend.                    |
+|              | Playwright                           | Powerful and stable E2E tests.                                                |
+| **Hosting**  | Vercel (frontend), Railway (backend) | Optimal platforms for hosting full-stack applications with CI/CD integration. |
 
 ---
 
-**Далее:** [02 - Начало работы](./02_Getting_Started.md)
+**Next:** [02 - Getting Started](./02_Getting_Started.md)

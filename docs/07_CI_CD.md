@@ -1,77 +1,77 @@
-# 7. CI/CD (Непрерывная интеграция и доставка)
+# 7. CI/CD (Continuous Integration and Delivery)
 
-Процессы CI/CD в проекте AIRBRO Business настроены с помощью **GitHub Actions**. Они обеспечивают автоматическую проверку качества кода, сборку и развертывание приложения, минимизируя риск ошибок в продакшене.
+The CI/CD processes in the AIRBRO Business project are configured using **GitHub Actions**. They provide automated code quality checks, building, and deployment of the application, minimizing the risk of errors in production.
 
-## Основные воркфлоу
+## Main Workflows
 
-В проекте настроено три основных воркфлоу:
+The project has three main workflows configured:
 
-1.  **`ci.yml`**: Основной CI-пайплайн, проверяющий качество кода при каждом push.
-2.  **`security.yml`**: Пайплайн для сканирования безопасности.
-3.  **`deploy-*.yml`**: Пайплайны для развертывания фронтенда и бэкенда.
-
----
-
-### 1. `ci.yml` - Непрерывная интеграция
-
-Этот воркфлоу запускается при каждом `push` или `pull request` в ветки `main` и `develop`. Его задача — убедиться, что изменения не нарушают работоспособность и соответствуют стандартам качества.
-
-**Задачи (Jobs):**
-
-- **`lint` (Линтинг и форматирование):**
-  - Проверяет код на соответствие правилам ESLint.
-  - Проверяет форматирование кода с помощью Prettier.
-  - **Цель:** Поддержание единого стиля кода и отлов синтаксических ошибок.
-
-- **`typecheck` (Проверка типов TypeScript):**
-  - Выполняет команду `tsc --noEmit` для фронтенда и бэкенда.
-  - **Цель:** Гарантировать, что во всем проекте нет ошибок типизации.
-
-- **`test` (Юнит-тесты):**
-  - Запускает юнит- и интеграционные тесты с помощью `vitest`.
-  - Собирает отчет о покрытии кода тестами (`coverage`).
-  - Загружает отчет о покрытии в [Codecov](https://about.codecov.io/).
-  - **Цель:** Убедиться, что существующая бизнес-логика работает корректно.
-
-- **`build` (Проверка сборки):**
-  - Выполняет продакшн-сборку фронтенда (`npm run build`) и бэкенда.
-  - Проверяет, что итоговый размер бандла фронтенда не превышает установленный лимит (20 МБ).
-  - **Цель:** Убедиться, что проект успешно собирается для продакшена.
-
-- **`e2e` (End-to-End тесты):**
-  - _На данный момент эта задача закомментирована и не выполняется._
-  - В будущем она будет запускать сквозные тесты с помощью Playwright, которые имитируют действия реального пользователя в браузере.
+1.  **`ci.yml`**: The main CI pipeline, checking code quality on every push.
+2.  **`security.yml`**: Security scanning pipeline.
+3.  **`deploy-*.yml`**: Pipelines for deploying frontend and backend.
 
 ---
 
-### 2. `security.yml` - Сканирование безопасности
+### 1. `ci.yml` - Continuous Integration
 
-Этот воркфлоу запускается еженедельно, а также при каждом `push` в `main`.
+This workflow runs on every `push` or `pull request` to the `main` and `develop` branches. Its purpose is to ensure that changes do not break functionality and meet quality standards.
 
-**Задачи (Jobs):**
+**Jobs:**
 
-- **`audit` (Аудит зависимостей):**
-  - Выполняет `npm audit` для фронтенда и бэкенда.
-  - **Цель:** Обнаружение известных уязвимостей в используемых npm-пакетах.
+- **`lint` (Linting and formatting):**
+  - Checks code compliance with ESLint rules.
+  - Checks code formatting using Prettier.
+  - **Goal:** Maintain a consistent code style and catch syntax errors.
 
-- **`snyk` (Сканирование Snyk):**
-  - Использует Snyk для более глубокого анализа уязвимостей в коде и зависимостях.
-  - **Цель:** Комплексная проверка безопасности проекта.
+- **`typecheck` (TypeScript type checking):**
+  - Runs `tsc --noEmit` command for frontend and backend.
+  - **Goal:** Ensure that there are no type errors throughout the project.
 
-- **`codeql` (Анализ CodeQL):**
-  - Использует инструмент статического анализа от GitHub для поиска потенциальных уязвимостей и ошибок в коде.
-  - **Цель:** Поиск сложных уязвимостей, таких как SQL-инъекции, XSS и др.
+- **`test` (Unit tests):**
+  - Runs unit and integration tests using `vitest`.
+  - Generates a test coverage report.
+  - Uploads the coverage report to [Codecov](https://about.codecov.io/).
+  - **Goal:** Ensure that existing business logic works correctly.
 
-- **`secrets` (Сканирование секретов):**
-  - Использует TruffleHog для поиска случайно закоммиченных секретов (API-ключей, паролей) в истории Git.
-  - **Цель:** Предотвращение утечки конфиденциальных данных.
+- **`build` (Build check):**
+  - Performs production builds of the frontend (`npm run build`) and backend.
+  - Checks that the final frontend bundle size does not exceed the set limit (20 MB).
+  - **Goal:** Ensure the project can be successfully built for production.
+
+- **`e2e` (End-to-End tests):**
+  - _Currently this job is commented out and does not run._
+  - In the future, it will run end-to-end tests using Playwright, which simulate actions of a real user in the browser.
 
 ---
 
-### 3. `deploy-frontend.yml` и `deploy-backend.yml`
+### 2. `security.yml` - Security Scanning
 
-Эти воркфлоу отвечают за развертывание приложений. Подробно они описаны в разделе **[06 - Деплой](./06_Deployment.md)**.
+This workflow runs weekly, as well as on every `push` to `main`.
+
+**Jobs:**
+
+- **`audit` (Dependency audit):**
+  - Runs `npm audit` for frontend and backend.
+  - **Goal:** Detect known vulnerabilities in used npm packages.
+
+- **`snyk` (Snyk scanning):**
+  - Uses Snyk for deeper vulnerability analysis in code and dependencies.
+  - **Goal:** Comprehensive security check of the project.
+
+- **`codeql` (CodeQL analysis):**
+  - Uses GitHub's static analysis tool to find potential vulnerabilities and errors in code.
+  - **Goal:** Find complex vulnerabilities, such as SQL injections, XSS, etc.
+
+- **`secrets` (Secrets scanning):**
+  - Uses TruffleHog to search for accidentally committed secrets (API keys, passwords) in Git history.
+  - **Goal:** Prevent leakage of confidential data.
 
 ---
 
-**Далее:** [08 - Тестирование](./08_Testing.md)
+### 3. `deploy-frontend.yml` and `deploy-backend.yml`
+
+These workflows are responsible for application deployment. They are described in detail in section **[06 - Deployment](./06_Deployment.md)**.
+
+---
+
+**Next:** [08 - Testing](./08_Testing.md)

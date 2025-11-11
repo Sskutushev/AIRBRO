@@ -4,7 +4,11 @@ import express from 'express';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import cookieParser from 'cookie-parser';
-// import { csrfProtection, csrfTokenHandler } from './middleware/csrf';
+// Note: Helmet.js should be installed for security: npm install helmet
+import helmet from 'helmet';
+import { csrfProtection, csrfTokenHandler } from './middleware/csrf';
+import { httpsRedirect } from './middleware/httpsRedirect';
+import { sanitizeInput } from './middleware/sanitization';
 import authRoutes from './routes/auth';
 import productRoutes from './routes/products';
 import cartRoutes from './routes/cart';
@@ -32,25 +36,37 @@ app.use(
   })
 );
 
-// General middleware
-app.use(cookieParser());
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true }));
-
 // Security middleware
-const limiter = rateLimit({
+app.use(httpsRedirect); // Apply HTTPS redirect for production
+app.use(sanitizeInput); // Apply input sanitization to prevent XSS
+app.use(helmet()); // Activate Helmet.js for security headers
+
+// Different rate limits for different routes
+// General rate limiter (for all routes)
+const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // Limit each IP to 100 requests per windowMs
   message: 'Too many requests from this IP, please try again later.',
 });
-app.use(limiter);
-// app.use(csrfProtection);
-// app.use(csrfTokenHandler);
+
+// Strict rate limiter for authentication routes (to prevent brute force)
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // Limit each IP to 5 requests per windowMs for auth
+  message: 'Too many authentication attempts from this IP, please try again later.',
+});
+
+app.use(generalLimiter);
+
+// Apply auth-specific rate limiting only to auth routes
+app.use('/api/auth', authLimiter);
+app.use(csrfProtection);
+app.use(csrfTokenHandler);
 
 // API routes
-// app.get('/api/csrf-token', (req, res) => {
-//   res.json({ csrfToken: req.csrfToken() });
-// });
+app.get('/api/csrf-token', (req, res) => {
+  res.json({ csrfToken: req.csrfToken() });
+});
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
@@ -71,10 +87,10 @@ app.use('/api/*', (req, res) => {
 // Error handling middleware
 app.use((err: any, req: express.Request, res: express.Response, _next: express.NextFunction) => {
   // CSRF error handling
-  // if (err.code === 'EBADCSRFTOKEN') {
-  //   logger.warn('CSRF token validation failed', { url: req.originalUrl, ip: req.ip });
-  //   return res.status(403).json({ error: 'Invalid CSRF token' });
-  // }
+  if (err.code === 'EBADCSRFTOKEN') {
+    logger.warn('CSRF token validation failed', { url: req.originalUrl, ip: req.ip });
+    return res.status(403).json({ error: 'Invalid CSRF token' });
+  }
 
   // General error logging
   if (err instanceof Error) {
@@ -87,10 +103,12 @@ app.use((err: any, req: express.Request, res: express.Response, _next: express.N
 });
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`🚀 Server is running on port ${PORT}`);
-  console.log(`🌍 Frontend URL: ${process.env.FRONTEND_URL || 'http://localhost:5173'}`);
-  console.log(`🔐 Environment: ${process.env.NODE_ENV || 'development'}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server is running on port ${PORT}`);
+    console.log(`🌍 Frontend URL: ${process.env.FRONTEND_URL || 'http://localhost:5173'}`);
+    console.log(`🔐 Environment: ${process.env.NODE_ENV || 'development'}`);
+  });
+}
 
 export default app;

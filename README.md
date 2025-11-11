@@ -4,55 +4,55 @@
 [![Security Scan](https://github.com/Sskutushev/AIRBRO-Business/actions/workflows/security.yml/badge.svg)](https://github.com/Sskutushev/AIRBRO-Business/actions/workflows/security.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**AIRBRO Business** — это экосистема автоматизации на базе ИИ, созданная для бизнесов, работающих преимущественно в Telegram. Платформа предоставляет инструменты для создания, управления и продажи цифровых продуктов и услуг, а также для взаимодействия с клиентами.
+**AIRBRO Business** is an AI-powered automation ecosystem designed for businesses operating primarily in Telegram. The platform provides tools for creating, managing, and selling digital products and services, as well as for interacting with customers.
 
-> **Примечание:** Этот репозиторий содержит как фронтенд (целевая страница и веб-приложение), так и бэкенд проекта.
+> **Note:** This repository contains both the frontend (landing page and web application) and the project backend.
 
-## 🚀 Быстрый старт
+## 🚀 Quick Start
 
-Для полного развертывания проекта локально (фронтенд + бэкенд) следуйте инструкциям в **[Руководстве по началу работы](./docs/02_Getting_Started.md)**.
+For full local deployment of the project (frontend + backend), follow the instructions in the **[Getting Started Guide](./docs/02_Getting_Started.md)**.
 
-### Только фронтенд
+### Frontend Only
 
-Если вам нужно запустить только фронтенд часть:
+If you need to run only the frontend part:
 
-1.  **Установите зависимости:**
+1.  **Install dependencies:**
     ```bash
     npm install
     ```
-2.  **Запустите dev-сервер:**
+2.  **Run the dev server:**
     ```bash
     npm run dev
     ```
-    Приложение будет доступно по адресу `http://localhost:5173`.
+    The application will be available at `http://localhost:5173`.
 
-## 📚 Документация
+## 📚 Documentation
 
-Вся подробная документация по проекту находится в папке [`/docs`](./docs/).
+All detailed project documentation is located in the [`/docs`](./docs/) folder.
 
-- **[01 - Введение](./docs/01_Introduction.md):** Обзор проекта и архитектуры.
-- **[02 - Начало работы](./docs/02_Getting_Started.md):** Полное руководство по установке и запуску.
-- **[03 - Бэкенд и API](./docs/03_Backend_API.md):** Описание API, маршрутов и логики бэкенда.
-- **[04 - Схема базы данных](./docs/04_Database_Schema.md):** Анализ моделей данных и их связей.
-- **[05 - Фронтенд](./docs/05_Frontend.md):** Описание архитектуры фронтенда, компонентов и управления состоянием.
-- **[06 - Деплой](./docs/06_Deployment.md):** Информация о процессах развертывания на Vercel и Railway.
-- **[07 - CI/CD](./docs/07_CI_CD.md):** Описание конвейера непрерывной интеграции и доставки.
-- **[08 - Тестирование](./docs/08_Testing.md):** Как запускать и писать тесты.
+- **[01 - Introduction](./docs/01_Introduction.md):** Project and architecture overview.
+- **[02 - Getting Started](./docs/02_Getting_Started.md):** Complete installation and launch guide.
+- **[03 - Backend and API](./docs/03_Backend_API.md):** API, routes, and backend logic description.
+- **[04 - Database Schema](./docs/04_Database_Schema.md):** Analysis of data models and their relationships.
+- **[05 - Frontend](./docs/05_Frontend.md):** Frontend architecture, components, and state management description.
+- **[06 - Deployment](./docs/06_Deployment.md):** Information about deployment processes on Vercel and Railway.
+- **[07 - CI/CD](./docs/07_CI_CD.md):** Continuous integration and delivery pipeline description.
+- **[08 - Testing](./docs/08_Testing.md):** How to run and write tests.
 
-## 🛠 Основной технологический стек
+## 🛠 Main Technology Stack
 
-- **Фронтенд:**
-  - **Фреймворк:** React (с Vite)
-  - **Язык:** TypeScript
-  - **Стилизация:** Tailwind CSS
-  - **Анимации:** Framer Motion
-  - **Работа с данными:** Tanstack Query
-- **Бэкенд:**
-  - **Фреймворк:** Express.js
-  - **Язык:** TypeScript
-  - **База данных:** SQLite
+- **Frontend:**
+  - **Framework:** React (with Vite)
+  - **Language:** TypeScript
+  - **Styling:** Tailwind CSS
+  - **Animations:** Framer Motion
+  - **Data management:** Tanstack Query
+- **Backend:**
+  - **Framework:** Express.js
+  - **Language:** TypeScript
+  - **Database:** PostgreSQL
   - **ORM:** Prisma
 - **CI/CD:** GitHub Actions
-- **Хостинг:**
-  - **Фронтенд:** Vercel
-  - **Бэкенд:** Railway
+- **Hosting:**
+  - **Frontend:** Vercel
+  - **Backend:** Railway

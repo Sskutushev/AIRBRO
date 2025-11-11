@@ -15,7 +15,7 @@ const PricingSection: React.FC = () => {
   const packages = Object.keys(packagesData).map((key) => ({
     id: key,
     ...packagesData[key],
-    priceOriginal: 14000, // Обновленная цена для пакетов
+    priceOriginal: 14000, // Updated price for packages
     priceBundle: 11900,
     savings: 2100,
     savingsPercent: 15,
@@ -139,11 +139,11 @@ const PricingSection: React.FC = () => {
                   className="w-full py-3 bg-gradient-to-r from-primary-telegram to-primary-electric text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
                   onClick={() => {
                     if (!user) {
-                      // Если пользователь не авторизован, перенаправляем на страницу авторизации
+                      // If user not logged in, redirect to auth page
                       navigate('/auth');
                     } else {
-                      // Если пользователь авторизован, переходим к оплате
-                      // Здесь должна быть логика добавления пакета в корзину
+                      // If user logged in, proceed to payment
+                      // Add package to cart logic goes here
                       navigate('/payment');
                     }
                   }}
@@ -172,10 +172,10 @@ const PricingSection: React.FC = () => {
               className="px-6 py-3 border border-primary-telegram text-primary-telegram rounded-lg font-medium hover:bg-primary-telegram/10 transition-colors"
               onClick={() => {
                 if (!user) {
-                  // Если пользователь не авторизован, перенаправляем на страницу авторизации
+                  // If user not logged in, redirect to auth page
                   navigate('/auth');
                 } else {
-                  // Если пользователь авторизован, переходим к оплате
+                  // If user logged in, proceed to payment
                   navigate('/payment');
                 }
               }}

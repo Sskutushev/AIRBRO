@@ -24,7 +24,7 @@ const FAQSection: React.FC = () => {
     answer: questionsData[key].answer,
   }));
 
-  // Фильтрация FAQ по категории и поисковому запросу
+  // Filter FAQs by category and search query
   const filteredFAQs = faqs.filter((faq) => {
     const matchesCategory = activeCategory === 'all' || faq.category === activeCategory;
     const matchesSearch =
@@ -33,7 +33,7 @@ const FAQSection: React.FC = () => {
     return matchesCategory && matchesSearch;
   });
 
-  // Ограничиваем отображение только для категории 'all'
+  // Limit display to 'all' category only
   const displayedFAQs =
     activeCategory === 'all' ? filteredFAQs.slice(0, visibleCount) : filteredFAQs;
 
@@ -43,7 +43,7 @@ const FAQSection: React.FC = () => {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
-    // Сбросить количество видимых элементов при новом поиске
+    // Reset visible items count on new search
     if (activeCategory === 'all') {
       setVisibleCount(5);
     }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from '../common/Modal';
 
-// Определим интерфейс локально
+// Define interface locally
 interface SolutionData {
   id: string;
   name: string;

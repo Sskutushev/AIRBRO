@@ -25,9 +25,9 @@ export const initSentry = () => {
         }),
       ],
 
-      tracesSampleRate: 0.1, // 10% трафика
+      tracesSampleRate: 0.1, // 10% of traffic
       replaysSessionSampleRate: 0.1,
-      replaysOnErrorSampleRate: 1.0, // 100% при ошибке
+      replaysOnErrorSampleRate: 1.0, // 100% on error
 
       beforeSend(event, hint) {
         // Filter sensitive data

@@ -8,103 +8,103 @@ async function main() {
   // Create products if they don't exist
   const products = [
     {
-      slug: "ai-postmaster-starter",
-      name: "AI PostMaster Starter",
-      description: "1 канал, 30 постов/месяц",
-      price: 300000, // 3000 рублей в копейках
-      interval: "month",
+      slug: 'ai-postmaster-starter',
+      name: 'AI PostMaster Starter',
+      description: '1 channel, 30 posts/month',
+      price: 300000, // 3000 rubles in kopecks
+      interval: 'month',
       tier: 1,
       features: JSON.stringify([
-        "1 Telegram канал",
-        "30 постов в месяц",
-        "Базовая персонализация",
-        "Email поддержка"
-      ])
+        '1 Telegram channel',
+        '30 posts per month',
+        'Basic personalization',
+        'Email support',
+      ]),
     },
     {
-      slug: "ai-postmaster-pro",
-      name: "AI PostMaster Pro",
-      description: "1 канал, неограниченные посты",
+      slug: 'ai-postmaster-pro',
+      name: 'AI PostMaster Pro',
+      description: '1 channel, unlimited posts',
       price: 500000,
-      interval: "month",
+      interval: 'month',
       tier: 1,
       features: JSON.stringify([
-        "1 Telegram канал",
-        "Неограниченные посты",
-        "Продвинутая персонализация",
-        "Аналитика",
-        "Приоритетная поддержка"
-      ])
+        '1 Telegram channel',
+        'Unlimited posts',
+        'Advanced personalization',
+        'Analytics',
+        'Priority support',
+      ]),
     },
     {
-      slug: "ai-automator-starter",
-      name: "AI Automator Starter",
-      description: "Базовые инструменты автоматизации",
+      slug: 'ai-automator-starter',
+      name: 'AI Automator Starter',
+      description: 'Basic automation tools',
       price: 150000,
-      interval: "month",
+      interval: 'month',
       tier: 2,
       features: JSON.stringify([
-        "5 автоматизированных процессов",
-        "Базовая интеграция с CRM",
-        "Email уведомления",
-        "Стандартная поддержка"
-      ])
+        '5 automated processes',
+        'Basic CRM integration',
+        'Email notifications',
+        'Standard support',
+      ]),
     },
     {
-      slug: "ai-automator-pro",
-      name: "AI Automator Pro",
-      description: "Продвинутые инструменты автоматизации",
+      slug: 'ai-automator-pro',
+      name: 'AI Automator Pro',
+      description: 'Advanced automation tools',
       price: 800000,
-      interval: "month",
+      interval: 'month',
       tier: 2,
       features: JSON.stringify([
-        "Неограниченные автоматизированные процессы",
-        "Продвинутая интеграция с CRM",
-        "SMS и Telegram уведомления",
-        "Приоритетная поддержка",
-        "Индивидуальные настройки"
-      ])
+        'Unlimited automated processes',
+        'Advanced CRM integration',
+        'SMS and Telegram notifications',
+        'Priority support',
+        'Custom settings',
+      ]),
     },
     {
-      slug: "ai-analyst-starter",
-      name: "AI Analyst Starter",
-      description: "Базовая аналитика бизнеса",
+      slug: 'ai-analyst-starter',
+      name: 'AI Analyst Starter',
+      description: 'Basic business analytics',
       price: 250000,
-      interval: "month",
+      interval: 'month',
       tier: 3,
       features: JSON.stringify([
-        "Базовая аналитика",
-        "Еженедельные отчеты",
-        "Стандартные метрики",
-        "Email поддержка"
-      ])
+        'Basic analytics',
+        'Weekly reports',
+        'Standard metrics',
+        'Email support',
+      ]),
     },
     {
-      slug: "ai-analyst-pro",
-      name: "AI Analyst Pro",
-      description: "Продвинутая аналитика бизнеса",
+      slug: 'ai-analyst-pro',
+      name: 'AI Analyst Pro',
+      description: 'Advanced business analytics',
       price: 1200000,
-      interval: "month",
+      interval: 'month',
       tier: 3,
       features: JSON.stringify([
-        "Продвинутая аналитика",
-        "Ежедневные отчеты",
-        "Персонализированные метрики",
-        "Прогнозирование",
-        "Круглосуточная поддержка",
-        "Интеграция с любыми системами"
-      ])
-    }
+        'Advanced analytics',
+        'Daily reports',
+        'Personalized metrics',
+        'Forecasting',
+        '24/7 support',
+        'Integration with any systems',
+      ]),
+    },
   ];
 
   for (const product of products) {
     const existingProduct = await prisma.product.findUnique({
-      where: { slug: product.slug }
+      where: { slug: product.slug },
     });
 
     if (!existingProduct) {
       await prisma.product.create({
-        data: product
+        data: product,
       });
       console.log(`Created product: ${product.name}`);
     } else {
@@ -116,7 +116,7 @@ async function main() {
 }
 
 main()
-  .catch(e => {
+  .catch((e) => {
     console.error(e);
     process.exit(1);
   })

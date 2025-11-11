@@ -34,17 +34,17 @@ const Header = () => {
 
   const handleNavClick = (href: string, name: string) => {
     setActiveLink(name);
-    // Проверяем, находимся ли мы на главной странице
+    // Check if we are on home page
     if (window.location.pathname === '/') {
-      // Если на главной странице, то просто прокручиваем
+      // If on home page, just scroll
       const element = document.getElementById(href.replace('#', ''));
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // Если не на главной, то переходим на главную страницю с якорем
+      // If not on home, go to home page with anchor
       navigate('/');
-      // Небольшая задержка для перехода на главную страницу, затем прокрутка
+      // Small delay to navigate to home page, then scroll
       setTimeout(() => {
         const element = document.getElementById(href.replace('#', ''));
         if (element) {

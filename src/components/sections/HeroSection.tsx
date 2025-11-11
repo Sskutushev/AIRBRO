@@ -83,7 +83,7 @@ const HeroSection: React.FC = () => {
                   size="md"
                   className="text-primary-telegram hover:bg-primary-telegram/10 px-0 underline"
                   onClick={() => {
-                    // Прокрутка к секции с пакетами
+                    // Scroll to packages section
                     const element = document.getElementById('pricing');
                     if (element) {
                       element.scrollIntoView({ behavior: 'smooth' });

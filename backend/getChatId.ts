@@ -18,8 +18,8 @@ bot.on('message', (msg) => {
   const chatId = msg.chat.id;
   const chatType = msg.chat.type;
   const chatUsername = msg.chat.username;
-  const chatTitle = msg.chat.title; // для каналов и групп
-  
+  const chatTitle = msg.chat.title; // for channels and groups
+
   console.log('=== MESSAGE RECEIVED ===');
   console.log(`Chat ID: ${chatId}`);
   console.log(`Chat Type: ${chatType}`);

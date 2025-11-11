@@ -1,56 +1,56 @@
-# 5. Фронтенд
+# 5. Frontend
 
-Фронтенд AIRBRO Business — это современное одностраничное приложение (SPA), созданное с использованием React и Vite. Оно выполняет две основные функции:
+The AIRBRO Business frontend is a modern single-page application (SPA) built with React and Vite. It serves two main functions:
 
-1.  **Маркетинговая целевая страница (Landing Page):** Привлекает новых пользователей и информирует их о возможностях платформы.
-2.  **Веб-приложение (Личный кабинет):** Предоставляет зарегистрированным пользователям доступ к их профилю, подпискам и другим функциям.
+1.  **Marketing Landing Page:** Attracts new users and informs them about the platform's capabilities.
+2.  **Web Application (Dashboard):** Provides registered users with access to their profile, subscriptions, and other features.
 
-## Архитектура и структура папок
+## Architecture and Folder Structure
 
-Структура папки `src` организована по функциональному принципу (feature-based), что упрощает навигацию и поддержку кода.
+The `src` folder structure is organized by feature-based principle, which simplifies navigation and code maintenance.
 
 ```
 src/
-├── assets/         # Статические ассеты (изображения, шрифты)
-├── components/     # Переиспользуемые UI-компоненты
-│   ├── common/     # Базовые компоненты (Button, Input, Skeleton)
-│   └── sections/   # Крупные секции лендинга (Hero, FAQ, Footer)
-├── context/        # React Context для глобального состояния
-├── hooks/          # Переиспользуемые React-хуки
-├── i18n/           # Конфигурация и файлы локализации (i18next)
-├── lib/            # Вспомогательные библиотеки и утилиты
-├── pages/          # Компоненты-страницы (Account, Payment, Auth)
-├── services/       # Логика взаимодействия с внешними API
-└── types/          # Глобальные определения типов TypeScript
+├── assets/         # Static assets (images, fonts)
+├── components/     # Reusable UI components
+│   ├── common/     # Base components (Button, Input, Skeleton)
+│   └── sections/   # Large landing sections (Hero, FAQ, Footer)
+├── context/        # React Context for global state
+├── hooks/          # Reusable React hooks
+├── i18n/           # Configuration and localization files (i18next)
+├── lib/            # Utility libraries and helpers
+├── pages/          # Page components (Account, Payment, Auth)
+├── services/       # Logic for interacting with external APIs
+└── types/          # Global TypeScript type definitions
 ```
 
-## Ключевые библиотеки и их роль
+## Key Libraries and Their Role
 
-- **Vite:** Сборщик проекта, который обеспечивает чрезвычайно быструю горячую перезагрузку (HMR) в режиме разработки и оптимизированную сборку для продакшена.
-- **React:** Основа приложения, используется для построения декларативного и компонентного UI.
-- **TypeScript:** Обеспечивает строгую типизацию, что значительно уменьшает количество ошибок и улучшает читаемость кода.
-- **React Router:** Управляет навигацией и маршрутизацией в приложении.
-- **Tailwind CSS:** Utility-first CSS-фреймворк, который позволяет быстро и консистентно стилизовать компоненты прямо в JSX-разметке.
-- **Tanstack Query (React Query):** Мощная библиотека для управления серверным состоянием. Она берет на себя кэширование, фоновую синхронизацию, обработку состояний загрузки и ошибок при работе с API. Это избавляет от необходимости хранить серверные данные в глобальном стейте (например, Redux).
-- **Framer Motion:** Библиотека для создания плавных и сложных анимаций. Используется для улучшения пользовательского опыта (UX).
-- **React Hook Form & Zod:** Связка для управления формами. `React Hook Form` оптимизирует производительность форм, а `Zod` используется для валидации данных как на клиенте, так и на сервере.
-- **i18next:** Фреймворк для интернационализации (i18n), позволяющий легко добавлять и переключать языки в приложении.
+- **Vite:** Project bundler that provides extremely fast hot module replacement (HMR) in development and optimized builds for production.
+- **React:** Foundation of the application, used for building declarative and component-based UI.
+- **TypeScript:** Provides strict typing, which significantly reduces the number of errors and improves code readability.
+- **React Router:** Manages navigation and routing in the application.
+- **Tailwind CSS:** Utility-first CSS framework that enables fast and consistent styling of components directly in JSX markup.
+- **Tanstack Query (React Query):** Powerful library for server state management. It handles caching, background synchronization, loading and error state handling when working with APIs. This eliminates the need to store server data in global state (like Redux).
+- **Framer Motion:** Library for creating smooth and complex animations. Used to enhance user experience (UX).
+- **React Hook Form & Zod:** Combination for form management. `React Hook Form` optimizes form performance, while `Zod` is used for data validation both on the client and server.
+- **i18next:** Internationalization (i18n) framework that allows easy addition and switching of languages in the application.
 
-## Управление состоянием (State Management)
+## State Management
 
-Подход к управлению состоянием в проекте гибридный:
+The state management approach in the project is hybrid:
 
-1.  **Серверное состояние (Server State):** Управляется исключительно с помощью **Tanstack Query**. Все данные, получаемые от бэкенда (профиль пользователя, список продуктов, подписки), хранятся и кэшируются этой библиотекой. Это стандарт де-факто для современных React-приложений.
-2.  **Глобальное состояние UI (Global UI State):** Небольшое количество глобального состояния, не связанного с сервером (например, информация о текущей теме оформления, статус аутентификации пользователя), управляется с помощью **React Context**. Это позволяет избежать излишнего усложнения и подключения тяжеловесных библиотек вроде Redux.
-3.  **Локальное состояние (Local State):** Состояние отдельных компонентов (например, открыто ли модальное окно, значение в поле ввода) управляется с помощью стандартных хуков `useState` и `useReducer`.
+1.  **Server State:** Managed exclusively with **Tanstack Query**. All data retrieved from the backend (user profile, product list, subscriptions) is stored and cached by this library. This is the de facto standard for modern React applications.
+2.  **Global UI State:** A small amount of global state not related to the server (e.g., current theme information, user authentication status) is managed with **React Context**. This avoids unnecessary complexity and the need for heavy libraries like Redux.
+3.  **Local State:** State of individual components (e.g., whether a modal is open, input field value) is managed with standard hooks `useState` and `useReducer`.
 
-## Стилизация
+## Styling
 
-Стилизация построена на **Tailwind CSS**. Все основные цвета, шрифты и другие дизайн-токены определены в файле [`tailwind.config.js`](../tailwind.config.js). Для удобства и переиспользования стилей используются:
+Styling is built on **Tailwind CSS**. All primary colors, fonts, and other design tokens are defined in the [`tailwind.config.js`](../tailwind.config.js) file. For convenience and style reusability, the following utilities are used:
 
-- **`clsx`**: Утилита для условного объединения CSS-классов.
-- **`tailwind-merge`**: Утилита для разрешения конфликтов классов Tailwind (например, при переопределении `p-2` на `p-4`).
+- **`clsx`**: Utility for conditional joining of CSS classes.
+- **`tailwind-merge`**: Utility for resolving Tailwind class conflicts (e.g., when overriding `p-2` with `p-4`).
 
 ---
 
-**Далее:** [06 - Деплой](./06_Deployment.md)
+**Next:** [06 - Deployment](./06_Deployment.md)

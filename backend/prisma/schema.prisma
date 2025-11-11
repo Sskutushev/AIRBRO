@@ -4,11 +4,11 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-// Пользователь
+// User
 model User {
   id            String         @id @default(uuid())
   email         String         @unique
@@ -26,15 +26,15 @@ model User {
   @@map("users")
 }
 
-// Продукт
+// Product
 model Product {
   id          String   @id @default(uuid())
   slug        String   @unique
   name        String
   description String
-  price       Int      // В копейках
-  interval    String   // "month" или "year"
-  features    String   // JSON с фичами
+  price       Int      // In kopecks
+  interval    String   // "month" or "year"
+  features    String   // JSON with features
   isActive    Boolean  @default(true)
   tier        Int      // 1, 2, 3
   createdAt   DateTime @default(now())
@@ -46,7 +46,7 @@ model Product {
   @@map("products")
 }
 
-// Корзина
+// Cart
 model CartItem {
   id        String   @id @default(uuid())
   userId    String
@@ -61,7 +61,7 @@ model CartItem {
   @@map("cart_items")
 }
 
-// Подписка
+// Subscription
 model Subscription {
   id              String    @id @default(uuid())
   userId          String
@@ -80,21 +80,21 @@ model Subscription {
   @@map("subscriptions")
 }
 
-// Платеж
+// Payment
 model Payment {
   id            String    @id @default(uuid())
   userId        String
-  amount        Int       // В копейках
+  amount        Int       // In kopecks
   currency      String    // "RUB", "USD", "USDT", "TON"
   status        String    // "pending", "completed", "failed", "expired"
   paymentMethod String    // "crypto_usdt_trc20", "crypto_usdt_erc20", "crypto_ton"
   
-  // Крипто данные
+  // Crypto data
   walletAddress String?
   txHash        String?
-  qrCode        String?   // Base64 QR-код
+  qrCode        String?   // Base64 QR code
   
-  // Метаданные
+  // Metadata
   metadata      String?   // JSON
   expiresAt     DateTime?
   

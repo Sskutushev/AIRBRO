@@ -15,6 +15,7 @@ import ruSuccessMetrics from './locales/ru/success_metrics.json';
 import ruRoadmap from './locales/ru/roadmap.json';
 import ruCta from './locales/ru/cta.json';
 import ruFooter from './locales/ru/footer.json';
+import ruModules from './locales/ru/modules.json';
 
 import enCommon from './locales/en/common.json';
 import enHero from './locales/en/hero.json';
@@ -28,6 +29,7 @@ import enSuccessMetrics from './locales/en/success_metrics.json';
 import enRoadmap from './locales/en/roadmap.json';
 import enCta from './locales/en/cta.json';
 import enFooter from './locales/en/footer.json';
+import enModules from './locales/en/modules.json';
 
 i18n
   .use(LanguageDetector)
@@ -47,6 +49,7 @@ i18n
         roadmap: ruRoadmap,
         cta: ruCta,
         footer: ruFooter,
+        modules: ruModules,
       },
       en: {
         common: enCommon,
@@ -61,6 +64,7 @@ i18n
         roadmap: enRoadmap,
         cta: enCta,
         footer: enFooter,
+        modules: enModules,
       },
     },
     fallbackLng: 'ru',

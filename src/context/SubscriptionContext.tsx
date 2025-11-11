@@ -68,13 +68,13 @@ export const SubscriptionProvider: React.FC<SubscriptionProviderProps> = ({ chil
     }
   }, [user]);
 
-  // Загружаем подписку пользователя при изменении user
+  // Load user subscription when user changes
   useEffect(() => {
     if (user) {
       fetchUserSubscription();
       fetchPaymentMethods();
     } else {
-      // Если пользователь не авторизован, сбрасываем данные
+      // Reset data if user is not logged in
       setUserSubscription(null);
       setPaymentMethods([]);
       setLoading(false);

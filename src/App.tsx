@@ -10,53 +10,54 @@ import { queryClient } from './lib/queryClient';
 import { analytics } from './lib/analytics';
 import Header from './components/sections/Header';
 import HeroSection from './components/sections/HeroSection';
-import ProblemSection from './components/sections/ProblemSection';
-import SolutionSection from './components/sections/SolutionSection';
-import ProductsSection from './components/sections/ProductsSection';
-import HowItWorksSection from './components/sections/HowItWorksSection';
-import PricingSection from './components/sections/PricingSection';
-import SuccessMetricsSection from './components/sections/SuccessMetricsSection';
-import RoadmapSection from './components/sections/RoadmapSection';
-import FAQSection from './components/sections/FAQSection';
-import CTASection from './components/sections/CTASection';
 import Footer from './components/sections/Footer';
+// Lazy load sections
+const ProblemSection = lazy(() => import('./components/sections/ProblemSection'));
+const SolutionSection = lazy(() => import('./components/sections/SolutionSection'));
+const ProductsSection = lazy(() => import('./components/sections/ProductsSection'));
+const HowItWorksSection = lazy(() => import('./components/sections/HowItWorksSection'));
+const PricingSection = lazy(() => import('./components/sections/PricingSection'));
+const SuccessMetricsSection = lazy(() => import('./components/sections/SuccessMetricsSection'));
+const RoadmapSection = lazy(() => import('./components/sections/RoadmapSection'));
+const FAQSection = lazy(() => import('./components/sections/FAQSection'));
+const CTASection = lazy(() => import('./components/sections/CTASection'));
 // import AccountPage from './pages/AccountPage'; // Lazy loaded
 // import PaymentPage from './pages/PaymentPage'; // Lazy loaded
 // import AuthPage from './pages/AuthPage';     // Lazy loaded
-import './i18n/config'; // Импортируем конфигурацию i18n
-import { ErrorBoundary } from './components/ErrorBoundary';
+import './i18n/config'; // Init i18n config
+import GlobalApiErrorBoundary from './components/GlobalApiErrorBoundary'; // Use the new GlobalApiErrorBoundary
 
-// Lazy load страниц
+// Lazy load pages
 const AccountPage = lazy(() => import('./pages/AccountPage'));
 const PaymentPage = lazy(() => import('./pages/PaymentPage'));
 const AuthPage = lazy(() => import('./pages/AuthPage'));
 
-// Компонент загрузки
+// Loader component
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center">
     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
   </div>
 );
 
-// Компонент для обработки якорных ссылок
+// Handle anchor links
 function ScrollToAnchor() {
   const location = useLocation();
 
   useEffect(() => {
-    // Если есть хэш в URL, прокручиваем к элементу
+    // Scroll to element if hash exists
     if (location.hash) {
       const element = document.getElementById(location.hash.replace('#', ''));
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
-    // Если нет хэша, не меняем позицию прокрутки
+    // Don't change scroll if no hash
   }, [location]);
 
   return null;
 }
 
-// Компонент для отслеживания просмотров страниц
+// Track page views
 function AnalyticsTracker() {
   const location = useLocation();
 
@@ -74,7 +75,9 @@ function AnalyticsTracker() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ErrorBoundary>
+      <GlobalApiErrorBoundary>
+        {' '}
+        {/* Use GlobalApiErrorBoundary here */}
         <ThemeProvider>
           <AuthProvider>
             <SubscriptionProvider>
@@ -140,7 +143,8 @@ function App() {
           </AuthProvider>
         </ThemeProvider>
         <Toaster />
-      </ErrorBoundary>
+      </GlobalApiErrorBoundary>{' '}
+      {/* Close GlobalApiErrorBoundary */}
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

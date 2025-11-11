@@ -47,7 +47,7 @@ const SuccessMetricsSection: React.FC = () => {
     },
   ];
 
-  // Персонализированные аватарки для конкретных людей
+  // Personalized avatars for specific people
   const getAvatarForTestimonial = (name: string) => {
     if (name.includes('Елена')) return '/women1.jpg';
     if (name.includes('Дмитрий')) return '/man2.jpeg';
@@ -55,7 +55,7 @@ const SuccessMetricsSection: React.FC = () => {
     if (name.includes('Максим')) return '/man3.jpeg';
     if (name.includes('Игорь')) return '/man4.jpg';
     if (name.includes('Анна')) return '/women2.jpg';
-    // fallback для остальных
+    // fallback for others
     return '/women2.jpg';
   };
 
@@ -67,13 +67,13 @@ const SuccessMetricsSection: React.FC = () => {
     rating: 5,
   }));
 
-  // Автоматическая прокрутка слайдов каждые 7.5 секунд
+  // Auto slide every 7.5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % fullTestimonials.length);
-    }, 7500); // 7.5 секунд = 7500 миллисекунд
+    }, 7500); // 7.5 seconds = 7500 milliseconds
 
-    // Очистка интервала при размонтировании компонента
+    // Clean up interval on component unmount
     return () => clearInterval(interval);
   }, [fullTestimonials.length]);
 

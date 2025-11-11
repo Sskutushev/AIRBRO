@@ -1,11 +1,11 @@
 // services/subscriptionService.ts
 
-// Типы для подписок
+// Types for subscriptions
 export interface SubscriptionPlan {
   id: string;
   name: string;
   description: string;
-  price: number; // цена в рублях
+  price: number; // price in rubles
   interval: 'month' | 'year';
   features: string[];
   productId: string;
@@ -22,64 +22,64 @@ export interface UserSubscription {
   amount: number;
 }
 
-// Доступные планы подписок
+// Available subscription plans
 export const subscriptionPlans: SubscriptionPlan[] = [
   {
     id: 'starter',
     name: 'Starter',
-    description: 'Для начинающих предпринимателей',
+    description: 'For starting entrepreneurs',
     price: 990,
     interval: 'month',
     features: [
       'AI PostMaster',
-      '1 Telegram-канал',
-      '30 постов/месяц',
-      'Базовая персонализация',
-      'Стандартная поддержка',
+      '1 Telegram channel',
+      '30 posts/month',
+      'Basic personalization',
+      'Standard support',
     ],
     productId: 'ai_postmaster',
   },
   {
     id: 'business',
     name: 'Business',
-    description: 'Для растущего бизнеса',
+    description: 'For growing business',
     price: 2490,
     interval: 'month',
     features: [
       'AI PostMaster',
       'Conversation Bot',
-      '3 Telegram-канала',
-      'Неограниченные посты',
-      'Продвинутая персонализация',
-      'Приоритетная поддержка',
+      '3 Telegram channels',
+      'Unlimited posts',
+      'Advanced personalization',
+      'Priority support',
     ],
     productId: 'ai_postmaster_conversation',
   },
   {
     id: 'premium',
     name: 'Premium',
-    description: 'Для развитого бизнеса',
+    description: 'For established business',
     price: 4990,
     interval: 'month',
     features: [
-      'Все функции Business',
+      'All Business features',
       'Booking Bot',
       'Feedback Bot',
-      '5 Telegram-каналов',
-      'Продвинутая аналитика',
-      'White-label опции',
-      'Персональный менеджер',
+      '5 Telegram channels',
+      'Advanced analytics',
+      'White-label options',
+      'Personal manager',
     ],
     productId: 'full_suite',
   },
 ];
 
-// Моковая функция для получения подписки пользователя
+// Mock function to get user subscription
 export const getUserSubscription = async (userId: string): Promise<UserSubscription | null> => {
-  // В реальном приложении этот вызов будет к API
+  // In a real application this call would be to the API
   return new Promise((resolve) => {
     setTimeout(() => {
-      // Проверяем, есть ли у пользователя активная подписка
+      // Check if user has an active subscription
       const storedSub = localStorage.getItem(`user_${userId}_subscription`);
       if (storedSub) {
         resolve(JSON.parse(storedSub));
@@ -90,7 +90,7 @@ export const getUserSubscription = async (userId: string): Promise<UserSubscript
   });
 };
 
-// Моковая функция для оформления подписки
+// Mock function to create subscription
 export const createSubscription = async (
   userId: string,
   planId: string
@@ -99,14 +99,14 @@ export const createSubscription = async (
     setTimeout(() => {
       const plan = subscriptionPlans.find((p) => p.id === planId);
       if (!plan) {
-        reject(new Error('План подписки не найден'));
+        reject(new Error('Subscription plan not found'));
         return;
       }
 
-      // Рассчитываем даты
+      // Calculate dates
       const startDate = new Date().toISOString();
       const endDate = new Date();
-      endDate.setMonth(endDate.getMonth() + 1); // Подписка на 1 месяц
+      endDate.setMonth(endDate.getMonth() + 1); // Subscription for 1 month
 
       const newSubscription: UserSubscription = {
         id: `sub_${Date.now()}`,
@@ -119,7 +119,7 @@ export const createSubscription = async (
         amount: plan.price,
       };
 
-      // Сохраняем в localStorage
+      // Save to localStorage
       localStorage.setItem(`user_${userId}_subscription`, JSON.stringify(newSubscription));
 
       resolve(newSubscription);
@@ -127,26 +127,26 @@ export const createSubscription = async (
   });
 };
 
-// Моковая функция для отмены подписки
+// Mock function to cancel subscription
 export const cancelSubscription = async (subscriptionId: string): Promise<UserSubscription> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      // В реальном приложении это будет вызов API
-      // Получаем текущую подписку
+      // In a real application this would be an API call
+      // Get current subscription
       const storedSub = localStorage.getItem(`subscription_${subscriptionId}`);
       if (!storedSub) {
-        reject(new Error('Подписка не найдена'));
+        reject(new Error('Subscription not found'));
         return;
       }
 
       const subscription: UserSubscription = JSON.parse(storedSub);
-      // Просто меняем статус на cancelled
+      // Just change status to cancelled
       const cancelledSubscription: UserSubscription = {
         ...subscription,
         status: 'cancelled',
       };
 
-      // Обновляем в localStorage
+      // Update in localStorage
       localStorage.setItem(`subscription_${subscriptionId}`, JSON.stringify(cancelledSubscription));
 
       resolve(cancelledSubscription);
@@ -154,7 +154,7 @@ export const cancelSubscription = async (subscriptionId: string): Promise<UserSu
   });
 };
 
-// Моковая функция для обновления подписки
+// Mock function to update subscription
 export const updateSubscription = async (
   subscriptionId: string,
   newPlanId: string
@@ -163,27 +163,27 @@ export const updateSubscription = async (
     setTimeout(() => {
       const plan = subscriptionPlans.find((p) => p.id === newPlanId);
       if (!plan) {
-        reject(new Error('План подписки не найден'));
+        reject(new Error('Subscription plan not found'));
         return;
       }
 
-      // В реальном приложении это будет вызов API
-      // Получаем текущую подписку
+      // In a real application this would be an API call
+      // Get current subscription
       const storedSub = localStorage.getItem(`subscription_${subscriptionId}`);
       if (!storedSub) {
-        reject(new Error('Подписка не найдена'));
+        reject(new Error('Subscription not found'));
         return;
       }
 
       const currentSub: UserSubscription = JSON.parse(storedSub);
-      // Обновляем план
+      // Update plan
       const updatedSubscription = {
         ...currentSub,
         planId: newPlanId,
         amount: plan.price,
       };
 
-      // Обновляем в localStorage
+      // Update in localStorage
       localStorage.setItem(`subscription_${subscriptionId}`, JSON.stringify(updatedSubscription));
 
       resolve(updatedSubscription);
@@ -191,11 +191,11 @@ export const updateSubscription = async (
   });
 };
 
-// Моковая функция для получения истории платежей
+// Mock function to get payment history
 export const getPaymentHistory = async () => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      // В реальном приложении этот вызов будет к API
+      // In a real application this call would be to the API
       const history = [
         {
           id: 'pay_1',

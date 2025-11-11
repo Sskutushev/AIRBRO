@@ -49,11 +49,11 @@ export const register = async (req: Request, res: Response) => {
     // Send Telegram notification about new registration
     // try {
     //   await sendTelegramNotification(
-    //     `🆕 Новый пользователь\n\n` +
-    //     `👤 Имя: ${user.name}\n` +
+    //     `🆕 New user\n\n` +
+    //     `👤 Name: ${user.name}\n` +
     //     `📧 Email: ${user.email}\n` +
     //     `💬 Telegram: ${user.telegram}\n` +
-    //     `📅 Дата: ${user.createdAt}`
+    //     `📅 Date: ${user.createdAt}`
     //   );
     // } catch (notificationError) {
     //   console.error('Failed to send Telegram notification:', notificationError);

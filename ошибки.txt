@@ -1,2 +1,18 @@
-Run 8398a7/action-slack@v3
-Error: Specify secrets.SLACK_WEBHOOK_URL
+Run amondnet/vercel-action@v20
+/home/runner/work/_actions/amondnet/vercel-action/v20/dist/index.js:6944
+        throw new Error(`Input required and not supplied: ${name}`);
+        ^
+
+Error: Input required and not supplied: vercel-token
+    at Object.getInput (/home/runner/work/_actions/amondnet/vercel-action/v20/dist/index.js:6944:15)
+    at 104 (/home/runner/work/_actions/amondnet/vercel-action/v20/dist/index.js:1139:26)
+    at __webpack_require__ (/home/runner/work/_actions/amondnet/vercel-action/v20/dist/index.js:22:30)
+    at startup (/home/runner/work/_actions/amondnet/vercel-action/v20/dist/index.js:37:19)
+    at /home/runner/work/_actions/amondnet/vercel-action/v20/dist/index.js:41:18
+    at Object.<anonymous> (/home/runner/work/_actions/amondnet/vercel-action/v20/dist/index.js:44:10)
+    at Module._compile (node:internal/modules/cjs/loader:1521:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1623:10)
+    at Module.load (node:internal/modules/cjs/loader:1266:32)
+    at Module._load (node:internal/modules/cjs/loader:1091:12)
+
+Node.js v20.19.5

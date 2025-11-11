@@ -20,14 +20,14 @@ export const getCryptoConfig = async (paymentMethod: string): Promise<CryptoNetw
         wallet: USDT_TRC20_WALLET,
         currency: 'USDT',
         rate: await getRubToUsdRate(),
-        network: 'TRC20'
+        network: 'TRC20',
       };
     case 'crypto_usdt_erc20':
       return {
         wallet: USDT_ERC20_WALLET,
         currency: 'USDT',
         rate: await getRubToUsdRate(),
-        network: 'ERC20'
+        network: 'ERC20',
       };
     default:
       throw new Error(`Unsupported payment method: ${paymentMethod}`);
@@ -41,8 +41,8 @@ export const generateQRCode = async (data: string): Promise<string> => {
       margin: 2,
       color: {
         dark: '#000000',
-        light: '#FFFFFF'
-      }
+        light: '#FFFFFF',
+      },
     });
     return qrCode;
   } catch (error) {
@@ -62,10 +62,10 @@ export const calculateCryptoAmount = (rubAmount: number, rate: number): number =
 
 export const getPaymentWarnings = (): string[] => {
   return [
-    "⚠️ ВНИМАНИЕ: Криптовалютные платежи несут риски!",
-    "✓ Отправляйте ТОЛЬКО указанную криптовалюту",
-    "✓ Тщательно проверьте адрес кошелька",
-    "✓ Отправка на неправильный адрес приведет к потере средств",
-    "✓ Платеж действителен 30 минут"
+    '⚠️ WARNING: Cryptocurrency payments carry risks!',
+    '✓ Send ONLY the specified cryptocurrency',
+    '✓ Carefully check the wallet address',
+    '✓ Sending to the wrong address will result in loss of funds',
+    '✓ Payment is valid for 30 minutes',
   ];
 };

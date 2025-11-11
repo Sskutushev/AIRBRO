@@ -77,7 +77,7 @@ const AuthPage: React.FC = () => {
       navigate('/account'); // Redirect to account page on success
       // showToast.success is handled within useLogin hook
     } catch (error: any) {
-      setLoginError('root', { message: error.message || 'Ошибка входа' });
+      setLoginError('root', { message: error.message || 'Login error' });
       // showToast.error is handled within useLogin hook
     }
   };
@@ -94,7 +94,7 @@ const AuthPage: React.FC = () => {
       navigate('/account'); // Redirect to account page on success
       // showToast.success is handled within useRegister hook
     } catch (error: any) {
-      setRegisterError('root', { message: error.message || 'Ошибка регистрации' });
+      setRegisterError('root', { message: error.message || 'Registration error' });
       // showToast.error is handled within useRegister hook
     }
   };
@@ -112,9 +112,9 @@ const AuthPage: React.FC = () => {
     if (/[0-9]/.test(password)) strength++;
     if (/[^A-Za-z0-9]/.test(password)) strength++;
 
-    if (strength <= 2) return { level: 'weak', text: 'Слабый', color: 'bg-red-500' };
-    if (strength <= 3) return { level: 'medium', text: 'Средний', color: 'bg-yellow-500' };
-    if (strength >= 4) return { level: 'strong', text: 'Сильный', color: 'bg-green-500' };
+    if (strength <= 2) return { level: 'weak', text: 'Weak', color: 'bg-red-500' };
+    if (strength <= 3) return { level: 'medium', text: 'Medium', color: 'bg-yellow-500' };
+    if (strength >= 4) return { level: 'strong', text: 'Strong', color: 'bg-green-500' };
     return { level: 'none', text: '', color: 'bg-gray-300' };
   };
 
@@ -140,12 +140,12 @@ const AuthPage: React.FC = () => {
           {/* Header */}
           <div className="bg-gradient-to-r from-blue-600 to-purple-700 p-8 text-center text-white">
             <h1 className="text-3xl font-bold mb-2">
-              {isLogin ? 'Вход в аккаунт' : 'Создать аккаунт'}
+              {isLogin ? 'Log In to Account' : 'Create Account'}
             </h1>
             <p className="text-white/80">
               {isLogin
-                ? 'Войдите в свой аккаунт для управления подписками'
-                : 'Создайте аккаунт для начала работы с AIBRO Business'}
+                ? 'Log in to manage your subscriptions'
+                : 'Create an account to start using AIBRO Business'}
             </p>
           </div>
 
@@ -159,7 +159,7 @@ const AuthPage: React.FC = () => {
               }`}
               onClick={() => setIsLogin(true)}
             >
-              Войти
+              Log In
             </button>
             <button
               className={`flex-1 py-2 px-4 rounded-md text-center font-medium transition-colors ${
@@ -169,7 +169,7 @@ const AuthPage: React.FC = () => {
               }`}
               onClick={() => setIsLogin(false)}
             >
-              Регистрация
+              Register
             </button>
           </div>
 
@@ -190,7 +190,7 @@ const AuthPage: React.FC = () => {
 
                 <FormInput<LoginInput>
                   name="password"
-                  label="Пароль"
+                  label="Password"
                   type={showPassword ? 'text' : 'password'}
                   placeholder="••••••••"
                   register={loginRegister}
@@ -205,7 +205,7 @@ const AuthPage: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <FormCheckbox<any>
                     name="remember"
-                    label="Запомнить меня"
+                    label="Remember me"
                     register={loginRegister as any}
                     errors={loginErrors}
                   />
@@ -213,7 +213,7 @@ const AuthPage: React.FC = () => {
                     href="/forgot-password"
                     className="text-sm text-blue-600 hover:underline dark:text-blue-400"
                   >
-                    Забыли пароль?
+                    Forgot password?
                   </a>
                 </div>
 
@@ -231,11 +231,11 @@ const AuthPage: React.FC = () => {
                   {isLoginSubmitting ? (
                     <>
                       <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                      Вход...
+                      Logging In...
                     </>
                   ) : (
                     <>
-                      Войти в аккаунт
+                      Log In to Account
                       <ArrowRight className="w-5 h-5 ml-2" />
                     </>
                   )}
@@ -245,9 +245,9 @@ const AuthPage: React.FC = () => {
               <form onSubmit={handleRegisterSubmit(onRegisterSubmit)} className="space-y-6">
                 <FormInput<RegisterInput>
                   name="name"
-                  label="Имя"
+                  label="Name"
                   type="text"
-                  placeholder="Ваше имя"
+                  placeholder="Your name"
                   register={registerRegister}
                   errors={registerErrors}
                   required
@@ -267,7 +267,7 @@ const AuthPage: React.FC = () => {
 
                 <FormInput<RegisterInput>
                   name="telegram"
-                  label="Telegram-аккаунт"
+                  label="Telegram Account"
                   type="text"
                   placeholder="@username"
                   register={registerRegister}
@@ -279,7 +279,7 @@ const AuthPage: React.FC = () => {
                 <div className="space-y-2">
                   <FormInput<RegisterInput>
                     name="password"
-                    label="Пароль"
+                    label="Password"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="••••••••"
                     register={registerRegister}
@@ -295,7 +295,7 @@ const AuthPage: React.FC = () => {
                   {passwordValue && (
                     <div className="space-y-2">
                       <div className="flex justify-between text-xs text-gray-700 dark:text-gray-300">
-                        <span>Сила пароля:</span>
+                        <span>Password Strength:</span>
                         <span className={passwordStrength.color.replace('bg-', 'text-')}>
                           {passwordStrength.text}
                         </span>
@@ -314,7 +314,7 @@ const AuthPage: React.FC = () => {
 
                 <FormInput<RegisterInput>
                   name="confirmPassword"
-                  label="Подтвердите пароль"
+                  label="Confirm Password"
                   type="password"
                   placeholder="••••••••"
                   register={registerRegister}
@@ -345,11 +345,11 @@ const AuthPage: React.FC = () => {
                   {isRegisterSubmitting ? (
                     <>
                       <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                      Регистрация...
+                      Registering...
                     </>
                   ) : (
                     <>
-                      Создать аккаунт
+                      Create Account
                       <ArrowRight className="w-5 h-5 ml-2" />
                     </>
                   )}
@@ -359,25 +359,25 @@ const AuthPage: React.FC = () => {
 
             <div className="mt-6 text-center">
               <p className="text-gray-700 dark:text-gray-300 text-sm">
-                {isLogin ? 'Нет аккаунта?' : 'Уже есть аккаунт?'}
+                {isLogin ? 'No account?' : 'Already have an account?'}
                 <button
                   onClick={() => setIsLogin(!isLogin)}
                   className="text-blue-600 hover:underline font-medium ml-1 dark:text-blue-400"
                 >
-                  {isLogin ? 'Зарегистрироваться' : 'Войти'}
+                  {isLogin ? 'Register' : 'Log In'}
                 </button>
               </p>
             </div>
 
             <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-center">
               <p className="text-gray-700 dark:text-gray-300 text-sm">
-                Нажимая кнопку, вы соглашаетесь с условиями{' '}
+                By clicking the button, you agree to the{' '}
                 <a href="/terms" className="text-blue-600 hover:underline dark:text-blue-400">
-                  пользования
+                  terms of use
                 </a>{' '}
-                и{' '}
+                and{' '}
                 <a href="/privacy" className="text-blue-600 hover:underline dark:text-blue-400">
-                  политикой конфиденциальности
+                  privacy policy
                 </a>
               </p>
             </div>

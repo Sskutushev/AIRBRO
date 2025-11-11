@@ -87,11 +87,11 @@ export const createCryptoPayment = async (req: Request, res: Response) => {
     // Send Telegram notification about new payment
     // try {
     //   await sendTelegramNotification(
-    //     `💰 Новый платеж\n\n` +
-    //     `💵 Сумма: ${totalAmount / 100} ${cryptoConfig.currency}\n` +
-    //     `🔐 Метод: ${paymentMethod}\n` +
-    //     `👤 Пользователь: ${(req as any).user?.name || 'Unknown'}\n` +
-    //     `📊 Статус: pending\n` +
+    //     `💰 New payment\n\n` +
+    //     `💵 Amount: ${totalAmount / 100} ${cryptoConfig.currency}\n` +
+    //     `🔐 Method: ${paymentMethod}\n` +
+    //     `👤 User: ${(req as any).user?.name || 'Unknown'}\n` +
+    //     `📊 Status: pending\n` +
     //     `🔗 ID: ${payment.id}`
     //   );
     // } catch (notificationError) {
@@ -162,7 +162,8 @@ export const confirmPayment = async (req: Request, res: Response) => {
     });
 
     // Parse cart items from metadata
-    const cartItemsData = JSON.parse(payment.metadata || '[]');
+    const metadata = JSON.parse(payment.metadata || '{}');
+    const cartItemsData = metadata.cartItems || [];
 
     // Create subscriptions based on cart items
     for (const cartItemData of cartItemsData) {
@@ -213,11 +214,11 @@ export const confirmPayment = async (req: Request, res: Response) => {
     //   }).join(', ');
 
     //   await sendTelegramNotification(
-    //     `✅ Платеж подтвержден\n\n` +
-    //     `💵 Сумма: ${payment.amount / 100} ${payment.currency}\n` +
+    //     `✅ Payment confirmed\n\n` +
+    //     `💵 Amount: ${payment.amount / 100} ${payment.currency}\n` +
     //     `🔗 TX Hash: ${txHash}\n` +
-    //     `👤 Пользователь: ${payment.user.name}\n` +
-    //     `🎁 Продукты: ${productNames}`
+    //     `👤 User: ${payment.user.name}\n` +
+    //     `🎁 Products: ${productNames}`
     //   );
     // } catch (notificationError) {
     //   console.error('Failed to send Telegram notification:', notificationError);
@@ -239,8 +240,8 @@ export const confirmPayment = async (req: Request, res: Response) => {
 export const createCardPayment = async (req: Request, res: Response) => {
   // Card payments are not implemented yet
   return res.status(501).json({
-    error: 'В разработке',
-    message: 'Оплата банковскими картами будет доступна в ближайшее время',
+    error: 'Not implemented',
+    message: 'Card payments will be available soon',
     availableMethods: ['crypto_usdt_trc20', 'crypto_usdt_erc20', 'crypto_ton'],
   });
 };

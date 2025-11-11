@@ -10,8 +10,11 @@ import { z } from 'zod';
  * Zod schema for validating login input.
  */
 export const loginSchema = z.object({
-  email: z.string().min(1, 'Email обязателен').email('Неверный формат email'),
-  password: z.string().min(1, 'Пароль обязателен').min(8, 'Пароль должен быть не менее 8 символов'),
+  email: z.string().min(1, 'Email is required').email('Invalid email format'),
+  password: z
+    .string()
+    .min(1, 'Password is required')
+    .min(8, 'Password must be at least 8 characters'),
 });
 
 /**
@@ -26,29 +29,29 @@ export type LoginInput = z.infer<typeof loginSchema>;
  */
 export const registerSchema = z
   .object({
-    name: z.string().min(2, 'Имя обязательно').max(50, 'Имя не может превышать 50 символов'),
-    email: z.string().min(1, 'Email обязателен').email('Неверный формат email'),
+    name: z.string().min(2, 'Name is required').max(50, 'Name cannot exceed 50 characters'),
+    email: z.string().min(1, 'Email is required').email('Invalid email format'),
     telegram: z
       .string()
-      .min(1, 'Telegram-аккаунт обязателен')
+      .min(1, 'Telegram account is required')
       .regex(
         /^@[a-zA-Z0-9_]{5,32}$/,
-        'Неверный формат Telegram-аккаунта (например, @username, 5-32 символов, буквы, цифры, подчеркивание)'
+        'Invalid Telegram account format (e.g., @username, 5-32 chars, letters, numbers, underscore)'
       ),
     password: z
       .string()
-      .min(8, 'Пароль должен быть не менее 8 символов')
-      .regex(/[A-Z]/, 'Пароль должен содержать хотя бы одну заглавную букву')
-      .regex(/[a-z]/, 'Пароль должен содержать хотя бы одну строчную букву')
-      .regex(/[0-9]/, 'Пароль должен содержать хотя бы одну цифру')
-      .regex(/[^A-Za-z0-9]/, 'Пароль должен содержать хотя бы один специальный символ (!@#$%^&*)'),
-    confirmPassword: z.string().min(1, 'Подтверждение пароля обязательно'),
+      .min(8, 'Password must be at least 8 characters')
+      .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+      .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
+      .regex(/[0-9]/, 'Password must contain at least one number')
+      .regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character (!@#$%^&*)'),
+    confirmPassword: z.string().min(1, 'Password confirmation is required'),
     agreement: z.boolean().refine((value) => value === true, {
-      message: 'Вы должны согласиться с условиями использования и политикой конфиденциальности',
+      message: 'You must agree to the terms of use and privacy policy',
     }),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: 'Пароли не совпадают',
+    message: 'Passwords do not match',
     path: ['confirmPassword'], // Set the error on the confirmPassword field
   });
 
@@ -67,7 +70,7 @@ export type RegisterInputForAPI = Omit<RegisterInput, 'confirmPassword' | 'agree
  * Zod schema for validating reset password request input.
  */
 export const resetPasswordSchema = z.object({
-  email: z.string().min(1, 'Email обязателен').email('Неверный формат email'),
+  email: z.string().min(1, 'Email is required').email('Invalid email format'),
 });
 
 /**
@@ -81,21 +84,18 @@ export type ResetPasswordInput = z.infer<typeof resetPasswordSchema>;
  */
 export const changePasswordSchema = z
   .object({
-    currentPassword: z.string().min(8, 'Текущий пароль должен быть не менее 8 символов'),
+    currentPassword: z.string().min(8, 'Current password must be at least 8 characters'),
     newPassword: z
       .string()
-      .min(8, 'Новый пароль должен быть не менее 8 символов')
-      .regex(/[A-Z]/, 'Новый пароль должен содержать хотя бы одну заглавную букву')
-      .regex(/[a-z]/, 'Новый пароль должен содержать хотя бы одну строчную букву')
-      .regex(/[0-9]/, 'Новый пароль должен содержать хотя бы одну цифру')
-      .regex(
-        /[^A-Za-z0-9]/,
-        'Новый пароль должен содержать хотя бы один специальный символ (!@#$%^&*)'
-      ),
-    confirmPassword: z.string().min(1, 'Подтверждение нового пароля обязательно'),
+      .min(8, 'New password must be at least 8 characters')
+      .regex(/[A-Z]/, 'New password must contain at least one uppercase letter')
+      .regex(/[a-z]/, 'New password must contain at least one lowercase letter')
+      .regex(/[0-9]/, 'New password must contain at least one number')
+      .regex(/[^A-Za-z0-9]/, 'New password must contain at least one special character (!@#$%^&*)'),
+    confirmPassword: z.string().min(1, 'New password confirmation is required'),
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
-    message: 'Новые пароли не совпадают',
+    message: 'New passwords do not match',
     path: ['confirmPassword'],
   });
 

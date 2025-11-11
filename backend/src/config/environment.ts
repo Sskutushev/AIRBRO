@@ -5,12 +5,9 @@ const envSchema = z.object({
   PORT: z.coerce.number().default(3000),
   FRONTEND_URL: z.string().url().default('http://localhost:5173'),
   DATABASE_URL: z.string().url().default('file:./prisma/dev.db'),
-  JWT_SECRET: z
-    .string()
-    .min(32, {
-      message: 'JWT_SECRET must be at least 32 characters long',
-    })
-    .default('d5f014ab7534ff7fe23c4f9d761bc640'),
+  JWT_SECRET: z.string().min(32, {
+    message: 'JWT_SECRET must be at least 32 characters long',
+  }),
   JWT_EXPIRES_IN: z.string().default('7d'),
 
   // Optional Telegram integration

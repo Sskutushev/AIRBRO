@@ -6,7 +6,7 @@ import SolutionDetailModal from '../components/sections/SolutionDetailModal';
 import { solutionsData } from '../lib/solutionsData';
 import { staggerContainer, fadeInUp } from '../lib/motionPresets';
 
-// Определим интерфейс локально
+// Define interface locally
 interface SolutionData {
   id: string;
   name: string;
@@ -26,7 +26,7 @@ const SolutionsPage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
 
-  // Прокрутка к верху страницы при загрузке
+  // Scroll to top of page on load
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
@@ -47,7 +47,7 @@ const SolutionsPage: React.FC = () => {
             to="/#products"
             className="flex items-center text-primary-coral font-bold mb-8 hover:underline"
           >
-            <span className="mr-2">←</span> Назад к решениям
+            <span className="mr-2">←</span> Back to Solutions
           </Link>
 
           <motion.div
@@ -58,13 +58,13 @@ const SolutionsPage: React.FC = () => {
             variants={staggerContainer}
           >
             <motion.h1 className="text-5xl font-bold mb-6 gradient-text" variants={fadeInUp}>
-              Наши Решения
+              Our Solutions
             </motion.h1>
             <motion.p
               className="text-2xl text-text-secondary max-w-3xl mx-auto"
               variants={fadeInUp}
             >
-              Специализированные AI-агенты для решения конкретных бизнес-задач
+              Specialized AI agents for solving specific business tasks
             </motion.p>
           </motion.div>
         </div>
@@ -101,17 +101,17 @@ const SolutionsPage: React.FC = () => {
                 <div className="text-primary-coral text-center mb-4">{solution.category}</div>
 
                 <div className="mb-4">
-                  <div className="font-semibold text-text-secondary mb-1">Проблема:</div>
+                  <div className="font-semibold text-text-secondary mb-1">Problem:</div>
                   <div className="text-text-primary">{solution.problem}</div>
                 </div>
 
                 <div className="mb-4">
-                  <div className="font-semibold text-text-secondary mb-1">Решение:</div>
+                  <div className="font-semibold text-text-secondary mb-1">Solution:</div>
                   <div className="text-text-primary">{solution.solution}</div>
                 </div>
 
                 <div className="mb-4">
-                  <div className="font-semibold text-text-secondary mb-1">Результат:</div>
+                  <div className="font-semibold text-text-secondary mb-1">Result:</div>
                   <div className="text-text-primary">{solution.result}</div>
                 </div>
 

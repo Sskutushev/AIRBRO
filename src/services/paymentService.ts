@@ -32,7 +32,7 @@ export const getSavedPaymentMethods = async (userId: string): Promise<PaymentMet
       if (methods) {
         resolve(JSON.parse(methods));
       } else {
-        // Возвращаем заглушку
+        // Return a stub
         resolve([
           {
             id: 'card_1',
@@ -59,14 +59,14 @@ export const addPaymentMethod = async (
         id: `card_${Date.now()}`,
       };
 
-      // Получаем существующие методы
+      // Get existing methods
       const methods = localStorage.getItem(`user_${userId}_payment_methods`);
       let paymentMethods: PaymentMethod[] = methods ? JSON.parse(methods) : [];
 
-      // Добавляем новый метод
+      // Add new method
       paymentMethods = [...paymentMethods, newMethod];
 
-      // Сохраняем обратно
+      // Save back
       localStorage.setItem(`user_${userId}_payment_methods`, JSON.stringify(paymentMethods));
 
       resolve(newMethod);
@@ -81,7 +81,7 @@ export const createPaymentIntent = async (
 ): Promise<PaymentResult> => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      // Имитация успешного создания платежа
+      // Simulate successful payment creation
       const paymentIntent: PaymentIntent = {
         id: `pi_${Date.now()}`,
         amount,
@@ -91,7 +91,7 @@ export const createPaymentIntent = async (
         created: new Date().toISOString(),
       };
 
-      // Возвращаем успешный результат
+      // Return successful result
       resolve({
         success: true,
         paymentIntent,
@@ -106,12 +106,12 @@ export const confirmPayment = async (
 ): Promise<PaymentResult> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      // Имитация результата подтверждения платежа
+      // Simulate payment confirmation result
       if (Math.random() > 0.1) {
-        // 90% успешных платежей
+        // 90% successful payments
         const updatedPayment: PaymentIntent = {
           id: paymentIntentId,
-          amount: 5000, // В реальном приложении получаем из базы
+          amount: 5000, // In a real application, get from database
           currency: 'RUB',
           status: 'succeeded',
           paymentMethod,
@@ -125,7 +125,7 @@ export const confirmPayment = async (
       } else {
         reject({
           success: false,
-          error: 'Платеж не прошел. Проверьте данные карты.',
+          error: 'Payment failed. Please check card details.',
         });
       }
     }, 1500);
@@ -153,7 +153,7 @@ export const createTelegramPayment = async (amount: number): Promise<PaymentResu
 export const getPaymentStatus = async (paymentIntentId: string): Promise<PaymentIntent> => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      // В реальном приложении это будет запрос к API
+      // In a real application this would be an API request
       const status: PaymentIntent = {
         id: paymentIntentId,
         amount: 5000,

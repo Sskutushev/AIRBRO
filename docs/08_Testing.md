@@ -1,78 +1,78 @@
-# 8. Тестирование
+# 8. Testing
 
-Тестирование — неотъемлемая часть процесса разработки в AIRBRO Business. Оно помогает обеспечить стабильность, надежность и предсказуемость работы приложения.
+Testing is an integral part of the development process in AIRBRO Business. It helps ensure stability, reliability, and predictability of the application.
 
-## Стратегия тестирования
+## Testing Strategy
 
-Мы используем многоуровневый подход к тестированию, вдохновленный "пирамидой тестирования".
+We use a multi-level approach to testing, inspired by the "testing pyramid".
 
-### 1. Юнит-тесты и Интеграционные тесты (Unit & Integration Tests)
+### 1. Unit and Integration Tests
 
-Это основной и самый многочисленный вид тестов в проекте.
+This is the main and most numerous type of tests in the project.
 
-- **Инструменты:**
-  - [Vitest](https://vitest.dev/): Современный и быстрый фреймворк для тестирования, совместимый с Vite.
-  - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/): Библиотека для тестирования React-компонентов, которая поощряет написание тестов, ориентированных на пользователя.
-  - [JSDOM](https://github.com/jsdom/jsdom): Эмулирует окружение браузера в Node.js для запуска тестов.
+- **Tools:**
+  - [Vitest](https://vitest.dev/): Modern and fast testing framework compatible with Vite.
+  - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/): Library for testing React components that encourages writing user-focused tests.
+  - [JSDOM](https://github.com/jsdom/jsdom): Emulates browser environment in Node.js for running tests.
 
-- **Что мы тестируем:**
-  - **Отдельные функции (юнит-тесты):** Тестирование вспомогательных функций и утилит (например, форматирование даты, валидаторы).
-  - **React-компоненты:** Проверка, что компоненты корректно рендерятся в зависимости от пропсов, отображают нужные данные и правильно реагируют на действия пользователя (клики, ввод текста).
-  - **React-хуки:** Тестирование кастомных хуков и их логики.
-  - **Взаимодействие компонентов (интеграционные тесты):** Проверка, что несколько компонентов работают вместе как единое целое (например, форма с полями ввода и кнопкой отправки).
+- **What we test:**
+  - **Individual functions (unit tests):** Testing utility functions and helpers (e.g., date formatting, validators).
+  - **React components:** Checking that components render correctly based on props, display the right data, and respond properly to user actions (clicks, text input).
+  - **React hooks:** Testing custom hooks and their logic.
+  - **Component interaction (integration tests):** Checking that multiple components work together as a single unit (e.g., a form with input fields and a submit button).
 
-- **Как запускать тесты:**
-  - **Один раз:**
+- **How to run tests:**
+  - **Once:**
     ```bash
     npm run test
     ```
-  - **В режиме наблюдения (watch mode):** Тесты будут автоматически перезапускаться при изменении файлов.
+  - **In watch mode:** Tests will automatically re-run when files change.
     ```bash
     npm run test:watch
     ```
-  - **С UI и отчетом о покрытии:**
+  - **With UI and coverage report:**
     ```bash
     npm run test:ui
     npm run test:coverage
     ```
 
-### 2. End-to-End (E2E) тесты
+### 2. End-to-End (E2E) Tests
 
-Эти тесты проверяют всю систему целиком, имитируя действия реального пользователя в настоящем браузере.
+These tests verify the entire system by simulating real user actions in an actual browser.
 
-- **Инструмент:** [Playwright](https://playwright.dev/)
+- **Tool:** [Playwright](https://playwright.dev/)
 
-- **Что мы тестируем:**
-  - Ключевые пользовательские сценарии, такие как:
-    - Регистрация и вход пользователя.
-    - Просмотр списка продуктов и добавление в корзину.
-    - Процесс оплаты.
-    - Навигация по личному кабинету.
+- **What we test:**
+  - Key user scenarios, such as:
+    - User registration and login.
+    - Viewing product list and adding to cart.
+    - Payment process.
+    - Navigating the dashboard.
 
-- **Статус:**
-  - На данный момент E2E-тесты **отключены** в CI/CD пайплайне (`ci.yml`) для ускорения проверок. Их следует запускать локально перед внесением значительных изменений в ключевую функциональность.
+- **Status:**
+  - Currently E2E tests are **disabled** in the CI/CD pipeline (`ci.yml`) to speed up checks. They should be run locally before making significant changes to core functionality.
 
-- **Как запускать E2E-тесты:**
-  1.  **Установите браузеры Playwright:**
+- **How to run E2E tests:**
+  1.  **Install Playwright browsers:**
       ```bash
       npx playwright install --with-deps
       ```
-  2.  **Запустите тесты:**
+  2.  **Run the tests:**
       ```bash
       npm run test:e2e
       ```
 
-### 3. Статический анализ
+### 3. Static Analysis
 
-Хотя это не тестирование в классическом понимании, статический анализ является важной частью нашей стратегии качества.
+While not testing in the classical sense, static analysis is an important part of our quality strategy.
 
-- **Инструменты:** ESLint, Prettier, TypeScript.
-- **Что проверяется:**
-  - Соблюдение единого стиля кода.
-  - Отсутствие синтаксических ошибок.
-  - Отсутствие ошибок типизации.
-- **Когда запускается:** Автоматически при каждом коммите (с помощью `lint-staged` и `husky`), а также в CI/CD пайплайне.
+- **Tools:** ESLint, Prettier, TypeScript.
+- **What is checked:**
+  - Compliance with a consistent code style.
+  - Absence of syntax errors.
+  - Absence of type errors.
+- **When it runs:** Automatically on every commit (using `lint-staged` and `husky`), as well as in the CI/CD pipeline.
 
 ---
 
-На этом создание основной документации завершено.
+This concludes the creation of the main documentation.

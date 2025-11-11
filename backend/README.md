@@ -1,57 +1,57 @@
-# Бэкенд - AIRBRO Business
+# Backend - AIRBRO Business
 
-Этот раздел содержит бэкенд-сервис для платформы AIRBRO Business. Он построен на Node.js, Express и Prisma.
+This section contains the backend service for the AIRBRO Business platform. It is built on Node.js, Express, and Prisma.
 
-## 🚀 Быстрый старт
+## 🚀 Quick Start
 
-Для полного развертывания проекта (фронтенд + бэкенд) следуйте инструкциям в **[основном руководстве](../docs/02_Getting_Started.md)**.
+For full project deployment (frontend + backend), follow instructions in the **[main guide](../docs/02_Getting_Started.md)**.
 
-### Запуск только бэкенда
+### Running Backend Only
 
-1.  **Перейдите в директорию:**
+1.  **Navigate to the directory:**
 
     ```bash
     cd backend
     ```
 
-2.  **Установите зависимости:**
+2.  **Install dependencies:**
 
     ```bash
     npm install
     ```
 
-3.  **Настройте переменные окружения:**
-    - Создайте файл `.env` в папке `backend`, скопировав содержимое из `.env.example` (если он есть).
-    - Заполните необходимые переменные, в первую очередь `DATABASE_URL`. Для локальной разработки подойдет значение по умолчанию:
+3.  **Configure environment variables:**
+    - Create a `.env` file in the `backend` folder, copying the content from `.env.example` (if it exists).
+    - Fill in the required variables, primarily `DATABASE_URL`. For local development, the default value is suitable:
       ```env
-      DATABASE_URL="file:./dev.db"
+      DATABASE_URL="postgresql://username:password@localhost:5432/aibro_business"
       ```
 
-4.  **Примените миграции базы данных:**
-    Это создаст базу данных SQLite и все необходимые таблицы.
+4.  **Apply database migrations:**
+    This will set up your PostgreSQL database and create all necessary tables.
 
     ```bash
     npx prisma migrate dev
     ```
 
-5.  **Запустите dev-сервер:**
-    Сервер будет автоматически перезагружаться при изменениях в коде.
+5.  **Run the dev server:**
+    The server will automatically reload on code changes.
     ```bash
     npm run dev
     ```
-    Бэкенд будет доступен по адресу `http://localhost:3000`.
+    The backend will be available at `http://localhost:3000`.
 
-## 🛠 Скрипты
+## 🛠 Scripts
 
-- `npm run dev`: Запуск сервера в режиме разработки с `tsx`.
-- `npm run build`: Сборка проекта с помощью `tsc`.
-- `npm run start`: Запуск собранной версии проекта.
-- `npm run prisma:generate`: Генерация клиента Prisma.
-- `npm run prisma:migrate`: Применение миграций базы данных.
-- `npm run prisma:studio`: Открытие Prisma Studio для просмотра и редактирования данных.
-- `npm run prisma:seed`: Заполнение базы данных тестовыми данными (если `prisma/seed.ts` настроен).
+- `npm run dev`: Run the server in development mode with `tsx`.
+- `npm run build`: Build the project using `tsc`.
+- `npm run start`: Run the compiled project version.
+- `npm run prisma:generate`: Generate Prisma Client.
+- `npm run prisma:migrate`: Apply database migrations.
+- `npm run prisma:studio`: Open Prisma Studio for viewing and editing data.
+- `npm run prisma:seed`: Populate database with test data (if `prisma/seed.ts` is configured).
 
-## 📚 Подробная документация
+## 📚 Detailed Documentation
 
-- **[API и маршруты](../docs/03_Backend_API.md)**
-- **[Схема базы данных](../docs/04_Database_Schema.md)**
+- **[API and Routes](../docs/03_Backend_API.md)**
+- **[Database Schema](../docs/04_Database_Schema.md)**

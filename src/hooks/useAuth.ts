@@ -9,6 +9,11 @@ import { showToast } from '../lib/toast';
 import { useAuth } from '../context/AuthContext';
 import { type LoginInput, type RegisterInput } from '../lib/validation/auth';
 
+/**
+ * @function useLogin
+ * @description Custom hook for handling user login.
+ * @returns {object} A mutation object from react-query for login operations.
+ */
 export function useLogin() {
   const { setAuthData } = useAuth();
 
@@ -26,6 +31,11 @@ export function useLogin() {
   });
 }
 
+/**
+ * @function useRegister
+ * @description Custom hook for handling user registration.
+ * @returns {object} A mutation object from react-query for registration operations.
+ */
 export function useRegister() {
   const { setAuthData } = useAuth();
 
@@ -46,6 +56,11 @@ export function useRegister() {
   });
 }
 
+/**
+ * @function useProfile
+ * @description Custom hook for fetching the current user's profile.
+ * @returns {object} A query object from react-query for fetching user profile.
+ */
 export function useProfile() {
   return useQuery({
     queryKey: ['profile'],
@@ -54,6 +69,11 @@ export function useProfile() {
   });
 }
 
+/**
+ * @function useLogout
+ * @description Custom hook for handling user logout.
+ * @returns {object} A mutation object from react-query for logout operations.
+ */
 export function useLogout() {
   const queryClient = useQueryClient();
   const { clearAuthData } = useAuth();

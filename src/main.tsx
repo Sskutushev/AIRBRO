@@ -6,15 +6,15 @@ import { analytics } from './lib/analytics';
 import './index.css';
 import App from './App.tsx';
 
-// Инициализация Sentry
+// Init Sentry
 initSentry();
-// Инициализация Analytics
+// Init Analytics
 analytics.init();
 
-// Оборачиваем App в Sentry ErrorBoundary
+// Wrap App in Sentry ErrorBoundary
 const SentryApp = Sentry.withProfiler(App);
 
-// Установка начальной темы на основе предпочтений пользователя
+// Set theme based on user prefs
 const savedTheme = localStorage.getItem('theme');
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 

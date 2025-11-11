@@ -1,0 +1,128 @@
+{
+  "conversationBot": {
+    "keyBenefits": [
+      {
+        "title": "Continuous Support",
+        "description": "Your clients will always receive an answer, even outside working hours, which increases loyalty and service availability."
+      },
+      {
+        "title": "Resource Savings",
+        "description": "Automating routine inquiries reduces the workload on live operators by up to 70%, allowing them to focus on complex tasks."
+      },
+      {
+        "title": "Personalization",
+        "description": "AI remembers the history of each client's inquiries, offering relevant solutions and creating a sense of individual approach."
+      }
+    ],
+    "howItWorks": [
+      "Integration: The bot easily integrates into Telegram, as well as other popular messengers and corporate chats where your clients and employees work.",
+      "NLP-analysis of requests: Uses advanced Natural Language Processing (NLP) models to deeply understand the context and intent of the user in each message.",
+      "Knowledge Base: Connect your knowledge base (FAQ, documentation, product specifications, corporate rules), and the bot will instantly retrieve the necessary information from it for answers.",
+      "Lead Qualification: Asks clarifying questions to determine the client's needs, budget, and readiness to purchase, 'warming up' the lead for the sales manager.",
+      "Seamless Transfer: In case of complex, non-standard requests or at the client's request, the bot carefully transfers the dialogue to a live specialist, providing them with the full chat history and context of the problem."
+    ],
+    "useCases": [
+      "Automatic answers to frequently asked questions about products, services, delivery terms, and payment.",
+      "Collection of primary data and qualification of potential clients before transferring them to sales managers.",
+      "Providing up-to-date order statuses or information on product availability.",
+      "First-line technical support for solving typical problems and consultations.",
+      "Customer service outside working hours and on weekends."
+    ]
+  },
+  "bookingBot": {
+    "keyBenefits": [
+      {
+        "title": "Full Automation",
+        "description": "Eliminate manual processing of calls and messages for appointments, freeing up staff time."
+      },
+      {
+        "title": "Reduced No-Shows",
+        "description": "Automatic reminders about upcoming appointments significantly reduce the number of missed bookings."
+      },
+      {
+        "title": "Increased Occupancy",
+        "description": "A convenient and intuitive booking process, available 24/7, encourages clients to make appointments."
+      }
+    ],
+    "howItWorks": [
+      "Calendar Integration: Synchronization with popular calendar services (Google Calendar, Outlook Calendar, Apple Calendar) and CRM systems for up-to-date display of available slots.",
+      "Intuitive Interface: Clients interact with the bot directly in Telegram, going through a simple step-by-step process of selecting a service, specialist, and convenient time.",
+      "Flexible Scheduling: Ability to configure different work schedules, breaks, weekends, and holidays for each specialist or resource.",
+      "Automatic Reminders: The bot sends personalized reminders to clients at a pre-set time (e.g., 24 hours and 1 hour before the meeting) to confirm the appointment.",
+      "Self-Service Appointment Management: Clients can easily reschedule or cancel their appointment via the bot, without needing to call or write, which is convenient for both parties."
+    ],
+    "useCases": [
+      "Booking clients for beauty salons, barbershops, SPA salons, fitness centers.",
+      "Reserving tables in restaurants, co-working spaces, equipment rental.",
+      "Booking individual consultations with doctors, lawyers, psychologists, tutors.",
+      "Planning meetings with sales managers or product demonstrations.",
+      "Automatic organization of webinars, master classes, and group sessions."
+    ]
+  },
+  "feedbackBot": {
+    "keyBenefits": [
+      {
+        "title": "Service Improvement",
+        "description": "Quickly identify weaknesses in your business and promptly respond to negative feedback."
+      },
+      {
+        "title": "Reputation Growth",
+        "description": "Automatically collect positive feedback and encourage its publication on external platforms."
+      },
+      {
+        "title": "Deep Analytics",
+        "description": "Receive aggregated NPS (Net Promoter Score) reports and customer sentiment analysis automatically."
+      }
+    ],
+    "howItWorks": [
+      "Automatic Triggers: The bot automatically sends feedback requests after predefined events (e.g., order completion, visit, project end, warranty expiration).",
+      "Flexible Survey Scenarios: Configure message chains depending on the client's rating. For a low rating, the bot delicately ascertains the reasons; for a high rating, it suggests leaving a review on public platforms.",
+      "Collection of Detailed Feedback: In addition to numerical ratings, the bot can collect text comments, photos, and videos, providing a complete picture of the customer experience.",
+      "Negative Management: Upon receiving a negative rating, the bot can automatically initiate contact with a manager for prompt problem resolution, preventing public negativity.",
+      "Reputation Management: Helps direct satisfied clients to platforms important for your reputation (Google My Business, Yandex.Maps, specialized review sites)."
+    ],
+    "useCases": [
+      "Assessing service quality in retail stores, cafes, restaurants, hotels.",
+      "Collecting feedback after completing online courses, trainings, webinars.",
+      "Monitoring customer satisfaction in service centers, car services.",
+      "Continuous collection of opinions on new products or features.",
+      "Automated reputation management across all key online platforms."
+    ]
+  },
+  "videoInventory": {
+    "keyBenefits": [
+      {
+        "title": "Error Reduction",
+        "description": "Minimizing human error and increasing the accuracy of inventory accounting."
+      },
+      {
+        "title": "Inventory Optimization",
+        "description": "Accurate knowledge of balances and expiration dates prevents losses and surpluses."
+      },
+      {
+        "title": "Time Savings",
+        "description": "Automating routine and labor-intensive inventory tasks."
+      }
+    ],
+    "howItWorks": [
+      "Computer Vision: Uses advanced machine vision algorithms to analyze video streams from ordinary cameras (smartphone, stationary IP cameras).",
+      "Automatic Recognition: AI can recognize goods by their appearance, barcodes, QR codes, logos, and even packaging shape.",
+      "OCR Expiration Dates: A specialized Optical Character Recognition (OCR) module reads production and expiration dates on product packaging.",
+      "Synchronization with ERP/WMS: The obtained data on the quantity and status of goods are automatically synchronized with your inventory accounting system (ERP, WMS, 1C), ensuring the relevance of information.",
+      "Forecast and Auto-Order: Based on the analysis of current balances, sales speed, and expiration dates, AI can generate recommendations for replenishing stocks or automatically form draft orders to suppliers."
+    ],
+    "useCases": [
+      "Fast and accurate inventory of goods in warehouses, retail stores, pharmacies.",
+      "Monitoring product freshness in supermarkets, restaurants, cafes.",
+      "Accounting for equipment, tools, and components in production or rental companies.",
+      "Monitoring product availability on store shelves to prevent empty spaces.",
+      "Automated quality control of incoming goods."
+    ]
+  },
+  "tabs": {
+    "keyBenefits": "Key Benefits",
+    "howItWorks": "How It Works",
+    "useCases": "Use Cases"
+  },
+  "ctaButton": "Request Early Access"
+}

@@ -23,7 +23,7 @@ describe('Auth Validation Schemas', () => {
         email: 'invalid-email',
         password: 'Password123!',
       };
-      expect(() => loginSchema.parse(invalidLogin)).toThrow('Неверный формат email');
+      expect(() => loginSchema.parse(invalidLogin)).toThrow('Invalid email format');
     });
 
     it('should invalidate login with a password shorter than 8 characters', () => {
@@ -32,7 +32,7 @@ describe('Auth Validation Schemas', () => {
         password: 'short',
       };
       expect(() => loginSchema.parse(invalidLogin)).toThrow(
-        'Пароль должен быть не менее 8 символов'
+        'Password must be at least 8 characters'
       );
     });
 
@@ -48,7 +48,7 @@ describe('Auth Validation Schemas', () => {
         error = e;
       }
       expect(error).toBeInstanceOf(z.ZodError);
-      expect((error as z.ZodError).issues[0].message).toBe('Email обязателен');
+      expect((error as z.ZodError).issues[0].message).toBe('Email is required');
     });
 
     it('should invalidate login with missing password', () => {
@@ -63,7 +63,7 @@ describe('Auth Validation Schemas', () => {
         error = e;
       }
       expect(error).toBeInstanceOf(z.ZodError);
-      expect((error as z.ZodError).issues[0].message).toBe('Пароль обязателен');
+      expect((error as z.ZodError).issues[0].message).toBe('Password is required');
     });
   });
 
@@ -84,30 +84,30 @@ describe('Auth Validation Schemas', () => {
 
     it('should invalidate registration with missing name', () => {
       const invalidRegister = { ...baseValidRegister, name: '' };
-      expect(() => registerSchema.parse(invalidRegister)).toThrow('Имя обязательно');
+      expect(() => registerSchema.parse(invalidRegister)).toThrow('Name is required');
     });
 
     it('should invalidate registration with invalid email format', () => {
       const invalidRegister = { ...baseValidRegister, email: 'bad-email' };
-      expect(() => registerSchema.parse(invalidRegister)).toThrow('Неверный формат email');
+      expect(() => registerSchema.parse(invalidRegister)).toThrow('Invalid email format');
     });
 
     it('should invalidate registration with missing telegram username', () => {
       const invalidRegister = { ...baseValidRegister, telegram: '' };
-      expect(() => registerSchema.parse(invalidRegister)).toThrow('Telegram-аккаунт обязателен');
+      expect(() => registerSchema.parse(invalidRegister)).toThrow('Telegram account is required');
     });
 
     it('should invalidate registration with invalid telegram username format', () => {
       const invalidRegister = { ...baseValidRegister, telegram: 'testuser' }; // Missing '@'
       expect(() => registerSchema.parse(invalidRegister)).toThrow(
-        'Неверный формат Telegram-аккаунта (например, @username, 5-32 символов, буквы, цифры, подчеркивание)'
+        'Invalid Telegram account format (e.g., @username, 5-32 chars, letters, numbers, underscore)'
       );
     });
 
     it('should invalidate registration with password shorter than 8 characters', () => {
       const invalidRegister = { ...baseValidRegister, password: 'short', confirmPassword: 'short' };
       expect(() => registerSchema.parse(invalidRegister)).toThrow(
-        'Пароль должен быть не менее 8 символов'
+        'Password must be at least 8 characters'
       );
     });
 
@@ -118,7 +118,7 @@ describe('Auth Validation Schemas', () => {
         confirmPassword: 'strongpassword123!',
       };
       expect(() => registerSchema.parse(invalidRegister)).toThrow(
-        'Пароль должен содержать хотя бы одну заглавную букву'
+        'Password must contain at least one uppercase letter'
       );
     });
 
@@ -129,7 +129,7 @@ describe('Auth Validation Schemas', () => {
         confirmPassword: 'STRONGPASSWORD123!',
       };
       expect(() => registerSchema.parse(invalidRegister)).toThrow(
-        'Пароль должен содержать хотя бы одну строчную букву'
+        'Password must contain at least one lowercase letter'
       );
     });
 
@@ -140,7 +140,7 @@ describe('Auth Validation Schemas', () => {
         confirmPassword: 'StrongPassword!!',
       };
       expect(() => registerSchema.parse(invalidRegister)).toThrow(
-        'Пароль должен содержать хотя бы одну цифру'
+        'Password must contain at least one number'
       );
     });
 
@@ -151,7 +151,7 @@ describe('Auth Validation Schemas', () => {
         confirmPassword: 'StrongPassword123',
       };
       expect(() => registerSchema.parse(invalidRegister)).toThrow(
-        'Пароль должен содержать хотя бы один специальный символ'
+        'Password must contain at least one special character'
       );
     });
 
@@ -160,7 +160,7 @@ describe('Auth Validation Schemas', () => {
         ...baseValidRegister,
         confirmPassword: 'wrongpassword',
       };
-      expect(() => registerSchema.parse(invalidRegister)).toThrow('Пароли не совпадают');
+      expect(() => registerSchema.parse(invalidRegister)).toThrow('Passwords do not match');
     });
   });
 
@@ -173,12 +173,12 @@ describe('Auth Validation Schemas', () => {
 
     it('should invalidate with missing email', () => {
       const invalidEmail = { email: '' };
-      expect(() => resetPasswordSchema.parse(invalidEmail)).toThrow('Email обязателен');
+      expect(() => resetPasswordSchema.parse(invalidEmail)).toThrow('Email is required');
     });
 
     it('should invalidate with invalid email format', () => {
       const invalidEmail = { email: 'bad-email' };
-      expect(() => resetPasswordSchema.parse(invalidEmail)).toThrow('Неверный формат email');
+      expect(() => resetPasswordSchema.parse(invalidEmail)).toThrow('Invalid email format');
     });
   });
 });

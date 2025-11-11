@@ -104,6 +104,7 @@
     "husky": "^9.1.7",
     "jsdom": "^27.1.0",
     "lint-staged": "^16.2.6",
+    "msw": "^2.12.1",
     "playwright": "^1.56.1",
     "prettier": "^3.6.2",
     "typescript": "~5.9.3",

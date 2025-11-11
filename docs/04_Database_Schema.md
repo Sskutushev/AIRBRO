@@ -1,104 +1,104 @@
-# 4. Схема базы данных
+# 4. Database Schema
 
-Для управления данными в проекте используется **Prisma** — это ORM (Object-Relational Mapper) нового поколения для Node.js и TypeScript. В качестве базы данных для локальной разработки и простого развертывания выбран **SQLite**.
+For data management in the project, we use **Prisma** — an ORM (Object-Relational Mapper) for the next generation for Node.js and TypeScript. As a database for local development and simple deployment, we use **PostgreSQL**.
 
-Вся схема данных описана в файле [`backend/prisma/schema.prisma`](../backend/prisma/schema.prisma).
+All data schema is described in the file [`backend/prisma/schema.prisma`](../backend/prisma/schema.prisma).
 
-## Обзор моделей данных
+## Data Models Overview
 
-Ниже описаны основные модели и их назначение.
+Below are the main models and their purposes.
 
-### `User` (Пользователь)
+### `User`
 
-Представляет пользователя системы.
+Represents a system user.
 
-| Поле           | Тип       | Описание                                             |
-| -------------- | --------- | ---------------------------------------------------- |
-| `id`           | `String`  | Уникальный идентификатор (UUID).                     |
-| `email`        | `String`  | Уникальный email пользователя.                       |
-| `passwordHash` | `String`  | Хеш пароля, сгенерированный с помощью `bcrypt`.      |
-| `name`         | `String`  | Имя пользователя.                                    |
-| `telegram`     | `String`  | Уникальный юзернейм в Telegram.                      |
-| `telegramId`   | `String?` | ID пользователя в Telegram (для интеграции с ботом). |
+| Field          | Type      | Description                                |
+| -------------- | --------- | ------------------------------------------ |
+| `id`           | `String`  | Unique identifier (UUID).                  |
+| `email`        | `String`  | Unique user email.                         |
+| `passwordHash` | `String`  | Password hash generated with `bcrypt`.     |
+| `name`         | `String`  | User's name.                               |
+| `telegram`     | `String`  | Unique Telegram username.                  |
+| `telegramId`   | `String?` | User ID in Telegram (for bot integration). |
 
-**Связи:**
+**Relationships:**
 
-- Один `User` может иметь много `Subscription`, `Payment` и `CartItem`.
+- One `User` can have many `Subscription`, `Payment`, and `CartItem`.
 
-### `Product` (Продукт)
+### `Product`
 
-Представляет тарифный план или продукт, который можно купить.
+Represents a subscription plan or product that can be purchased.
 
-| Поле          | Тип       | Описание                                            |
-| ------------- | --------- | --------------------------------------------------- |
-| `id`          | `String`  | Уникальный идентификатор (UUID).                    |
-| `slug`        | `String`  | Уникальная строка для URL (например, `basic-plan`). |
-| `name`        | `String`  | Название продукта (например, "Базовый тариф").      |
-| `description` | `String`  | Описание продукта.                                  |
-| `price`       | `Int`     | Цена в копейках (для избежания проблем с float).    |
-| `interval`    | `String`  | Интервал подписки ("month" или "year").             |
-| `features`    | `String`  | JSON-строка со списком фич продукта.                |
-| `isActive`    | `Boolean` | Активен ли продукт для покупки.                     |
-| `tier`        | `Int`     | Уровень тарифа (1, 2, 3).                           |
+| Field         | Type      | Description                                    |
+| ------------- | --------- | ---------------------------------------------- |
+| `id`          | `String`  | Unique identifier (UUID).                      |
+| `slug`        | `String`  | Unique URL string (e.g., `basic-plan`).        |
+| `name`        | `String`  | Product name (e.g., "Basic Plan").             |
+| `description` | `String`  | Product description.                           |
+| `price`       | `Int`     | Price in the smallest currency unit (kopecks). |
+| `interval`    | `String`  | Subscription interval ("month" or "year").     |
+| `features`    | `String`  | JSON string with a list of product features.   |
+| `isActive`    | `Boolean` | Is the product active for purchase.            |
+| `tier`        | `Int`     | Tier level (1, 2, 3).                          |
 
-**Связи:**
+**Relationships:**
 
-- Один `Product` может быть связан с многими `Subscription` и `CartItem`.
+- One `Product` can be associated with many `Subscription` and `CartItem`.
 
-### `Subscription` (Подписка)
+### `Subscription`
 
-Связывает пользователя с продуктом, на который он подписан.
+Links a user with the product they are subscribed to.
 
-| Поле              | Тип         | Описание                                                     |
-| ----------------- | ----------- | ------------------------------------------------------------ |
-| `id`              | `String`    | Уникальный идентификатор (UUID).                             |
-| `userId`          | `String`    | ID пользователя, которому принадлежит подписка.              |
-| `productId`       | `String`    | ID продукта, на который оформлена подписка.                  |
-| `status`          | `String`    | Статус подписки ("active", "cancelled", "expired", "trial"). |
-| `startDate`       | `DateTime`  | Дата начала подписки.                                        |
-| `endDate`         | `DateTime`  | Дата окончания подписки.                                     |
-| `nextPaymentDate` | `DateTime?` | Дата следующего списания (для рекуррентных платежей).        |
+| Field             | Type        | Description                                                      |
+| ----------------- | ----------- | ---------------------------------------------------------------- |
+| `id`              | `String`    | Unique identifier (UUID).                                        |
+| `userId`          | `String`    | ID of the user who owns the subscription.                        |
+| `productId`       | `String`    | ID of the product the subscription is for.                       |
+| `status`          | `String`    | Subscription status ("active", "cancelled", "expired", "trial"). |
+| `startDate`       | `DateTime`  | Start date of the subscription.                                  |
+| `endDate`         | `DateTime`  | End date of the subscription.                                    |
+| `nextPaymentDate` | `DateTime?` | Next payment date (for recurring payments).                      |
 
-**Связи:**
+**Relationships:**
 
-- Принадлежит одному `User` и одному `Product`.
+- Belongs to one `User` and one `Product`.
 
-### `Payment` (Платеж)
+### `Payment`
 
-Запись о финансовой транзакции.
+Record of a financial transaction.
 
-| Поле            | Тип       | Описание                                                      |
+| Field           | Type      | Description                                                   |
 | --------------- | --------- | ------------------------------------------------------------- |
-| `id`            | `String`  | Уникальный идентификатор (UUID).                              |
-| `userId`        | `String`  | ID пользователя, совершившего платеж.                         |
-| `amount`        | `Int`     | Сумма в копейках.                                             |
-| `currency`      | `String`  | Валюта платежа ("RUB", "USD", "USDT", "TON").                 |
-| `status`        | `String`  | Статус платежа ("pending", "completed", "failed", "expired"). |
-| `paymentMethod` | `String`  | Метод оплаты (например, "crypto_usdt_trc20").                 |
-| `walletAddress` | `String?` | Адрес кошелька для крипто-платежей.                           |
-| `txHash`        | `String?` | Хеш транзакции в блокчейне.                                   |
-| `qrCode`        | `String?` | QR-код для оплаты (в формате Base64).                         |
+| `id`            | `String`  | Unique identifier (UUID).                                     |
+| `userId`        | `String`  | ID of the user who made the payment.                          |
+| `amount`        | `Int`     | Amount in the smallest currency unit (kopecks).               |
+| `currency`      | `String`  | Payment currency ("RUB", "USD", "USDT", "TON").               |
+| `status`        | `String`  | Payment status ("pending", "completed", "failed", "expired"). |
+| `paymentMethod` | `String`  | Payment method (e.g., "crypto_usdt_trc20").                   |
+| `walletAddress` | `String?` | Wallet address for crypto payments.                           |
+| `txHash`        | `String?` | Transaction hash in the blockchain.                           |
+| `qrCode`        | `String?` | QR code for payment (in Base64 format).                       |
 
-**Связи:**
+**Relationships:**
 
-- Принадлежит одному `User`.
+- Belongs to one `User`.
 
-### `CartItem` (Элемент корзины)
+### `CartItem`
 
-Промежуточная модель для хранения продуктов в корзине пользователя.
+Intermediate model for storing products in a user's cart.
 
-| Поле        | Тип      | Описание                            |
-| ----------- | -------- | ----------------------------------- |
-| `id`        | `String` | Уникальный идентификатор (UUID).    |
-| `userId`    | `String` | ID пользователя.                    |
-| `productId` | `String` | ID продукта в корзине.              |
-| `quantity`  | `Int`    | Количество (обычно 1 для подписок). |
+| Field       | Type     | Description                             |
+| ----------- | -------- | --------------------------------------- |
+| `id`        | `String` | Unique identifier (UUID).               |
+| `userId`    | `String` | User ID.                                |
+| `productId` | `String` | Product ID in the cart.                 |
+| `quantity`  | `Int`    | Quantity (usually 1 for subscriptions). |
 
-**Связи:**
+**Relationships:**
 
-- Принадлежит одному `User` и одному `Product`.
+- Belongs to one `User` and one `Product`.
 
-## Визуальная схема (ERD)
+## Visual Schema (ERD)
 
 ```mermaid
 erDiagram
@@ -147,4 +147,4 @@ erDiagram
 
 ---
 
-**Далее:** [05 - Фронтенд](./05_Frontend.md)
+**Next:** [05 - Frontend](./05_Frontend.md)

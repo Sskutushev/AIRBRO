@@ -5,30 +5,30 @@ export const sendTelegramMessage = async (req: Request, res: Response) => {
   // try {
   //   const { name, email, telegram, business, product, description } = req.body;
 
-  //   console.log('Получены данные формы:', { name, email, telegram, business, product, description });
+  //   console.log('Form data received:', { name, email, telegram, business, product, description });
 
-  //   // Валидация обязательных полей
+  //   // Validate required fields
   //   if (!name || !email || !telegram || !description) {
-  //     console.log('Ошибка валидации:', { name: !!name, email: !!email, telegram: !!telegram, description: !!description });
+  //     console.log('Validation error:', { name: !!name, email: !!email, telegram: !!telegram, description: !!description });
   //     return res.status(400).json({ error: 'Missing required fields' });
   //   }
 
-  //   // Формирование сообщения для Telegram
-  //   const message = `📩 Новая заявка\n\n` +
-  //     `👤 Имя: ${name}\n` +
+  //   // Form message for Telegram
+  //   const message = `📩 New request\n\n` +
+  //     `👤 Name: ${name}\n` +
   //     `📧 Email: ${email}\n` +
   //     `💬 Telegram: ${telegram}\n` +
-  //     `🏢 Бизнес: ${business || 'Не указан'}\n` +
-  //     `🎯 Продукт: ${product || 'Не указан'}\n` +
-  //     `📝 Описание: ${description}`;
+  //     `🏢 Business: ${business || 'Not specified'}\n` +
+  //     `🎯 Product: ${product || 'Not specified'}\n` +
+  //     `📝 Description: ${description}`;
 
-  //   console.log('Формируется сообщение:', message);
+  //   console.log('Forming message:', message);
 
-  //   // Отправка уведомления в Telegram
+  //   // Send notification to Telegram
   //   await sendTelegramNotification(message);
 
-  //   console.log('Сообщение успешно отправлено в Telegram');
-  //   res.status(200).json({ success: true, message: 'Сообщение успешно отправлено в Telegram' });
+  //   console.log('Message successfully sent to Telegram');
+  //   res.status(200).json({ success: true, message: 'Message successfully sent to Telegram' });
   // } catch (error) {
   //   console.error('Error sending Telegram message:', error);
   //   res.status(500).json({ error: 'Failed to send message' });

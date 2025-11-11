@@ -172,10 +172,10 @@ class APIClient {
 
     if (response.status === 401) {
       this.setToken(null); // Clear token on 401
-      showToast.error('Сессия истекла. Пожалуйста, войдите снова.');
+      showToast.error('Session expired. Please log in again.');
       // Optionally, redirect to login page
       // } else if (response.status === 403 && errorData.code === 'EBADCSRFTOKEN') {
-      //   showToast.error('Ошибка безопасности (CSRF). Пожалуйста, попробуйте еще раз.');
+      //   showToast.error('Security error (CSRF). Please try again.');
     } else {
       showToast.error(errorMessage);
     }

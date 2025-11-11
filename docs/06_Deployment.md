@@ -1,57 +1,57 @@
-# 6. Деплой
+# 6. Deployment
 
-Проект AIRBRO Business развертывается как два отдельных приложения: фронтенд и бэкенд. Процессы деплоя полностью автоматизированы с помощью GitHub Actions.
+The AIRBRO Business project is deployed as two separate applications: frontend and backend. Deployment processes are fully automated using GitHub Actions.
 
-## Фронтенд
+## Frontend
 
-- **Платформа:** [Vercel](https://vercel.com/)
+- **Platform:** [Vercel](https://vercel.com/)
 - **Workflow:** [`deploy-frontend.yml`](../.github/workflows/deploy-frontend.yml)
-- **URL:** `https://aibrobusiness.com` (пример)
+- **URL:** `https://aibrobusiness.com` (example)
 
-### Процесс деплоя
+### Deployment Process
 
-1.  **Триггер:** Деплой запускается автоматически при каждом `push` в ветку `main`, если изменения затрагивают файлы фронтенда (`src/**`, `public/**`, `package.json` и т.д.).
+1.  **Trigger:** Deployment is automatically triggered on every `push` to the `main` branch, if changes affect frontend files (`src/**`, `public/**`, `package.json`, etc.).
 
-2.  **Сборка (Build):**
-    - GitHub Action запускает команду `npm run build`.
-    - Во время сборки используются продакшн-переменные окружения (например, `VITE_API_URL_PROD`), которые хранятся в секретах репозитория GitHub.
+2.  **Build:**
+    - GitHub Action runs the `npm run build` command.
+    - During the build, production environment variables (e.g., `VITE_API_URL_PROD`) stored in GitHub repository secrets are used.
 
-3.  **Развертывание на Vercel:**
-    - Используется action `amondnet/vercel-action`, который отправляет собранные файлы (`dist`) в Vercel.
-    - Vercel автоматически назначает новый деплой на продакшн-домен.
+3.  **Deployment to Vercel:**
+    - The `amondnet/vercel-action` is used, which uploads the build files (`dist`) to Vercel.
+    - Vercel automatically assigns the new deployment to the production domain.
 
-4.  **Загрузка Source Maps в Sentry:**
-    - После успешного деплоя, `source maps` (карты исходного кода) загружаются в Sentry. Это позволяет видеть читаемые стектрейсы ошибок в продакшене.
+4.  **Upload Source Maps to Sentry:**
+    - After successful deployment, `source maps` are uploaded to Sentry. This allows seeing readable error stack traces in production.
 
-5.  **Уведомление в Slack:**
-    - В конце воркфлоу отправляется уведомление в Slack о статусе деплоя (успех или провал).
+5.  **Slack Notification:**
+    - At the end of the workflow, a notification is sent to Slack about the deployment status (success or failure).
 
-## Бэкенд
+## Backend
 
-- **Платформа:** [Railway](https://railway.app/)
+- **Platform:** [Railway](https://railway.app/)
 - **Workflow:** [`deploy-backend.yml`](../.github/workflows/deploy-backend.yml)
-- **URL:** `https://api.aibrobusiness.com` (пример)
+- **URL:** `https://api.aibrobusiness.com` (example)
 
-### Процесс деплоя
+### Deployment Process
 
-1.  **Триггер:** Деплой запускается автоматически при каждом `push` в ветку `main`, если изменения затрагивают папку `backend/**`.
+1.  **Trigger:** Deployment is automatically triggered on every `push` to the `main` branch, if changes affect the `backend/**` folder.
 
-2.  **Установка Railway CLI:**
-    - В воркфлоу устанавливается официальный CLI-инструмент от Railway.
+2.  **Install Railway CLI:**
+    - The official Railway CLI tool is installed in the workflow.
 
-3.  **Развертывание на Railway:**
-    - Выполняется команда `railway up`, которая автоматически определяет тип проекта (Node.js), собирает его (если нужно) и развертывает.
-    - Railway использует `Dockerfile` или `Nixpacks` для сборки и запуска сервиса. Переменные окружения (например, `DATABASE_URL`, `JWT_SECRET`) должны быть настроены в самом проекте на Railway.
+3.  **Deployment to Railway:**
+    - The `railway up` command is executed, which automatically detects the project type (Node.js), builds it (if needed), and deploys it.
+    - Railway uses `Dockerfile` or `Nixpacks` to build and run the service. Environment variables (e.g., `DATABASE_URL`, `JWT_SECRET`) must be configured in the Railway project itself.
 
-4.  **Применение миграций:**
-    - После деплоя выполняется команда `railway run npx prisma migrate deploy`, чтобы применить любые новые миграции к продакшн-базе данных.
+4.  **Apply Migrations:**
+    - After deployment, the command `railway run npx prisma migrate deploy` is executed to apply any new migrations to the production database.
 
-5.  **Проверка работоспособности (Health Check):**
-    - Воркфлоу делает паузу на 10 секунд, а затем отправляет запрос на эндпоинт `/health`. Если сервис не отвечает статусом `200 OK`, воркфлоу завершается с ошибкой.
+5.  **Health Check:**
+    - The workflow pauses for 10 seconds, then sends a request to the `/health` endpoint. If the service does not respond with a `200 OK` status, the workflow fails.
 
-6.  **Уведомление в Slack:**
-    - Как и в случае с фронтендом, отправляется уведомление о статусе деплоя.
+6.  **Slack Notification:**
+    - As with the frontend, a notification about the deployment status is sent.
 
 ---
 
-**Далее:** [07 - CI/CD](./07_CI_CD.md)
+**Next:** [07 - CI/CD](./07_CI_CD.md)

@@ -99,7 +99,7 @@ describe('PaymentPage', () => {
     expect(screen.getByText(mockPlan.name)).toBeInTheDocument();
     expect(screen.getByText(mockPlan.name)).toBeInTheDocument();
     expect(screen.getByText('Pro Plan')).toBeInTheDocument();
-    // Найдем нужный элемент по содержанию и классу одновременно
+    // Find element by content and class at the same time
     const priceElement = screen.getByText((content, element) => {
       const hasPrice = content.includes('5') && content.includes('000');
       const hasCurrency = element?.textContent?.includes('₽');
