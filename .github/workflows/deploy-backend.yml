@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to Railway
+    name: Deploy to Railway (Temporarily Disabled)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,37 +18,34 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install Railway CLI
-        run: npm i -g @railway/cli
-
-      - name: Deploy to Railway
+      - name: Check Railway Services
         run: |
-          echo "Deploying to Railway..."
-          cd backend
-          railway up
-        working-directory: ./backend
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          echo "Railway deployment temporarily disabled for CORS testing"
+          echo "Backend changes will be deployed manually"
+          echo "Please check Railway dashboard manually"
 
-      - name: Run migrations
-        run: |
-          echo "Running migrations..."
-          cd backend
-          railway run npx prisma migrate deploy
-        working-directory: ./backend
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      # - name: Install Railway CLI
+      #   run: npm i -g @railway/cli
 
-      - name: Health check
-        run: |
-          sleep 10
-          curl -f https://airbro-production.up.railway.app/health || exit 1
-
-      # - name: Notify deployment
-      #   uses: 8398a7/action-slack@v3
-      #   if: always()
-      #   with:
-      #     status: ${{ job.status }}
-      #     text: 'Backend deployment ${{ job.status }}' # Corrected notification
+      # - name: Deploy to Railway
+      #   run: |
+      #     echo "Deploying to Railway..."
+      #     cd backend
+      #     railway up
+      #   working-directory: ./backend
       #   env:
-      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL || '' }}
+      #     RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+      # - name: Run migrations
+      #   run: |
+      #     echo "Running migrations..."
+      #     cd backend
+      #     railway run npx prisma migrate deploy
+      #   working-directory: ./backend
+      #   env:
+      #     RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+      # - name: Health check
+      #   run: |
+      #     sleep 10
+      #     curl -f https://airbro-production.up.railway.app/health || exit 1
