@@ -22,13 +22,19 @@ jobs:
         run: npm i -g @railway/cli
 
       - name: Deploy to Railway
-        run: railway up --service backend
+        run: |
+          echo "Deploying to Railway..."
+          cd backend
+          railway up
         working-directory: ./backend
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
 
       - name: Run migrations
-        run: railway run --service backend npx prisma migrate deploy
+        run: |
+          echo "Running migrations..."
+          cd backend
+          railway run npx prisma migrate deploy
         working-directory: ./backend
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
