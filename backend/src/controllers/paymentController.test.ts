@@ -1,3 +1,4 @@
+import { vi, describe, it, expect, beforeEach, beforeAll } from 'vitest';
 import request from 'supertest';
 import app from '../../src/server'; // Assuming app is exported from server.ts
 import prisma from '../../src/config/database'; // Mocked Prisma client
@@ -6,23 +7,24 @@ import { authenticateToken } from '../../src/middleware/auth'; // Import authent
 import * as cryptoUtils from '../../src/utils/crypto'; // Import crypto utility functions
 
 // Mock the environment module
-jest.mock('@/config/environment');
+vi.mock('@/config/environment');
+vi.mock('@/config/database');
 
 // Mock jsonwebtoken for token generation
-jest.mock('jsonwebtoken');
+vi.mock('jsonwebtoken');
 // Mock the authentication middleware
-jest.mock('../../src/middleware/auth', () => ({
-  authenticateToken: jest.fn((req, res, next) => {
+vi.mock('../../src/middleware/auth', () => ({
+  authenticateToken: vi.fn((req, res, next) => {
     (req as any).userId = 'testUserId123'; // Set a dummy userId
     next();
   }),
 }));
 // Mock crypto utility functions
-jest.mock('../../src/utils/crypto', () => ({
-  getCryptoConfig: jest.fn(),
-  generateQRCode: jest.fn(),
-  calculateCryptoAmount: jest.fn(),
-  getPaymentWarnings: jest.fn(),
+vi.mock('../../src/utils/crypto', () => ({
+  getCryptoConfig: vi.fn(),
+  generateQRCode: vi.fn(),
+  calculateCryptoAmount: vi.fn(),
+  getPaymentWarnings: vi.fn(),
 }));
 
 describe('PaymentController', () => {
@@ -33,31 +35,31 @@ describe('PaymentController', () => {
   const paymentId = 'payment123';
 
   beforeAll(() => {
-    (jwt.sign as jest.Mock).mockReturnValue('mockedAuthToken');
+    (jwt.sign as any).mockReturnValue('mockedAuthToken');
     token = 'mockedAuthToken';
   });
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     // Reset Prisma mock values for each test
-    (prisma.cartItem.findMany as jest.Mock).mockResolvedValue([]);
-    (prisma.payment.create as jest.Mock).mockResolvedValue(null);
-    (prisma.payment.findUnique as jest.Mock).mockResolvedValue(null);
-    (prisma.payment.update as jest.Mock).mockResolvedValue(null);
-    (prisma.cartItem.findUnique as jest.Mock).mockResolvedValue(null);
-    (prisma.subscription.create as jest.Mock).mockResolvedValue(null);
-    (prisma.cartItem.deleteMany as jest.Mock).mockResolvedValue({ count: 0 });
+    prisma.cartItem.findMany.mockResolvedValue([]);
+    prisma.payment.create.mockResolvedValue(null);
+    prisma.payment.findUnique.mockResolvedValue(null);
+    prisma.payment.update.mockResolvedValue(null);
+    prisma.cartItem.findUnique.mockResolvedValue(null);
+    prisma.subscription.create.mockResolvedValue(null);
+    prisma.cartItem.deleteMany.mockResolvedValue({ count: 0 });
 
     // Reset crypto utils mocks
-    (cryptoUtils.getCryptoConfig as jest.Mock).mockResolvedValue({
+    (cryptoUtils.getCryptoConfig as any).mockResolvedValue({
       wallet: 'mockWalletAddress',
       rate: 100, // 1 RUB = 100 crypto units
       currency: 'USDT',
       network: 'TRC20',
     });
-    (cryptoUtils.calculateCryptoAmount as jest.Mock).mockReturnValue(10); // 1000 kopecks / 100 rate = 10 crypto
-    (cryptoUtils.generateQRCode as jest.Mock).mockResolvedValue('mockQRCodeBase64');
-    (cryptoUtils.getPaymentWarnings as jest.Mock).mockReturnValue(['Warning 1']);
+    (cryptoUtils.calculateCryptoAmount as any).mockReturnValue(10); // 1000 kopecks / 100 rate = 10 crypto
+    (cryptoUtils.generateQRCode as any).mockResolvedValue('mockQRCodeBase64');
+    (cryptoUtils.getPaymentWarnings as any).mockReturnValue(['Warning 1']);
   });
 
   describe('createCryptoPayment', () => {
@@ -71,8 +73,8 @@ describe('PaymentController', () => {
           product: { id: productId1, price: 1000, interval: 'month' },
         },
       ];
-      (prisma.cartItem.findMany as jest.Mock).mockResolvedValue(mockCartItems);
-      (prisma.payment.create as jest.Mock).mockResolvedValue({
+      prisma.cartItem.findMany.mockResolvedValue(mockCartItems);
+      prisma.payment.create.mockResolvedValue({
         id: paymentId,
         userId,
         amount: 1000,
@@ -100,7 +102,7 @@ describe('PaymentController', () => {
     });
 
     it('should return 400 if some cart items not found in user cart', async () => {
-      (prisma.cartItem.findMany as jest.Mock).mockResolvedValue([]); // No cart items found
+      prisma.cartItem.findMany.mockResolvedValue([]); // No cart items found
 
       const res = await request(app)
         .post('/api/payments/crypto/create')
@@ -120,7 +122,7 @@ describe('PaymentController', () => {
         txHash: null,
         expiresAt: new Date(Date.now() + 60 * 1000), // 1 minute from now
       };
-      (prisma.payment.findUnique as jest.Mock).mockResolvedValue(mockPayment);
+      prisma.payment.findUnique.mockResolvedValue(mockPayment);
 
       const res = await request(app)
         .get(`/api/payments/${paymentId}/status`)
@@ -133,7 +135,7 @@ describe('PaymentController', () => {
     });
 
     it('should return 404 if payment not found', async () => {
-      (prisma.payment.findUnique as jest.Mock).mockResolvedValue(null);
+      prisma.payment.findUnique.mockResolvedValue(null);
 
       const res = await request(app)
         .get(`/api/payments/nonExistentPayment/status`)
@@ -164,14 +166,14 @@ describe('PaymentController', () => {
         product: { id: productId1, interval: 'month' },
       };
 
-      (prisma.payment.update as jest.Mock).mockResolvedValue({
+      prisma.payment.update.mockResolvedValue({
         ...mockPayment,
         status: 'completed',
         txHash: 'mockTxHash123',
       });
-      (prisma.cartItem.findUnique as jest.Mock).mockResolvedValue(mockCartItem);
-      (prisma.subscription.create as jest.Mock).mockResolvedValue({});
-      (prisma.cartItem.deleteMany as jest.Mock).mockResolvedValue({ count: 1 });
+      prisma.cartItem.findUnique.mockResolvedValue(mockCartItem);
+      prisma.subscription.create.mockResolvedValue({});
+      prisma.cartItem.deleteMany.mockResolvedValue({ count: 1 });
 
       const res = await request(app)
         .post(`/api/payments/${paymentId}/confirm`)

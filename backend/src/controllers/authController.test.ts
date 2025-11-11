@@ -1,3 +1,4 @@
+import { vi, describe, it, expect, beforeEach } from 'vitest';
 import request from 'supertest';
 import app from '../../src/server'; // Assuming app is exported from server.ts
 import prisma from '../../src/config/database'; // Mocked Prisma client
@@ -5,30 +6,31 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 // Mock the environment module
-jest.mock('@/config/environment');
+vi.mock('@/config/environment');
+vi.mock('@/config/database');
 
 // Mock bcrypt and jsonwebtoken
-jest.mock('bcrypt');
-jest.mock('jsonwebtoken');
+vi.mock('bcrypt');
+vi.mock('jsonwebtoken');
 
 describe('AuthController', () => {
   beforeEach(() => {
     // Clear all mocks before each test
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('register', () => {
     it('should register a new user successfully', async () => {
-      (prisma.user.findFirst as jest.Mock).mockResolvedValue(null); // No existing user
-      (bcrypt.hash as jest.Mock).mockResolvedValue('hashedPassword');
-      (prisma.user.create as jest.Mock).mockResolvedValue({
+      prisma.user.findFirst.mockResolvedValue(null); // No existing user
+      (bcrypt.hash as any).mockResolvedValue('hashedPassword');
+      prisma.user.create.mockResolvedValue({
         id: 'user123',
         email: 'test@example.com',
         name: 'Test User',
         telegram: '@testuser',
         createdAt: new Date(),
       });
-      (jwt.sign as jest.Mock).mockReturnValue('mockedToken');
+      (jwt.sign as any).mockReturnValue('mockedToken');
 
       const res = await request(app).post('/api/auth/register').send({
         email: 'test@example.com',
@@ -58,7 +60,7 @@ describe('AuthController', () => {
     });
 
     it('should return 409 if user with email or telegram already exists', async () => {
-      (prisma.user.findFirst as jest.Mock).mockResolvedValue({ id: 'existingUser' }); // User already exists
+      prisma.user.findFirst.mockResolvedValue({ id: 'existingUser' }); // User already exists
 
       const res = await request(app).post('/api/auth/register').send({
         email: 'test@example.com',
@@ -81,9 +83,9 @@ describe('AuthController', () => {
         telegram: '@testuser',
         passwordHash: 'hashedPassword',
       };
-      (prisma.user.findUnique as jest.Mock).mockResolvedValue(mockUser);
-      (bcrypt.compare as jest.Mock).mockResolvedValue(true); // Passwords match
-      (jwt.sign as jest.Mock).mockReturnValue('mockedToken');
+      prisma.user.findUnique.mockResolvedValue(mockUser);
+      (bcrypt.compare as any).mockResolvedValue(true); // Passwords match
+      (jwt.sign as any).mockReturnValue('mockedToken');
 
       const res = await request(app).post('/api/auth/login').send({
         email: 'test@example.com',
@@ -107,7 +109,7 @@ describe('AuthController', () => {
     });
 
     it('should return 401 for invalid credentials (user not found)', async () => {
-      (prisma.user.findUnique as jest.Mock).mockResolvedValue(null); // User not found
+      prisma.user.findUnique.mockResolvedValue(null); // User not found
 
       const res = await request(app).post('/api/auth/login').send({
         email: 'nonexistent@example.com',
@@ -126,8 +128,8 @@ describe('AuthController', () => {
         telegram: '@testuser',
         passwordHash: 'hashedPassword',
       };
-      (prisma.user.findUnique as jest.Mock).mockResolvedValue(mockUser);
-      (bcrypt.compare as jest.Mock).mockResolvedValue(false); // Passwords do not match
+      prisma.user.findUnique.mockResolvedValue(mockUser);
+      (bcrypt.compare as any).mockResolvedValue(false); // Passwords do not match
 
       const res = await request(app).post('/api/auth/login').send({
         email: 'test@example.com',

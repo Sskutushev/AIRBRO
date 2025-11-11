@@ -1,3 +1,4 @@
+import { vi, describe, it, expect, beforeEach, beforeAll } from 'vitest';
 import request from 'supertest';
 import app from '../../src/server'; // Assuming app is exported from server.ts
 import prisma from '../../src/config/database'; // Mocked Prisma client
@@ -5,13 +6,14 @@ import jwt from 'jsonwebtoken';
 import { authenticateToken } from '../../src/middleware/auth'; // Import authenticateToken
 
 // Mock the environment module
-jest.mock('@/config/environment');
+vi.mock('@/config/environment');
+vi.mock('@/config/database');
 
 // Mock jsonwebtoken for token generation
-jest.mock('jsonwebtoken');
+vi.mock('jsonwebtoken');
 // Mock the authentication middleware
-jest.mock('../../src/middleware/auth', () => ({
-  authenticateToken: jest.fn((req, res, next) => {
+vi.mock('../../src/middleware/auth', () => ({
+  authenticateToken: vi.fn((req, res, next) => {
     (req as any).userId = 'testUserId123'; // Set a dummy userId
     next();
   }),
@@ -25,26 +27,26 @@ describe('CartController', () => {
 
   beforeAll(() => {
     // Mock a valid JWT token for authenticated requests
-    (jwt.sign as jest.Mock).mockReturnValue('mockedAuthToken');
+    (jwt.sign as any).mockReturnValue('mockedAuthToken');
     token = 'mockedAuthToken';
   });
 
   beforeEach(() => {
     // Clear all mocks before each test
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     // Reset Prisma mock values for each test
-    (prisma.cartItem.findMany as jest.Mock).mockResolvedValue([]);
-    (prisma.cartItem.findUnique as jest.Mock).mockResolvedValue(null);
-    (prisma.cartItem.create as jest.Mock).mockResolvedValue(null);
-    (prisma.cartItem.delete as jest.Mock).mockResolvedValue(null);
-    (prisma.cartItem.deleteMany as jest.Mock).mockResolvedValue({ count: 0 });
-    (prisma.product.findUnique as jest.Mock).mockResolvedValue(null);
-    (prisma.cartItem.findFirst as jest.Mock).mockResolvedValue(null);
+    prisma.cartItem.findMany.mockResolvedValue([]);
+    prisma.cartItem.findUnique.mockResolvedValue(null);
+    prisma.cartItem.create.mockResolvedValue(null);
+    prisma.cartItem.delete.mockResolvedValue(null);
+    prisma.cartItem.deleteMany.mockResolvedValue({ count: 0 });
+    prisma.product.findUnique.mockResolvedValue(null);
+    prisma.cartItem.findFirst.mockResolvedValue(null);
   });
 
   describe('getCart', () => {
     it('should return an empty cart for a user with no items', async () => {
-      (prisma.cartItem.findMany as jest.Mock).mockResolvedValue([]);
+      prisma.cartItem.findMany.mockResolvedValue([]);
 
       const res = await request(app).get('/api/cart').set('Authorization', `Bearer ${token}`);
 
@@ -83,7 +85,7 @@ describe('CartController', () => {
           product: { id: productId2, name: 'Product 2', price: 2500, description: 'Desc 2' },
         },
       ];
-      (prisma.cartItem.findMany as jest.Mock).mockResolvedValue(mockCartItems);
+      prisma.cartItem.findMany.mockResolvedValue(mockCartItems);
 
       const res = await request(app).get('/api/cart').set('Authorization', `Bearer ${token}`);
 
@@ -96,9 +98,9 @@ describe('CartController', () => {
   describe('addToCart', () => {
     it('should add a product to the cart', async () => {
       const mockProduct = { id: productId1, name: 'Product 1', price: 1000, isActive: true };
-      (prisma.product.findUnique as jest.Mock).mockResolvedValue(mockProduct);
-      (prisma.cartItem.findUnique as jest.Mock).mockResolvedValue(null); // No existing item
-      (prisma.cartItem.create as jest.Mock).mockResolvedValue({
+      prisma.product.findUnique.mockResolvedValue(mockProduct);
+      prisma.cartItem.findUnique.mockResolvedValue(null); // No existing item
+      prisma.cartItem.create.mockResolvedValue({
         id: 'newCartItem',
         userId,
         productId: productId1,
@@ -122,7 +124,7 @@ describe('CartController', () => {
     });
 
     it('should return 404 if product not found', async () => {
-      (prisma.product.findUnique as jest.Mock).mockResolvedValue(null); // Product not found
+      prisma.product.findUnique.mockResolvedValue(null); // Product not found
 
       const res = await request(app)
         .post('/api/cart/add')
@@ -135,7 +137,7 @@ describe('CartController', () => {
 
     it('should return 400 if product is not active', async () => {
       const mockProduct = { id: productId1, name: 'Product 1', price: 1000, isActive: false };
-      (prisma.product.findUnique as jest.Mock).mockResolvedValue(mockProduct);
+      prisma.product.findUnique.mockResolvedValue(mockProduct);
 
       const res = await request(app)
         .post('/api/cart/add')
@@ -148,8 +150,8 @@ describe('CartController', () => {
 
     it('should return 409 if product already in cart', async () => {
       const mockProduct = { id: productId1, name: 'Product 1', price: 1000, isActive: true };
-      (prisma.product.findUnique as jest.Mock).mockResolvedValue(mockProduct);
-      (prisma.cartItem.findUnique as jest.Mock).mockResolvedValue({ id: 'existingCartItem' }); // Item already in cart
+      prisma.product.findUnique.mockResolvedValue(mockProduct);
+      prisma.cartItem.findUnique.mockResolvedValue({ id: 'existingCartItem' }); // Item already in cart
 
       const res = await request(app)
         .post('/api/cart/add')
@@ -164,12 +166,12 @@ describe('CartController', () => {
   describe('removeFromCart', () => {
     it('should remove a product from the cart', async () => {
       const cartItemId = 'existingCartItem';
-      (prisma.cartItem.findFirst as jest.Mock).mockResolvedValue({
+      prisma.cartItem.findFirst.mockResolvedValue({
         id: cartItemId,
         userId,
         productId: productId1,
       });
-      (prisma.cartItem.delete as jest.Mock).mockResolvedValue({ id: cartItemId });
+      prisma.cartItem.delete.mockResolvedValue({ id: cartItemId });
 
       const res = await request(app)
         .delete(`/api/cart/${cartItemId}`)
@@ -181,7 +183,7 @@ describe('CartController', () => {
     });
 
     it('should return 404 if cart item not found or does not belong to user', async () => {
-      (prisma.cartItem.findFirst as jest.Mock).mockResolvedValue(null); // Item not found or not user's
+      prisma.cartItem.findFirst.mockResolvedValue(null); // Item not found or not user's
 
       const res = await request(app)
         .delete('/api/cart/nonExistentItem')
@@ -194,7 +196,7 @@ describe('CartController', () => {
 
   describe('clearCart', () => {
     it("should clear all items from the user's cart", async () => {
-      (prisma.cartItem.deleteMany as jest.Mock).mockResolvedValue({ count: 2 }); // Mock 2 items deleted
+      prisma.cartItem.deleteMany.mockResolvedValue({ count: 2 }); // Mock 2 items deleted
 
       const res = await request(app)
         .post('/api/cart/clear')
