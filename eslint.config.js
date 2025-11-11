@@ -13,10 +13,6 @@ export default defineConfig([
       'node_modules', 
       'backend/dist', 
       'api/dist', 
-      '**/__tests__/**', 
-      '**/*.{test,spec}.{ts,tsx}',
-      'backend/prisma/seed.ts',
-      'backend/getChatId.ts',
       'eslint.config.js',
       'postcss.config.js',
       'tailwind.config.js',
@@ -75,7 +71,7 @@ export default defineConfig([
   },
   // Test files
   {
-    files: ['src/**/*.{test,spec}.{ts,tsx}'],
+    files: ['src/**/*.{test,spec}.{ts,tsx}', 'e2e/**/*.{ts,tsx}'],
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
@@ -109,7 +105,7 @@ export default defineConfig([
         ecmaFeatures: {
           jsx: true,
         },
-        project: './tsconfig.test.json', // Test tsconfig
+        project: ['./tsconfig.test.json', './tsconfig.e2e.json'], // Use both test and e2e tsconfig
       },
     },
     settings: {
@@ -184,6 +180,35 @@ export default defineConfig([
       parser: tseslint.parser,
       parserOptions: {
         project: './tsconfig.node.json', // Node-specific tsconfig
+      },
+    },
+  },
+  // Backend test files
+  {
+    files: [
+      'backend/**/*.{test,spec}.{ts,tsx}',
+      'backend/jest.config.ts',
+      'backend/jest.setup.ts'
+    ],
+    extends: [
+      js.configs.recommended,
+      ...tseslint.configs.recommended,
+    ],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off', // Allow 'any' in test files
+      '@typescript-eslint/no-unused-vars': 'off', // Allow unused vars in test files
+      'no-empty-pattern': 'off', // Allow empty patterns in test files
+    },
+    languageOptions: {
+      ecmaVersion: 2020,
+      sourceType: 'module',
+      globals: {
+        ...globals.node,
+        ...globals.jest, // Add Jest globals for test files
+      },
+      parser: tseslint.parser,
+      parserOptions: {
+        project: './backend/tsconfig.test.json', // Use the dedicated backend test tsconfig
       },
     },
   },

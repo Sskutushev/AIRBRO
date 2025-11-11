@@ -26,6 +26,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "getChatId.ts", "prisma/seed.ts"],
   "exclude": ["node_modules", "dist"]
 }
