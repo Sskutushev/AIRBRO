@@ -17,7 +17,6 @@ export default defineConfig([
       'postcss.config.js',
       'tailwind.config.js',
       'vite.config.ts',
-      'vitest.config.ts',
       'playwright.config.ts',
       'backend/vitest.config.ts',
       'backend/vite.config.ts',
@@ -188,7 +187,8 @@ export default defineConfig([
     files: [
       'backend/**/*.{test,spec}.{ts,tsx}',
       'backend/jest.config.ts',
-      'backend/jest.setup.ts'
+      'backend/jest.setup.ts',
+      'backend/jest.setup.env.ts' // Add this line
     ],
     extends: [
       js.configs.recommended,

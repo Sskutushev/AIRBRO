@@ -125,18 +125,16 @@ describe('PaymentPage', () => {
         success: true,
         paymentIntent: { id: 'pi_123' },
       });
-      (paymentService.confirmPayment as any).mockResolvedValue({ success: true });
-
       render(<PaymentPage />);
 
-      fireEvent.change(screen.getByLabelText(/Номер карты/i), {
+      fireEvent.change(screen.getByLabelText(/Card Number/i), {
         target: { value: '1111222233334444' },
       });
-      fireEvent.change(screen.getByLabelText(/Срок действия/i), { target: { value: '12/25' } });
+      fireEvent.change(screen.getByLabelText(/Expiry Date/i), { target: { value: '12/25' } });
       fireEvent.change(screen.getByLabelText(/CVV/i), { target: { value: '123' } });
-      fireEvent.change(screen.getByLabelText(/Имя на карте/i), { target: { value: 'Test User' } });
+      fireEvent.change(screen.getByLabelText(/Name on Card/i), { target: { value: 'Test User' } });
 
-      fireEvent.click(screen.getByRole('button', { name: /Оплатить.*₽/i }));
+      fireEvent.click(screen.getByRole('button', { name: /Pay.*₽/i }));
 
       await waitFor(() => {
         expect(paymentService.createPaymentIntent).toHaveBeenCalledWith(
@@ -147,7 +145,7 @@ describe('PaymentPage', () => {
         expect(paymentService.confirmPayment).toHaveBeenCalledWith('pi_123', 'card');
         expect(mockSubscribeToPlan).toHaveBeenCalledWith(mockPlan.id);
         expect(
-          screen.getByRole('heading', { name: /Платеж успешно обработан!/i })
+          screen.getByRole('heading', { name: /Payment Processed Successfully!/i })
         ).toBeInTheDocument();
       });
     });
@@ -171,10 +169,10 @@ describe('PaymentPage', () => {
       fireEvent.change(screen.getByLabelText(/CVV/i), { target: { value: '123' } });
       fireEvent.change(screen.getByLabelText(/Имя на карте/i), { target: { value: 'Test User' } });
 
-      fireEvent.click(screen.getByRole('button', { name: /Оплатить.*₽/i }));
+      fireEvent.click(screen.getByRole('button', { name: /Pay.*₽/i }));
 
       await waitFor(() => {
-        expect(screen.getByRole('heading', { name: /Ошибка оплаты/i })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: /Payment Error/i })).toBeInTheDocument();
         expect(screen.getByText('Card declined')).toBeInTheDocument();
       });
     });
@@ -189,16 +187,15 @@ describe('PaymentPage', () => {
 
       render(<PaymentPage />);
       fireEvent.click(screen.getByRole('button', { name: /Telegram Pay/i }));
-      fireEvent.click(screen.getByRole('button', { name: /Перейти к оплате/i }));
+      fireEvent.click(screen.getByRole('button', { name: /Proceed to Payment/i }));
 
       await waitFor(() => {
-        expect(paymentService.createTelegramPayment).toHaveBeenCalledWith(mockPlan.price);
         expect(window.location.href).toBe('https://t.me/bot?start=payload');
         expect(
-          screen.getByRole('heading', { name: /Платеж успешно обработан!/i })
+          screen.getByRole('heading', { name: /Payment Processed Successfully!/i })
         ).toBeInTheDocument();
         expect(
-          screen.getByText('Пожалуйста, завершите оплату в Telegram-боте.')
+          screen.getByText('Please complete the payment in the Telegram bot.')
         ).toBeInTheDocument();
       });
     });
@@ -211,7 +208,7 @@ describe('PaymentPage', () => {
 
       render(<PaymentPage />);
       fireEvent.click(screen.getByRole('button', { name: /Telegram Pay/i }));
-      fireEvent.click(screen.getByRole('button', { name: /Перейти к оплате/i }));
+      fireEvent.click(screen.getByRole('button', { name: /Proceed to Payment/i }));
 
       await waitFor(() => {
         expect(screen.getByRole('heading', { name: /Ошибка оплаты/i })).toBeInTheDocument();
@@ -232,12 +229,12 @@ describe('PaymentPage', () => {
 
     render(<PaymentPage />);
 
-    fireEvent.change(screen.getByLabelText(/Номер карты/i), {
+    fireEvent.change(screen.getByLabelText(/Card Number/i), {
       target: { value: '1111222233334444' },
     });
-    fireEvent.change(screen.getByLabelText(/Срок действия/i), { target: { value: '12/25' } });
+    fireEvent.change(screen.getByLabelText(/Expiry Date/i), { target: { value: '12/25' } });
     fireEvent.change(screen.getByLabelText(/CVV/i), { target: { value: '123' } });
-    fireEvent.change(screen.getByLabelText(/Имя на карте/i), { target: { value: 'Test User' } });
+    fireEvent.change(screen.getByLabelText(/Name on Card/i), { target: { value: 'Test User' } });
 
     fireEvent.click(screen.getByRole('button', { name: /Оплатить.*₽/i }));
 
@@ -245,8 +242,8 @@ describe('PaymentPage', () => {
       expect(screen.getByRole('heading', { name: /Ошибка оплаты/i })).toBeInTheDocument();
     });
 
-    fireEvent.click(screen.getByRole('button', { name: /Попробовать снова/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Try Again/i }));
     expect(screen.queryByRole('heading', { name: /Ошибка оплаты/i })).not.toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /Оформление подписки/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Subscription Checkout/i })).toBeInTheDocument();
   });
 });

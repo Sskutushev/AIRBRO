@@ -50,7 +50,7 @@ These tests verify the entire system by simulating real user actions in an actua
     - Navigating the dashboard.
 
 - **Status:**
-  - Currently E2E tests are **disabled** in the CI/CD pipeline (`ci.yml`) to speed up checks. They should be run locally before making significant changes to core functionality.
+  - E2E tests are **enabled** in the CI/CD pipeline (`ci.yml`) and run automatically. They should also be run locally before making significant changes to core functionality.
 
 - **How to run E2E tests:**
   1.  **Install Playwright browsers:**

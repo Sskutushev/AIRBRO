@@ -58,28 +58,28 @@ describe('AuthPage', () => {
 
   it('should render login form by default', () => {
     render(<AuthPage />);
-    expect(screen.getByRole('heading', { name: /Вход в аккаунт/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Log In to Account/i })).toBeInTheDocument();
     expect(screen.getByLabelText(/Email/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Пароль/i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Войти в аккаунт/i })).toBeInTheDocument();
+    expect(screen.getByLabelText(/Password/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Log In to Account/i })).toBeInTheDocument();
   });
 
   it('should switch to registration form when "Регистрация" tab is clicked', () => {
     render(<AuthPage />);
-    fireEvent.click(screen.getByRole('button', { name: /Регистрация/i }));
-    expect(screen.getByRole('heading', { name: /Создать аккаунт/i })).toBeInTheDocument();
-    expect(screen.getByLabelText(/Имя/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Telegram-аккаунт/i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Создать аккаунт/i })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /Register/i }));
+    expect(screen.getByRole('heading', { name: /Create Account/i })).toBeInTheDocument();
+    expect(screen.getByLabelText(/Name/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Telegram Account/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Create Account/i })).toBeInTheDocument();
   });
 
   it('should show validation errors for login form', async () => {
     render(<AuthPage />);
-    fireEvent.click(screen.getByRole('button', { name: /Войти в аккаунт/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Log In to Account/i }));
 
     await waitFor(() => {
       expect(screen.getByText('Email обязателен')).toBeInTheDocument();
-      expect(screen.getByText('Пароль обязателен')).toBeInTheDocument();
+      expect(screen.getByText('Password is required')).toBeInTheDocument();
     });
   });
 
@@ -89,7 +89,7 @@ describe('AuthPage', () => {
 
     fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test@example.com' } });
     fireEvent.change(screen.getByLabelText(/Пароль/i), { target: { value: 'Password123!' } });
-    fireEvent.click(screen.getByRole('button', { name: /Войти в аккаунт/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Log In to Account/i }));
 
     await waitFor(() => {
       expect(mockLoginMutation.mutateAsync).toHaveBeenCalledWith({
@@ -107,7 +107,7 @@ describe('AuthPage', () => {
 
     fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test@example.com' } });
     fireEvent.change(screen.getByLabelText(/Пароль/i), { target: { value: 'Password123!' } });
-    fireEvent.click(screen.getByRole('button', { name: /Войти в аккаунт/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Log In to Account/i }));
 
     await waitFor(() => {
       expect(screen.getByText('Invalid credentials')).toBeInTheDocument();
@@ -117,34 +117,34 @@ describe('AuthPage', () => {
 
   it('should show validation errors for registration form', async () => {
     render(<AuthPage />);
-    fireEvent.click(screen.getByRole('button', { name: /Регистрация/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Register/i }));
     fireEvent.click(screen.getByRole('button', { name: /Создать аккаунт/i }));
 
-    expect(await screen.findByText('Имя обязательно')).toBeInTheDocument();
-    expect(await screen.findByText('Email обязателен')).toBeInTheDocument();
-    expect(await screen.findByText('Telegram-аккаунт обязателен')).toBeInTheDocument();
-    expect(await screen.findByText('Пароль должен быть не менее 8 символов')).toBeInTheDocument();
-    expect(await screen.findByText('Подтверждение пароля обязательно')).toBeInTheDocument();
+    expect(await screen.findByText('Name is required')).toBeInTheDocument();
+    expect(await screen.findByText('Email is required')).toBeInTheDocument();
+    expect(await screen.findByText('Telegram account is required')).toBeInTheDocument();
+    expect(await screen.findByText('Password must be at least 8 characters')).toBeInTheDocument();
+    expect(await screen.findByText('Confirm password is required')).toBeInTheDocument();
   });
 
   it('should call register mutation on valid registration submission', async () => {
     mockRegisterMutation.mutateAsync.mockResolvedValue({ user: { id: '456' }, token: 'def' });
     render(<AuthPage />);
-    fireEvent.click(screen.getByRole('button', { name: /Регистрация/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Register/i }));
 
-    fireEvent.change(screen.getByLabelText(/Имя/i), { target: { value: 'John Doe' } });
+    fireEvent.change(screen.getByLabelText(/Name/i), { target: { value: 'John Doe' } });
     fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'john@example.com' } });
-    fireEvent.change(screen.getByLabelText(/Telegram-аккаунт/i), { target: { value: '@johndoe' } });
-    fireEvent.change(screen.getByLabelText(/Пароль/i, { selector: 'input[name="password"]' }), {
+    fireEvent.change(screen.getByLabelText(/Telegram Account/i), { target: { value: '@johndoe' } });
+    fireEvent.change(screen.getByLabelText(/Password/i, { selector: 'input[name="password"]' }), {
       target: { value: 'StrongPass123!' },
     });
-    fireEvent.change(screen.getByLabelText(/Подтвердите пароль/i), {
+    fireEvent.change(screen.getByLabelText(/Confirm Password/i), {
       target: { value: 'StrongPass123!' },
     });
     // Check the agreement checkbox - it should be present as a checkbox now
     const agreementCheckbox = screen.getByRole('checkbox');
     fireEvent.click(agreementCheckbox);
-    fireEvent.click(screen.getByRole('button', { name: /Создать аккаунт/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Create Account/i }));
 
     await waitFor(() => {
       expect(mockRegisterMutation.mutateAsync).toHaveBeenCalledWith({
@@ -163,21 +163,21 @@ describe('AuthPage', () => {
   it('should display registration error message from mutation', async () => {
     mockRegisterMutation.mutateAsync.mockRejectedValue(new Error('Email already registered'));
     render(<AuthPage />);
-    fireEvent.click(screen.getByRole('button', { name: /Регистрация/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Register/i }));
 
     fireEvent.change(screen.getByLabelText(/Имя/i), { target: { value: 'John Doe' } });
     fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'john@example.com' } });
-    fireEvent.change(screen.getByLabelText(/Telegram-аккаунт/i), { target: { value: '@johndoe' } });
-    fireEvent.change(screen.getByLabelText(/Пароль/i, { selector: 'input[name="password"]' }), {
+    fireEvent.change(screen.getByLabelText(/Telegram Account/i), { target: { value: '@johndoe' } });
+    fireEvent.change(screen.getByLabelText(/Password/i, { selector: 'input[name="password"]' }), {
       target: { value: 'StrongPass123!' },
     });
-    fireEvent.change(screen.getByLabelText(/Подтвердите пароль/i), {
+    fireEvent.change(screen.getByLabelText(/Confirm Password/i), {
       target: { value: 'StrongPass123!' },
     });
     // Check the agreement checkbox
     const agreementCheckbox = screen.getByRole('checkbox');
     fireEvent.click(agreementCheckbox);
-    fireEvent.click(screen.getByRole('button', { name: /Создать аккаунт/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Create Account/i }));
 
     await waitFor(() => {
       expect(screen.getByText('Email already registered')).toBeInTheDocument();
@@ -187,7 +187,9 @@ describe('AuthPage', () => {
 
   it('should toggle password visibility', async () => {
     render(<AuthPage />);
-    const passwordInput = screen.getByLabelText(/Пароль/i, { selector: 'input[name="password"]' });
+    const passwordInput = screen.getByLabelText(/Password/i, {
+      selector: 'input[name="password"]',
+    });
     // The toggle button is inside the password input component and uses an aria-label
     const toggleButton = screen.getByRole('button', { name: 'Show password' });
 
@@ -205,23 +207,25 @@ describe('AuthPage', () => {
 
   it('should display password strength indicator for registration form', async () => {
     render(<AuthPage />);
-    fireEvent.click(screen.getByRole('button', { name: /Регистрация/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Register/i }));
 
-    const passwordInput = screen.getByLabelText(/Пароль/i, { selector: 'input[name="password"]' });
+    const passwordInput = screen.getByLabelText(/Password/i, {
+      selector: 'input[name="password"]',
+    });
 
     fireEvent.change(passwordInput, { target: { value: 'weak' } });
     await waitFor(() => {
-      expect(screen.getByText('Слабый')).toBeInTheDocument();
+      expect(screen.getByText('Weak')).toBeInTheDocument();
     });
 
     fireEvent.change(passwordInput, { target: { value: 'Medium1' } });
     await waitFor(() => {
-      expect(screen.getByText('Средний')).toBeInTheDocument();
+      expect(screen.getByText('Medium')).toBeInTheDocument();
     });
 
     fireEvent.change(passwordInput, { target: { value: 'StrongPass1!' } });
     await waitFor(() => {
-      expect(screen.getByText('Сильный')).toBeInTheDocument();
+      expect(screen.getByText('Strong')).toBeInTheDocument();
     });
   });
 });

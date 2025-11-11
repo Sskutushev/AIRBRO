@@ -9,7 +9,7 @@ The backend is built using a classical service-controller architecture, which en
 - **`routes`**: Define API endpoints and bind them to the appropriate controllers.
 - **`controllers`**: Handle incoming HTTP requests. They are responsible for validating data (using `zod`), calling business logic from services, and sending responses to the client.
 - **`services`**: Contain the main business logic. Services interact with the database via the Prisma Client and perform operations such as creating users, processing payments, or getting product lists.
-- **`middleware`**: Middlewares that execute before the main controllers. They are used for authentication (JWT verification), logging, request limiting, etc.
+- **`middleware`**: Middlewares that execute before the main controllers. They are used for authentication (JWT verification), logging, request limiting, data sanitization, HTTPS redirection, etc.
 - **`utils`**: Utility functions used in different parts of the application (e.g., `logger` for logging).
 - **`prisma`**: Contains the database schema (`schema.prisma`) and the generated Prisma Client.
 
@@ -82,6 +82,58 @@ curl -X GET http://localhost:3000/api/products
 
 ```bash
 curl -X GET http://localhost:3000/api/cart \
+  -H "Content-Type: application/json" \
+  -H "Cookie: token=your_jwt_token_here"
+```
+
+**Add product to cart:**
+
+```bash
+curl -X POST http://localhost:3000/api/cart/add \
+  -H "Content-Type: application/json" \
+  -H "Cookie: token=your_jwt_token_here" \
+  -d '{
+    "productId": "product_id_here",
+    "quantity": 2
+  }'
+```
+
+**Remove product from cart:**
+
+```bash
+curl -X POST http://localhost:3000/api/cart/remove \
+  -H "Content-Type: application/json" \
+  -H "Cookie: token=your_jwt_token_here" \
+  -d '{
+    "productId": "product_id_here"
+  }'
+```
+
+**Update product quantity in cart:**
+
+```bash
+curl -X POST http://localhost:3000/api/cart/update \
+  -H "Content-Type: application/json" \
+  -H "Cookie: token=your_jwt_token_here" \
+  -d '{
+    "productId": "product_id_here",
+    "quantity": 3
+  }'
+```
+
+### Cart (`/api/cart`)
+
+- `GET /`: Get the content of the current user's cart.
+- `POST /add`: Add a product to the cart.
+- `POST /remove`: Remove a product from the cart.
+- `POST /update`: Update the quantity of a product in the cart.
+
+#### Examples
+
+**Get user's cart:**
+
+```bash
+curl -X GET http://localhost:3000/api/cart \
   -H "Cookie: token=your_jwt_token_here"
 ```
 
@@ -110,15 +162,39 @@ curl -X POST http://localhost:3000/api/cart/remove \
 
 ### Payments (`/api/payments`)
 
-- `POST /create`: Create a new payment (e.g., for topping up balance or subscription payment).
+- `POST /create-payment-intent`: Create a payment intent for card payments.
+- `POST /create-telegram-payment`: Initiate a Telegram payment.
 - `GET /status/:id`: Check the status of a specific payment.
 
 #### Examples
 
+**Create a payment intent for card payment:**
+
+```bash
+curl -X POST http://localhost:3000/api/payments/create-payment-intent \
+  -H "Content-Type: application/json" \
+  -H "Cookie: token=your_jwt_token_here" \
+  -d '{
+    "amount": 1000,
+    "currency": "RUB"
+  }'
+```
+
+**Initiate a Telegram payment:**
+
+```bash
+curl -X POST http://localhost:3000/api/payments/create-telegram-payment \
+  -H "Content-Type: application/json" \
+  -H "Cookie: token=your_jwt_token_here" \
+  -d '{
+    "amount": 1000
+  }'
+```
+
 **Check payment status:**
 
 ```bash
-curl -X GET http://localhost:3000/api/payments/payment_id_here/status \
+curl -X GET http://localhost:3000/api/payments/status/payment_id_here \
   -H "Cookie: token=your_jwt_token_here"
 ```
 

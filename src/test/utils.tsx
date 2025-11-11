@@ -6,17 +6,17 @@ import { ThemeProvider } from '../context/ThemeContext'; // Assuming ThemeProvid
 import { AuthProvider } from '../context/AuthContext'; // Assuming AuthProvider exists
 import { queryClient } from '../lib/queryClient'; // Assuming queryClient is configured
 import { beforeAll, afterEach, afterAll } from 'vitest'; // Import vitest hooks
-import { worker } from '../mocks/browser'; // Import MSW worker
+import { server } from '../mocks/server'; // Import MSW server
 
-// Start MSW worker before all tests
-beforeAll(() => worker.listen());
+// Start MSW server before all tests
+beforeAll(() => server.listen());
 
 // Reset any request handlers that might be added during a test,
 // so they don't affect other tests.
-afterEach(() => worker.resetHandlers());
+afterEach(() => server.resetHandlers());
 
 // Clean up once the tests are finished.
-afterAll(() => worker.stop());
+afterAll(() => server.close());
 
 /**
  * Custom render function that wraps components with common providers for testing.

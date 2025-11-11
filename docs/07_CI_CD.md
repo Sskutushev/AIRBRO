@@ -39,8 +39,7 @@ This workflow runs on every `push` or `pull request` to the `main` and `develop`
   - **Goal:** Ensure the project can be successfully built for production.
 
 - **`e2e` (End-to-End tests):**
-  - _Currently this job is commented out and does not run._
-  - In the future, it will run end-to-end tests using Playwright, which simulate actions of a real user in the browser.
+  - Runs end-to-end tests using Playwright, which simulate actions of a real user in the browser.
 
 ---
 

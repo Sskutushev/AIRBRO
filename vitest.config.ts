@@ -20,6 +20,7 @@ export default defineConfig({
       'e2e/',
       'e2e/**/*.spec.ts',
       'src/test/setup.ts',
+      'src/mocks/browser.ts', // Exclude browser-specific MSW setup
     ],
     coverage: {
       provider: 'v8',

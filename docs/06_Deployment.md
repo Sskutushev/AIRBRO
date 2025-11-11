@@ -14,7 +14,7 @@ The AIRBRO Business project is deployed as two separate applications: frontend a
 
 2.  **Build:**
     - GitHub Action runs the `npm run build` command.
-    - During the build, production environment variables (e.g., `VITE_API_URL_PROD`) stored in GitHub repository secrets are used.
+    - During the build, production environment variables (e.g., `VITE_API_URL`) stored in GitHub repository secrets are used. Vite automatically exposes environment variables prefixed with `VITE_` to the client-side code.
 
 3.  **Deployment to Vercel:**
     - The `amondnet/vercel-action` is used, which uploads the build files (`dist`) to Vercel.

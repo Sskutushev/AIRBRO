@@ -93,9 +93,9 @@ describe('SolutionsPage', () => {
 
   it('should display page title and description', () => {
     render(<SolutionsPage />);
-    expect(screen.getByRole('heading', { name: /Наши Решения/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Our Solutions/i })).toBeInTheDocument();
     expect(
-      screen.getByText(/Специализированные AI-агенты для решения конкретных бизнес-задач/i)
+      screen.getByText(/Specialized AI agents for solving specific business tasks/i)
     ).toBeInTheDocument();
   });
 
@@ -146,7 +146,7 @@ describe('SolutionsPage', () => {
 
   it('should have a link back to #products section', () => {
     render(<SolutionsPage />);
-    const backLink = screen.getByRole('link', { name: /Назад к решениям/i });
+    const backLink = screen.getByRole('link', { name: /Back to Solutions/i });
     expect(backLink).toHaveAttribute('href', '/#products');
   });
 });

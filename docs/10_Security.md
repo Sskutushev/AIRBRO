@@ -16,7 +16,7 @@ For local development, use `.env` files to manage your environment variables. Th
 NODE_ENV=development
 PORT=3000
 FRONTEND_URL=http://localhost:5173
-DATABASE_URL="postgresql://user:password@localhost:5432/mydatabase?schema=public"
+DATABASE_URL="file:./dev.db" # For local development with SQLite (PostgreSQL for production)
 JWT_SECRET="your_super_secret_jwt_key_here"
 JWT_EXPIRES_IN="7d"
 TELEGRAM_BOT_TOKEN="your_telegram_bot_token"
@@ -71,8 +71,8 @@ There are online tools that can generate secure random strings. If you use one, 
 - **Input Validation and Sanitization:** All user input must be validated and sanitized on the backend to prevent common vulnerabilities like XSS (Cross-Site Scripting) and SQL Injection. (Implemented via `backend/src/middleware/sanitization.ts` and `express-validator` schemas).
 - **HTTPS Enforcement:** All communication should occur over HTTPS to protect data in transit. (Implemented via `backend/src/middleware/httpsRedirect.ts`).
 - **Rate Limiting:** Implement rate limiting on API endpoints to prevent brute-force attacks and abuse. (Implemented via `express-rate-limit`).
-- **Security Headers:** Utilize security headers (e.g., Content Security Policy, X-XSS-Protection) to mitigate various web vulnerabilities. (To be implemented via Helmet.js).
-- **CSRF Protection:** Implement CSRF (Cross-Site Request Forgery) protection for state-changing requests. (To be implemented).
+- **Security Headers:** Utilize security headers (e.g., Content Security Policy, X-XSS-Protection) to mitigate various web vulnerabilities. (Implemented via Helmet.js).
+- **CSRF Protection:** Implement CSRF (Cross-Site Request Forgery) protection for state-changing requests. (Implemented).
 - **Dependency Security:** Regularly update and audit third-party dependencies for known vulnerabilities.
 - **Error Handling:** Avoid exposing sensitive error details to clients. Log errors securely on the server.
 - **Authentication:** Use strong, industry-standard authentication mechanisms (e.g., JWT with secure storage).

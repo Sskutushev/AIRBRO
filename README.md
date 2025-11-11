@@ -50,7 +50,7 @@ All detailed project documentation is located in the [`/docs`](./docs/) folder.
 - **Backend:**
   - **Framework:** Express.js
   - **Language:** TypeScript
-  - **Database:** PostgreSQL
+  - **Database:** SQLite
   - **ORM:** Prisma
 - **CI/CD:** GitHub Actions
 - **Hosting:**

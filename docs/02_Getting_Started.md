@@ -39,21 +39,22 @@ The backend requires separate configuration.
     - Create a `.env` file in the `backend` folder.
     - Copy the basic configuration into it:
 
-      ````env # Database connection URL. For local development with PostgreSQL.
-      DATABASE_URL="postgresql://username:password@localhost:5432/aibro_business"
+      ```env
+      # Database connection URL. For local development with SQLite.
+      DATABASE_URL="file:./dev.db"
 
-          # Secret key for signing JWT tokens. Create any complex string.
-          JWT_SECRET="your-super-secret-jwt-key-must-be-at-least-32-chars-long"
+      # Secret key for signing JWT tokens. Create any complex string.
+      JWT_SECRET="your-super-secret-jwt-key-must-be-at-least-32-chars-long"
 
-          # Frontend URL for CORS configuration
-          FRONTEND_URL="http://localhost:5173"
+      # Frontend URL for CORS configuration
+      FRONTEND_URL="http://localhost:5173"
 
-          # Logging settings (optional)
-          LOG_LEVEL="info"
-          ```
+      # Port for the backend server
+      PORT=3000
 
-      > **Important:** `JWT_SECRET` must be secure and unique, at least 32 characters long.
-      ````
+      # Logging settings (optional)
+      LOG_LEVEL="info"
+      ```
 
 4.  **Create and apply database migrations:**
     This command will set up your PostgreSQL database and create all tables according to the schema in `prisma/schema.prisma`.

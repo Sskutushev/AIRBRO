@@ -21,20 +21,20 @@ When designing the system, we followed these principles:
 
 ## Main Technology Stack
 
-| Category     | Technology                           | Reason for choice                                                             |
-| ------------ | ------------------------------------ | ----------------------------------------------------------------------------- |
-| **Frontend** | React, Vite, TypeScript              | Speed, strict typing, modern ecosystem.                                       |
-|              | Tailwind CSS                         | Fast and consistent UI development.                                           |
-|              | Tanstack Query                       | Effective server state management, caching, and synchronization.              |
-|              | Framer Motion                        | Creating smooth and expressive animations.                                    |
-| **Backend**  | Node.js, Express.js, TypeScript      | High performance, asynchrony, strict typing.                                  |
-|              | Prisma                               | Convenient and type-safe database work, simple schema migration.              |
-|              | PostgreSQL                           | Production-ready database solution for scalability and reliability.           |
-|              | JWT (JSON Web Tokens)                | Standard and secure way of authentication for stateless API.                  |
-| **CI/CD**    | GitHub Actions                       | Deep integration with GitHub, flexibility in workflow setup.                  |
-| **Testing**  | Vitest, React Testing Library        | Fast and reliable unit/integration tests for the frontend.                    |
-|              | Playwright                           | Powerful and stable E2E tests.                                                |
-| **Hosting**  | Vercel (frontend), Railway (backend) | Optimal platforms for hosting full-stack applications with CI/CD integration. |
+| Category     | Technology                           | Reason for choice                                                                                                               |
+| ------------ | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Frontend** | React, Vite, TypeScript              | Speed, strict typing, modern ecosystem.                                                                                         |
+|              | Tailwind CSS                         | Fast and consistent UI development.                                                                                             |
+|              | Tanstack Query                       | Effective server state management, caching, and synchronization.                                                                |
+|              | Framer Motion                        | Creating smooth and expressive animations.                                                                                      |
+| **Backend**  | Node.js, Express.js, TypeScript      | High performance, asynchrony, strict typing.                                                                                    |
+|              | Prisma                               | Convenient and type-safe database work, simple schema migration.                                                                |
+|              | SQLite                               | Lightweight and easy-to-use database for local development and testing. (PostgreSQL is recommended for production environments) |
+|              | JWT (JSON Web Tokens)                | Standard and secure way of authentication for stateless API.                                                                    |
+| **CI/CD**    | GitHub Actions                       | Deep integration with GitHub, flexibility in workflow setup.                                                                    |
+| **Testing**  | Vitest, React Testing Library        | Fast and reliable unit/integration tests for the frontend.                                                                      |
+|              | Playwright                           | Powerful and stable E2E tests.                                                                                                  |
+| **Hosting**  | Vercel (frontend), Railway (backend) | Optimal platforms for hosting full-stack applications with CI/CD integration.                                                   |
 
 ---
 

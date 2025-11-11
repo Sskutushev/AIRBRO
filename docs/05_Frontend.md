@@ -16,11 +16,14 @@ src/
 │   ├── common/     # Base components (Button, Input, Skeleton)
 │   └── sections/   # Large landing sections (Hero, FAQ, Footer)
 ├── context/        # React Context for global state
+├── data/           # Mock data and other static data (e.g., modules.ts)
 ├── hooks/          # Reusable React hooks
 ├── i18n/           # Configuration and localization files (i18next)
 ├── lib/            # Utility libraries and helpers
+├── mocks/          # Mock Service Worker (MSW) setup for API mocking
 ├── pages/          # Page components (Account, Payment, Auth)
 ├── services/       # Logic for interacting with external APIs
+├── test/           # Test utilities and setup files
 └── types/          # Global TypeScript type definitions
 ```
 
@@ -35,6 +38,7 @@ src/
 - **Framer Motion:** Library for creating smooth and complex animations. Used to enhance user experience (UX).
 - **React Hook Form & Zod:** Combination for form management. `React Hook Form` optimizes form performance, while `Zod` is used for data validation both on the client and server.
 - **i18next:** Internationalization (i18n) framework that allows easy addition and switching of languages in the application.
+- **MSW (Mock Service Worker):** Used for API mocking in development and testing environments, allowing frontend development and testing without a running backend.
 
 ## State Management
 

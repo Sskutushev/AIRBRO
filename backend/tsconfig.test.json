@@ -5,5 +5,11 @@
     "target": "ES2020",
     "types": ["jest", "node"]
   },
-  "include": ["jest.config.ts", "jest.setup.ts", "src/**/*.test.ts", "src/**/*.test.tsx"]
+  "include": [
+    "jest.config.ts",
+    "jest.setup.ts",
+    "jest.setup.env.ts",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx"
+  ]
 }
