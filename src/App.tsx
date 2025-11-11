@@ -6,6 +6,7 @@ import { Toaster } from './lib/toast';
 import { AuthProvider } from './context/AuthContext';
 import { SubscriptionProvider } from './context/SubscriptionContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { ErrorProvider } from './context/ErrorContext';
 import { queryClient } from './lib/queryClient';
 import { analytics } from './lib/analytics';
 import Header from './components/sections/Header';
@@ -78,70 +79,72 @@ function App() {
       <GlobalApiErrorBoundary>
         {' '}
         {/* Use GlobalApiErrorBoundary here */}
-        <ThemeProvider>
-          <AuthProvider>
-            <SubscriptionProvider>
-              <Router>
-                <div className="min-h-screen flex flex-col App">
-                  <div className="flex-1">
-                    <Suspense fallback={<PageLoader />}>
-                      <Routes>
-                        <Route
-                          path="/"
-                          element={
-                            <>
-                              <AnalyticsTracker />
-                              <Header />
-                              <ScrollToAnchor />
-                              <HeroSection />
-                              <ProblemSection />
-                              <SolutionSection />
-                              <ProductsSection />
-                              <HowItWorksSection />
-                              <PricingSection />
-                              <SuccessMetricsSection />
-                              <RoadmapSection />
-                              <FAQSection />
-                              <CTASection />
-                            </>
-                          }
-                        />
-                        <Route
-                          path="/account"
-                          element={
-                            <>
-                              <AnalyticsTracker />
-                              <AccountPage />
-                            </>
-                          }
-                        />
-                        <Route
-                          path="/payment"
-                          element={
-                            <>
-                              <AnalyticsTracker />
-                              <PaymentPage />
-                            </>
-                          }
-                        />
-                        <Route
-                          path="/auth"
-                          element={
-                            <>
-                              <AnalyticsTracker />
-                              <AuthPage />
-                            </>
-                          }
-                        />
-                      </Routes>
-                    </Suspense>
+        <ErrorProvider>
+          <ThemeProvider>
+            <AuthProvider>
+              <SubscriptionProvider>
+                <Router>
+                  <div className="min-h-screen flex flex-col App">
+                    <div className="flex-1">
+                      <Suspense fallback={<PageLoader />}>
+                        <Routes>
+                          <Route
+                            path="/"
+                            element={
+                              <>
+                                <AnalyticsTracker />
+                                <Header />
+                                <ScrollToAnchor />
+                                <HeroSection />
+                                <ProblemSection />
+                                <SolutionSection />
+                                <ProductsSection />
+                                <HowItWorksSection />
+                                <PricingSection />
+                                <SuccessMetricsSection />
+                                <RoadmapSection />
+                                <FAQSection />
+                                <CTASection />
+                              </>
+                            }
+                          />
+                          <Route
+                            path="/account"
+                            element={
+                              <>
+                                <AnalyticsTracker />
+                                <AccountPage />
+                              </>
+                            }
+                          />
+                          <Route
+                            path="/payment"
+                            element={
+                              <>
+                                <AnalyticsTracker />
+                                <PaymentPage />
+                              </>
+                            }
+                          />
+                          <Route
+                            path="/auth"
+                            element={
+                              <>
+                                <AnalyticsTracker />
+                                <AuthPage />
+                              </>
+                            }
+                          />
+                        </Routes>
+                      </Suspense>
+                    </div>
+                    <Footer />
                   </div>
-                  <Footer />
-                </div>
-              </Router>
-            </SubscriptionProvider>
-          </AuthProvider>
-        </ThemeProvider>
+                </Router>
+              </SubscriptionProvider>
+            </AuthProvider>
+          </ThemeProvider>
+        </ErrorProvider>
         <Toaster />
       </GlobalApiErrorBoundary>{' '}
       {/* Close GlobalApiErrorBoundary */}
