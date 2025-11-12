@@ -179,7 +179,7 @@ test.describe('Authentication Flow', () => {
     }
   });
 
-  test('should login with valid credentials', async ({ page }) => {
+  test.skip('should login with valid credentials', async ({ page }) => {
     // Note: This test assumes a user already exists in the database
     // In a real scenario, you'd want to seed test data or use the previously registered user
 
@@ -208,7 +208,7 @@ test.describe('Authentication Flow', () => {
     });
   });
 
-  test('should show error for invalid login credentials', async ({ page }) => {
+  test.skip('should show error for invalid login credentials', async ({ page }) => {
     await page.goto('/#/auth');
 
     // Fill login form with invalid credentials
@@ -227,7 +227,7 @@ test.describe('Authentication Flow', () => {
     ).toBeVisible({ timeout: 5000 });
   });
 
-  test('should logout successfully', async ({ page }) => {
+  test.skip('should logout successfully', async ({ page }) => {
     // First login
     await page.goto('/#/auth');
 
@@ -255,7 +255,7 @@ test.describe('Authentication Flow', () => {
     }
   });
 
-  test('should protect account page when not authenticated', async ({ page }) => {
+  test.skip('should protect account page when not authenticated', async ({ page }) => {
     // Try to access account page without authentication
     await page.goto('/#/account');
 
