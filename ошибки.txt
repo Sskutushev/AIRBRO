@@ -1,2447 +1,564 @@
-CI / Unit Tests (push) Failing after 34s-Run npm run test:coverage
-
-> airbro-business-landing@1.0.0 test:coverage
-> vitest --coverage
-
-
- RUN  v4.0.8 /home/runner/work/AIRBRO/AIRBRO
-      Coverage enabled with v8
-
-stdout | src/pages/__tests__/AuthPage.test.tsx
-APIClient initialized with baseURL: http://localhost:3000
-
-stderr | src/pages/__tests__/AuthPage.test.tsx
-localStorage is not available.
-
- ❯ src/pages/__tests__/PaymentPage.test.tsx (9 tests | 9 failed) 15ms
-     × should redirect to auth page if user is not logged in 5ms
-     × should display access denied message if user is not logged in and plan is not found 1ms
-     × should display selected plan details 0ms
-     × should switch payment methods 0ms
-       × should process card payment successfully 0ms
-       × should show error message if card payment fails 0ms
-       × should initiate Telegram payment and redirect 0ms
-       × should show error message if Telegram payment fails 0ms
-     × should allow retrying payment after an error 0ms
- ❯ src/pages/__tests__/AuthPage.test.tsx (10 tests | 10 failed) 21ms
-     × should render login form by default 9ms
-     × should switch to registration form when "Register" tab is clicked 1ms
-     × should show validation errors for login form 1ms
-     × should call login mutation on valid login submission 1ms
-     × should display login error message from mutation 1ms
-     × should show validation errors for registration form 1ms
-     × should call register mutation on valid registration submission 1ms
-     × should display registration error message from mutation 1ms
-     × should toggle password visibility 1ms
-     × should display password strength indicator for registration form 1ms
-stderr | backend/src/controllers/userController.test.ts
-Environment validation failed:
-  JWT_SECRET: Required
-
- ✓ src/lib/validation/__tests__/auth.test.ts (19 tests) 17ms
-stdout | src/services/api/__tests__/client.test.ts
-APIClient initialized with baseURL: http://localhost:3000
-
-stderr | src/services/api/__tests__/client.test.ts
-localStorage is not available.
-
-stderr | src/services/api/__tests__/client.test.ts > APIClient > login > should return user and token on successful login
-localStorage is not available.
-
-stdout | src/services/api/__tests__/client.test.ts > APIClient > login > should return user and token on successful login
-Making request to: http://localhost:3000/auth/login with method: POST
-
-stderr | src/services/api/__tests__/client.test.ts > APIClient > login > should throw APIError on failed login (401)
-localStorage is not available.
-
-stderr | src/services/api/__tests__/client.test.ts > APIClient > login > should throw APIError on failed login (401)
-stdout | src/services/api/__tests__/client.test.ts > APIClient > login > should throw APIError on failed login (401)
-localStorage is not available.
-Making request to: http://localhost:3000/auth/login with method: POST
-
-
-stderr | src/services/api/__tests__/client.test.ts > APIClient > login > should throw a generic APIError on network failure
-localStorage is not available.
-
-stdout | src/services/api/__tests__/client.test.ts > APIClient > login > should throw a generic APIError on network failure
-Making request to: http://localhost:3000/auth/login with method: POST
-
-stderr | src/services/api/__tests__/client.test.ts > APIClient > login > should throw a generic APIError on network failure
-Network error: Error: Network error
-    at /home/runner/work/AIRBRO/AIRBRO/src/services/api/__tests__/client.test.ts:89:33
-    at Mock (file:///home/runner/work/AIRBRO/AIRBRO/node_modules/@vitest/spy/dist/index.js:280:34)
-    at APIClient.request (/home/runner/work/AIRBRO/AIRBRO/src/services/api/client.ts:245:30)
-    at APIClient.login (/home/runner/work/AIRBRO/AIRBRO/src/services/api/client.ts:279:17)
-    at /home/runner/work/AIRBRO/AIRBRO/src/services/api/__tests__/client.test.ts:101:30
-    at file:///home/runner/work/AIRBRO/AIRBRO/node_modules/@vitest/runner/dist/index.js:157:11
-    at file:///home/runner/work/AIRBRO/AIRBRO/node_modules/@vitest/runner/dist/index.js:753:26
-    at file:///home/runner/work/AIRBRO/AIRBRO/node_modules/@vitest/runner/dist/index.js:1636:20
-    at new Promise (<anonymous>)
-    at runWithTimeout (file:///home/runner/work/AIRBRO/AIRBRO/node_modules/@vitest/runner/dist/index.js:1602:10)
-
-stderr | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should include Authorization header on GET requests
-localStorage is not available.
-
-stderr | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should include Authorization header on GET requests
-localStorage is not available.
-
-stderr | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should clear token and throw on 401 response
-localStorage is not available.
-
-stderr | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should clear token and throw on 401 response
-localStorage is not available.
-
-stdout | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should include Authorization header on GET requests
-Making request to: http://localhost:3000/auth/me with method: GET
-Authorization header added.
-
-stderr | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should clear token and throw on 401 response
-localStorage is not available.
-
-stdout | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should clear token and throw on 401 response
-Making request to: http://localhost:3000/auth/me with method: GET
-Authorization header added.
-
-stderr | src/services/api/__tests__/client.test.ts > APIClient > other methods > getProducts should call the correct endpoint with params
-stdout | src/services/api/__tests__/client.test.ts > APIClient > other methods > getProducts should call the correct endpoint with params
-localStorage is not available.
-
-stderr | src/services/api/__tests__/client.test.ts > APIClient > other methods > addToCart should send correct payload and headers
-localStorage is not available.
-
-stderr | src/services/api/__tests__/client.test.ts > APIClient > other methods > addToCart should send correct payload and headers
-localStorage is not available.
-
-Making request to: http://localhost:3000/products?tier=1&isActive=true with method: GET
-
-stdout | src/services/api/__tests__/client.test.ts > APIClient > other methods > addToCart should send correct payload and headers
-Making request to: http://localhost:3000/cart with method: POST
-Authorization header added.
-
- ✓ src/services/api/__tests__/client.test.ts (7 tests) 34ms
-stderr | backend/src/controllers/cartController.test.ts
-Environment validation failed:
-  JWT_SECRET: Required
-
- ❯ src/hooks/__tests__/useAsync.test.ts (9 tests | 9 failed) 17ms
-     × should return initial state 8ms
-     × should handle successful async function execution 1ms
-     × should handle async function execution with error 3ms
-     × should execute immediately if immediate is true 1ms
-     × should call onSuccess callback on success 1ms
-     × should call onError callback on error 1ms
-     × should reset state 0ms
-     × should allow manual setting of data and error 1ms
-     × should not update state if component unmounts during async operation 0ms
- ❯ src/lib/utils/__tests__/storage.test.ts (8 tests | 8 failed) 11ms
-     × should set and get an item correctly 7ms
-     × should return null if item does not exist 0ms
-     × should remove an item correctly 0ms
-     × should clear only prefixed items 0ms
-     × should handle errors during set operation 0ms
-     × should handle errors during get operation (invalid JSON) 0ms
-     × should warn if localStorage is not available during set 0ms
-     × should warn if localStorage is not available during get 0ms
- ✓ src/lib/utils/__tests__/validators.test.ts (10 tests) 9ms
- ❯ src/components/common/__tests__/Skeleton.test.tsx (13 tests | 13 failed) 27ms
-       × should render with default styles 14ms
-       × should apply custom width and height 1ms
-       × should render circular variant 1ms
-       × should render text variant 0ms
-       × should apply custom class names 1ms
-       × should disable animation 2ms
-       × should render multiple lines of text skeletons 1ms
-       × should apply custom class names 0ms
-       × should render a circular avatar skeleton with default size 0ms
-       × should render with specified size 0ms
-       × should render a generic card skeleton 0ms
-       × should render a product card skeleton 4ms
-       × should render a user profile skeleton 0ms
-stderr | backend/src/controllers/productController.test.ts
-Environment validation failed:
-  JWT_SECRET: Required
-
-stderr | backend/src/controllers/paymentController.test.ts
-Environment validation failed:
-  JWT_SECRET: Required
-
-stderr | backend/src/controllers/authController.test.ts
-Environment validation failed:
-  JWT_SECRET: Required
-
- ❯ src/pages/__tests__/AccountPage.test.tsx (8 tests | 8 failed) 21ms
-     × should redirect to auth page if user is not logged in 7ms
-     × should display user information when logged in 3ms
-     × should display navigation tabs 0ms
-     × should display stats cards 1ms
-     × should display active products 0ms
-     × should display quick actions 0ms
-     × should display billing information 0ms
-     × should call logout and redirect on "Log Out" click 0ms
- ✓ src/lib/__tests__/toast.test.tsx (8 tests) 13ms
- ✓ src/lib/utils/__tests__/cn.test.ts (9 tests) 12ms
-
-⎯⎯⎯⎯⎯⎯ Failed Suites 17 ⎯⎯⎯⎯⎯⎯
-
- FAIL  e2e/auth.spec.ts [ e2e/auth.spec.ts ]
-Error: Playwright Test did not expect test.describe() to be called here.
-Most common reasons include:
-- You are calling test.describe() in a configuration file.
-- You are calling test.describe() in a file that is imported by the configuration file.
-- You have two different versions of @playwright/test. This usually happens
-  when one of the dependencies in your package.json depends on @playwright/test.
- ❯ TestTypeImpl._currentSuite node_modules/playwright/lib/common/testType.js:74:13
- ❯ TestTypeImpl._describe node_modules/playwright/lib/common/testType.js:114:24
- ❯ Function.describe node_modules/playwright/lib/transform/transform.js:275:12
- ❯ e2e/auth.spec.ts:3:6
-      1| import { test, expect } from '@playwright/test';
-      2| 
-      3| test.describe('Authentication Flow', () => {
-       |      ^
-      4|   const testUser = {
-      5|     email: `test${Date.now()}@example.com`,
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/74]⎯
-
- FAIL  e2e/checkout.spec.ts [ e2e/checkout.spec.ts ]
-Error: Playwright Test did not expect test.describe() to be called here.
-Most common reasons include:
-- You are calling test.describe() in a configuration file.
-- You are calling test.describe() in a file that is imported by the configuration file.
-- You have two different versions of @playwright/test. This usually happens
-  when one of the dependencies in your package.json depends on @playwright/test.
- ❯ TestTypeImpl._currentSuite node_modules/playwright/lib/common/testType.js:74:13
- ❯ TestTypeImpl._describe node_modules/playwright/lib/common/testType.js:114:24
- ❯ Function.describe node_modules/playwright/lib/transform/transform.js:275:12
- ❯ e2e/checkout.spec.ts:3:6
-      1| import { test, expect } from '@playwright/test';
-      2| 
-      3| test.describe('Checkout and Payment Flow', () => {
-       |      ^
-      4|   const testUser = {
-      5|     email: `checkout${Date.now()}@example.com`,
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/74]⎯
-
- FAIL  e2e/example.spec.ts [ e2e/example.spec.ts ]
-Error: Playwright Test did not expect test() to be called here.
-Most common reasons include:
-- You are calling test() in a configuration file.
-- You are calling test() in a file that is imported by the configuration file.
-- You have two different versions of @playwright/test. This usually happens
-  when one of the dependencies in your package.json depends on @playwright/test.
- ❯ TestTypeImpl._currentSuite node_modules/playwright/lib/common/testType.js:74:13
- ❯ TestTypeImpl._createTest node_modules/playwright/lib/common/testType.js:87:24
- ❯ node_modules/playwright/lib/transform/transform.js:275:12
- ❯ e2e/example.spec.ts:3:1
-      1| import { test, expect } from '@playwright/test';
-      2| 
-      3| test('has title', async ({ page }) => {
-       | ^
-      4|   await page.goto('/');
-      5| 
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/74]⎯
-
- FAIL  e2e/navigation.spec.ts [ e2e/navigation.spec.ts ]
-Error: Playwright Test did not expect test.describe() to be called here.
-Most common reasons include:
-- You are calling test.describe() in a configuration file.
-- You are calling test.describe() in a file that is imported by the configuration file.
-- You have two different versions of @playwright/test. This usually happens
-  when one of the dependencies in your package.json depends on @playwright/test.
- ❯ TestTypeImpl._currentSuite node_modules/playwright/lib/common/testType.js:74:13
- ❯ TestTypeImpl._describe node_modules/playwright/lib/common/testType.js:114:24
- ❯ Function.describe node_modules/playwright/lib/transform/transform.js:275:12
- ❯ e2e/navigation.spec.ts:3:6
-      1| import { test, expect } from '@playwright/test';
-      2| 
-      3| test.describe('Navigation and Landing Page', () => {
-       |      ^
-      4|   test.beforeEach(async ({ page }) => {
-      5|     await page.goto('/');
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/74]⎯
-
- FAIL  backend/src/controllers/authController.test.ts [ backend/src/controllers/authController.test.ts ]
- FAIL  backend/src/controllers/cartController.test.ts [ backend/src/controllers/cartController.test.ts ]
- FAIL  backend/src/controllers/paymentController.test.ts [ backend/src/controllers/paymentController.test.ts ]
- FAIL  backend/src/controllers/productController.test.ts [ backend/src/controllers/productController.test.ts ]
- FAIL  backend/src/controllers/userController.test.ts [ backend/src/controllers/userController.test.ts ]
-Error: process.exit unexpectedly called with "1"
- ❯ validateEnvironment backend/src/config/environment.ts:45:15
-     43|         console.error(`  ${err.path.join('.')}: ${err.message}`);
-     44|       });
-     45|       process.exit(1);
-       |               ^
-     46|     }
-     47|     throw error;
- ❯ backend/src/config/environment.ts:51:20
- ❯ backend/src/server.ts:2:1
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/74]⎯
-
- FAIL  src/components/__tests__/ErrorBoundary.test.tsx [ src/components/__tests__/ErrorBoundary.test.tsx ]
-ReferenceError: describe is not defined
- ❯ src/components/__tests__/ErrorBoundary.test.tsx:19:1
-     17| };
-     18| 
-     19| describe('ErrorBoundary', () => {
-       | ^
-     20|   const originalError = console.error;
-     21|   const originalLocation = window.location;
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/74]⎯
-
- FAIL  src/hooks/__tests__/useDebounce.test.ts [ src/hooks/__tests__/useDebounce.test.ts ]
-ReferenceError: afterEach is not defined
- ❯ src/hooks/__tests__/useDebounce.test.ts:15:3
-     13|   });
-     14| 
-     15|   afterEach(() => {
-       |   ^
-     16|     vi.runOnlyPendingTimers(); // Clear any pending timers
-     17|     vi.useRealTimers(); // Restore real timers
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/74]⎯
-
- FAIL  src/hooks/__tests__/useLocalStorage.test.ts [ src/hooks/__tests__/useLocalStorage.test.ts ]
-ReferenceError: window is not defined
- ❯ src/hooks/__tests__/useLocalStorage.test.ts:26:40
-     24| 
-     25|   // Mock window.addEventListener and removeEventListener
-     26|   const addEventListenerSpy = vi.spyOn(window, 'addEventListener').moc…
-       |                                        ^
-     27|     if (event === 'storage') {
-     28|       storageEventListener = listener as (event: StorageEvent) => void;
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/74]⎯
-
- FAIL  src/pages/__tests__/SolutionsPage.test.tsx [ src/pages/__tests__/SolutionsPage.test.tsx ]
-ReferenceError: window is not defined
- ❯ src/pages/__tests__/SolutionsPage.test.tsx:71:28
-     69| 
-     70| describe('SolutionsPage', () => {
-     71|   const originalScrollTo = window.scrollTo;
-       |                            ^
-     72| 
-     73|   beforeEach(() => {
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/74]⎯
-
- FAIL  src/components/common/__tests__/Button.test.tsx [ src/components/common/__tests__/Button.test.tsx ]
-ReferenceError: describe is not defined
- ❯ src/components/common/__tests__/Button.test.tsx:5:1
-      3| import Button from '../Button';
-      4| 
-      5| describe('Button', () => {
-       | ^
-      6|   // Renders with text
-      7|   test('renders with text', () => {
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/74]⎯
-
- FAIL  src/components/common/__tests__/OptimizedImage.test.tsx [ src/components/common/__tests__/OptimizedImage.test.tsx ]
-ReferenceError: describe is not defined
- ❯ src/components/common/__tests__/OptimizedImage.test.tsx:25:1
-     23| });
-     24| 
-     25| describe('OptimizedImage', () => {
-       | ^
-     26|   const src = '/images/test.jpg';
-     27|   const alt = 'Test Image';
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/74]⎯
-
- FAIL  src/components/common/__tests__/SafeHTML.test.tsx [ src/components/common/__tests__/SafeHTML.test.tsx ]
-ReferenceError: describe is not defined
- ❯ src/components/common/__tests__/SafeHTML.test.tsx:4:1
-      2| import { SafeHTML } from '../SafeHTML';
-      3| 
-      4| describe('SafeHTML', () => {
-       | ^
-      5|   // Renders safe HTML correctly
-      6|   test('renders safe HTML correctly', () => {
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/74]⎯
-
- FAIL  src/lib/utils/__tests__/dom.test.ts [ src/lib/utils/__tests__/dom.test.ts ]
-ReferenceError: window is not defined
- ❯ src/lib/utils/__tests__/dom.test.ts:12:25
-     10|   // Mock window.scrollTo for scrollToElement tests
-     11|   const scrollToSpy = vi.fn();
-     12|   Object.defineProperty(window, 'scrollTo', { value: scrollToSpy, writ…
-       |                         ^
-     13| 
-     14|   beforeEach(() => {
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/74]⎯
-
-
-⎯⎯⎯⎯⎯⎯ Failed Tests 57 ⎯⎯⎯⎯⎯⎯⎯
-
- FAIL  src/hooks/__tests__/useAsync.test.ts > useAsync > should return initial state
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ renderHook node_modules/@testing-library/react/dist/pure.js:340:7
- ❯ src/hooks/__tests__/useAsync.test.ts:19:24
-     17| 
-     18|   it('should return initial state', () => {
-     19|     const { result } = renderHook(() => useAsync(mockFunction));
-       |                        ^
-     20| 
-     21|     expect(result.current.data).toBeNull();
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/74]⎯
-
- FAIL  src/hooks/__tests__/useAsync.test.ts > useAsync > should handle successful async function execution
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ renderHook node_modules/@testing-library/react/dist/pure.js:340:7
- ❯ src/hooks/__tests__/useAsync.test.ts:30:24
-     28|     mockFunction.mockResolvedValue(successData);
-     29| 
-     30|     const { result } = renderHook(() => useAsync(mockFunction));
-       |                        ^
-     31| 
-     32|     act(() => {
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/74]⎯
-
- FAIL  src/hooks/__tests__/useAsync.test.ts > useAsync > should handle async function execution with error
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ renderHook node_modules/@testing-library/react/dist/pure.js:340:7
- ❯ src/hooks/__tests__/useAsync.test.ts:50:24
-     48|     mockFunction.mockRejectedValue(mockError);
-     49| 
-     50|     const { result } = renderHook(() => useAsync(mockFunction));
-       |                        ^
-     51| 
-     52|     let promise;
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/74]⎯
-
- FAIL  src/hooks/__tests__/useAsync.test.ts > useAsync > should execute immediately if immediate is true
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ renderHook node_modules/@testing-library/react/dist/pure.js:340:7
- ❯ src/hooks/__tests__/useAsync.test.ts:73:24
-     71|     const immediateData = 'Immediate success!';
-     72|     mockFunction.mockResolvedValue(immediateData);
-     73|     const { result } = renderHook(() => useAsync(mockFunction, { immed…
-       |                        ^
-     74| 
-     75|     // The loading state should be true initially
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/74]⎯
-
- FAIL  src/hooks/__tests__/useAsync.test.ts > useAsync > should call onSuccess callback on success
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ renderHook node_modules/@testing-library/react/dist/pure.js:340:7
- ❯ src/hooks/__tests__/useAsync.test.ts:93:24
-     91|     mockFunction.mockResolvedValue(successData);
-     92| 
-     93|     const { result } = renderHook(() => useAsync(mockFunction, { onSuc…
-       |                        ^
-     94| 
-     95|     await act(async () => {
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/74]⎯
-
- FAIL  src/hooks/__tests__/useAsync.test.ts > useAsync > should call onError callback on error
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ renderHook node_modules/@testing-library/react/dist/pure.js:340:7
- ❯ src/hooks/__tests__/useAsync.test.ts:109:24
-    107|     mockFunction.mockRejectedValue(mockError);
-    108| 
-    109|     const { result } = renderHook(() => useAsync(mockFunction, { onErr…
-       |                        ^
-    110| 
-    111|     let promise;
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/74]⎯
-
- FAIL  src/hooks/__tests__/useAsync.test.ts > useAsync > should reset state
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ renderHook node_modules/@testing-library/react/dist/pure.js:340:7
- ❯ src/hooks/__tests__/useAsync.test.ts:128:24
-    126|   it('should reset state', async () => {
-    127|     mockFunction.mockResolvedValue('Data');
-    128|     const { result } = renderHook(() => useAsync(mockFunction, { immed…
-       |                        ^
-    129| 
-    130|     await waitFor(() => expect(result.current.loading).toBe(false));
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/74]⎯
-
- FAIL  src/hooks/__tests__/useAsync.test.ts > useAsync > should allow manual setting of data and error
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ renderHook node_modules/@testing-library/react/dist/pure.js:340:7
- ❯ src/hooks/__tests__/useAsync.test.ts:143:24
-    141| 
-    142|   it('should allow manual setting of data and error', () => {
-    143|     const { result } = renderHook(() => useAsync(mockFunction));
-       |                        ^
-    144| 
-    145|     act(() => {
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/74]⎯
-
- FAIL  src/hooks/__tests__/useAsync.test.ts > useAsync > should not update state if component unmounts during async operation
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ renderHook node_modules/@testing-library/react/dist/pure.js:340:7
- ❯ src/hooks/__tests__/useAsync.test.ts:160:33
-    158|     const longRunningFunction = () =>
-    159|       new Promise((resolve) => setTimeout(() => resolve('Done'), 100));
-    160|     const { result, unmount } = renderHook(() => useAsync(longRunningF…
-       |                                 ^
-    161| 
-    162|     act(() => {
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/74]⎯
-
- FAIL  src/pages/__tests__/AccountPage.test.tsx > AccountPage > should redirect to auth page if user is not logged in
- FAIL  src/pages/__tests__/AccountPage.test.tsx > AccountPage > should display user information when logged in
- FAIL  src/pages/__tests__/AccountPage.test.tsx > AccountPage > should display navigation tabs
- FAIL  src/pages/__tests__/AccountPage.test.tsx > AccountPage > should display stats cards
- FAIL  src/pages/__tests__/AccountPage.test.tsx > AccountPage > should display active products
- FAIL  src/pages/__tests__/AccountPage.test.tsx > AccountPage > should display quick actions
- FAIL  src/pages/__tests__/AccountPage.test.tsx > AccountPage > should display billing information
- FAIL  src/pages/__tests__/AccountPage.test.tsx > AccountPage > should call logout and redirect on "Log Out" click
-ReferenceError: window is not defined
- ❯ src/pages/__tests__/AccountPage.test.tsx:44:27
-     42|     (useAuth as any).mockReturnValue({ user: mockUser, logout: mockLog…
-     43|     // Mock window.location.href for logout test
-     44|     Object.defineProperty(window, 'location', {
-       |                           ^
-     45|       writable: true,
-     46|       value: { href: 'http://localhost/' },
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/74]⎯
-
- FAIL  src/pages/__tests__/AuthPage.test.tsx > AuthPage > should render login form by default
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
-     48|     );
-     49|   };
-     50|   return render(ui, { wrapper: Wrapper, ...renderOptions });
-       |          ^
-     51| };
-     52| 
- ❯ src/pages/__tests__/AuthPage.test.tsx:60:5
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/74]⎯
-
- FAIL  src/pages/__tests__/AuthPage.test.tsx > AuthPage > should switch to registration form when "Register" tab is clicked
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
-     48|     );
-     49|   };
-     50|   return render(ui, { wrapper: Wrapper, ...renderOptions });
-       |          ^
-     51| };
-     52| 
- ❯ src/pages/__tests__/AuthPage.test.tsx:68:5
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/74]⎯
-
- FAIL  src/pages/__tests__/AuthPage.test.tsx > AuthPage > should show validation errors for login form
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
-     48|     );
-     49|   };
-     50|   return render(ui, { wrapper: Wrapper, ...renderOptions });
-       |          ^
-     51| };
-     52| 
- ❯ src/pages/__tests__/AuthPage.test.tsx:78:5
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/74]⎯
-
- FAIL  src/pages/__tests__/AuthPage.test.tsx > AuthPage > should call login mutation on valid login submission
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
-     48|     );
-     49|   };
-     50|   return render(ui, { wrapper: Wrapper, ...renderOptions });
-       |          ^
-     51| };
-     52| 
- ❯ src/pages/__tests__/AuthPage.test.tsx:89:5
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/74]⎯
-
- FAIL  src/pages/__tests__/AuthPage.test.tsx > AuthPage > should display login error message from mutation
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
-     48|     );
-     49|   };
-     50|   return render(ui, { wrapper: Wrapper, ...renderOptions });
-       |          ^
-     51| };
-     52| 
- ❯ src/pages/__tests__/AuthPage.test.tsx:109:5
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/74]⎯
-
- FAIL  src/pages/__tests__/AuthPage.test.tsx > AuthPage > should show validation errors for registration form
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
-     48|     );
-     49|   };
-     50|   return render(ui, { wrapper: Wrapper, ...renderOptions });
-       |          ^
-     51| };
-     52| 
- ❯ src/pages/__tests__/AuthPage.test.tsx:124:5
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/74]⎯
-
- FAIL  src/pages/__tests__/AuthPage.test.tsx > AuthPage > should call register mutation on valid registration submission
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
-     48|     );
-     49|   };
-     50|   return render(ui, { wrapper: Wrapper, ...renderOptions });
-       |          ^
-     51| };
-     52| 
- ❯ src/pages/__tests__/AuthPage.test.tsx:138:5
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/74]⎯
-
- FAIL  src/pages/__tests__/AuthPage.test.tsx > AuthPage > should display registration error message from mutation
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
-     48|     );
-     49|   };
-     50|   return render(ui, { wrapper: Wrapper, ...renderOptions });
-       |          ^
-     51| };
-     52| 
- ❯ src/pages/__tests__/AuthPage.test.tsx:172:5
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[31/74]⎯
-
- FAIL  src/pages/__tests__/AuthPage.test.tsx > AuthPage > should toggle password visibility
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
-     48|     );
-     49|   };
-     50|   return render(ui, { wrapper: Wrapper, ...renderOptions });
-       |          ^
-     51| };
-     52| 
- ❯ src/pages/__tests__/AuthPage.test.tsx:197:5
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[32/74]⎯
-
- FAIL  src/pages/__tests__/AuthPage.test.tsx > AuthPage > should display password strength indicator for registration form
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
-     48|     );
-     49|   };
-     50|   return render(ui, { wrapper: Wrapper, ...renderOptions });
-       |          ^
-     51| };
-     52| 
- ❯ src/pages/__tests__/AuthPage.test.tsx:217:5
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[33/74]⎯
-
- FAIL  src/pages/__tests__/PaymentPage.test.tsx > PaymentPage > should redirect to auth page if user is not logged in
- FAIL  src/pages/__tests__/PaymentPage.test.tsx > PaymentPage > should display access denied message if user is not logged in and plan is not found
- FAIL  src/pages/__tests__/PaymentPage.test.tsx > PaymentPage > should display selected plan details
- FAIL  src/pages/__tests__/PaymentPage.test.tsx > PaymentPage > should switch payment methods
- FAIL  src/pages/__tests__/PaymentPage.test.tsx > PaymentPage > should allow retrying payment after an error
-ReferenceError: window is not defined
- ❯ src/pages/__tests__/PaymentPage.test.tsx:73:27
-     71|     (paymentService.createTelegramPayment as any).mockClear();
-     72|     // Mock window.location.href for Telegram payment redirect
-     73|     Object.defineProperty(window, 'location', {
-       |                           ^
-     74|       writable: true,
-     75|       value: { href: 'http://localhost/' },
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[34/74]⎯
-
- FAIL  src/pages/__tests__/PaymentPage.test.tsx > PaymentPage > Card Payment > should process card payment successfully
- FAIL  src/pages/__tests__/PaymentPage.test.tsx > PaymentPage > Card Payment > should show error message if card payment fails
- FAIL  src/pages/__tests__/PaymentPage.test.tsx > PaymentPage > Telegram Payment > should initiate Telegram payment and redirect
- FAIL  src/pages/__tests__/PaymentPage.test.tsx > PaymentPage > Telegram Payment > should show error message if Telegram payment fails
-ReferenceError: window is not defined
- ❯ src/pages/__tests__/PaymentPage.test.tsx:73:27
-     71|     (paymentService.createTelegramPayment as any).mockClear();
-     72|     // Mock window.location.href for Telegram payment redirect
-     73|     Object.defineProperty(window, 'location', {
-       |                           ^
-     74|       writable: true,
-     75|       value: { href: 'http://localhost/' },
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[35/74]⎯
-
- FAIL  src/components/common/__tests__/Skeleton.test.tsx > Skeleton Components > Skeleton (Base Component) > should render with default styles
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:21:7
-     19|   describe('Skeleton (Base Component)', () => {
-     20|     it('should render with default styles', () => {
-     21|       render(<Skeleton />);
-       |       ^
-     22|       const skeleton = screen.getByTestId('skeleton-base');
-     23|       expect(skeleton).toBeInTheDocument();
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[36/74]⎯
-
- FAIL  src/components/common/__tests__/Skeleton.test.tsx > Skeleton Components > Skeleton (Base Component) > should apply custom width and height
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:29:7
-     27| 
-     28|     it('should apply custom width and height', () => {
-     29|       render(<Skeleton width="100px" height="50px" />);
-       |       ^
-     30|       const skeleton = screen.getByTestId('skeleton-base');
-     31|       expect(skeleton).toHaveStyle('width: 100px');
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[37/74]⎯
-
- FAIL  src/components/common/__tests__/Skeleton.test.tsx > Skeleton Components > Skeleton (Base Component) > should render circular variant
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:36:7
-     34| 
-     35|     it('should render circular variant', () => {
-     36|       render(<Skeleton variant="circular" />);
-       |       ^
-     37|       const skeleton = screen.getByTestId('skeleton-base');
-     38|       expect(skeleton).toHaveClass('rounded-full');
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[38/74]⎯
-
- FAIL  src/components/common/__tests__/Skeleton.test.tsx > Skeleton Components > Skeleton (Base Component) > should render text variant
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:42:7
-     40| 
-     41|     it('should render text variant', () => {
-     42|       render(<Skeleton variant="text" />);
-       |       ^
-     43|       const skeleton = screen.getByTestId('skeleton-base');
-     44|       expect(skeleton).toHaveClass('rounded-sm');
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[39/74]⎯
-
- FAIL  src/components/common/__tests__/Skeleton.test.tsx > Skeleton Components > Skeleton (Base Component) > should apply custom class names
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:51:7
-     49| 
-     50|     it('should apply custom class names', () => {
-     51|       render(<Skeleton className="custom-skeleton" />);
-       |       ^
-     52|       expect(screen.getByTestId('skeleton-base')).toHaveClass('custom-…
-     53|     });
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[40/74]⎯
-
- FAIL  src/components/common/__tests__/Skeleton.test.tsx > Skeleton Components > Skeleton (Base Component) > should disable animation
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:56:7
-     54| 
-     55|     it('should disable animation', () => {
-     56|       render(<Skeleton animation="none" />); // animation prop expects…
-       |       ^
-     57|       expect(screen.getByTestId('skeleton-base')).not.toHaveClass('ani…
-     58|     });
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[41/74]⎯
-
- FAIL  src/components/common/__tests__/Skeleton.test.tsx > Skeleton Components > SkeletonText > should render multiple lines of text skeletons
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:63:7
-     61|   describe('SkeletonText', () => {
-     62|     it('should render multiple lines of text skeletons', () => {
-     63|       render(<SkeletonText lines={3} />);
-       |       ^
-     64|       const textSkeletons = screen.getAllByTestId('skeleton-text-line'…
-     65|       expect(textSkeletons).toHaveLength(3);
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[42/74]⎯
-
- FAIL  src/components/common/__tests__/Skeleton.test.tsx > Skeleton Components > SkeletonText > should apply custom class names
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:72:7
-     70| 
-     71|     it('should apply custom class names', () => {
-     72|       render(<SkeletonText className="custom-text-skeleton" />);
-       |       ^
-     73|       expect(screen.getAllByTestId('skeleton-text-line')[0]).toHaveCla…
-     74|     });
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[43/74]⎯
-
- FAIL  src/components/common/__tests__/Skeleton.test.tsx > Skeleton Components > SkeletonAvatar > should render a circular avatar skeleton with default size
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:79:7
-     77|   describe('SkeletonAvatar', () => {
-     78|     it('should render a circular avatar skeleton with default size', (…
-     79|       render(<SkeletonAvatar />);
-       |       ^
-     80|       const avatar = screen.getByTestId('skeleton-base');
-     81|       expect(avatar).toHaveClass('rounded-full');
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[44/74]⎯
-
- FAIL  src/components/common/__tests__/Skeleton.test.tsx > Skeleton Components > SkeletonAvatar > should render with specified size
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:87:7
-     85| 
-     86|     it('should render with specified size', () => {
-     87|       render(<SkeletonAvatar size="lg" />);
-       |       ^
-     88|       const avatar = screen.getByTestId('skeleton-base');
-     89|       expect(avatar).toHaveClass('rounded-full');
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[45/74]⎯
-
- FAIL  src/components/common/__tests__/Skeleton.test.tsx > Skeleton Components > SkeletonCard > should render a generic card skeleton
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:97:7
-     95|   describe('SkeletonCard', () => {
-     96|     it('should render a generic card skeleton', () => {
-     97|       render(<SkeletonCard />);
-       |       ^
-     98|       expect(screen.getByTestId('skeleton-card-image')).toBeInTheDocum…
-     99|       expect(screen.getAllByTestId('skeleton-card-text').length).toBeG…
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[46/74]⎯
-
- FAIL  src/components/common/__tests__/Skeleton.test.tsx > Skeleton Components > ProductCardSkeleton > should render a product card skeleton
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:106:7
-    104|   describe('ProductCardSkeleton', () => {
-    105|     it('should render a product card skeleton', () => {
-    106|       render(<ProductCardSkeleton />);
-       |       ^
-    107|       expect(screen.getByTestId('skeleton-product-image')).toBeInTheDo…
-    108|       expect(screen.getByTestId('skeleton-product-title')).toBeInTheDo…
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[47/74]⎯
-
- FAIL  src/components/common/__tests__/Skeleton.test.tsx > Skeleton Components > UserProfileSkeleton > should render a user profile skeleton
-ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:117:7
-    115|   describe('UserProfileSkeleton', () => {
-    116|     it('should render a user profile skeleton', () => {
-    117|       render(<UserProfileSkeleton />);
-       |       ^
-    118|       expect(screen.getByTestId('skeleton-user-avatar')).toBeInTheDocu…
-    119|       expect(screen.getByTestId('skeleton-user-name')).toBeInTheDocume…
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[48/74]⎯
-
- FAIL  src/lib/utils/__tests__/storage.test.ts > StorageService > should set and get an item correctly
- FAIL  src/lib/utils/__tests__/storage.test.ts > StorageService > should return null if item does not exist
- FAIL  src/lib/utils/__tests__/storage.test.ts > StorageService > should remove an item correctly
- FAIL  src/lib/utils/__tests__/storage.test.ts > StorageService > should clear only prefixed items
- FAIL  src/lib/utils/__tests__/storage.test.ts > StorageService > should handle errors during set operation
- FAIL  src/lib/utils/__tests__/storage.test.ts > StorageService > should handle errors during get operation (invalid JSON)
- FAIL  src/lib/utils/__tests__/storage.test.ts > StorageService > should warn if localStorage is not available during set
- FAIL  src/lib/utils/__tests__/storage.test.ts > StorageService > should warn if localStorage is not available during get
-ReferenceError: window is not defined
- ❯ src/lib/utils/__tests__/storage.test.ts:45:27
-     43|     removeItemSpy = vi.spyOn(localStorageMock, 'removeItem');
-     44| 
-     45|     Object.defineProperty(window, 'localStorage', {
-       |                           ^
-     46|       value: localStorageMock,
-     47|       writable: true,
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[49/74]⎯
-
-
- Test Files  23 failed | 5 passed (28)
-      Tests  57 failed | 53 passed (110)
-   Start at  06:53:21
-   Duration  6.18s (transform 1.23s, setup 0ms, collect 4.41s, tests 197ms, environment 6ms, prepare 635ms)
-
-
-Error: Error: Playwright Test did not expect test.describe() to be called here.
-Most common reasons include:
-- You are calling test.describe() in a configuration file.
-- You are calling test.describe() in a file that is imported by the configuration file.
-- You have two different versions of @playwright/test. This usually happens
-  when one of the dependencies in your package.json depends on @playwright/test.
- ❯ TestTypeImpl._currentSuite node_modules/playwright/lib/common/testType.js:74:13
- ❯ TestTypeImpl._describe node_modules/playwright/lib/common/testType.js:114:24
- ❯ Function.describe node_modules/playwright/lib/transform/transform.js:275:12
- ❯ e2e/auth.spec.ts:3:6
-
-
-
-Error: Error: Playwright Test did not expect test.describe() to be called here.
-Most common reasons include:
-- You are calling test.describe() in a configuration file.
-- You are calling test.describe() in a file that is imported by the configuration file.
-- You have two different versions of @playwright/test. This usually happens
-  when one of the dependencies in your package.json depends on @playwright/test.
- ❯ TestTypeImpl._currentSuite node_modules/playwright/lib/common/testType.js:74:13
- ❯ TestTypeImpl._describe node_modules/playwright/lib/common/testType.js:114:24
- ❯ Function.describe node_modules/playwright/lib/transform/transform.js:275:12
- ❯ e2e/checkout.spec.ts:3:6
-
-
-
-Error: Error: Playwright Test did not expect test() to be called here.
-Most common reasons include:
-- You are calling test() in a configuration file.
-- You are calling test() in a file that is imported by the configuration file.
-- You have two different versions of @playwright/test. This usually happens
-  when one of the dependencies in your package.json depends on @playwright/test.
- ❯ TestTypeImpl._currentSuite node_modules/playwright/lib/common/testType.js:74:13
- ❯ TestTypeImpl._createTest node_modules/playwright/lib/common/testType.js:87:24
- ❯ node_modules/playwright/lib/transform/transform.js:275:12
- ❯ e2e/example.spec.ts:3:1
-
-
-
-Error: Error: Playwright Test did not expect test.describe() to be called here.
-Most common reasons include:
-- You are calling test.describe() in a configuration file.
-- You are calling test.describe() in a file that is imported by the configuration file.
-- You have two different versions of @playwright/test. This usually happens
-  when one of the dependencies in your package.json depends on @playwright/test.
- ❯ TestTypeImpl._currentSuite node_modules/playwright/lib/common/testType.js:74:13
- ❯ TestTypeImpl._describe node_modules/playwright/lib/common/testType.js:114:24
- ❯ Function.describe node_modules/playwright/lib/transform/transform.js:275:12
- ❯ e2e/navigation.spec.ts:3:6
-
-
-
-Error: Error: process.exit unexpectedly called with "1"
- ❯ validateEnvironment backend/src/config/environment.ts:45:15
- ❯ backend/src/config/environment.ts:51:20
- ❯ backend/src/server.ts:2:1
-
-
-
-Error: Error: process.exit unexpectedly called with "1"
- ❯ validateEnvironment backend/src/config/environment.ts:45:15
- ❯ backend/src/config/environment.ts:51:20
- ❯ backend/src/server.ts:2:1
-
-
-
-Error: Error: process.exit unexpectedly called with "1"
- ❯ validateEnvironment backend/src/config/environment.ts:45:15
- ❯ backend/src/config/environment.ts:51:20
- ❯ backend/src/server.ts:2:1
-
-
-
-Error: Error: process.exit unexpectedly called with "1"
- ❯ validateEnvironment backend/src/config/environment.ts:45:15
- ❯ backend/src/config/environment.ts:51:20
- ❯ backend/src/server.ts:2:1
-
-
-
-Error: Error: process.exit unexpectedly called with "1"
- ❯ validateEnvironment backend/src/config/environment.ts:45:15
- ❯ backend/src/config/environment.ts:51:20
- ❯ backend/src/server.ts:2:1
-
-
-
-Error: ReferenceError: describe is not defined
- ❯ src/components/__tests__/ErrorBoundary.test.tsx:19:1
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ renderHook node_modules/@testing-library/react/dist/pure.js:340:7
- ❯ src/hooks/__tests__/useAsync.test.ts:19:24
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ renderHook node_modules/@testing-library/react/dist/pure.js:340:7
- ❯ src/hooks/__tests__/useAsync.test.ts:30:24
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ renderHook node_modules/@testing-library/react/dist/pure.js:340:7
- ❯ src/hooks/__tests__/useAsync.test.ts:50:24
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ renderHook node_modules/@testing-library/react/dist/pure.js:340:7
- ❯ src/hooks/__tests__/useAsync.test.ts:73:24
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ renderHook node_modules/@testing-library/react/dist/pure.js:340:7
- ❯ src/hooks/__tests__/useAsync.test.ts:93:24
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ renderHook node_modules/@testing-library/react/dist/pure.js:340:7
- ❯ src/hooks/__tests__/useAsync.test.ts:109:24
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ renderHook node_modules/@testing-library/react/dist/pure.js:340:7
- ❯ src/hooks/__tests__/useAsync.test.ts:128:24
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ renderHook node_modules/@testing-library/react/dist/pure.js:340:7
- ❯ src/hooks/__tests__/useAsync.test.ts:143:24
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ renderHook node_modules/@testing-library/react/dist/pure.js:340:7
- ❯ src/hooks/__tests__/useAsync.test.ts:160:33
-
-
-
-Error: ReferenceError: afterEach is not defined
- ❯ src/hooks/__tests__/useDebounce.test.ts:15:3
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/hooks/__tests__/useLocalStorage.test.ts:26:40
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/pages/__tests__/AccountPage.test.tsx:44:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/pages/__tests__/AccountPage.test.tsx:44:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/pages/__tests__/AccountPage.test.tsx:44:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/pages/__tests__/AccountPage.test.tsx:44:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/pages/__tests__/AccountPage.test.tsx:44:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/pages/__tests__/AccountPage.test.tsx:44:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/pages/__tests__/AccountPage.test.tsx:44:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/pages/__tests__/AccountPage.test.tsx:44:27
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
- ❯ src/pages/__tests__/AuthPage.test.tsx:60:5
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
- ❯ src/pages/__tests__/AuthPage.test.tsx:68:5
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
- ❯ src/pages/__tests__/AuthPage.test.tsx:78:5
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
- ❯ src/pages/__tests__/AuthPage.test.tsx:89:5
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
- ❯ src/pages/__tests__/AuthPage.test.tsx:109:5
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
- ❯ src/pages/__tests__/AuthPage.test.tsx:124:5
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
- ❯ src/pages/__tests__/AuthPage.test.tsx:138:5
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
- ❯ src/pages/__tests__/AuthPage.test.tsx:172:5
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
- ❯ src/pages/__tests__/AuthPage.test.tsx:197:5
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ Module.customRender src/test/utils.tsx:50:10
- ❯ src/pages/__tests__/AuthPage.test.tsx:217:5
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/pages/__tests__/PaymentPage.test.tsx:73:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/pages/__tests__/PaymentPage.test.tsx:73:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/pages/__tests__/PaymentPage.test.tsx:73:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/pages/__tests__/PaymentPage.test.tsx:73:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/pages/__tests__/PaymentPage.test.tsx:73:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/pages/__tests__/PaymentPage.test.tsx:73:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/pages/__tests__/PaymentPage.test.tsx:73:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/pages/__tests__/PaymentPage.test.tsx:73:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/pages/__tests__/PaymentPage.test.tsx:73:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/pages/__tests__/SolutionsPage.test.tsx:71:28
-
-
-
-Error: ReferenceError: describe is not defined
- ❯ src/components/common/__tests__/Button.test.tsx:5:1
-
-
-
-Error: ReferenceError: describe is not defined
- ❯ src/components/common/__tests__/OptimizedImage.test.tsx:25:1
-
-
-
-Error: ReferenceError: describe is not defined
- ❯ src/components/common/__tests__/SafeHTML.test.tsx:4:1
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:21:7
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:29:7
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:36:7
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:42:7
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:51:7
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:56:7
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:63:7
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:72:7
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:79:7
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:87:7
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:97:7
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:106:7
-
-
-
-Error: ReferenceError: document is not defined
- ❯ render node_modules/@testing-library/react/dist/pure.js:257:5
- ❯ src/components/common/__tests__/Skeleton.test.tsx:117:7
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/lib/utils/__tests__/dom.test.ts:12:25
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/lib/utils/__tests__/storage.test.ts:45:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/lib/utils/__tests__/storage.test.ts:45:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/lib/utils/__tests__/storage.test.ts:45:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/lib/utils/__tests__/storage.test.ts:45:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/lib/utils/__tests__/storage.test.ts:45:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/lib/utils/__tests__/storage.test.ts:45:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/lib/utils/__tests__/storage.test.ts:45:27
-
-
-
-Error: ReferenceError: window is not defined
- ❯ src/lib/utils/__tests__/storage.test.ts:45:27
-
+zoological-heart - AIRBRO - Deployment failed-npm warn config production Use `--omit=dev` instead.
+> airbro-business-landing@1.0.0 build
+> npm run optimize:images && tsc -b && vite build
+npm warn config production Use `--omit=dev` instead.
+> airbro-business-landing@1.0.0 optimize:images
+> node scripts/optimize-images.js
+Starting image optimization...
+Image optimization complete!
+Processed 23 images.
+Total original size: 6.99 MB
+Total optimized size: 4.58 MB
+Total size saved: 2.41 MB
+src/test/setup.ts(6,12): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(7,12): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(8,15): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(9,10): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(18,12): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(19,12): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(20,15): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(21,10): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(32,13): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(33,14): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(40,13): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(41,15): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(42,16): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(48,13): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(49,15): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(50,16): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(52,1): error TS2322: Type 'typeof IntersectionObserver' is not assignable to type '{ new (callback: IntersectionObserverCallback, options?: IntersectionObserverInit | undefined): IntersectionObserver; prototype: IntersectionObserver; }'.
+
+  Types of property 'prototype' are incompatible.
+    Type 'IntersectionObserver' is missing the following properties from type 'IntersectionObserver': root, rootMargin, thresholds, takeRecords
+src/test/setup.ts(57,10): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(57,37): error TS7006: Parameter 'query' implicitly has an 'any' type.
+
+src/test/setup.ts(61,18): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(62,21): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(63,23): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(64,26): error TS2304: Cannot find name 'vi'.
+
+src/test/setup.ts(65,20): error TS2304: Cannot find name 'vi'.
+
+ERROR: failed to build: failed to solve: process "npm run build" did not complete successfully: exit code: 2
+
+
+
+Vercel – airbro-mrqs - Deployment has failed- 11:22:24.954 Running build in Washington, D.C., USA (East) – iad1
+11:22:24.954 Build machine configuration: 2 cores, 8 GB
+11:22:25.106 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: 570ab4e)
+11:22:26.061 Cloning completed: 955.000ms
+11:22:26.218 Restored build cache from previous deployment (CMkqF4UeCc1xsVoTqdKsvKkv3NA7)
+11:22:26.938 Running "vercel build"
+11:22:27.351 Vercel CLI 48.9.0
+11:22:28.160 Installing dependencies...
+11:22:30.378 
+11:22:30.379 > airbro-business-landing@1.0.0 prepare
+11:22:30.379 > husky install
+11:22:30.379 
+11:22:30.725 husky - install command is DEPRECATED
+11:22:30.742 
+11:22:30.742 up to date in 2s
+11:22:30.742 
+11:22:30.742 220 packages are looking for funding
+11:22:30.742   run `npm fund` for details
+11:22:30.777 Running "npm run build"
+11:22:30.934 
+11:22:30.935 > airbro-business-landing@1.0.0 build
+11:22:30.935 > npm run optimize:images && tsc -b && vite build
+11:22:30.935 
+11:22:31.045 
+11:22:31.045 > airbro-business-landing@1.0.0 optimize:images
+11:22:31.045 > node scripts/optimize-images.js
+11:22:31.048 
+11:22:31.160 Starting image optimization...
+11:23:21.037 
+11:23:21.037 Image optimization complete!
+11:23:21.038 Processed 23 images.
+11:23:21.038 Total original size: 6.99 MB
+11:23:21.038 Total optimized size: 4.58 MB
+11:23:21.038 Total size saved: 2.41 MB
+11:23:27.570 src/test/setup.ts(6,12): error TS2304: Cannot find name 'vi'.
+11:23:27.570 src/test/setup.ts(7,12): error TS2304: Cannot find name 'vi'.
+11:23:27.571 src/test/setup.ts(8,15): error TS2304: Cannot find name 'vi'.
+11:23:27.571 src/test/setup.ts(9,10): error TS2304: Cannot find name 'vi'.
+11:23:27.571 src/test/setup.ts(18,12): error TS2304: Cannot find name 'vi'.
+11:23:27.571 src/test/setup.ts(19,12): error TS2304: Cannot find name 'vi'.
+11:23:27.571 src/test/setup.ts(20,15): error TS2304: Cannot find name 'vi'.
+11:23:27.572 src/test/setup.ts(21,10): error TS2304: Cannot find name 'vi'.
+11:23:27.572 src/test/setup.ts(32,13): error TS2304: Cannot find name 'vi'.
+11:23:27.572 src/test/setup.ts(33,14): error TS2304: Cannot find name 'vi'.
+11:23:27.572 src/test/setup.ts(40,13): error TS2304: Cannot find name 'vi'.
+11:23:27.572 src/test/setup.ts(41,15): error TS2304: Cannot find name 'vi'.
+11:23:27.573 src/test/setup.ts(42,16): error TS2304: Cannot find name 'vi'.
+11:23:27.573 src/test/setup.ts(48,13): error TS2304: Cannot find name 'vi'.
+11:23:27.573 src/test/setup.ts(49,15): error TS2304: Cannot find name 'vi'.
+11:23:27.574 src/test/setup.ts(50,16): error TS2304: Cannot find name 'vi'.
+11:23:27.574 src/test/setup.ts(52,1): error TS2322: Type 'typeof IntersectionObserver' is not assignable to type '{ new (callback: IntersectionObserverCallback, options?: IntersectionObserverInit | undefined): IntersectionObserver; prototype: IntersectionObserver; }'.
+11:23:27.574   Types of property 'prototype' are incompatible.
+11:23:27.574     Type 'IntersectionObserver' is missing the following properties from type 'IntersectionObserver': root, rootMargin, thresholds, takeRecords
+11:23:27.575 src/test/setup.ts(57,10): error TS2304: Cannot find name 'vi'.
+11:23:27.575 src/test/setup.ts(57,37): error TS7006: Parameter 'query' implicitly has an 'any' type.
+11:23:27.575 src/test/setup.ts(61,18): error TS2304: Cannot find name 'vi'.
+11:23:27.575 src/test/setup.ts(62,21): error TS2304: Cannot find name 'vi'.
+11:23:27.575 src/test/setup.ts(63,23): error TS2304: Cannot find name 'vi'.
+11:23:27.578 src/test/setup.ts(64,26): error TS2304: Cannot find name 'vi'.
+11:23:27.578 src/test/setup.ts(65,20): error TS2304: Cannot find name 'vi'.
+11:23:28.508 Error: Command "npm run build" exited with 2
+
+
+
+CI / Lint & Format Check (push) Failing after 39s- Run npm run lint
+
+> airbro-business-landing@1.0.0 lint
+> eslint . --ext .ts,.tsx
+
+
+/home/runner/work/AIRBRO/AIRBRO/backend/jest.config.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): backend/jest.config.ts
+
+/home/runner/work/AIRBRO/AIRBRO/backend/jest.setup.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): backend/jest.setup.ts
+
+/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/authController.test.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): backend/src/controllers/authController.test.ts
+
+/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/cartController.test.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): backend/src/controllers/cartController.test.ts
+
+/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/paymentController.test.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): backend/src/controllers/paymentController.test.ts
+
+/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/productController.test.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): backend/src/controllers/productController.test.ts
+
+/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/productController.ts
+Warning:   8:24  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/userController.test.ts
+  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
+The file was not found in any of the provided project(s): backend/src/controllers/userController.test.ts
+
+/home/runner/work/AIRBRO/AIRBRO/backend/src/middleware/sanitization.ts
+Warning:   32:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   32:36  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   49:22  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/backend/src/middleware/validation.ts
+Warning:   14:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   15:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/backend/src/server.ts
+Warning:   95:15  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/backend/src/utils/logger.ts
+Warning:    55:49  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:    59:51  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:    59:66  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:    70:49  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:    74:50  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:    79:31  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:    79:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:    99:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   101:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   103:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/backend/src/utils/securityLogger.ts
+Warning:   11:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   35:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/components/__tests__/ErrorBoundary.test.tsx
+Warning:   31:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   32:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/components/common/ModulePopup.tsx
+Warning:   46:45  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/components/common/OptimizedImage.tsx
+  85:7  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/runner/work/AIRBRO/AIRBRO/src/components/common/OptimizedImage.tsx:85:7
+  83 |     const img = imgRef.current;
+  84 |     if (img?.complete && isMounted) {
+> 85 |       setLoaded(true);
+     |       ^^^^^^^^^ Avoid calling setState() directly within an effect
+  86 |     }
+  87 |
+  88 |     return () => {  react-hooks/set-state-in-effect
+
+/home/runner/work/AIRBRO/AIRBRO/src/components/common/PWAPrompt.tsx
+  26:7   warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/runner/work/AIRBRO/AIRBRO/src/components/common/PWAPrompt.tsx:26:7
+  24 |     // Check if component is still mounted before setting state
+  25 |     if (isMounted) {
+> 26 |       setIsIOS(isIos());
+     |       ^^^^^^^^ Avoid calling setState() directly within an effect
+  27 |     }
+  28 |
+  29 |     // Handle beforeinstallprompt event for non-iOS devices  react-hooks/set-state-in-effect
+Warning:   55:52  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        @typescript-eslint/no-explicit-any
+Warning:   97:41  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/components/common/VotingModal.tsx
+   64:9  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/runner/work/AIRBRO/AIRBRO/src/components/common/VotingModal.tsx:64:9
+  62 |       const userHasVoted = localStorage.getItem('featureVote');
+  63 |       if (userHasVoted) {
+> 64 |         setHasVoted(true);
+     |         ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  65 |         setSelectedOption(userHasVoted);
+  66 |       }
+  67 |  react-hooks/set-state-in-effect
+Warning:   116:6  warning  React Hook useEffect has missing dependencies: 'featureOptions' and 'voteResults.length'. Either include them or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 react-hooks/exhaustive-deps
+
+/home/runner/work/AIRBRO/AIRBRO/src/components/forms/FormCheckbox.tsx
+Warning:   18:65  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/components/forms/FormInput.tsx
+Warning:   19:62  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   52:18  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   78:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/components/forms/FormSelect.tsx
+Warning:   18:63  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/components/forms/FormTextarea.tsx
+Warning:   18:65  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/components/sections/PricingSection.tsx
+Warning:   13:66  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/components/sections/ProductsSection.tsx
+Warning:   100:84  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   103:85  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/context/AuthContext.tsx
+   63:9   warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/runner/work/AIRBRO/AIRBRO/src/context/AuthContext.tsx:63:9
+  61 |     } else {
+  62 |       if (mountedRef.current) {
+> 63 |         setLoading(false);
+     |         ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  64 |       }
+  65 |     }
+  66 |  react-hooks/set-state-in-effect
+Warning:   110:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    react-refresh/only-export-components
+
+/home/runner/work/AIRBRO/AIRBRO/src/context/ErrorContext.tsx
+Warning:   54:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+Warning:   63:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+Warning:   63:45  warning  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/context/SubscriptionContext.tsx
+Warning:   144:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+/home/runner/work/AIRBRO/AIRBRO/src/context/ThemeContext.tsx
+Warning:   33:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+/home/runner/work/AIRBRO/AIRBRO/src/hooks/useDebounce.ts
+  28:7  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/runner/work/AIRBRO/AIRBRO/src/hooks/useDebounce.ts:28:7
+  26 |     // If delay is 0, update immediately
+  27 |     if (delay === 0) {
+> 28 |       setDebouncedValue((prevValue) => {
+     |       ^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  29 |         // Only update if value actually changed
+  30 |         if (prevValue !== value) {
+  31 |           return value;  react-hooks/set-state-in-effect
+
+/home/runner/work/AIRBRO/AIRBRO/src/lib/analytics/index.ts
+Warning:    26:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:    52:52  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:    67:66  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:    99:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   100:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/lib/toast.ts
+Warning:   109:38  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/lib/utils/__tests__/storage.test.ts
+Warning:   120:43  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   130:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   135:43  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   145:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/pages/AuthPage.tsx
+   66:25  warning  Compilation Skipped: Use of incompatible library
+
+This API returns functions which cannot be memoized without leading to stale UI. To prevent this, by default React Compiler will skip memoizing this component/hook. However, you may see issues if values from this API are passed to other components/hooks that are memoized.
+
+/home/runner/work/AIRBRO/AIRBRO/src/pages/AuthPage.tsx:66:25
+  64 |   } = registerForm;
+  65 |
+> 66 |   const passwordValue = registerWatch('password'); // Watch password field for strength calculation
+     |                         ^^^^^^^^^^^^^ React Hook Form's `useForm()` API returns a `watch()` function which cannot be memoized safely.
+  67 |
+  68 |   /**
+  69 |    * Handles the submission of the login form  react-hooks/incompatible-library
+Warning:    79:21  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
+Warning:    96:21  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
+Warning:   206:33  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
+Warning:   209:48  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/pages/__tests__/AccountPage.test.tsx
+Warning:   42:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   51:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/pages/__tests__/AuthPage.test.tsx
+Warning:   53:18  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   54:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   55:27  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   56:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/pages/__tests__/PaymentPage.test.tsx
+Warning:    64:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:    65:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:    69:44  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:    70:39  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:    71:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:    80:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:    86:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:    87:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   123:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   127:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   156:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   160:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   187:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   205:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   222:44  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   226:39  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/pages/__tests__/SolutionsPage.test.tsx
+Warning:   82:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/services/api/__tests__/client.test.ts
+Warning:    12:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   138:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/services/api/client.ts
+Warning:   373:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   375:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   378:36  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   380:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/services/api/mock.ts
+Warning:   42:24  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/AIRBRO/AIRBRO/src/test/utils.tsx
+Warning:   33:55  warning  Unexpected any. Specify a different type                        @typescript-eslint/no-explicit-any
+Warning:   66:1   warning  This rule can't verify that `export *` only exports components  react-refresh/only-export-components
+
+/home/runner/work/AIRBRO/AIRBRO/src/types/forms.ts
+Warning:   12:68  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   18:49  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   18:57  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   38:68  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   68:69  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   82:71  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 105 problems (7 errors, 98 warnings)
 
 Error: Process completed with exit code 1.
 
 
-CI / TypeScript Type Check (push) Failing after 26s-Run npx tsc --noEmit
-Error: src/controllers/authController.test.ts(8,10): error TS2614: Module '"../config/environment"' has no exported member 'JWT_SECRET'. Did you mean to use 'import JWT_SECRET from "../config/environment"' instead?
-Error: src/controllers/cartController.test.ts(7,10): error TS2614: Module '"../config/environment"' has no exported member 'JWT_SECRET'. Did you mean to use 'import JWT_SECRET from "../config/environment"' instead?
-Error: src/controllers/paymentController.test.ts(7,10): error TS2614: Module '"../config/environment"' has no exported member 'JWT_SECRET'. Did you mean to use 'import JWT_SECRET from "../config/environment"' instead?
-Error: src/controllers/paymentController.ts(115,24): error TS2339: Property 'params' does not exist on type 'Request'.
-Error: src/controllers/paymentController.ts(147,24): error TS2339: Property 'params' does not exist on type 'Request'.
-Error: src/controllers/paymentController.ts(148,13): error TS2339: Property 'txHash' does not exist on type 'ReadableStream<any> | null'.
-Error: src/routes/payments.ts(13,27): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Argument of type '(req: Request, res: Response) => Promise<Response<any, Record<string, any>>>' is not assignable to parameter of type 'Application<Record<string, any>>'.
-      Type '(req: Request, res: Response<any, Record<string, any>>) => Promise<Response<any, Record<string, any>>>' is missing the following properties from type 'Application<Record<string, any>>': init, defaultConfiguration, engine, set, and 63 more.
-Error: src/routes/payments.ts(16,80): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Argument of type '(req: Request, res: Response) => Promise<Response<any, Record<string, any>>>' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-      Type '(req: Request, res: Response) => Promise<Response<any, Record<string, any>>>' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-        Types of parameters 'req' and 'req' are incompatible.
-          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
-Error: src/routes/payments.ts(19,48): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Argument of type '(req: Request, res: Response) => Promise<Response<any, Record<string, any>>>' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-      Type '(req: Request, res: Response) => Promise<Response<any, Record<string, any>>>' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-        Types of parameters 'req' and 'req' are incompatible.
-          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+
+CI / E2E Tests (push) Failing after 1m- Run npm run build
+
+> airbro-business-landing@1.0.0 build
+> npm run optimize:images && tsc -b && vite build
+
+
+> airbro-business-landing@1.0.0 optimize:images
+> node scripts/optimize-images.js
+
+Starting image optimization...
+
+Image optimization complete!
+Processed 23 images.
+Total original size: 6.99 MB
+Total optimized size: 4.58 MB
+Total size saved: 2.41 MB
+Error: src/test/setup.ts(6,12): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(7,12): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(8,15): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(9,10): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(18,12): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(19,12): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(20,15): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(21,10): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(32,13): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(33,14): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(40,13): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(41,15): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(42,16): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(48,13): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(49,15): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(50,16): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(52,1): error TS2322: Type 'typeof IntersectionObserver' is not assignable to type '{ new (callback: IntersectionObserverCallback, options?: IntersectionObserverInit | undefined): IntersectionObserver; prototype: IntersectionObserver; }'.
+  Types of property 'prototype' are incompatible.
+    Type 'IntersectionObserver' is missing the following properties from type 'IntersectionObserver': root, rootMargin, thresholds, takeRecords
+Error: src/test/setup.ts(57,10): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(57,37): error TS7006: Parameter 'query' implicitly has an 'any' type.
+Error: src/test/setup.ts(61,18): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(62,21): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(63,23): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(64,26): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(65,20): error TS2304: Cannot find name 'vi'.
 Error: Process completed with exit code 2.
 
 
+Deploy Frontend / Deploy to Vercel (push) Failing after 1m-Run npm run build
 
-CI / Build Check (push) Failing after 1m-Run npm run build
+> airbro-business-landing@1.0.0 build
+> npm run optimize:images && tsc -b && vite build
 
-> aibro-backend@1.0.0 build
-> tsc
 
-Error: src/controllers/authController.test.ts(8,10): error TS2614: Module '"../config/environment"' has no exported member 'JWT_SECRET'. Did you mean to use 'import JWT_SECRET from "../config/environment"' instead?
-Error: src/controllers/cartController.test.ts(7,10): error TS2614: Module '"../config/environment"' has no exported member 'JWT_SECRET'. Did you mean to use 'import JWT_SECRET from "../config/environment"' instead?
-Error: src/controllers/paymentController.test.ts(7,10): error TS2614: Module '"../config/environment"' has no exported member 'JWT_SECRET'. Did you mean to use 'import JWT_SECRET from "../config/environment"' instead?
-Error: src/controllers/paymentController.ts(115,24): error TS2339: Property 'params' does not exist on type 'Request'.
-Error: src/controllers/paymentController.ts(147,24): error TS2339: Property 'params' does not exist on type 'Request'.
-Error: src/controllers/paymentController.ts(148,13): error TS2339: Property 'txHash' does not exist on type 'ReadableStream<any> | null'.
-Error: src/routes/payments.ts(13,27): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Argument of type '(req: Request, res: Response) => Promise<Response<any, Record<string, any>>>' is not assignable to parameter of type 'Application<Record<string, any>>'.
-      Type '(req: Request, res: Response<any, Record<string, any>>) => Promise<Response<any, Record<string, any>>>' is missing the following properties from type 'Application<Record<string, any>>': init, defaultConfiguration, engine, set, and 63 more.
-Error: src/routes/payments.ts(16,80): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Argument of type '(req: Request, res: Response) => Promise<Response<any, Record<string, any>>>' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-      Type '(req: Request, res: Response) => Promise<Response<any, Record<string, any>>>' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-        Types of parameters 'req' and 'req' are incompatible.
-          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
-Error: src/routes/payments.ts(19,48): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Argument of type '(req: Request, res: Response) => Promise<Response<any, Record<string, any>>>' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-      Type '(req: Request, res: Response) => Promise<Response<any, Record<string, any>>>' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
-        Types of parameters 'req' and 'req' are incompatible.
-          Type 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>' is missing the following properties from type 'Request': cache, credentials, destination, integrity, and 14 more.
+> airbro-business-landing@1.0.0 optimize:images
+> node scripts/optimize-images.js
+
+Starting image optimization...
+
+Image optimization complete!
+Processed 23 images.
+Total original size: 6.99 MB
+Total optimized size: 4.58 MB
+Total size saved: 2.41 MB
+Error: src/test/setup.ts(6,12): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(7,12): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(8,15): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(9,10): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(18,12): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(19,12): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(20,15): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(21,10): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(32,13): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(33,14): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(40,13): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(41,15): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(42,16): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(48,13): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(49,15): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(50,16): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(52,1): error TS2322: Type 'typeof IntersectionObserver' is not assignable to type '{ new (callback: IntersectionObserverCallback, options?: IntersectionObserverInit | undefined): IntersectionObserver; prototype: IntersectionObserver; }'.
+  Types of property 'prototype' are incompatible.
+    Type 'IntersectionObserver' is missing the following properties from type 'IntersectionObserver': root, rootMargin, thresholds, takeRecords
+Error: src/test/setup.ts(57,10): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(57,37): error TS7006: Parameter 'query' implicitly has an 'any' type.
+Error: src/test/setup.ts(61,18): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(62,21): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(63,23): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(64,26): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(65,20): error TS2304: Cannot find name 'vi'.
 Error: Process completed with exit code 2.
 
 
-
-CI / E2E Tests (push) -Run npm run test:e2e
-> airbro-business-landing@1.0.0 test:e2e
-> playwright test
-Running 105 tests using 1 worker
-·····××T××T××T××F××F···××F××F······××F·××F××T××F××F××F××F××F××T·××F·······××T××T
-××T××F××F···××F××F······××F·××F××T××F××F××F××F××F××T·××F·······××T××T××T××F××F··
-·××F××F······××F·××F××T××F××F××F××F××F××T·××F··
-  1) [chromium] › e2e/auth.spec.ts:182:3 › Authentication Flow › should login with valid credentials 
-    Test timeout of 30000ms exceeded.
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")').first()
-      201 |       .locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")')
-      202 |       .first()
-    > 203 |       .click();
-          |        ^
-      204 |
-      205 |     // Wait for successful login (redirect to account page or dashboard)
-      206 |     await expect(page.locator('text=Welcome, text=Dashboard, text=Account').first()).toBeVisible({
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/auth.spec.ts:203:8
-    Error Context: test-results/auth-Authentication-Flow-should-login-with-valid-credentials-chromium/error-context.md
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-    Test timeout of 30000ms exceeded.
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")').first()
-      201 |       .locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")')
-      202 |       .first()
-    > 203 |       .click();
-          |        ^
-      204 |
-      205 |     // Wait for successful login (redirect to account page or dashboard)
-      206 |     await expect(page.locator('text=Welcome, text=Dashboard, text=Account').first()).toBeVisible({
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/auth.spec.ts:203:8
-    Error Context: test-results/auth-Authentication-Flow-should-login-with-valid-credentials-chromium-retry1/error-context.md
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/auth-Authentication-Flow-should-login-with-valid-credentials-chromium-retry1/trace.zip
-    Usage:
-        npx playwright show-trace test-results/auth-Authentication-Flow-should-login-with-valid-credentials-chromium-retry1/trace.zip
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-    Test timeout of 30000ms exceeded.
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")').first()
-      201 |       .locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")')
-      202 |       .first()
-    > 203 |       .click();
-          |        ^
-      204 |
-      205 |     // Wait for successful login (redirect to account page or dashboard)
-      206 |     await expect(page.locator('text=Welcome, text=Dashboard, text=Account').first()).toBeVisible({
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/auth.spec.ts:203:8
-    Error Context: test-results/auth-Authentication-Flow-should-login-with-valid-credentials-chromium-retry2/error-context.md
-  2) [chromium] › e2e/auth.spec.ts:211:3 › Authentication Flow › should show error for invalid login credentials 
-    Test timeout of 30000ms exceeded.
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")').first()
-      220 |       .locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")')
-      221 |       .first()
-    > 222 |       .click();
-          |        ^
-      223 |
-      224 |     // Should show error message
-      225 |     await expect(
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/auth.spec.ts:222:8
-    Error Context: test-results/auth-Authentication-Flow-s-53077-r-invalid-login-credentials-chromium/error-context.md
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-    Test timeout of 30000ms exceeded.
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")').first()
-      220 |       .locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")')
-      221 |       .first()
-    > 222 |       .click();
-          |        ^
-      223 |
-      224 |     // Should show error message
-      225 |     await expect(
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/auth.spec.ts:222:8
-    Error Context: test-results/auth-Authentication-Flow-s-53077-r-invalid-login-credentials-chromium-retry1/error-context.md
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/auth-Authentication-Flow-s-53077-r-invalid-login-credentials-chromium-retry1/trace.zip
-    Usage:
-        npx playwright show-trace test-results/auth-Authentication-Flow-s-53077-r-invalid-login-credentials-chromium-retry1/trace.zip
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-    Test timeout of 30000ms exceeded.
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")').first()
-      220 |       .locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")')
-      221 |       .first()
-    > 222 |       .click();
-          |        ^
-      223 |
-      224 |     // Should show error message
-      225 |     await expect(
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/auth.spec.ts:222:8
-    Error Context: test-results/auth-Authentication-Flow-s-53077-r-invalid-login-credentials-chromium-retry2/error-context.md
-  3) [chromium] › e2e/auth.spec.ts:230:3 › Authentication Flow › should logout successfully ────────
-    Test timeout of 30000ms exceeded.
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")').first()
-      237 |       .locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")')
-      238 |       .first()
-    > 239 |       .click();
-          |        ^
-      240 |
-      241 |     await page.waitForTimeout(2000);
-      242 |
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/auth.spec.ts:239:8
-    Error Context: test-results/auth-Authentication-Flow-should-logout-successfully-chromium/error-context.md
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-    Test timeout of 30000ms exceeded.
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")').first()
-      237 |       .locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")')
-      238 |       .first()
-    > 239 |       .click();
-          |        ^
-      240 |
-      241 |     await page.waitForTimeout(2000);
-      242 |
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/auth.spec.ts:239:8
-    Error Context: test-results/auth-Authentication-Flow-should-logout-successfully-chromium-retry1/error-context.md
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/auth-Authentication-Flow-should-logout-successfully-chromium-retry1/trace.zip
-    Usage:
-        npx playwright show-trace test-results/auth-Authentication-Flow-should-logout-successfully-chromium-retry1/trace.zip
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-    Test timeout of 30000ms exceeded.
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")').first()
-      237 |       .locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")')
-      238 |       .first()
-    > 239 |       .click();
-          |        ^
-      240 |
-      241 |     await page.waitForTimeout(2000);
-      242 |
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/auth.spec.ts:239:8
-    Error Context: test-results/auth-Authentication-Flow-should-logout-successfully-chromium-retry2/error-context.md
-  4) [chromium] › e2e/auth.spec.ts:258:3 › Authentication Flow › should protect account page when not authenticated 
-    Error: expect(received).toBeTruthy()
-    Received: false
-      270 |       .isVisible({ timeout: 5000 });
-      271 |
-    > 272 |     expect(isOnAuthPage || hasAccessDenied).toBeTruthy();
-          |                                             ^
-      273 |   });
-      274 | });
-      275 |
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/auth.spec.ts:272:45
-    Error Context: test-results/auth-Authentication-Flow-s-6f70f-page-when-not-authenticated-chromium/error-context.md
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: expect(received).toBeTruthy()
-    Received: false
-      270 |       .isVisible({ timeout: 5000 });
-      271 |
-    > 272 |     expect(isOnAuthPage || hasAccessDenied).toBeTruthy();
-          |                                             ^
-      273 |   });
-      274 | });
-      275 |
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/auth.spec.ts:272:45
-    Error Context: test-results/auth-Authentication-Flow-s-6f70f-page-when-not-authenticated-chromium-retry1/error-context.md
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/auth-Authentication-Flow-s-6f70f-page-when-not-authenticated-chromium-retry1/trace.zip
-    Usage:
-        npx playwright show-trace test-results/auth-Authentication-Flow-s-6f70f-page-when-not-authenticated-chromium-retry1/trace.zip
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: expect(received).toBeTruthy()
-    Received: false
-      270 |       .isVisible({ timeout: 5000 });
-      271 |
-    > 272 |     expect(isOnAuthPage || hasAccessDenied).toBeTruthy();
-          |                                             ^
-      273 |   });
-      274 | });
-      275 |
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/auth.spec.ts:272:45
-    Error Context: test-results/auth-Authentication-Flow-s-6f70f-page-when-not-authenticated-chromium-retry2/error-context.md
-  5) [chromium] › e2e/checkout.spec.ts:15:3 › Checkout and Payment Flow › should display pricing packages on pricing section 
-    Error: page.click: Element is outside of the viewport
-    Call log:
-      - waiting for locator('text=Pricing')
-        - locator resolved to 2 elements. Proceeding with the first one: <button class="font-medium transition-colors duration-300 text-text-primary hover:text-primary-telegram">Pricing</button>
-      - attempting click action
-        - scrolling into view if needed
-        - done scrolling
-      15 |   test('should display pricing packages on pricing section', async ({ page }) => {
-      16 |     // Navigate to pricing section
-    > 17 |     await page.click('text=Pricing', { force: true });
-         |                ^
-      18 |     await page.waitForTimeout(1000);
-      19 |
-      20 |     // Check if pricing section is visible
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/checkout.spec.ts:17:16
-    Error Context: test-results/checkout-Checkout-and-Paym-b21d2-packages-on-pricing-section-chromium/error-context.md
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: page.click: Element is outside of the viewport
-    Call log:
-      - waiting for locator('text=Pricing')
-        - locator resolved to 2 elements. Proceeding with the first one: <button class="font-medium transition-colors duration-300 text-text-primary hover:text-primary-telegram">Pricing</button>
-      - attempting click action
-        - scrolling into view if needed
-        - done scrolling
-      15 |   test('should display pricing packages on pricing section', async ({ page }) => {
-      16 |     // Navigate to pricing section
-    > 17 |     await page.click('text=Pricing', { force: true });
-         |                ^
-      18 |     await page.waitForTimeout(1000);
-      19 |
-      20 |     // Check if pricing section is visible
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/checkout.spec.ts:17:16
-    Error Context: test-results/checkout-Checkout-and-Paym-b21d2-packages-on-pricing-section-chromium-retry1/error-context.md
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/checkout-Checkout-and-Paym-b21d2-packages-on-pricing-section-chromium-retry1/trace.zip
-    Usage:
-        npx playwright show-trace test-results/checkout-Checkout-and-Paym-b21d2-packages-on-pricing-section-chromium-retry1/trace.zip
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: page.click: Element is outside of the viewport
-    Call log:
-      - waiting for locator('text=Pricing')
-        - locator resolved to 2 elements. Proceeding with the first one: <button class="font-medium transition-colors duration-300 text-text-primary hover:text-primary-telegram">Pricing</button>
-      - attempting click action
-        - scrolling into view if needed
-        - done scrolling
-      15 |   test('should display pricing packages on pricing section', async ({ page }) => {
-      16 |     // Navigate to pricing section
-    > 17 |     await page.click('text=Pricing', { force: true });
-         |                ^
-      18 |     await page.waitForTimeout(1000);
-      19 |
-      20 |     // Check if pricing section is visible
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/checkout.spec.ts:17:16
-    Error Context: test-results/checkout-Checkout-and-Paym-b21d2-packages-on-pricing-section-chromium-retry2/error-context.md
-  6) [chromium] › e2e/checkout.spec.ts:118:3 › Checkout and Payment Flow › should display payment methods on payment page 
-    Error: expect(received).toBeTruthy()
-    Received: false
-      132 |         .first()
-      133 |         .isVisible({ timeout: 2000 });
-    > 134 |       expect(needsAuth).toBeTruthy();
-          |                         ^
-      135 |     } else {
-      136 |       expect(hasPaymentMethods).toBeTruthy();
-      137 |     }
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/checkout.spec.ts:134:25
-    Error Context: test-results/checkout-Checkout-and-Paym-b28ac-ent-methods-on-payment-page-chromium/error-context.md
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: expect(received).toBeTruthy()
-    Received: false
-      132 |         .first()
-      133 |         .isVisible({ timeout: 2000 });
-    > 134 |       expect(needsAuth).toBeTruthy();
-          |                         ^
-      135 |     } else {
-      136 |       expect(hasPaymentMethods).toBeTruthy();
-      137 |     }
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/checkout.spec.ts:134:25
-    Error Context: test-results/checkout-Checkout-and-Paym-b28ac-ent-methods-on-payment-page-chromium-retry1/error-context.md
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/checkout-Checkout-and-Paym-b28ac-ent-methods-on-payment-page-chromium-retry1/trace.zip
-    Usage:
-        npx playwright show-trace test-results/checkout-Checkout-and-Paym-b28ac-ent-methods-on-payment-page-chromium-retry1/trace.zip
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: expect(received).toBeTruthy()
-    Received: false
-      132 |         .first()
-      133 |         .isVisible({ timeout: 2000 });
-    > 134 |       expect(needsAuth).toBeTruthy();
-          |                         ^
-      135 |     } else {
-      136 |       expect(hasPaymentMethods).toBeTruthy();
-      137 |     }
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/checkout.spec.ts:134:25
-    Error Context: test-results/checkout-Checkout-and-Paym-b28ac-ent-methods-on-payment-page-chromium-retry2/error-context.md
-  7) [chromium] › e2e/checkout.spec.ts:140:3 › Checkout and Payment Flow › should show cart with selected items 
-    Error: expect(received).toBeTruthy()
-    Received: false
-      151 |       (await page.locator('text=empty, text=no items').first().isVisible({ timeout: 3000 }));
-      152 |
-    > 153 |     expect(hasCartItems).toBeTruthy();
-          |                          ^
-      154 |   });
-      155 |
-      156 |   test('should display correct total amount in cart', async ({ page }) => {
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/checkout.spec.ts:153:26
-    Error Context: test-results/checkout-Checkout-and-Paym-435d7-ow-cart-with-selected-items-chromium/error-context.md
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: expect(received).toBeTruthy()
-    Received: false
-      151 |       (await page.locator('text=empty, text=no items').first().isVisible({ timeout: 3000 }));
-      152 |
-    > 153 |     expect(hasCartItems).toBeTruthy();
-          |                          ^
-      154 |   });
-      155 |
-      156 |   test('should display correct total amount in cart', async ({ page }) => {
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/checkout.spec.ts:153:26
-    Error Context: test-results/checkout-Checkout-and-Paym-435d7-ow-cart-with-selected-items-chromium-retry1/error-context.md
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/checkout-Checkout-and-Paym-435d7-ow-cart-with-selected-items-chromium-retry1/trace.zip
-    Usage:
-        npx playwright show-trace test-results/checkout-Checkout-and-Paym-435d7-ow-cart-with-selected-items-chromium-retry1/trace.zip
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: expect(received).toBeTruthy()
-    Received: false
-      151 |       (await page.locator('text=empty, text=no items').first().isVisible({ timeout: 3000 }));
-      152 |
-    > 153 |     expect(hasCartItems).toBeTruthy();
-          |                          ^
-      154 |   });
-      155 |
-      156 |   test('should display correct total amount in cart', async ({ page }) => {
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/checkout.spec.ts:153:26
-    Error Context: test-results/checkout-Checkout-and-Paym-435d7-ow-cart-with-selected-items-chromium-retry2/error-context.md
-  8) [chromium] › e2e/checkout.spec.ts:293:3 › Checkout and Payment Flow › should validate that pricing matches between sections 
-    TimeoutError: locator.textContent: Timeout 5000ms exceeded.
-    Call log:
-      - waiting for locator('text=/\\d+[,\\s]*₽/').first()
-      299 |       .locator('text=/\\d+[,\\s]*₽/')
-      300 |       .first()
-    > 301 |       .textContent({ timeout: 5000 });
-          |        ^
-      302 |
-      303 |     if (pricingPagePrice) {
-      304 |       // Extract numeric value
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/checkout.spec.ts:301:8
-    Error Context: test-results/checkout-Checkout-and-Paym-6bccd-ng-matches-between-sections-chromium/error-context.md
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-    TimeoutError: locator.textContent: Timeout 5000ms exceeded.
-    Call log:
-      - waiting for locator('text=/\\d+[,\\s]*₽/').first()
-      299 |       .locator('text=/\\d+[,\\s]*₽/')
-      300 |       .first()
-    > 301 |       .textContent({ timeout: 5000 });
-          |        ^
-      302 |
-      303 |     if (pricingPagePrice) {
-      304 |       // Extract numeric value
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/checkout.spec.ts:301:8
-    Error Context: test-results/checkout-Checkout-and-Paym-6bccd-ng-matches-between-sections-chromium-retry1/error-context.md
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/checkout-Checkout-and-Paym-6bccd-ng-matches-between-sections-chromium-retry1/trace.zip
-    Usage:
-        npx playwright show-trace test-results/checkout-Checkout-and-Paym-6bccd-ng-matches-between-sections-chromium-retry1/trace.zip
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-    TimeoutError: locator.textContent: Timeout 5000ms exceeded.
-    Call log:
-      - waiting for locator('text=/\\d+[,\\s]*₽/').first()
-      299 |       .locator('text=/\\d+[,\\s]*₽/')
-      300 |       .first()
-    > 301 |       .textContent({ timeout: 5000 });
-          |        ^
-      302 |
-      303 |     if (pricingPagePrice) {
-      304 |       // Extract numeric value
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/checkout.spec.ts:301:8
-    Error Context: test-results/checkout-Checkout-and-Paym-6bccd-ng-matches-between-sections-chromium-retry2/error-context.md
-  9) [chromium] › e2e/example.spec.ts:3:1 › has title ──────────────────────────────────────────────
-    Error: expect(page).toHaveTitle(expected) failed
-    Expected pattern: /AIBRO Business/
-    Received string:  "AIBRO"
-    Timeout: 5000ms
-    Call log:
-      - Expect "toHaveTitle" with timeout 5000ms
-        9 × unexpected value "AIBRO"
-       5 |
-       6 |   // Expect a title "to contain" a substring.
-    >  7 |   await expect(page).toHaveTitle(/AIBRO Business/);
-         |                      ^
-       8 | });
-       9 |
-      10 | test('get started link', async ({ page }) => {
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/example.spec.ts:7:22
-    Error Context: test-results/example-has-title-chromium/error-context.md
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: expect(page).toHaveTitle(expected) failed
-    Expected pattern: /AIBRO Business/
-    Received string:  "AIBRO"
-    Timeout: 5000ms
-    Call log:
-      - Expect "toHaveTitle" with timeout 5000ms
-        8 × unexpected value "AIBRO"
-       5 |
-       6 |   // Expect a title "to contain" a substring.
-    >  7 |   await expect(page).toHaveTitle(/AIBRO Business/);
-         |                      ^
-       8 | });
-       9 |
-      10 | test('get started link', async ({ page }) => {
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/example.spec.ts:7:22
-    Error Context: test-results/example-has-title-chromium-retry1/error-context.md
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/example-has-title-chromium-retry1/trace.zip
-    Usage:
-        npx playwright show-trace test-results/example-has-title-chromium-retry1/trace.zip
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: expect(page).toHaveTitle(expected) failed
-    Expected pattern: /AIBRO Business/
-    Received string:  "AIBRO"
-    Timeout: 5000ms
-    Call log:
-      - Expect "toHaveTitle" with timeout 5000ms
-        8 × unexpected value "AIBRO"
-       5 |
-       6 |   // Expect a title "to contain" a substring.
-    >  7 |   await expect(page).toHaveTitle(/AIBRO Business/);
-         |                      ^
-       8 | });
-       9 |
-      10 | test('get started link', async ({ page }) => {
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/example.spec.ts:7:22
-    Error Context: test-results/example-has-title-chromium-retry2/error-context.md
-  10) [chromium] › e2e/example.spec.ts:10:1 › get started link ─────────────────────────────────────
-    Test timeout of 30000ms exceeded.
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for getByRole('link', { name: 'Попробовать бесплатно 7 дней' })
-      12 |
-      13 |   // Click the get started link.
-    > 14 |   await page.getByRole('link', { name: 'Попробовать бесплатно 7 дней' }).click();
-         |                                                                          ^
-      15 |
-      16 |   // Expects the URL to contain a substring.
-      17 |   await expect(page).toHaveURL(/.*t.me/);
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/example.spec.ts:14:74
-    Error Context: test-results/example-get-started-link-chromium/error-context.md
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-    Test timeout of 30000ms exceeded.
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for getByRole('link', { name: 'Попробовать бесплатно 7 дней' })
-      12 |
-      13 |   // Click the get started link.
-    > 14 |   await page.getByRole('link', { name: 'Попробовать бесплатно 7 дней' }).click();
-         |                                                                          ^
-      15 |
-      16 |   // Expects the URL to contain a substring.
-      17 |   await expect(page).toHaveURL(/.*t.me/);
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/example.spec.ts:14:74
-    Error Context: test-results/example-get-started-link-chromium-retry1/error-context.md
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/example-get-started-link-chromium-retry1/trace.zip
-    Usage:
-        npx playwright show-trace test-results/example-get-started-link-chromium-retry1/trace.zip
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-    Test timeout of 30000ms exceeded.
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for getByRole('link', { name: 'Попробовать бесплатно 7 дней' })
-      12 |
-      13 |   // Click the get started link.
-    > 14 |   await page.getByRole('link', { name: 'Попробовать бесплатно 7 дней' }).click();
-         |                                                                          ^
-      15 |
-      16 |   // Expects the URL to contain a substring.
-      17 |   await expect(page).toHaveURL(/.*t.me/);
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/example.spec.ts:14:74
-    Error Context: test-results/example-get-started-link-chromium-retry2/error-context.md
-  11) [chromium] › e2e/navigation.spec.ts:8:3 › Navigation and Landing Page › should load the homepage successfully 
-    Error: expect(locator).toBeVisible() failed
-    Locator: locator('text=AIRBRO')
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('text=AIRBRO')
-       8 |   test('should load the homepage successfully', async ({ page }) => {
-       9 |     // Check if main hero section is visible
-    > 10 |     await expect(page.locator('text=AIRBRO')).toBeVisible();
-         |                                               ^
-      11 |
-      12 |     // Check if CTA button exists
-      13 |     await expect(page.locator('button:has-text("Start")').first()).toBeVisible();
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/navigation.spec.ts:10:47
-    Error Context: test-results/navigation-Navigation-and--904b1-d-the-homepage-successfully-chromium/error-context.md
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: expect(locator).toBeVisible() failed
-    Locator: locator('text=AIRBRO')
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('text=AIRBRO')
-       8 |   test('should load the homepage successfully', async ({ page }) => {
-       9 |     // Check if main hero section is visible
-    > 10 |     await expect(page.locator('text=AIRBRO')).toBeVisible();
-         |                                               ^
-      11 |
-      12 |     // Check if CTA button exists
-      13 |     await expect(page.locator('button:has-text("Start")').first()).toBeVisible();
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/navigation.spec.ts:10:47
-    Error Context: test-results/navigation-Navigation-and--904b1-d-the-homepage-successfully-chromium-retry1/error-context.md
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/navigation-Navigation-and--904b1-d-the-homepage-successfully-chromium-retry1/trace.zip
-    Usage:
-        npx playwright show-trace test-results/navigation-Navigation-and--904b1-d-the-homepage-successfully-chromium-retry1/trace.zip
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: expect(locator).toBeVisible() failed
-    Locator: locator('text=AIRBRO')
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('text=AIRBRO')
-       8 |   test('should load the homepage successfully', async ({ page }) => {
-       9 |     // Check if main hero section is visible
-    > 10 |     await expect(page.locator('text=AIRBRO')).toBeVisible();
-         |                                               ^
-      11 |
-      12 |     // Check if CTA button exists
-      13 |     await expect(page.locator('button:has-text("Start")').first()).toBeVisible();
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/navigation.spec.ts:10:47
-    Error Context: test-results/navigation-Navigation-and--904b1-d-the-homepage-successfully-chromium-retry2/error-context.md
-  12) [chromium] › e2e/navigation.spec.ts:16:3 › Navigation and Landing Page › should navigate to pricing section via menu 
-    Error: page.click: Element is outside of the viewport
-    Call log:
-      - waiting for locator('text=Pricing')
-        - locator resolved to 2 elements. Proceeding with the first one: <button class="font-medium transition-colors duration-300 text-text-primary hover:text-primary-telegram">Pricing</button>
-      - attempting click action
-        - scrolling into view if needed
-        - done scrolling
-      16 |   test('should navigate to pricing section via menu', async ({ page }) => {
-      17 |     // Click on pricing link in navigation
-    > 18 |     await page.click('text=Pricing', { force: true });
-         |                ^
-      19 |
-      20 |     // Wait for pricing section to be visible
-      21 |     await expect(page.locator('#pricing')).toBeInViewport();
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/navigation.spec.ts:18:16
-    Error Context: test-results/navigation-Navigation-and--75fdb-to-pricing-section-via-menu-chromium/error-context.md
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: page.click: Element is outside of the viewport
-    Call log:
-      - waiting for locator('text=Pricing')
-        - locator resolved to 2 elements. Proceeding with the first one: <button class="font-medium transition-colors duration-300 text-text-primary hover:text-primary-telegram">Pricing</button>
-      - attempting click action
-        - scrolling into view if needed
-        - done scrolling
-      16 |   test('should navigate to pricing section via menu', async ({ page }) => {
-      17 |     // Click on pricing link in navigation
-    > 18 |     await page.click('text=Pricing', { force: true });
-         |                ^
-      19 |
-      20 |     // Wait for pricing section to be visible
-      21 |     await expect(page.locator('#pricing')).toBeInViewport();
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/navigation.spec.ts:18:16
-    Error Context: test-results/navigation-Navigation-and--75fdb-to-pricing-section-via-menu-chromium-retry1/error-context.md
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/navigation-Navigation-and--75fdb-to-pricing-section-via-menu-chromium-retry1/trace.zip
-    Usage:
-        npx playwright show-trace test-results/navigation-Navigation-and--75fdb-to-pricing-section-via-menu-chromium-retry1/trace.zip
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: page.click: Element is outside of the viewport
-    Call log:
-      - waiting for locator('text=Pricing')
-        - locator resolved to 2 elements. Proceeding with the first one: <button class="font-medium transition-colors duration-300 text-text-primary hover:text-primary-telegram">Pricing</button>
-      - attempting click action
-        - scrolling into view if needed
-        - done scrolling
-      16 |   test('should navigate to pricing section via menu', async ({ page }) => {
-      17 |     // Click on pricing link in navigation
-    > 18 |     await page.click('text=Pricing', { force: true });
-         |                ^
-      19 |
-      20 |     // Wait for pricing section to be visible
-      21 |     await expect(page.locator('#pricing')).toBeInViewport();
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/navigation.spec.ts:18:16
-    Error Context: test-results/navigation-Navigation-and--75fdb-to-pricing-section-via-menu-chromium-retry2/error-context.md
-  13) [chromium] › e2e/navigation.spec.ts:24:3 › Navigation and Landing Page › should navigate to products section 
-    Error: expect(locator).toBeInViewport() failed
-    Locator: locator('#products')
-    Expected: in viewport
-    Timeout: 5000ms
-    Error: element(s) not found
-    Call log:
-      - Expect "toBeInViewport" with timeout 5000ms
-      - waiting for locator('#products')
-        5 × locator resolved to <section id="products" class="py-20 bg-gradient-to-b from-bg-primary to-bg-secondary">…</section>
-          - unexpected value "viewport ratio 0"
-      27 |
-      28 |     // Check if products section is visible
-    > 29 |     await expect(page.locator('#products')).toBeInViewport();
-         |                                             ^
-      30 |   });
-      31 |
-      32 |   test('should navigate to FAQ section', async ({ page }) => {
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/navigation.spec.ts:29:45
-    Error Context: test-results/navigation-Navigation-and--a6842-avigate-to-products-section-chromium/error-context.md
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: expect(locator).toBeInViewport() failed
-    Locator: locator('#products')
-    Expected: in viewport
-    Timeout: 5000ms
-    Error: element(s) not found
-    Call log:
-      - Expect "toBeInViewport" with timeout 5000ms
-      - waiting for locator('#products')
-        4 × locator resolved to <section id="products" class="py-20 bg-gradient-to-b from-bg-primary to-bg-secondary">…</section>
-          - unexpected value "viewport ratio 0"
-      27 |
-      28 |     // Check if products section is visible
-    > 29 |     await expect(page.locator('#products')).toBeInViewport();
-         |                                             ^
-      30 |   });
-      31 |
-      32 |   test('should navigate to FAQ section', async ({ page }) => {
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/navigation.spec.ts:29:45
-    Error Context: test-results/navigation-Navigation-and--a6842-avigate-to-products-section-chromium-retry1/error-context.md
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/navigation-Navigation-and--a6842-avigate-to-products-section-chromium-retry1/trace.zip
-    Usage:
-        npx playwright show-trace test-results/navigation-Navigation-and--a6842-avigate-to-products-section-chromium-retry1/trace.zip
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: expect(locator).toBeInViewport() failed
-    Locator: locator('#products')
-    Expected: in viewport
-    Timeout: 5000ms
-    Error: element(s) not found
-    Call log:
-      - Expect "toBeInViewport" with timeout 5000ms
-      - waiting for locator('#products')
-        5 × locator resolved to <section id="products" class="py-20 bg-gradient-to-b from-bg-primary to-bg-secondary">…</section>
-          - unexpected value "viewport ratio 0"
-      27 |
-      28 |     // Check if products section is visible
-    > 29 |     await expect(page.locator('#products')).toBeInViewport();
-         |                                             ^
-      30 |   });
-      31 |
-      32 |   test('should navigate to FAQ section', async ({ page }) => {
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/navigation.spec.ts:29:45
-    Error Context: test-results/navigation-Navigation-and--a6842-avigate-to-products-section-chromium-retry2/error-context.md
-  14) [chromium] › e2e/navigation.spec.ts:32:3 › Navigation and Landing Page › should navigate to FAQ section 
-    Error: page.click: Element is outside of the viewport
-    Call log:
-      - waiting for locator('text=FAQ')
-        - locator resolved to <button class="font-medium transition-colors duration-300 text-text-primary hover:text-primary-telegram">FAQ</button>
-      - attempting click action
-        - scrolling into view if needed
-        - done scrolling
-      32 |   test('should navigate to FAQ section', async ({ page }) => {
-      33 |     // Scroll to FAQ
-    > 34 |     await page.click('text=FAQ', { force: true });
-         |                ^
-      35 |
-      36 |     // Check if FAQ section is visible
-      37 |     await expect(page.locator('#faq')).toBeInViewport();
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/navigation.spec.ts:34:16
-    Error Context: test-results/navigation-Navigation-and--4458c-uld-navigate-to-FAQ-section-chromium/error-context.md
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: page.click: Element is outside of the viewport
-    Call log:
-      - waiting for locator('text=FAQ')
-        - locator resolved to <button class="font-medium transition-colors duration-300 text-text-primary hover:text-primary-telegram">FAQ</button>
-      - attempting click action
-        - scrolling into view if needed
-        - done scrolling
-      32 |   test('should navigate to FAQ section', async ({ page }) => {
-      33 |     // Scroll to FAQ
-    > 34 |     await page.click('text=FAQ', { force: true });
-         |                ^
-      35 |
-      36 |     // Check if FAQ section is visible
-      37 |     await expect(page.locator('#faq')).toBeInViewport();
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/navigation.spec.ts:34:16
-    Error Context: test-results/navigation-Navigation-and--4458c-uld-navigate-to-FAQ-section-chromium-retry1/error-context.md
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/navigation-Navigation-and--4458c-uld-navigate-to-FAQ-section-chromium-retry1/trace.zip
-    Usage:
-        npx playwright show-trace test-results/navigation-Navigation-and--4458c-uld-navigate-to-FAQ-section-chromium-retry1/trace.zip
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: page.click: Element is outside of the viewport
-    Call log:
-      - waiting for locator('text=FAQ')
-        - locator resolved to <button class="font-medium transition-colors duration-300 text-text-primary hover:text-primary-telegram">FAQ</button>
-      - attempting click action
-        - scrolling into view if needed
-        - done scrolling
-      32 |   test('should navigate to FAQ section', async ({ page }) => {
-      33 |     // Scroll to FAQ
-    > 34 |     await page.click('text=FAQ', { force: true });
-         |                ^
-      35 |
-      36 |     // Check if FAQ section is visible
-      37 |     await expect(page.locator('#faq')).toBeInViewport();
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/navigation.spec.ts:34:16
-    Error Context: test-results/navigation-Navigation-and--4458c-uld-navigate-to-FAQ-section-chromium-retry2/error-context.md
-  15) [chromium] › e2e/navigation.spec.ts:40:3 › Navigation and Landing Page › should toggle language switcher 
-    Error: expect(locator).toBeVisible() failed
-    Locator: locator('text=English, text=Русский').first()
-    Expected: visible
-    Timeout: 2000ms
-    Error: element(s) not found
-    Call log:
-      - Expect "toBeVisible" with timeout 2000ms
-      - waiting for locator('text=English, text=Русский').first()
-      46 |
-      47 |       // Check that menu appeared (language options)
-    > 48 |       await expect(page.locator('text=English, text=Русский').first()).toBeVisible({
-         |                                                                        ^
-      49 |         timeout: 2000,
-      50 |       });
-      51 |     }
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/navigation.spec.ts:48:72
-    Error Context: test-results/navigation-Navigation-and--b27f7-ld-toggle-language-switcher-chromium/error-context.md
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: expect(locator).toBeVisible() failed
-    Locator: locator('text=English, text=Русский').first()
-    Expected: visible
-    Timeout: 2000ms
-    Error: element(s) not found
-    Call log:
-      - Expect "toBeVisible" with timeout 2000ms
-      - waiting for locator('text=English, text=Русский').first()
-      46 |
-      47 |       // Check that menu appeared (language options)
-    > 48 |       await expect(page.locator('text=English, text=Русский').first()).toBeVisible({
-         |                                                                        ^
-      49 |         timeout: 2000,
-      50 |       });
-      51 |     }
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/navigation.spec.ts:48:72
-    Error Context: test-results/navigation-Navigation-and--b27f7-ld-toggle-language-switcher-chromium-retry1/error-context.md
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/navigation-Navigation-and--b27f7-ld-toggle-language-switcher-chromium-retry1/trace.zip
-    Usage:
-        npx playwright show-trace test-results/navigation-Navigation-and--b27f7-ld-toggle-language-switcher-chromium-retry1/trace.zip
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-    Error: expect(locator).toBeVisible() failed
-    Locator: locator('text=English, text=Русский').first()
-    Expected: visible
-    Timeout: 2000ms
-    Error: element(s) not found
-    Call log:
-      - Expect "toBeVisible" with timeout 2000ms
-      - waiting for locator('text=English, text=Русский').first()
-      46 |
-      47 |       // Check that menu appeared (language options)
-    > 48 |       await expect(page.locator('text=English, text=Русский').first()).toBeVisible({
-         |                                                                        ^
-      49 |         timeout: 2000,
-      50 |       });
-      51 |     }
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/navigation.spec.ts:48:72
-    Error Context: test-results/navigation-Navigation-and--b27f7-ld-toggle-language-switcher-chromium-retry2/error-context.md
-  16) [chromium] › e2e/navigation.spec.ts:54:3 › Navigation and Landing Page › should toggle theme (dark/light mode) 
-    Test timeout of 30000ms exceeded.
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for locator('[aria-label*="theme"], button:has-text("☀"), button:has-text("🌙")').first()
-        - locator resolved to <button aria-label="Toggle theme" class="p-2 rounded-full bg-bg-tertiary hover:bg-bg-secondary transition-colors">…</button>
-      - attempting click action
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-      - retrying click action
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <ellipse rx="266" cx="316.5" cy="715.5" ry="316.5" fill="url(#u-cl-0)"></ellipse> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-      - retrying click action
-        - waiting 20ms
-        2 × waiting for element to be visible, enabled and stable
-          - element is visible, enabled and stable
-          - scrolling into view if needed
-          - done scrolling
-          - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-        - retrying click action
-          - waiting 100ms
-        13 × waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-         - retrying click action
-           - waiting 500ms
-           - waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <ellipse rx="266" cx="316.5" cy="715.5" ry="316.5" fill="url(#u-cl-0)"></ellipse> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-         - retrying click action
-           - waiting 500ms
-           - waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-         - retrying click action
-           - waiting 500ms
-           - waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-         - retrying click action
-           - waiting 500ms
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-      - retrying click action
-        - waiting 500ms
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <ellipse rx="266" cx="316.5" cy="715.5" ry="316.5" fill="url(#u-cl-0)"></ellipse> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-      - retrying click action
-        - waiting 500ms
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-      - retrying click action
-        - waiting 500ms
-      60 |     if (await themeButton.isVisible()) {
-      61 |       // Click theme toggle
-    > 62 |       await themeButton.click();
-         |                         ^
-      63 |
-      64 |       // Check that theme changed (data-theme attribute or class)
-      65 |       const htmlElement = page.locator('html');
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/navigation.spec.ts:62:25
-    Error Context: test-results/navigation-Navigation-and--7fb1e-ggle-theme-dark-light-mode--chromium/error-context.md
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-    Test timeout of 30000ms exceeded.
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for locator('[aria-label*="theme"], button:has-text("☀"), button:has-text("🌙")').first()
-        - locator resolved to <button aria-label="Toggle theme" class="p-2 rounded-full bg-bg-tertiary hover:bg-bg-secondary transition-colors">…</button>
-      - attempting click action
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-      - retrying click action
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <ellipse rx="266" cx="316.5" cy="715.5" ry="316.5" fill="url(#u-cl-0)"></ellipse> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-      - retrying click action
-        - waiting 20ms
-        2 × waiting for element to be visible, enabled and stable
-          - element is visible, enabled and stable
-          - scrolling into view if needed
-          - done scrolling
-          - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-        - retrying click action
-          - waiting 100ms
-        13 × waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-         - retrying click action
-           - waiting 500ms
-           - waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <ellipse rx="266" cx="316.5" cy="715.5" ry="316.5" fill="url(#u-cl-0)"></ellipse> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-         - retrying click action
-           - waiting 500ms
-           - waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-         - retrying click action
-           - waiting 500ms
-           - waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-         - retrying click action
-           - waiting 500ms
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-      - retrying click action
-        - waiting 500ms
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <ellipse rx="266" cx="316.5" cy="715.5" ry="316.5" fill="url(#u-cl-0)"></ellipse> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-      - retrying click action
-        - waiting 500ms
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-      - retrying click action
-        - waiting 500ms
-      60 |     if (await themeButton.isVisible()) {
-      61 |       // Click theme toggle
-    > 62 |       await themeButton.click();
-         |                         ^
-      63 |
-      64 |       // Check that theme changed (data-theme attribute or class)
-      65 |       const htmlElement = page.locator('html');
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/navigation.spec.ts:62:25
-    Error Context: test-results/navigation-Navigation-and--7fb1e-ggle-theme-dark-light-mode--chromium-retry1/error-context.md
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/navigation-Navigation-and--7fb1e-ggle-theme-dark-light-mode--chromium-retry1/trace.zip
-    Usage:
-        npx playwright show-trace test-results/navigation-Navigation-and--7fb1e-ggle-theme-dark-light-mode--chromium-retry1/trace.zip
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-    Test timeout of 30000ms exceeded.
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for locator('[aria-label*="theme"], button:has-text("☀"), button:has-text("🌙")').first()
-        - locator resolved to <button aria-label="Toggle theme" class="p-2 rounded-full bg-bg-tertiary hover:bg-bg-secondary transition-colors">…</button>
-      - attempting click action
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-      - retrying click action
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <ellipse rx="266" cx="316.5" cy="715.5" ry="316.5" fill="url(#u-cl-0)"></ellipse> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-      - retrying click action
-        - waiting 20ms
-        2 × waiting for element to be visible, enabled and stable
-          - element is visible, enabled and stable
-          - scrolling into view if needed
-          - done scrolling
-          - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-        - retrying click action
-          - waiting 100ms
-        - waiting for element to be visible, enabled and stable
-        - element is not stable
-      13 × retrying click action
-           - waiting 500ms
-           - waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <ellipse rx="266" cx="316.5" cy="715.5" ry="316.5" fill="url(#u-cl-0)"></ellipse> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-         - retrying click action
-           - waiting 500ms
-           - waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-         - retrying click action
-           - waiting 500ms
-           - waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-         - retrying click action
-           - waiting 500ms
-           - waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-      - retrying click action
-        - waiting 500ms
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <ellipse rx="266" cx="316.5" cy="715.5" ry="316.5" fill="url(#u-cl-0)"></ellipse> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-      - retrying click action
-        - waiting 500ms
-        - waiting for element to be visible, enabled and stable
-        - element is visible, enabled and stable
-        - scrolling into view if needed
-        - done scrolling
-        - <circle r="316.5" cx="316.5" cy="316.5" fill="url(#a-cl-1)"></circle> from <div dir="ltr" class="tsqd-parent-container">…</div> subtree intercepts pointer events
-      - retrying click action
-        - waiting 500ms
-      60 |     if (await themeButton.isVisible()) {
-      61 |       // Click theme toggle
-    > 62 |       await themeButton.click();
-         |                         ^
-      63 |
-      64 |       // Check that theme changed (data-theme attribute or class)
-      65 |       const htmlElement = page.locator('html');
-        at /home/runner/work/AIRBRO/AIRBRO/e2e/navigation.spec.ts:62:25
-    Error Context: test-results/navigation-Navigation-and--7fb1e-ggle-theme-dark-light-mode--chromium-retry2/error-context.md
-  17) [chromium] › e2e/navigation.spec.ts:93:3 › Navigation and Landing Page › should display footer with social links 
-    Error: expect(locator).toBeVisible() failed
-    Locator: locator('text=©, text=AIRBRO').first()
-    Expected: visible
+Deploy Backend / Deploy to Railway (push) Failing after 7s- Run echo "Deploying to Railway..."
+Deploying to Railway...
+Multiple services found. Please specify a service via the `--service` flag.
 Error: Process completed with exit code 1.
+
+
+
+CI / Build Check (push) Failing after 1m- Run npm run build
+
+> airbro-business-landing@1.0.0 build
+> npm run optimize:images && tsc -b && vite build
+
+
+> airbro-business-landing@1.0.0 optimize:images
+> node scripts/optimize-images.js
+
+Starting image optimization...
+
+Image optimization complete!
+Processed 23 images.
+Total original size: 6.99 MB
+Total optimized size: 4.58 MB
+Total size saved: 2.41 MB
+Error: src/test/setup.ts(6,12): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(7,12): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(8,15): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(9,10): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(18,12): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(19,12): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(20,15): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(21,10): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(32,13): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(33,14): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(40,13): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(41,15): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(42,16): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(48,13): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(49,15): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(50,16): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(52,1): error TS2322: Type 'typeof IntersectionObserver' is not assignable to type '{ new (callback: IntersectionObserverCallback, options?: IntersectionObserverInit | undefined): IntersectionObserver; prototype: IntersectionObserver; }'.
+  Types of property 'prototype' are incompatible.
+    Type 'IntersectionObserver' is missing the following properties from type 'IntersectionObserver': root, rootMargin, thresholds, takeRecords
+Error: src/test/setup.ts(57,10): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(57,37): error TS7006: Parameter 'query' implicitly has an 'any' type.
+Error: src/test/setup.ts(61,18): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(62,21): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(63,23): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(64,26): error TS2304: Cannot find name 'vi'.
+Error: src/test/setup.ts(65,20): error TS2304: Cannot find name 'vi'.
+Error: Process completed with exit code 2.

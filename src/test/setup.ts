@@ -1,4 +1,5 @@
 // src/test/setup.ts
+import { vi } from 'vitest';
 import '@testing-library/jest-dom/vitest';
 
 // Mock localStorage
@@ -44,12 +45,35 @@ class ResizeObserver {
 window.ResizeObserver = ResizeObserver;
 
 // Mock IntersectionObserver
-class IntersectionObserver {
-  observe = vi.fn();
-  unobserve = vi.fn();
-  disconnect = vi.fn();
+function IntersectionObserverMock(
+  callback: IntersectionObserverCallback,
+  options?: IntersectionObserverInit
+) {
+  return {
+    root: null,
+    rootMargin: '0px',
+    thresholds: [0],
+    callback,
+    options,
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+    takeRecords: () => [],
+  };
 }
-window.IntersectionObserver = IntersectionObserver;
+
+// Create a proper constructor 
+Object.defineProperty(IntersectionObserverMock, 'prototype', {
+  value: {
+    constructor: IntersectionObserverMock,
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+    takeRecords: () => [],
+  },
+});
+
+window.IntersectionObserver = IntersectionObserverMock as any;
 
 // Mock matchMedia
 Object.defineProperty(window, 'matchMedia', {
