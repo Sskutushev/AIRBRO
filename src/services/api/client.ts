@@ -61,6 +61,31 @@ interface PaymentStatus {
   paidAt?: string;
 }
 
+interface Subscription {
+  id: string;
+  productId: string;
+  status: 'active' | 'cancelled' | 'expired' | 'trial';
+  startDate: string;
+  endDate: string;
+  nextPaymentDate?: string;
+  cancelledAt?: string;
+  createdAt: string;
+  updatedAt: string;
+  product: {
+    name: string;
+    description: string;
+  };
+}
+
+interface Payment {
+  id: string;
+  amount: number;
+  currency: string;
+  status: 'pending' | 'completed' | 'failed' | 'expired';
+  paymentMethod: string;
+  createdAt: string;
+}
+
 // RegisterInput interface is no longer needed since we're using the one from validation schema
 
 // --- APIError Class ---
@@ -170,10 +195,18 @@ class APIClient {
    */
   private async handleResponse<T>(response: Response): Promise<T> {
     if (response.ok) {
-      return response.json();
+      return response.json() as Promise<T>;
     }
 
-    const errorData = await response
+    // Define type for error data
+    type ErrorResponse = {
+      message?: string;
+      error?: string;
+      code?: string;
+      errors?: Record<string, string[]>;
+    };
+
+    const errorData: ErrorResponse = await response
       .json()
       .catch(() => ({ message: 'Unknown error', error: 'Unknown' }));
     const errorMessage =
@@ -370,14 +403,12 @@ class APIClient {
     });
   }
 
-  async getUserSubscriptions(): Promise<any[]> {
-    // Define proper subscription type if needed
-    return this.request<any[]>('/user/subscriptions');
+  async getUserSubscriptions(): Promise<Subscription[]> {
+    return this.request<Subscription[]>('/user/subscriptions');
   }
 
-  async getUserPayments(): Promise<any[]> {
-    // Define proper payment type if needed
-    return this.request<any[]>('/user/payments');
+  async getUserPayments(): Promise<Payment[]> {
+    return this.request<Payment[]>('/user/payments');
   }
 
   async cancelSubscription(subscriptionId: string): Promise<void> {

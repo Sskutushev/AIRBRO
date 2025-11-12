@@ -73,7 +73,8 @@ Object.defineProperty(IntersectionObserverMock, 'prototype', {
   },
 });
 
-window.IntersectionObserver = IntersectionObserverMock as any;
+// Properly assign IntersectionObserver to window with better typing
+(window as any).IntersectionObserver = IntersectionObserverMock as unknown as typeof IntersectionObserver;
 
 // Mock matchMedia
 Object.defineProperty(window, 'matchMedia', {
