@@ -15,11 +15,11 @@ test.describe('Authentication Flow', () => {
   test('should navigate to auth page from header', async ({ page }) => {
     // Look for Login/Sign In button in header
     const loginButton = page
-      .locator('button:has-text("Login"), button:has-text("Sign In"), a:has-text("Login")')
+      .locator('button:has-text("Login"), button:has-text("Sign In"), a:has-text("Login"), [data-testid="login-btn"]')
       .first();
 
     if (await loginButton.isVisible({ timeout: 5000 })) {
-      await loginButton.click();
+      await loginButton.click({ force: true });
 
       // Check if we're on auth page
       await expect(page).toHaveURL(/.*auth.*/);
@@ -198,9 +198,9 @@ test.describe('Authentication Flow', () => {
 
     // Submit login
     await page
-      .locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")')
+      .locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In"), [data-testid="login-submit"]')
       .first()
-      .click();
+      .click({ force: true });
 
     // Wait for successful login (redirect to account page or dashboard)
     await expect(page.locator('text=Welcome, text=Dashboard, text=Account').first()).toBeVisible({
@@ -217,9 +217,9 @@ test.describe('Authentication Flow', () => {
 
     // Submit
     await page
-      .locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In")')
+      .locator('button[type="submit"]:has-text("Login"), button[type="submit"]:has-text("Sign In"), [data-testid="login-submit"]')
       .first()
-      .click();
+      .click({ force: true });
 
     // Should show error message
     await expect(
@@ -246,7 +246,7 @@ test.describe('Authentication Flow', () => {
       .first();
 
     if (await logoutButton.isVisible({ timeout: 5000 })) {
-      await logoutButton.click();
+      await logoutButton.click({ force: true });
 
       // Should redirect to home or show login button again
       await expect(

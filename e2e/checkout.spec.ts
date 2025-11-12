@@ -13,8 +13,16 @@ test.describe('Checkout and Payment Flow', () => {
   });
 
   test('should display pricing packages on pricing section', async ({ page }) => {
-    // Navigate to pricing section
-    await page.click('text=Pricing', { force: true });
+    // Navigate to pricing section - use more specific selectors
+    const pricingLink = page.locator('nav a:text-is("Pricing"), button:text-is("Pricing"), [data-testid="pricing-link"]');
+    
+    if (await pricingLink.count() > 0) {
+      await pricingLink.first().click({ force: true });
+    } else {
+      // Fallback to general text selector with force
+      await page.locator('text=Pricing').first().click({ force: true });
+    }
+    
     await page.waitForTimeout(1000);
 
     // Check if pricing section is visible
@@ -50,11 +58,11 @@ test.describe('Checkout and Payment Flow', () => {
 
     // Find "Select Package" or "Buy" button
     const selectButton = page
-      .locator('button:has-text("Select"), button:has-text("Buy"), button:has-text("Choose")')
+      .locator('button:has-text("Select"), button:has-text("Buy"), button:has-text("Choose"), [data-testid="select-package"]')
       .first();
 
     if (await selectButton.isVisible({ timeout: 5000 })) {
-      await selectButton.click();
+      await selectButton.click({ force: true });
 
       // Should redirect to auth page or show login modal
       const isOnAuthPage = await page

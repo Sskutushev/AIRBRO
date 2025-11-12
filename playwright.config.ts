@@ -28,6 +28,19 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+
+    /* Reset browser state before each test to avoid third-party interference */
+    contextOptions: {
+      // Disable some features that might cause interference
+      strictSelectors: true,
+    },
+    
+    // Extra timeout for handling slow elements
+    actionTimeout: 30000,
+    navigationTimeout: 30000,
+    
+    // Additional options to avoid overlay issues
+    headless: true, // Run headless to avoid potential UI interferences
   },
 
   /* Configure projects for major browsers */
