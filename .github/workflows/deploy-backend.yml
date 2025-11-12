@@ -24,11 +24,7 @@ jobs:
       - name: Deploy to Railway
         run: |
           echo "Deploying to Railway..."
-          if [ -n "${{ secrets.RAILWAY_SERVICE_ID }}" ]; then
-            railway up --service ${{ secrets.RAILWAY_SERVICE_ID }}
-          else
-            railway up
-          fi
+          railway up --service backend
         working-directory: ./backend
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
@@ -36,11 +32,7 @@ jobs:
       - name: Run migrations
         run: |
           echo "Running migrations..."
-          if [ -n "${{ secrets.RAILWAY_SERVICE_ID }}" ]; then
-            railway run --service ${{ secrets.RAILWAY_SERVICE_ID }} npx prisma migrate deploy
-          else
-            railway run npx prisma migrate deploy
-          fi
+          railway run --service backend npx prisma migrate deploy
         working-directory: ./backend
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
