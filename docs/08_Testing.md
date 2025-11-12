@@ -10,29 +10,46 @@ We use a multi-level approach to testing, inspired by the "testing pyramid".
 
 This is the main and most numerous type of tests in the project.
 
-- **Tools:**
+- **Frontend Tools:**
   - [Vitest](https://vitest.dev/): Modern and fast testing framework compatible with Vite.
   - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/): Library for testing React components that encourages writing user-focused tests.
   - [JSDOM](https://github.com/jsdom/jsdom): Emulates browser environment in Node.js for running tests.
+
+- **Backend Tools:**
+  - [Vitest](https://vitest.dev/): Migrated from Jest for consistency and better performance.
+  - [Supertest](https://github.com/lucasberesford/supertest): HTTP assertion library for testing API endpoints.
+  - [Prisma](https://www.prisma.io/): For database integration tests.
 
 - **What we test:**
   - **Individual functions (unit tests):** Testing utility functions and helpers (e.g., date formatting, validators).
   - **React components:** Checking that components render correctly based on props, display the right data, and respond properly to user actions (clicks, text input).
   - **React hooks:** Testing custom hooks and their logic.
   - **Component interaction (integration tests):** Checking that multiple components work together as a single unit (e.g., a form with input fields and a submit button).
+  - **Backend controllers:** Testing all API endpoints for authentication, cart functionality, products, payments, and user management.
+  - **Database operations:** Integration tests with real database operations using test database isolation.
 
 - **How to run tests:**
-  - **Once:**
+  - **Frontend tests once:**
     ```bash
     npm run test
     ```
-  - **In watch mode:** Tests will automatically re-run when files change.
+  - **Frontend tests in watch mode:** Tests will automatically re-run when files change.
     ```bash
     npm run test:watch
     ```
-  - **With UI and coverage report:**
+  - **Frontend tests with UI and coverage report:**
     ```bash
     npm run test:ui
+    npm run test:coverage
+    ```
+  - **Backend tests:**
+    ```bash
+    cd backend
+    npm run test:run
+    ```
+  - **Backend tests with coverage:**
+    ```bash
+    cd backend
     npm run test:coverage
     ```
 
@@ -48,6 +65,7 @@ These tests verify the entire system by simulating real user actions in an actua
     - Viewing product list and adding to cart.
     - Payment process.
     - Navigating the dashboard.
+    - Complete user flows from landing to payment completion.
 
 - **Status:**
   - E2E tests are **enabled** in the CI/CD pipeline (`ci.yml`) and run automatically. They should also be run locally before making significant changes to core functionality.
@@ -75,4 +93,4 @@ While not testing in the classical sense, static analysis is an important part o
 
 ---
 
-This concludes the creation of the main documentation.
+This concludes the testing documentation.

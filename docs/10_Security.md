@@ -16,7 +16,7 @@ For local development, use `.env` files to manage your environment variables. Th
 NODE_ENV=development
 PORT=3000
 FRONTEND_URL=http://localhost:5173
-DATABASE_URL="file:./dev.db" # For local development with SQLite (PostgreSQL for production)
+DATABASE_URL="postgresql://airbro:airbro_dev@localhost:5432/airbro_dev" # PostgreSQL database
 JWT_SECRET="your_super_secret_jwt_key_here"
 JWT_EXPIRES_IN="7d"
 TELEGRAM_BOT_TOKEN="your_telegram_bot_token"

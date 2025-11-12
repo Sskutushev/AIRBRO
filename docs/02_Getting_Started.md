@@ -40,8 +40,8 @@ The backend requires separate configuration.
     - Copy the basic configuration into it:
 
       ```env
-      # Database connection URL. For local development with SQLite.
-      DATABASE_URL="file:./dev.db"
+      # Database connection URL. For local development with PostgreSQL.
+      DATABASE_URL="postgresql://airbro:airbro_dev@localhost:5432/airbro_dev"
 
       # Secret key for signing JWT tokens. Create any complex string.
       JWT_SECRET="your-super-secret-jwt-key-must-be-at-least-32-chars-long"
@@ -58,8 +58,20 @@ The backend requires separate configuration.
 
 4.  **Create and apply database migrations:**
     This command will set up your PostgreSQL database and create all tables according to the schema in `prisma/schema.prisma`.
+
     ```bash
     npx prisma migrate dev
+    ```
+
+    **Important**: Make sure you have a PostgreSQL server running locally before running this command. If you don't have PostgreSQL installed, you can use Docker:
+
+    ```bash
+    docker run --name airbro-postgres \
+     -e POSTGRES_USER=airbro \
+     -e POSTGRES_PASSWORD=airbro_dev \
+     -e POSTGRES_DB=airbro_dev \
+     -p 5432:5432 \
+     -d postgres:15
     ```
 
 ## Step 4: Frontend Setup

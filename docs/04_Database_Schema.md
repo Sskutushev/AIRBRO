@@ -1,6 +1,6 @@
 # 4. Database Schema
 
-For data management in the project, we use **Prisma** — an ORM (Object-Relational Mapper) for the next generation for Node.js and TypeScript. For local development, we use **SQLite**, and for production, **PostgreSQL**.
+For data management in the project, we use **Prisma** — an ORM (Object-Relational Mapper) for the next generation for Node.js and TypeScript. The project now uses **PostgreSQL** for both development and production environments, providing consistent database behavior and advanced features.
 
 All data schema is described in the file [`backend/prisma/schema.prisma`](../backend/prisma/schema.prisma).
 
