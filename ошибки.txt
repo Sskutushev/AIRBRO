@@ -1,120 +1,57 @@
-index-QyI9BqpO.js:211 APIClient initialized with baseURL: https://airbro-production.up.railway.app/api
-index-QyI9BqpO.js:26 ✅ Sentry initialized successfully
-index-QyI9BqpO.js:26 ✅ Google Analytics initialized
-index-QyI9BqpO.js:26 ✅ Google Analytics initialized
-index-QyI9BqpO.js:26 Making request to: https://airbro-production.up.railway.app/api/auth/login with method: POST
-/#/auth:1 Access to fetch at 'https://airbro-production.up.railway.app/api/auth/login' from origin 'https://airbro-mrqs.vercel.app' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-index-QyI9BqpO.js:26  POST https://airbro-production.up.railway.app/api/auth/login net::ERR_FAILED
-(anonymous) @ index-QyI9BqpO.js:26
-request @ index-QyI9BqpO.js:211
-login @ index-QyI9BqpO.js:211
-mutationFn @ AuthPage-iJ1NUBju.js:20
-fn @ index-QyI9BqpO.js:35
-_ @ index-QyI9BqpO.js:35
-start @ index-QyI9BqpO.js:35
-execute @ index-QyI9BqpO.js:35
-await in execute
-mutate @ AuthPage-iJ1NUBju.js:1
-O @ AuthPage-iJ1NUBju.js:20
-(anonymous) @ AuthPage-iJ1NUBju.js:1
-await in (anonymous)
-A0 @ index-QyI9BqpO.js:9
-(anonymous) @ index-QyI9BqpO.js:9
-Nv @ index-QyI9BqpO.js:9
-sp @ index-QyI9BqpO.js:9
-vp @ index-QyI9BqpO.js:10
-ck @ index-QyI9BqpO.js:10
-s @ index-QyI9BqpO.js:26
-index-QyI9BqpO.js:26 Network error: TypeError: Failed to fetch (airbro-production.up.railway.app)
-    at index-QyI9BqpO.js:26:6780
-    at $4.request (index-QyI9BqpO.js:211:4791)
-    at $4.login (index-QyI9BqpO.js:211:5084)
-    at Object.mutationFn (AuthPage-iJ1NUBju.js:20:25547)
-    at Object.fn (index-QyI9BqpO.js:35:35957)
-    at _ (index-QyI9BqpO.js:35:26835)
-    at Object.start (index-QyI9BqpO.js:35:27285)
-    at K5.execute (index-QyI9BqpO.js:35:36588)
-    at async O (AuthPage-iJ1NUBju.js:20:54313)
-    at async AuthPage-iJ1NUBju.js:1:21507
-(anonymous) @ index-QyI9BqpO.js:26
-request @ index-QyI9BqpO.js:211
-await in request
-login @ index-QyI9BqpO.js:211
-mutationFn @ AuthPage-iJ1NUBju.js:20
-fn @ index-QyI9BqpO.js:35
-_ @ index-QyI9BqpO.js:35
-start @ index-QyI9BqpO.js:35
-execute @ index-QyI9BqpO.js:35
-await in execute
-mutate @ AuthPage-iJ1NUBju.js:1
-O @ AuthPage-iJ1NUBju.js:20
-(anonymous) @ AuthPage-iJ1NUBju.js:1
-await in (anonymous)
-A0 @ index-QyI9BqpO.js:9
-(anonymous) @ index-QyI9BqpO.js:9
-Nv @ index-QyI9BqpO.js:9
-sp @ index-QyI9BqpO.js:9
-vp @ index-QyI9BqpO.js:10
-ck @ index-QyI9BqpO.js:10
-s @ index-QyI9BqpO.js:26
-index-QyI9BqpO.js:26 Login error: APIError: Network error. Please check your internet connection.
-    at $4.request (index-QyI9BqpO.js:211:4957)
+Run npm audit --audit-level=moderate
+found 0 vulnerabilities
+# npm audit report
+
+cookie  <0.7.0
+cookie accepts cookie name, path, and domain with out of bounds characters - https://github.com/advisories/GHSA-pxg6-pf52-xh8x
+fix available via `npm audit fix`
+node_modules/csurf/node_modules/cookie
+  csurf  >=1.3.0
+  Depends on vulnerable versions of cookie
+  node_modules/csurf
+
+form-data  <2.5.4
+Severity: critical
+form-data uses unsafe random function in form-data for choosing boundary - https://github.com/advisories/GHSA-fjxv-7rqg-78g4
+fix available via `npm audit fix --force`
+Will install node-telegram-bot-api@0.66.0, which is a breaking change
+node_modules/request/node_modules/form-data
+  request  *
+  Depends on vulnerable versions of form-data
+  Depends on vulnerable versions of tough-cookie
+  node_modules/request
+    node-telegram-bot-api  <=0.63.0
+    Depends on vulnerable versions of request
+    Depends on vulnerable versions of request-promise
+    node_modules/node-telegram-bot-api
+    request-promise  >=0.0.2
+    Depends on vulnerable versions of request
+    Depends on vulnerable versions of request-promise-core
+    Depends on vulnerable versions of tough-cookie
+    node_modules/request-promise
+    request-promise-core  *
+    Depends on vulnerable versions of request
+    node_modules/request-promise-core
 
 
-Making request to: https://airbro-production.up.railway.app/api/auth/register with method: POST
-/#/auth:1 Access to fetch at 'https://airbro-production.up.railway.app/api/auth/register' from origin 'https://airbro-mrqs.vercel.app' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-index-QyI9BqpO.js:26  POST https://airbro-production.up.railway.app/api/auth/register net::ERR_FAILED
-(anonymous) @ index-QyI9BqpO.js:26
-request @ index-QyI9BqpO.js:211
-register @ index-QyI9BqpO.js:211
-mutationFn @ AuthPage-iJ1NUBju.js:20
-fn @ index-QyI9BqpO.js:35
-_ @ index-QyI9BqpO.js:35
-start @ index-QyI9BqpO.js:35
-execute @ index-QyI9BqpO.js:35
-await in execute
-mutate @ AuthPage-iJ1NUBju.js:1
-de @ AuthPage-iJ1NUBju.js:20
-(anonymous) @ AuthPage-iJ1NUBju.js:1
-await in (anonymous)
-A0 @ index-QyI9BqpO.js:9
-(anonymous) @ index-QyI9BqpO.js:9
-Nv @ index-QyI9BqpO.js:9
-sp @ index-QyI9BqpO.js:9
-vp @ index-QyI9BqpO.js:10
-ck @ index-QyI9BqpO.js:10
-s @ index-QyI9BqpO.js:26
-index-QyI9BqpO.js:26 Network error: TypeError: Failed to fetch (airbro-production.up.railway.app)
-    at index-QyI9BqpO.js:26:6780
-    at $4.request (index-QyI9BqpO.js:211:4791)
-    at $4.register (index-QyI9BqpO.js:211:5226)
-    at Object.mutationFn (AuthPage-iJ1NUBju.js:20:25841)
-    at Object.fn (index-QyI9BqpO.js:35:35957)
-    at _ (index-QyI9BqpO.js:35:26835)
-    at Object.start (index-QyI9BqpO.js:35:27285)
-    at K5.execute (index-QyI9BqpO.js:35:36588)
-    at async de (AuthPage-iJ1NUBju.js:20:54490)
-    at async AuthPage-iJ1NUBju.js:1:21507
-(anonymous) @ index-QyI9BqpO.js:26
-request @ index-QyI9BqpO.js:211
-await in request
-register @ index-QyI9BqpO.js:211
-mutationFn @ AuthPage-iJ1NUBju.js:20
-fn @ index-QyI9BqpO.js:35
-_ @ index-QyI9BqpO.js:35
-start @ index-QyI9BqpO.js:35
-execute @ index-QyI9BqpO.js:35
-await in execute
-mutate @ AuthPage-iJ1NUBju.js:1
-de @ AuthPage-iJ1NUBju.js:20
-(anonymous) @ AuthPage-iJ1NUBju.js:1
-await in (anonymous)
-A0 @ index-QyI9BqpO.js:9
-(anonymous) @ index-QyI9BqpO.js:9
-Nv @ index-QyI9BqpO.js:9
-sp @ index-QyI9BqpO.js:9
-vp @ index-QyI9BqpO.js:10
-ck @ index-QyI9BqpO.js:10
-s @ index-QyI9BqpO.js:26
-index-QyI9BqpO.js:26 Registration error: APIError: Network error. Please check your internet connection.
-    at $4.request (index-QyI9BqpO.js:211:4957)
+tough-cookie  <4.1.3
+Severity: moderate
+tough-cookie Prototype Pollution vulnerability - https://github.com/advisories/GHSA-72xf-g2v4-qvf3
+fix available via `npm audit fix --force`
+Will install node-telegram-bot-api@0.66.0, which is a breaking change
+node_modules/request-promise/node_modules/tough-cookie
+node_modules/request/node_modules/tough-cookie
+
+8 vulnerabilities (2 low, 4 moderate, 2 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+Error: Process completed with exit code 1.
+
+Run echo "Deploying to Railway..."
+Deploying to Railway...
+Service not found
+Error: Process completed with exit code 1.
