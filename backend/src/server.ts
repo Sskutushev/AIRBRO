@@ -62,21 +62,25 @@ app.use(helmet()); // Activate Helmet.js for security headers
 // General rate limiter (for all routes)
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
+  max: process.env.NODE_ENV === 'production' ? 100 : 1000, // More generous limit for development
   message: 'Too many requests from this IP, please try again later.',
 });
 
 // Strict rate limiter for authentication routes (to prevent brute force)
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // Limit each IP to 5 requests per windowMs for auth
+  max: process.env.NODE_ENV === 'production' ? 5 : 100, // Much higher limit for development
   message: 'Too many authentication attempts from this IP, please try again later.',
 });
 
-app.use(generalLimiter);
-
-// Apply auth-specific rate limiting only to auth routes
-app.use('/api/auth', authLimiter);
+// Apply rate limiting only in production or if explicitly enabled
+if (process.env.NODE_ENV === 'production') {
+  app.use(generalLimiter);
+  app.use('/api/auth', authLimiter);
+  logger.info('Rate limiting enabled for production');
+} else {
+  logger.info('Rate limiting disabled for development');
+}
 // CSRF protection disabled for now - uncomment when implementing on frontend
 // app.use(csrfProtection);
 // app.use(csrfTokenHandler);
