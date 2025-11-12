@@ -24,7 +24,7 @@ jobs:
       - name: Deploy to Railway
         run: |
           echo "Deploying to Railway..."
-          railway up
+          railway up --service backend
         working-directory: ./backend
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
@@ -32,7 +32,7 @@ jobs:
       - name: Run migrations
         run: |
           echo "Running migrations..."
-          railway run npx prisma migrate deploy
+          railway run --service backend npx prisma migrate deploy
         working-directory: ./backend
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}

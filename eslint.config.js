@@ -27,16 +27,14 @@ export default defineConfig([
     ],
   },
   // Frontend application files
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
   {
     files: ['src/**/*.{ts,tsx}', '!src/**/*.{test,spec}.{ts,tsx}'],
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
     },
-    extends: [
-      js.configs.recommended,
-      ...tseslint.configs.recommended,
-    ],
     rules: {
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': [
@@ -61,7 +59,6 @@ export default defineConfig([
         ecmaFeatures: {
           jsx: true,
         },
-        project: './tsconfig.app.json', // Frontend tsconfig
       },
     },
     settings: {
@@ -77,10 +74,6 @@ export default defineConfig([
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
     },
-    extends: [
-      js.configs.recommended,
-      ...tseslint.configs.recommended,
-    ],
     rules: {
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': [
@@ -106,7 +99,6 @@ export default defineConfig([
         ecmaFeatures: {
           jsx: true,
         },
-        project: ['./tsconfig.test.json', './tsconfig.e2e.json'], // Use both test and e2e tsconfig
       },
     },
     settings: {
@@ -117,11 +109,7 @@ export default defineConfig([
   },
   // Backend files
   {
-    files: ['backend/**/*.{ts,tsx}'],
-    extends: [
-      js.configs.recommended,
-      ...tseslint.configs.recommended,
-    ],
+    files: ['backend/src/**/*.{ts,tsx}', '!backend/**/*.{test,spec}.{ts,tsx}'],
     rules: {
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
@@ -133,18 +121,12 @@ export default defineConfig([
         ...globals.node,
       },
       parser: tseslint.parser,
-      parserOptions: {
-        project: './backend/tsconfig.json', // Backend tsconfig
-      },
+      parserOptions: {},
     },
   },
   // API files
   {
     files: ['api/**/*.ts'],
-    extends: [
-      js.configs.recommended,
-      ...tseslint.configs.recommended,
-    ],
     rules: {
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
@@ -156,18 +138,12 @@ export default defineConfig([
         ...globals.node,
       },
       parser: tseslint.parser,
-      parserOptions: {
-        project: './api/tsconfig.json', // API tsconfig
-      },
+      parserOptions: {},
     },
   },
   // Root Node.js config files (vite.config.ts, vitest.config.ts, playwright.config.ts)
   {
     files: ['vite.config.ts', 'vitest.config.ts', 'playwright.config.ts'],
-    extends: [
-      js.configs.recommended,
-      ...tseslint.configs.recommended,
-    ],
     rules: {
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
@@ -179,22 +155,17 @@ export default defineConfig([
         ...globals.node,
       },
       parser: tseslint.parser,
-      parserOptions: {
-        project: './tsconfig.node.json', // Node-specific tsconfig
-      },
+      parserOptions: {},
     },
   },
   // Backend test files
   {
     files: [
-      'backend/**/*.{test,spec}.{ts,tsx}',
+      'backend/src/**/*.{test,spec}.{ts,tsx}',
       'backend/jest.config.ts',
       'backend/jest.setup.ts',
-      'backend/jest.setup.env.ts' // Add this line
-    ],
-    extends: [
-      js.configs.recommended,
-      ...tseslint.configs.recommended,
+      'backend/jest.setup.env.ts',
+      'backend/vitest.config.ts'
     ],
     rules: {
       '@typescript-eslint/no-explicit-any': 'off', // Allow 'any' in test files
@@ -209,9 +180,7 @@ export default defineConfig([
         ...globals.jest, // Add Jest globals for test files
       },
       parser: tseslint.parser,
-      parserOptions: {
-        project: './backend/tsconfig.test.json', // Use the dedicated backend test tsconfig
-      },
+      parserOptions: {},
     },
   },
 ])

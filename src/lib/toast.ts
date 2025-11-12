@@ -110,7 +110,8 @@ export const showToast = {
       // If no component provided, use a default message
       return toast.error('Invalid toast component', { ...defaultToastOptions, ...options });
     }
-    return toast.custom(component, { ...defaultToastOptions, ...options });
+    // Use type assertion to bypass the type check since toast.custom accepts ReactNode
+    return toast.custom(component as never, { ...defaultToastOptions, ...options });
   },
 };
 

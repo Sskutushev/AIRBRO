@@ -47,7 +47,7 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
       <div className="relative rounded-md shadow-sm">
         {startIcon && (
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-            {React.cloneElement(startIcon as React.ReactElement, {
+            {React.cloneElement(startIcon as React.ReactElement<{ className?: string }>, {
               className: 'h-5 w-5 text-gray-400 dark:text-gray-500',
             })}
           </div>
@@ -72,7 +72,7 @@ export const FormInput = <TFormValues extends Record<string, unknown>>({
         />
         <div className="absolute inset-y-0 right-0 flex items-center pr-3">
           {endIcon &&
-            React.cloneElement(endIcon as React.ReactElement, {
+            React.cloneElement(endIcon as React.ReactElement<{ className?: string }>, {
               className: 'h-5 w-5 text-gray-400 dark:text-gray-500',
             })}
           {showPasswordToggle && onPasswordToggle && (

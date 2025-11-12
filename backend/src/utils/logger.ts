@@ -53,13 +53,13 @@ const logger = winston.createLogger({
 
 // Helper methods
 export const logInfo = (message: string, meta?: unknown) => {
-  logger.info(message, redactSensitive(meta));
+  logger.info(message, redactSensitive(meta as Redactable));
 };
 
 export const logError = (message: string, error?: unknown, context?: unknown) => {
   logger.error(message, {
-    error: redactSensitive(error),
-    context: redactSensitive(context),
+    error: redactSensitive(error as Redactable),
+    context: redactSensitive(context as Redactable),
   });
 
   // Send Telegram notification for errors
@@ -68,11 +68,11 @@ export const logError = (message: string, error?: unknown, context?: unknown) =>
 };
 
 export const logWarn = (message: string, meta?: unknown) => {
-  logger.warn(message, redactSensitive(meta));
+  logger.warn(message, redactSensitive(meta as Redactable));
 };
 
 export const logDebug = (message: string, meta?: unknown) => {
-  logger.debug(message, redactSensitive(meta));
+  logger.debug(message, redactSensitive(meta as Redactable));
 };
 
 // Redact sensitive data

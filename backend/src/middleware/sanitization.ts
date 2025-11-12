@@ -13,12 +13,12 @@ export const sanitizeInput = (req: Request, res: Response, next: NextFunction) =
 
   // Sanitize query parameters
   if (req.query && typeof req.query === 'object') {
-    req.query = sanitizeObject(req.query);
+    req.query = sanitizeObject(req.query) as typeof req.query;
   }
 
   // Sanitize URL parameters
   if (req.params && typeof req.params === 'object') {
-    req.params = sanitizeObject(req.params);
+    req.params = sanitizeObject(req.params) as typeof req.params;
   }
 
   next();
