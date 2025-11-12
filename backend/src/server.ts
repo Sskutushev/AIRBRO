@@ -93,8 +93,8 @@ app.use('/api/*', (req, res) => {
 
 // Error handling middleware
 app.use((err: Error, req: express.Request, res: express.Response, _next: express.NextFunction) => {
-  // CSRF error handling
-  if (err.code === 'EBADCSRFTOKEN') {
+  // CSRF error handling - check if error has a 'code' property
+  if ('code' in err && err.code === 'EBADCSRFTOKEN') {
     logger.warn('CSRF token validation failed', { url: req.originalUrl, ip: req.ip });
     return res.status(403).json({ error: 'Invalid CSRF token' });
   }

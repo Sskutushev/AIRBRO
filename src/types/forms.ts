@@ -15,7 +15,7 @@ export interface FormFieldProps<TFormValues extends Record<string, unknown>> {
   /** The human-readable label for the form field. */
   label: string;
   /** The register function from `useForm` to register the input with React Hook Form. */
-  register: (name: keyof TFormValues, options?: Record<string, unknown>) => Record<string, unknown>;
+  register: (name: keyof TFormValues, options?: any) => any;
   /** The errors object from `useForm` to display validation messages. */
   errors?: {
     [K in keyof TFormValues]?: {
@@ -32,11 +32,29 @@ export interface FormFieldProps<TFormValues extends Record<string, unknown>> {
 }
 
 /**
- * Props specific to text-based input components (e.g., FormInput, FormTextarea).
+ * Props specific to text-based input components (e.g., FormInput).
  * @template TFormValues The type of the form values object.
  */
 export interface FormInputProps<TFormValues extends Record<string, unknown>>
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'name'>, FormFieldProps<TFormValues> {
+  /** Optional icon to display at the start of the input. */
+  startIcon?: ReactNode;
+  /** Optional icon to display at the end of the input. */
+  endIcon?: ReactNode;
+  /** If true, shows a toggle button for password visibility. */
+  showPasswordToggle?: boolean;
+  /** Current state of password visibility. */
+  isPasswordShown?: boolean;
+  /** Callback function to toggle password visibility. */
+  onPasswordToggle?: () => void;
+}
+
+/**
+ * Props specific to textarea components (e.g., FormTextarea).
+ * @template TFormValues The type of the form values object.
+ */
+export interface FormTextareaProps<TFormValues extends Record<string, unknown>>
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'name'>, FormFieldProps<TFormValues> {
   /** Optional icon to display at the start of the input. */
   startIcon?: ReactNode;
   /** Optional icon to display at the end of the input. */

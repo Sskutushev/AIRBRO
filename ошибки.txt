@@ -1,17 +1,112 @@
 
-CI / Lint & Format Check (push) Failing after 29s-Run npm run lint
+zoological-heart - AIRBRO - Deployment failed-npm run build
+39s
+npm warn config production Use `--omit=dev` instead.
+> airbro-business-landing@1.0.0 build
+> npm run optimize:images && tsc -b && vite build
+npm warn config production Use `--omit=dev` instead.
+> airbro-business-landing@1.0.0 optimize:images
+> node scripts/optimize-images.js
+Starting image optimization...
+Image optimization complete!
+Processed 23 images.
+Total original size: 6.99 MB
+Total optimized size: 4.58 MB
+Total size saved: 2.41 MB
+src/components/forms/FormInput.tsx(51,15): error TS2769: No overload matches this call.
+
+  The last overload gave the following error.
+    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
+src/components/forms/FormInput.tsx(77,17): error TS2769: No overload matches this call.
+
+  The last overload gave the following error.
+    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
+src/components/forms/FormTextarea.tsx(40,8): error TS2322: Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>'.
+
+  Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'TextareaHTMLAttributes<HTMLTextAreaElement>'.
+    Types of property 'onChange' are incompatible.
+      Type 'ChangeEventHandler<HTMLInputElement> | undefined' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement> | undefined'.
+        Type 'ChangeEventHandler<HTMLInputElement>' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement>'.
+          Type 'HTMLInputElement' is missing the following properties from type 'HTMLTextAreaElement': cols, rows, textLength, wrap
+src/lib/toast.ts(109,25): error TS2345: Argument of type 'ReactNode' is not assignable to parameter of type 'Message'.
+
+  Type 'undefined' is not assignable to type 'Message'.
+ERROR: failed to build: failed to solve: process "npm run build" did not complete successfully: exit code: 2
+
+
+
+Vercel – airbro-mrqs - Deployment has failed-14:10:22.471 Running build in Washington, D.C., USA (East) – iad1
+14:10:22.472 Build machine configuration: 2 cores, 8 GB
+14:10:22.604 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: fc13a88)
+14:10:23.534 Cloning completed: 930.000ms
+14:10:23.734 Restored build cache from previous deployment (HUCR19zrd32SdbMcVJxMw3VYPF3z)
+14:10:24.390 Running "vercel build"
+14:10:24.771 Vercel CLI 48.9.0
+14:10:25.499 Installing dependencies...
+14:10:27.510 
+14:10:27.511 > airbro-business-landing@1.0.0 prepare
+14:10:27.512 > husky install
+14:10:27.512 
+14:10:27.634 husky - install command is DEPRECATED
+14:10:27.650 
+14:10:27.650 up to date in 2s
+14:10:27.651 
+14:10:27.651 220 packages are looking for funding
+14:10:27.651   run `npm fund` for details
+14:10:27.686 Running "npm run build"
+14:10:27.794 
+14:10:27.797 > airbro-business-landing@1.0.0 build
+14:10:27.797 > npm run optimize:images && tsc -b && vite build
+14:10:27.797 
+14:10:27.905 
+14:10:27.906 > airbro-business-landing@1.0.0 optimize:images
+14:10:27.906 > node scripts/optimize-images.js
+14:10:27.907 
+14:10:28.017 Starting image optimization...
+14:11:17.774 
+14:11:17.775 Image optimization complete!
+14:11:17.775 Processed 23 images.
+14:11:17.776 Total original size: 6.99 MB
+14:11:17.776 Total optimized size: 4.58 MB
+14:11:17.776 Total size saved: 2.41 MB
+14:11:24.321 src/components/forms/FormInput.tsx(51,15): error TS2769: No overload matches this call.
+14:11:24.324   The last overload gave the following error.
+14:11:24.324     Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
+14:11:24.324 src/components/forms/FormInput.tsx(77,17): error TS2769: No overload matches this call.
+14:11:24.325   The last overload gave the following error.
+14:11:24.325     Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
+14:11:24.325 src/components/forms/FormTextarea.tsx(40,8): error TS2322: Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>'.
+14:11:24.325   Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'TextareaHTMLAttributes<HTMLTextAreaElement>'.
+14:11:24.326     Types of property 'onChange' are incompatible.
+14:11:24.327       Type 'ChangeEventHandler<HTMLInputElement> | undefined' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement> | undefined'.
+14:11:24.327         Type 'ChangeEventHandler<HTMLInputElement>' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement>'.
+14:11:24.327           Type 'HTMLInputElement' is missing the following properties from type 'HTMLTextAreaElement': cols, rows, textLength, wrap
+14:11:24.328 src/lib/toast.ts(109,25): error TS2345: Argument of type 'ReactNode' is not assignable to parameter of type 'Message'.
+14:11:24.328   Type 'undefined' is not assignable to type 'Message'.
+14:11:25.230 Error: Command "npm run build" exited with 2
+
+
+
+CI / TypeScript Type Check (push) Failing after 30s- Run npx tsc --noEmit
+Error: src/middleware/sanitization.ts(16,5): error TS2322: Type 'Sanitizable' is not assignable to type 'ParsedQs'.
+  Type 'undefined' is not assignable to type 'ParsedQs'.
+Error: src/middleware/sanitization.ts(21,5): error TS2322: Type 'Sanitizable' is not assignable to type 'ParamsDictionary'.
+  Type 'undefined' is not assignable to type 'ParamsDictionary'.
+Error: src/server.ts(97,11): error TS2339: Property 'code' does not exist on type 'Error'.
+Error: src/utils/logger.ts(56,40): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'Redactable'.
+Error: src/utils/logger.ts(61,28): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'Redactable'.
+Error: src/utils/logger.ts(62,30): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'Redactable'.
+Error: src/utils/logger.ts(71,40): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'Redactable'.
+Error: src/utils/logger.ts(75,41): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'Redactable'.
+Error: Process completed with exit code 2.
+
+
+
+CI / Lint & Format Check (push) Failing after 35s- Run npm run lint
 
 > airbro-business-landing@1.0.0 lint
 > eslint . --ext .ts,.tsx
 
-
-/home/runner/work/AIRBRO/AIRBRO/backend/jest.config.ts
-  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
-The file was not found in any of the provided project(s): backend/jest.config.ts
-
-/home/runner/work/AIRBRO/AIRBRO/backend/jest.setup.ts
-  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
-The file was not found in any of the provided project(s): backend/jest.setup.ts
 
 /home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/authController.test.ts
   0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
@@ -29,47 +124,13 @@ The file was not found in any of the provided project(s): backend/src/controller
   0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
 The file was not found in any of the provided project(s): backend/src/controllers/productController.test.ts
 
-/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/productController.ts
-Warning:   8:24  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
 /home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/userController.test.ts
   0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
 The file was not found in any of the provided project(s): backend/src/controllers/userController.test.ts
 
-/home/runner/work/AIRBRO/AIRBRO/backend/src/middleware/sanitization.ts
-Warning:   32:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   32:36  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   49:22  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/middleware/validation.ts
-Warning:   14:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   15:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/server.ts
-Warning:   95:15  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/utils/logger.ts
-Warning:    55:49  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    59:51  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    59:66  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    70:49  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    74:50  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    79:31  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    79:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    99:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   101:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   103:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/utils/securityLogger.ts
-Warning:   11:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   35:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
 /home/runner/work/AIRBRO/AIRBRO/src/components/__tests__/ErrorBoundary.test.tsx
 Warning:   31:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 Warning:   32:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/ModulePopup.tsx
-Warning:   46:45  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /home/runner/work/AIRBRO/AIRBRO/src/components/common/OptimizedImage.tsx
   85:7  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
@@ -128,20 +189,6 @@ Calling setState synchronously within an effect body causes cascading renders th
   67 |  react-hooks/set-state-in-effect
 Warning:   116:6  warning  React Hook useEffect has missing dependencies: 'featureOptions' and 'voteResults.length'. Either include them or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 react-hooks/exhaustive-deps
 
-/home/runner/work/AIRBRO/AIRBRO/src/components/forms/FormCheckbox.tsx
-Warning:   18:65  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/forms/FormInput.tsx
-Warning:   19:62  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   52:18  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   78:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/forms/FormSelect.tsx
-Warning:   18:63  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/forms/FormTextarea.tsx
-Warning:   18:65  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
 /home/runner/work/AIRBRO/AIRBRO/src/components/sections/PricingSection.tsx
 Warning:   13:66  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
@@ -171,7 +218,6 @@ Warning:   110:14  warning  Fast refresh only works when a file only exports com
 /home/runner/work/AIRBRO/AIRBRO/src/context/ErrorContext.tsx
 Warning:   54:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
 Warning:   63:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
-Warning:   63:45  warning  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
 
 /home/runner/work/AIRBRO/AIRBRO/src/context/SubscriptionContext.tsx
 Warning:   144:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
@@ -196,16 +242,6 @@ Calling setState synchronously within an effect body causes cascading renders th
   29 |         // Only update if value actually changed
   30 |         if (prevValue !== value) {
   31 |           return value;  react-hooks/set-state-in-effect
-
-/home/runner/work/AIRBRO/AIRBRO/src/lib/analytics/index.ts
-Warning:    26:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    52:52  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    67:66  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    99:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   100:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/lib/toast.ts
-Warning:   109:38  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /home/runner/work/AIRBRO/AIRBRO/src/lib/utils/__tests__/storage.test.ts
 Warning:   120:43  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
@@ -262,28 +298,118 @@ Warning:   226:39  warning  Unexpected any. Specify a different type  @typescrip
 /home/runner/work/AIRBRO/AIRBRO/src/pages/__tests__/SolutionsPage.test.tsx
 Warning:   82:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-/home/runner/work/AIRBRO/AIRBRO/src/services/api/__tests__/client.test.ts
-Warning:    12:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   138:28  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/services/api/mock.ts
-Warning:   42:24  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
 /home/runner/work/AIRBRO/AIRBRO/src/test/setup.ts
-Warning:   77:12  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+Warning:   77:75  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
 /home/runner/work/AIRBRO/AIRBRO/src/test/utils.tsx
-Warning:   33:55  warning  Unexpected any. Specify a different type                        @typescript-eslint/no-explicit-any
-Warning:   66:1   warning  This rule can't verify that `export *` only exports components  react-refresh/only-export-components
+Warning:   66:1  warning  This rule can't verify that `export *` only exports components  react-refresh/only-export-components
 
-/home/runner/work/AIRBRO/AIRBRO/src/types/forms.ts
-Warning:   12:68  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   18:49  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   18:57  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   38:68  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   68:69  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   82:71  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-✖ 102 problems (7 errors, 95 warnings)
+✖ 57 problems (5 errors, 52 warnings)
 
 Error: Process completed with exit code 1.
+
+
+
+CI / E2E Tests (push) Failing after 2m- Run npm run build
+
+> airbro-business-landing@1.0.0 build
+> npm run optimize:images && tsc -b && vite build
+
+
+> airbro-business-landing@1.0.0 optimize:images
+> node scripts/optimize-images.js
+
+Starting image optimization...
+
+Image optimization complete!
+Processed 23 images.
+Total original size: 6.99 MB
+Total optimized size: 4.58 MB
+Total size saved: 2.41 MB
+Error: src/components/forms/FormInput.tsx(51,15): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
+Error: src/components/forms/FormInput.tsx(77,17): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
+Error: src/components/forms/FormTextarea.tsx(40,8): error TS2322: Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>'.
+  Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'TextareaHTMLAttributes<HTMLTextAreaElement>'.
+    Types of property 'onChange' are incompatible.
+      Type 'ChangeEventHandler<HTMLInputElement> | undefined' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement> | undefined'.
+        Type 'ChangeEventHandler<HTMLInputElement>' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement>'.
+          Type 'HTMLInputElement' is missing the following properties from type 'HTMLTextAreaElement': cols, rows, textLength, wrap
+Error: src/lib/toast.ts(109,25): error TS2345: Argument of type 'ReactNode' is not assignable to parameter of type 'Message'.
+  Type 'undefined' is not assignable to type 'Message'.
+Error: Process completed with exit code 2.
+
+
+Deploy Frontend / Deploy to Vercel (push) Failing after 1m- Run npm run build
+
+> airbro-business-landing@1.0.0 build
+> npm run optimize:images && tsc -b && vite build
+
+
+> airbro-business-landing@1.0.0 optimize:images
+> node scripts/optimize-images.js
+
+Starting image optimization...
+
+Image optimization complete!
+Processed 23 images.
+Total original size: 6.99 MB
+Total optimized size: 4.58 MB
+Total size saved: 2.41 MB
+Error: src/components/forms/FormInput.tsx(51,15): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
+Error: src/components/forms/FormInput.tsx(77,17): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
+Error: src/components/forms/FormTextarea.tsx(40,8): error TS2322: Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>'.
+  Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'TextareaHTMLAttributes<HTMLTextAreaElement>'.
+    Types of property 'onChange' are incompatible.
+      Type 'ChangeEventHandler<HTMLInputElement> | undefined' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement> | undefined'.
+        Type 'ChangeEventHandler<HTMLInputElement>' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement>'.
+          Type 'HTMLInputElement' is missing the following properties from type 'HTMLTextAreaElement': cols, rows, textLength, wrap
+Error: src/lib/toast.ts(109,25): error TS2345: Argument of type 'ReactNode' is not assignable to parameter of type 'Message'.
+  Type 'undefined' is not assignable to type 'Message'.
+Error: Process completed with exit code 2.
+
+
+Deploy Backend / Deploy to Railway (push) Failing after 11s- Run echo "Deploying to Railway..."
+Deploying to Railway...
+Multiple services found. Please specify a service via the `--service` flag.
+Error: Process completed with exit code 1.
+
+
+CI / Build Check (push) Failing after 1m- Run npm run build
+
+> airbro-business-landing@1.0.0 build
+> npm run optimize:images && tsc -b && vite build
+
+
+> airbro-business-landing@1.0.0 optimize:images
+> node scripts/optimize-images.js
+
+Starting image optimization...
+
+Image optimization complete!
+Processed 23 images.
+Total original size: 6.99 MB
+Total optimized size: 4.58 MB
+Total size saved: 2.41 MB
+Error: src/components/forms/FormInput.tsx(51,15): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
+Error: src/components/forms/FormInput.tsx(77,17): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
+Error: src/components/forms/FormTextarea.tsx(40,8): error TS2322: Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>'.
+  Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'TextareaHTMLAttributes<HTMLTextAreaElement>'.
+    Types of property 'onChange' are incompatible.
+      Type 'ChangeEventHandler<HTMLInputElement> | undefined' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement> | undefined'.
+        Type 'ChangeEventHandler<HTMLInputElement>' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement>'.
+          Type 'HTMLInputElement' is missing the following properties from type 'HTMLTextAreaElement': cols, rows, textLength, wrap
+Error: src/lib/toast.ts(109,25): error TS2345: Argument of type 'ReactNode' is not assignable to parameter of type 'Message'.
+  Type 'undefined' is not assignable to type 'Message'.
+Error: Process completed with exit code 2.

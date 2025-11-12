@@ -93,16 +93,16 @@ function redactSensitive(obj: Redactable): Redactable {
     'cardNumber',
   ];
 
-  for (const [key, value] of Object.entries(obj)) {
+  for (const [key, value] of Object.entries(obj as Record<string, Redactable>)) {
     const keyLower = key.toLowerCase();
     const isSensitive = sensitiveKeys.some((s) => keyLower.includes(s));
 
     if (isSensitive) {
-      (redacted as {[key: string]: Redactable})[key] = '[REDACTED]';
+      (redacted as Record<string, Redactable>)[key] = '[REDACTED]';
     } else if (typeof value === 'object' && value !== null) {
-      (redacted as {[key: string]: Redactable})[key] = redactSensitive(value);
+      (redacted as Record<string, Redactable>)[key] = redactSensitive(value as Redactable);
     } else {
-      (redacted as {[key: string]: Redactable})[key] = value;
+      (redacted as Record<string, Redactable>)[key] = value as Redactable;
     }
   }
 

@@ -4,7 +4,7 @@
  */
 
 import { type JSX } from 'react';
-import type { FormInputProps } from '../../types/forms'; // Reusing FormInputProps for common fields
+import type { FormTextareaProps } from '../../types/forms';
 import { cn } from '../../lib/utils/cn'; // Assuming cn utility for class name concatenation
 
 /**
@@ -25,7 +25,7 @@ export const FormTextarea = <TFormValues extends Record<string, unknown>>({
   helperText,
   className,
   ...rest
-}: FormInputProps<TFormValues>): JSX.Element => {
+}: FormTextareaProps<TFormValues>): JSX.Element => {
   const error = errors?.[name];
   const textareaId = `textarea-${String(name)}`;
 

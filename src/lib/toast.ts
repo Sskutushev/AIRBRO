@@ -106,6 +106,10 @@ export const showToast = {
    * @param {ToastOptions} [options] - Optional toast options to override defaults.
    */
   custom(component: ReactNode, options?: ToastOptions): string {
+    if (component === undefined || component === null) {
+      // If no component provided, use a default message
+      return toast.error('Invalid toast component', { ...defaultToastOptions, ...options });
+    }
     return toast.custom(component, { ...defaultToastOptions, ...options });
   },
 };
