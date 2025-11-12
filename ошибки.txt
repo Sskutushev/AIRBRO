@@ -1,94 +1,467 @@
-на railway логи консоли:
-Making request to: http://localhost:3000/auth/login with method: POST
-/#/auth:1 Access to fetch at 'http://localhost:3000/api/auth/login' from origin 'https://airbro-production.up.railway.app' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-localhost:3000/api/auth/login:1  Failed to load resource: net::ERR_FAILED
-index-ClWVNtAZ.js:190 Network error: TypeError: Failed to fetch
-    at HC.request (index-ClWVNtAZ.js:190:4751)
-    at HC.login (index-ClWVNtAZ.js:190:5048)
-    at Object.mutationFn (AuthPage-C5IoC4jF.js:20:25547)
-    at Object.fn (index-ClWVNtAZ.js:14:35975)
-    at _ (index-ClWVNtAZ.js:14:26853)
-    at Object.start (index-ClWVNtAZ.js:14:27303)
-    at Yw.execute (index-ClWVNtAZ.js:14:36606)
-    at async O (AuthPage-C5IoC4jF.js:20:54313)
-    at async AuthPage-C5IoC4jF.js:1:21507
-request @ index-ClWVNtAZ.js:190
-AuthPage-C5IoC4jF.js:20 Login error: APIError: Network error. Please check your internet connection.
-    at HC.request (index-ClWVNtAZ.js:190:4921)
-onError @ AuthPage-C5IoC4jF.js:20
-index-ClWVNtAZ.js:190 Making request to: http://localhost:3000/auth/login with method: POST
-/#/auth:1 Access to fetch at 'http://localhost:3000/api/auth/login' from origin 'https://airbro-production.up.railway.app' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-localhost:3000/api/auth/login:1  Failed to load resource: net::ERR_FAILED
-index-ClWVNtAZ.js:190 Network error: TypeError: Failed to fetch
-    at HC.request (index-ClWVNtAZ.js:190:4751)
-    at HC.login (index-ClWVNtAZ.js:190:5048)
-    at Object.mutationFn (AuthPage-C5IoC4jF.js:20:25547)
-    at Object.fn (index-ClWVNtAZ.js:14:35975)
-    at _ (index-ClWVNtAZ.js:14:26853)
-    at Object.start (index-ClWVNtAZ.js:14:27303)
-    at Yw.execute (index-ClWVNtAZ.js:14:36606)
-    at async O (AuthPage-C5IoC4jF.js:20:54313)
-    at async AuthPage-C5IoC4jF.js:1:21507
-request @ index-ClWVNtAZ.js:190
-AuthPage-C5IoC4jF.js:20 Login error: APIError: Network error. Please check your internet connection.
-    at HC.request (index-ClWVNtAZ.js:190:4921)
+=============================================================================
+                     ИСПРАВЛЕНИЯ ВЫПОЛНЕНЫ 2025-11-12
+=============================================================================
 
-при регистрации тамже:
-Making request to: http://localhost:3000/auth/register with method: POST
-/#/auth:1 Access to fetch at 'http://localhost:3000/api/auth/register' from origin 'https://airbro-production.up.railway.app' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-index-ClWVNtAZ.js:190  POST http://localhost:3000/api/auth/register net::ERR_FAILED
-request @ index-ClWVNtAZ.js:190
-register @ index-ClWVNtAZ.js:190
-mutationFn @ AuthPage-C5IoC4jF.js:20
-fn @ index-ClWVNtAZ.js:14
-_ @ index-ClWVNtAZ.js:14
-start @ index-ClWVNtAZ.js:14
-execute @ index-ClWVNtAZ.js:14
-await in execute
-mutate @ AuthPage-C5IoC4jF.js:1
-de @ AuthPage-C5IoC4jF.js:20
-(anonymous) @ AuthPage-C5IoC4jF.js:1
-await in (anonymous)
-iy @ index-ClWVNtAZ.js:9
-(anonymous) @ index-ClWVNtAZ.js:9
-um @ index-ClWVNtAZ.js:9
-Yc @ index-ClWVNtAZ.js:9
-of @ index-ClWVNtAZ.js:10
-y_ @ index-ClWVNtAZ.js:10
-index-ClWVNtAZ.js:190 Network error: TypeError: Failed to fetch
-    at HC.request (index-ClWVNtAZ.js:190:4751)
-    at HC.register (index-ClWVNtAZ.js:190:5190)
-    at Object.mutationFn (AuthPage-C5IoC4jF.js:20:25841)
-    at Object.fn (index-ClWVNtAZ.js:14:35975)
-    at _ (index-ClWVNtAZ.js:14:26853)
-    at Object.start (index-ClWVNtAZ.js:14:27303)
-    at Yw.execute (index-ClWVNtAZ.js:14:36606)
-    at async de (AuthPage-C5IoC4jF.js:20:54490)
-    at async AuthPage-C5IoC4jF.js:1:21507
-request @ index-ClWVNtAZ.js:190
-await in request
-register @ index-ClWVNtAZ.js:190
-mutationFn @ AuthPage-C5IoC4jF.js:20
-fn @ index-ClWVNtAZ.js:14
-_ @ index-ClWVNtAZ.js:14
-start @ index-ClWVNtAZ.js:14
-execute @ index-ClWVNtAZ.js:14
-await in execute
-mutate @ AuthPage-C5IoC4jF.js:1
-de @ AuthPage-C5IoC4jF.js:20
-(anonymous) @ AuthPage-C5IoC4jF.js:1
-await in (anonymous)
-iy @ index-ClWVNtAZ.js:9
-(anonymous) @ index-ClWVNtAZ.js:9
-um @ index-ClWVNtAZ.js:9
-Yc @ index-ClWVNtAZ.js:9
-of @ index-ClWVNtAZ.js:10
-y_ @ index-ClWVNtAZ.js:10
-AuthPage-C5IoC4jF.js:20 Registration error: APIError: Network error. Please check your internet connection.
-    at HC.request (index-ClWVNtAZ.js:190:4921)
+ПРОБЛЕМЫ, КОТОРЫЕ БЫЛИ ИСПРАВЛЕНЫ:
 
-версель авторизация логи консоли:
-Making request to: https://airbro-production.up.railway.app/auth/login with method: POST
+1. ❌ ДУБЛИРОВАНИЕ /api В URL (localhost, Vercel, Railway)
+   Причина: client.ts добавлял /api к baseURL, который уже содержал /api
+   URL был: http://localhost:3001/api/api/auth/login (404 ошибка)
+   Исправлено: убрано дублирование, теперь: http://localhost:3001/api/auth/login
+   
+2. ❌ ОТСУТСТВИЕ VITE_API_BASE_URL В PRODUCTION
+   Причина: .env.production не содержал VITE_API_BASE_URL
+   Исправлено: добавлена переменная VITE_API_BASE_URL="https://airbro-production.up.railway.app/api"
+   
+3. ❌ CORS ОШИБКИ НА VERCEL
+   Причина: лишние origins с /api в конце, сложная логика проверки
+   Исправлено: упрощена CORS конфигурация, убраны origins с /api
+
+ФАЙЛЫ, КОТОРЫЕ БЫЛИ ИЗМЕНЕНЫ:
+
+✅ src/services/api/client.ts
+   - Убрано дублирование /api в fetch URL (строка 280)
+
+✅ .env.production
+   - Добавлено: VITE_API_BASE_URL="https://airbro-production.up.railway.app/api"
+   - Добавлено: VITE_TELEGRAM_BOT_USERNAME="airbro_bot"
+
+✅ backend/src/server.ts
+   - Упрощена логика CORS проверки
+   - Убраны origins с /api в конце
+   - Убран backend Railway origin (не нужен)
+
+ЧТО НУЖНО СДЕЛАТЬ ДЛЯ ПРИМЕНЕНИЯ ИСПРАВЛЕНИЙ:
+
+1. Перезапустить frontend разработку: npm run dev
+2. Перезапустить backend: cd backend && npm run dev
+3. Обновить environment variables на Vercel:
+   - VITE_API_BASE_URL=https://airbro-production.up.railway.app/api
+   - VITE_TELEGRAM_BOT_USERNAME=AI_Spetsnaz_bot
+4. Telegram бот настроен и активирован:
+   - Бот: @AI_Spetsnaz_bot
+   - Токен: 7689714723:AAGnAFlL_skB5_HSaH-TXshS38fnGg6QSW0
+   - Канал: -1003293972627
+5. Передеплоить на Vercel и Railway
+
+ОЖИДАЕМЫЙ РЕЗУЛЬТАТ:
+✅ Авторизация работает на localhost, Vercel и Railway
+✅ Регистрация работает на всех платформах  
+✅ Форма обратной связи работает на всех платформах
+✅ Нет CORS ошибок
+
+=============================================================================
+                        ОРИГИНАЛЬНЫЕ ЛОГИ ОШИБОК
+=============================================================================
+
+локалхост:
+Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+client.ts:142 APIClient initialized with baseURL: http://localhost:3001/api
+sentry.ts:13 Sentry disabled in development mode
+index.ts:8 GA Measurement ID not configured
+init @ index.ts:8
+(anonymous) @ main.tsx:12
+index.ts:8 GA Measurement ID not configured
+init @ index.ts:8
+(anonymous) @ App.tsx:66
+react_stack_bottom_frame @ react-dom_client.js?v=a6f70585:18567
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+commitHookEffectListMount @ react-dom_client.js?v=a6f70585:9411
+commitHookPassiveMountEffects @ react-dom_client.js?v=a6f70585:9465
+reconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11273
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11240
+reconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11317
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11240
+reconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11265
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11240
+reconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11265
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11240
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11173
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11141
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11033
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11033
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11033
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11033
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11033
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11033
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11055
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11033
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11033
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11055
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11033
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11066
+flushPassiveEffects @ react-dom_client.js?v=a6f70585:13150
+flushPendingEffects @ react-dom_client.js?v=a6f70585:13088
+performSyncWorkOnRoot @ react-dom_client.js?v=a6f70585:13514
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=a6f70585:13414
+flushSpawnedWork @ react-dom_client.js?v=a6f70585:13067
+commitRoot @ react-dom_client.js?v=a6f70585:12804
+commitRootWhenReady @ react-dom_client.js?v=a6f70585:12016
+<AnalyticsTracker>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=a6f70585:247
+App @ App.tsx:133
+react_stack_bottom_frame @ react-dom_client.js?v=a6f70585:18509
+renderWithHooksAgain @ react-dom_client.js?v=a6f70585:5729
+renderWithHooks @ react-dom_client.js?v=a6f70585:5665
+updateFunctionComponent @ react-dom_client.js?v=a6f70585:7475
+beginWork @ react-dom_client.js?v=a6f70585:8525
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+performUnitOfWork @ react-dom_client.js?v=a6f70585:12561
+workLoopSync @ react-dom_client.js?v=a6f70585:12424
+renderRootSync @ react-dom_client.js?v=a6f70585:12408
+performWorkOnRoot @ react-dom_client.js?v=a6f70585:11766
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=a6f70585:13505
+performWorkUntilDeadline @ react-dom_client.js?v=a6f70585:36
+<App>
+exports.createElement @ chunk-YX2XZWS3.js?v=a6f70585:793
+Wrapped @ @sentry_react.js?v=a6f70585:27930
+react_stack_bottom_frame @ react-dom_client.js?v=a6f70585:18509
+renderWithHooksAgain @ react-dom_client.js?v=a6f70585:5729
+renderWithHooks @ react-dom_client.js?v=a6f70585:5665
+updateFunctionComponent @ react-dom_client.js?v=a6f70585:7475
+beginWork @ react-dom_client.js?v=a6f70585:8525
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+performUnitOfWork @ react-dom_client.js?v=a6f70585:12561
+workLoopSync @ react-dom_client.js?v=a6f70585:12424
+renderRootSync @ react-dom_client.js?v=a6f70585:12408
+performWorkOnRoot @ react-dom_client.js?v=a6f70585:11766
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=a6f70585:13505
+performWorkUntilDeadline @ react-dom_client.js?v=a6f70585:36
+<profiler(App)>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=a6f70585:247
+(anonymous) @ main.tsx:33
+index.ts:8 GA Measurement ID not configured
+init @ index.ts:8
+(anonymous) @ App.tsx:66
+react_stack_bottom_frame @ react-dom_client.js?v=a6f70585:18567
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+commitHookEffectListMount @ react-dom_client.js?v=a6f70585:9411
+commitHookPassiveMountEffects @ react-dom_client.js?v=a6f70585:9465
+reconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11273
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11240
+reconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11317
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11240
+reconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11265
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11240
+reconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11265
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11240
+reconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11292
+doubleInvokeEffectsOnFiber @ react-dom_client.js?v=a6f70585:13339
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:999
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13321
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+commitDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13347
+flushPassiveEffects @ react-dom_client.js?v=a6f70585:13157
+flushPendingEffects @ react-dom_client.js?v=a6f70585:13088
+performSyncWorkOnRoot @ react-dom_client.js?v=a6f70585:13514
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=a6f70585:13414
+flushSpawnedWork @ react-dom_client.js?v=a6f70585:13067
+commitRoot @ react-dom_client.js?v=a6f70585:12804
+commitRootWhenReady @ react-dom_client.js?v=a6f70585:12016
+<AnalyticsTracker>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=a6f70585:247
+App @ App.tsx:133
+react_stack_bottom_frame @ react-dom_client.js?v=a6f70585:18509
+renderWithHooksAgain @ react-dom_client.js?v=a6f70585:5729
+renderWithHooks @ react-dom_client.js?v=a6f70585:5665
+updateFunctionComponent @ react-dom_client.js?v=a6f70585:7475
+beginWork @ react-dom_client.js?v=a6f70585:8525
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+performUnitOfWork @ react-dom_client.js?v=a6f70585:12561
+workLoopSync @ react-dom_client.js?v=a6f70585:12424
+renderRootSync @ react-dom_client.js?v=a6f70585:12408
+performWorkOnRoot @ react-dom_client.js?v=a6f70585:11766
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=a6f70585:13505
+performWorkUntilDeadline @ react-dom_client.js?v=a6f70585:36
+<App>
+exports.createElement @ chunk-YX2XZWS3.js?v=a6f70585:793
+Wrapped @ @sentry_react.js?v=a6f70585:27930
+react_stack_bottom_frame @ react-dom_client.js?v=a6f70585:18509
+renderWithHooksAgain @ react-dom_client.js?v=a6f70585:5729
+renderWithHooks @ react-dom_client.js?v=a6f70585:5665
+updateFunctionComponent @ react-dom_client.js?v=a6f70585:7475
+beginWork @ react-dom_client.js?v=a6f70585:8525
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+performUnitOfWork @ react-dom_client.js?v=a6f70585:12561
+workLoopSync @ react-dom_client.js?v=a6f70585:12424
+renderRootSync @ react-dom_client.js?v=a6f70585:12408
+performWorkOnRoot @ react-dom_client.js?v=a6f70585:11766
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=a6f70585:13505
+performWorkUntilDeadline @ react-dom_client.js?v=a6f70585:36
+<profiler(App)>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=a6f70585:247
+(anonymous) @ main.tsx:33
+client.ts:240 Making request to: http://localhost:3001/api/auth/login with method: POST
+client.ts:280  POST http://localhost:3001/api/api/auth/login 404 (Not Found)
+request @ client.ts:280
+login @ client.ts:314
+mutationFn @ useAuth.ts:22
+fn @ chunk-QZMQAYIQ.js?v=a6f70585:1970
+run @ chunk-QZMQAYIQ.js?v=a6f70585:776
+start @ chunk-QZMQAYIQ.js?v=a6f70585:818
+execute @ chunk-QZMQAYIQ.js?v=a6f70585:2009
+await in execute
+mutate @ chunk-QZMQAYIQ.js?v=a6f70585:2332
+onLoginSubmit @ AuthPage.tsx:74
+(anonymous) @ chunk-IY3BHXED.js?v=a6f70585:1559
+await in (anonymous)
+executeDispatch @ react-dom_client.js?v=a6f70585:13622
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+processDispatchQueue @ react-dom_client.js?v=a6f70585:13658
+(anonymous) @ react-dom_client.js?v=a6f70585:14071
+batchedUpdates$1 @ react-dom_client.js?v=a6f70585:2626
+dispatchEventForPluginEventSystem @ react-dom_client.js?v=a6f70585:13763
+dispatchEvent @ react-dom_client.js?v=a6f70585:16784
+dispatchDiscreteEvent @ react-dom_client.js?v=a6f70585:16765
+<form>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=a6f70585:247
+AuthPage @ AuthPage.tsx:179
+react_stack_bottom_frame @ react-dom_client.js?v=a6f70585:18509
+renderWithHooksAgain @ react-dom_client.js?v=a6f70585:5729
+renderWithHooks @ react-dom_client.js?v=a6f70585:5665
+updateFunctionComponent @ react-dom_client.js?v=a6f70585:7475
+beginWork @ react-dom_client.js?v=a6f70585:8484
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+performUnitOfWork @ react-dom_client.js?v=a6f70585:12561
+workLoopConcurrentByScheduler @ react-dom_client.js?v=a6f70585:12557
+renderRootConcurrent @ react-dom_client.js?v=a6f70585:12539
+performWorkOnRoot @ react-dom_client.js?v=a6f70585:11766
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=a6f70585:13505
+performWorkUntilDeadline @ react-dom_client.js?v=a6f70585:36
+<...>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=a6f70585:247
+App @ App.tsx:134
+react_stack_bottom_frame @ react-dom_client.js?v=a6f70585:18509
+renderWithHooksAgain @ react-dom_client.js?v=a6f70585:5729
+renderWithHooks @ react-dom_client.js?v=a6f70585:5665
+updateFunctionComponent @ react-dom_client.js?v=a6f70585:7475
+beginWork @ react-dom_client.js?v=a6f70585:8525
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+performUnitOfWork @ react-dom_client.js?v=a6f70585:12561
+workLoopSync @ react-dom_client.js?v=a6f70585:12424
+renderRootSync @ react-dom_client.js?v=a6f70585:12408
+performWorkOnRoot @ react-dom_client.js?v=a6f70585:11766
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=a6f70585:13505
+performWorkUntilDeadline @ react-dom_client.js?v=a6f70585:36
+<App>
+exports.createElement @ chunk-YX2XZWS3.js?v=a6f70585:793
+Wrapped @ @sentry_react.js?v=a6f70585:27930
+react_stack_bottom_frame @ react-dom_client.js?v=a6f70585:18509
+renderWithHooksAgain @ react-dom_client.js?v=a6f70585:5729
+renderWithHooks @ react-dom_client.js?v=a6f70585:5665
+updateFunctionComponent @ react-dom_client.js?v=a6f70585:7475
+beginWork @ react-dom_client.js?v=a6f70585:8525
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+performUnitOfWork @ react-dom_client.js?v=a6f70585:12561
+workLoopSync @ react-dom_client.js?v=a6f70585:12424
+renderRootSync @ react-dom_client.js?v=a6f70585:12408
+performWorkOnRoot @ react-dom_client.js?v=a6f70585:11766
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=a6f70585:13505
+performWorkUntilDeadline @ react-dom_client.js?v=a6f70585:36
+<profiler(App)>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=a6f70585:247
+(anonymous) @ main.tsx:33
+useAuth.ts:28 Login error: APIError: Route not found
+    at APIClient.handleResponse (client.ts:227:11)
+
+регистрация:
+
+onError @ useAuth.ts:28
+execute @ chunk-QZMQAYIQ.js?v=a6f70585:2049
+await in execute
+mutate @ chunk-QZMQAYIQ.js?v=a6f70585:2332
+onLoginSubmit @ AuthPage.tsx:74
+(anonymous) @ chunk-IY3BHXED.js?v=a6f70585:1559
+await in (anonymous)
+executeDispatch @ react-dom_client.js?v=a6f70585:13622
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+processDispatchQueue @ react-dom_client.js?v=a6f70585:13658
+(anonymous) @ react-dom_client.js?v=a6f70585:14071
+batchedUpdates$1 @ react-dom_client.js?v=a6f70585:2626
+dispatchEventForPluginEventSystem @ react-dom_client.js?v=a6f70585:13763
+dispatchEvent @ react-dom_client.js?v=a6f70585:16784
+dispatchDiscreteEvent @ react-dom_client.js?v=a6f70585:16765
+<form>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=a6f70585:247
+AuthPage @ AuthPage.tsx:179
+react_stack_bottom_frame @ react-dom_client.js?v=a6f70585:18509
+renderWithHooksAgain @ react-dom_client.js?v=a6f70585:5729
+renderWithHooks @ react-dom_client.js?v=a6f70585:5665
+updateFunctionComponent @ react-dom_client.js?v=a6f70585:7475
+beginWork @ react-dom_client.js?v=a6f70585:8484
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+performUnitOfWork @ react-dom_client.js?v=a6f70585:12561
+workLoopConcurrentByScheduler @ react-dom_client.js?v=a6f70585:12557
+renderRootConcurrent @ react-dom_client.js?v=a6f70585:12539
+performWorkOnRoot @ react-dom_client.js?v=a6f70585:11766
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=a6f70585:13505
+performWorkUntilDeadline @ react-dom_client.js?v=a6f70585:36
+<...>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=a6f70585:247
+App @ App.tsx:134
+react_stack_bottom_frame @ react-dom_client.js?v=a6f70585:18509
+renderWithHooksAgain @ react-dom_client.js?v=a6f70585:5729
+renderWithHooks @ react-dom_client.js?v=a6f70585:5665
+updateFunctionComponent @ react-dom_client.js?v=a6f70585:7475
+beginWork @ react-dom_client.js?v=a6f70585:8525
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+performUnitOfWork @ react-dom_client.js?v=a6f70585:12561
+workLoopSync @ react-dom_client.js?v=a6f70585:12424
+renderRootSync @ react-dom_client.js?v=a6f70585:12408
+performWorkOnRoot @ react-dom_client.js?v=a6f70585:11766
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=a6f70585:13505
+performWorkUntilDeadline @ react-dom_client.js?v=a6f70585:36
+<App>
+exports.createElement @ chunk-YX2XZWS3.js?v=a6f70585:793
+Wrapped @ @sentry_react.js?v=a6f70585:27930
+react_stack_bottom_frame @ react-dom_client.js?v=a6f70585:18509
+renderWithHooksAgain @ react-dom_client.js?v=a6f70585:5729
+renderWithHooks @ react-dom_client.js?v=a6f70585:5665
+updateFunctionComponent @ react-dom_client.js?v=a6f70585:7475
+beginWork @ react-dom_client.js?v=a6f70585:8525
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+performUnitOfWork @ react-dom_client.js?v=a6f70585:12561
+workLoopSync @ react-dom_client.js?v=a6f70585:12424
+renderRootSync @ react-dom_client.js?v=a6f70585:12408
+performWorkOnRoot @ react-dom_client.js?v=a6f70585:11766
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=a6f70585:13505
+performWorkUntilDeadline @ react-dom_client.js?v=a6f70585:36
+<profiler(App)>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=a6f70585:247
+(anonymous) @ main.tsx:33
+client.ts:240 Making request to: http://localhost:3001/api/auth/register with method: POST
+client.ts:280  POST http://localhost:3001/api/api/auth/register 404 (Not Found)
+request @ client.ts:280
+register @ client.ts:326
+mutationFn @ useAuth.ts:47
+fn @ chunk-QZMQAYIQ.js?v=a6f70585:1970
+run @ chunk-QZMQAYIQ.js?v=a6f70585:776
+start @ chunk-QZMQAYIQ.js?v=a6f70585:818
+execute @ chunk-QZMQAYIQ.js?v=a6f70585:2009
+await in execute
+mutate @ chunk-QZMQAYIQ.js?v=a6f70585:2332
+onRegisterSubmit @ AuthPage.tsx:91
+(anonymous) @ chunk-IY3BHXED.js?v=a6f70585:1559
+await in (anonymous)
+executeDispatch @ react-dom_client.js?v=a6f70585:13622
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+processDispatchQueue @ react-dom_client.js?v=a6f70585:13658
+(anonymous) @ react-dom_client.js?v=a6f70585:14071
+batchedUpdates$1 @ react-dom_client.js?v=a6f70585:2626
+dispatchEventForPluginEventSystem @ react-dom_client.js?v=a6f70585:13763
+dispatchEvent @ react-dom_client.js?v=a6f70585:16784
+dispatchDiscreteEvent @ react-dom_client.js?v=a6f70585:16765
+<form>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=a6f70585:247
+AuthPage @ AuthPage.tsx:179
+react_stack_bottom_frame @ react-dom_client.js?v=a6f70585:18509
+renderWithHooksAgain @ react-dom_client.js?v=a6f70585:5729
+renderWithHooks @ react-dom_client.js?v=a6f70585:5665
+updateFunctionComponent @ react-dom_client.js?v=a6f70585:7475
+beginWork @ react-dom_client.js?v=a6f70585:8484
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+performUnitOfWork @ react-dom_client.js?v=a6f70585:12561
+workLoopConcurrentByScheduler @ react-dom_client.js?v=a6f70585:12557
+renderRootConcurrent @ react-dom_client.js?v=a6f70585:12539
+performWorkOnRoot @ react-dom_client.js?v=a6f70585:11766
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=a6f70585:13505
+performWorkUntilDeadline @ react-dom_client.js?v=a6f70585:36
+<...>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=a6f70585:247
+App @ App.tsx:134
+react_stack_bottom_frame @ react-dom_client.js?v=a6f70585:18509
+renderWithHooksAgain @ react-dom_client.js?v=a6f70585:5729
+renderWithHooks @ react-dom_client.js?v=a6f70585:5665
+updateFunctionComponent @ react-dom_client.js?v=a6f70585:7475
+beginWork @ react-dom_client.js?v=a6f70585:8525
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+performUnitOfWork @ react-dom_client.js?v=a6f70585:12561
+workLoopSync @ react-dom_client.js?v=a6f70585:12424
+renderRootSync @ react-dom_client.js?v=a6f70585:12408
+performWorkOnRoot @ react-dom_client.js?v=a6f70585:11766
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=a6f70585:13505
+performWorkUntilDeadline @ react-dom_client.js?v=a6f70585:36
+<App>
+exports.createElement @ chunk-YX2XZWS3.js?v=a6f70585:793
+Wrapped @ @sentry_react.js?v=a6f70585:27930
+react_stack_bottom_frame @ react-dom_client.js?v=a6f70585:18509
+renderWithHooksAgain @ react-dom_client.js?v=a6f70585:5729
+renderWithHooks @ react-dom_client.js?v=a6f70585:5665
+updateFunctionComponent @ react-dom_client.js?v=a6f70585:7475
+beginWork @ react-dom_client.js?v=a6f70585:8525
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+performUnitOfWork @ react-dom_client.js?v=a6f70585:12561
+workLoopSync @ react-dom_client.js?v=a6f70585:12424
+renderRootSync @ react-dom_client.js?v=a6f70585:12408
+performWorkOnRoot @ react-dom_client.js?v=a6f70585:11766
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=a6f70585:13505
+performWorkUntilDeadline @ react-dom_client.js?v=a6f70585:36
+<profiler(App)>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=a6f70585:247
+(anonymous) @ main.tsx:33
+useAuth.ts:54 Registration error: APIError: Route not found
+    at APIClient.handleResponse (client.ts:227:11)
+
+Версель:
+APIClient initialized with baseURL: https://airbro-production.up.railway.app
+index-VTNK7J6_.js:26 ✅ Sentry initialized successfully
+index-VTNK7J6_.js:26 ✅ Google Analytics initialized
+index-VTNK7J6_.js:26 ✅ Google Analytics initialized
+index-VTNK7J6_.js:26 Making request to: https://airbro-production.up.railway.app/auth/login with method: POST
 /#/auth:1 Access to fetch at 'https://airbro-production.up.railway.app/api/auth/login' from origin 'https://airbro-mrqs.vercel.app' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 index-VTNK7J6_.js:26  POST https://airbro-production.up.railway.app/api/auth/login net::ERR_FAILED
 (anonymous) @ index-VTNK7J6_.js:26
@@ -146,7 +519,7 @@ s @ index-VTNK7J6_.js:26
 index-VTNK7J6_.js:26 Login error: APIError: Network error. Please check your internet connection.
     at $4.request (index-VTNK7J6_.js:211:4932)
 
-регистрация логи консоли версель:
+регистрация:
 Making request to: https://airbro-production.up.railway.app/auth/register with method: POST
 /#/auth:1 Access to fetch at 'https://airbro-production.up.railway.app/api/auth/register' from origin 'https://airbro-mrqs.vercel.app' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 index-VTNK7J6_.js:26  POST https://airbro-production.up.railway.app/api/auth/register net::ERR_FAILED
@@ -204,18 +577,376 @@ ck @ index-VTNK7J6_.js:10
 s @ index-VTNK7J6_.js:26
 index-VTNK7J6_.js:26 Registration error: APIError: Network error. Please check your internet connection.
     at $4.request (index-VTNK7J6_.js:211:4932)
-(anonymous) @ index-VTNK7J6_.js:26
-onError @ AuthPage-DwnzTc5Z.js:20
-execute @ index-VTNK7J6_.js:35
+
+
+рейлвей:
+APIClient initialized with baseURL: http://localhost:3000
+index-ClWVNtAZ.js:12 Sentry DSN not configured - error tracking disabled
+WA @ index-ClWVNtAZ.js:12
+(anonymous) @ index-ClWVNtAZ.js:198
+index-ClWVNtAZ.js:12 GA Measurement ID not configured
+init @ index-ClWVNtAZ.js:12
+(anonymous) @ index-ClWVNtAZ.js:198
+index-ClWVNtAZ.js:12 GA Measurement ID not configured
+init @ index-ClWVNtAZ.js:12
+(anonymous) @ index-ClWVNtAZ.js:198
+Ls @ index-ClWVNtAZ.js:9
+Ta @ index-ClWVNtAZ.js:9
+Ta @ index-ClWVNtAZ.js:9
+Ta @ index-ClWVNtAZ.js:9
+Ta @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+We @ index-ClWVNtAZ.js:9
+wg @ index-ClWVNtAZ.js:9
+Kg @ index-ClWVNtAZ.js:9
+zo @ index-ClWVNtAZ.js:9
+ty @ index-ClWVNtAZ.js:9
+qs @ index-ClWVNtAZ.js:9
+Yg @ index-ClWVNtAZ.js:9
+$g @ index-ClWVNtAZ.js:9
+Bg @ index-ClWVNtAZ.js:9
+Lg @ index-ClWVNtAZ.js:9
+Wg @ index-ClWVNtAZ.js:9
+Dt @ index-ClWVNtAZ.js:2
+index-ClWVNtAZ.js:190 Making request to: http://localhost:3000/auth/login with method: POST
+index-ClWVNtAZ.js:190  POST http://localhost:3000/api/auth/login net::ERR_CONNECTION_REFUSED
+request @ index-ClWVNtAZ.js:190
+login @ index-ClWVNtAZ.js:190
+mutationFn @ AuthPage-C5IoC4jF.js:20
+fn @ index-ClWVNtAZ.js:14
+_ @ index-ClWVNtAZ.js:14
+start @ index-ClWVNtAZ.js:14
+execute @ index-ClWVNtAZ.js:14
 await in execute
-mutate @ AuthPage-DwnzTc5Z.js:1
-de @ AuthPage-DwnzTc5Z.js:20
-(anonymous) @ AuthPage-DwnzTc5Z.js:1
+mutate @ AuthPage-C5IoC4jF.js:1
+O @ AuthPage-C5IoC4jF.js:20
+(anonymous) @ AuthPage-C5IoC4jF.js:1
 await in (anonymous)
-A0 @ index-VTNK7J6_.js:9
-(anonymous) @ index-VTNK7J6_.js:9
-Nv @ index-VTNK7J6_.js:9
-ip @ index-VTNK7J6_.js:9
-yp @ index-VTNK7J6_.js:10
-ck @ index-VTNK7J6_.js:10
-s @ index-VTNK7J6_.js:26
+iy @ index-ClWVNtAZ.js:9
+(anonymous) @ index-ClWVNtAZ.js:9
+um @ index-ClWVNtAZ.js:9
+Yc @ index-ClWVNtAZ.js:9
+of @ index-ClWVNtAZ.js:10
+y_ @ index-ClWVNtAZ.js:10
+index-ClWVNtAZ.js:190 Network error: TypeError: Failed to fetch
+    at HC.request (index-ClWVNtAZ.js:190:4751)
+    at HC.login (index-ClWVNtAZ.js:190:5048)
+    at Object.mutationFn (AuthPage-C5IoC4jF.js:20:25547)
+    at Object.fn (index-ClWVNtAZ.js:14:35975)
+    at _ (index-ClWVNtAZ.js:14:26853)
+    at Object.start (index-ClWVNtAZ.js:14:27303)
+    at Yw.execute (index-ClWVNtAZ.js:14:36606)
+    at async O (AuthPage-C5IoC4jF.js:20:54313)
+    at async AuthPage-C5IoC4jF.js:1:21507
+request @ index-ClWVNtAZ.js:190
+await in request
+login @ index-ClWVNtAZ.js:190
+mutationFn @ AuthPage-C5IoC4jF.js:20
+fn @ index-ClWVNtAZ.js:14
+_ @ index-ClWVNtAZ.js:14
+start @ index-ClWVNtAZ.js:14
+execute @ index-ClWVNtAZ.js:14
+await in execute
+mutate @ AuthPage-C5IoC4jF.js:1
+O @ AuthPage-C5IoC4jF.js:20
+(anonymous) @ AuthPage-C5IoC4jF.js:1
+await in (anonymous)
+iy @ index-ClWVNtAZ.js:9
+(anonymous) @ index-ClWVNtAZ.js:9
+um @ index-ClWVNtAZ.js:9
+Yc @ index-ClWVNtAZ.js:9
+of @ index-ClWVNtAZ.js:10
+y_ @ index-ClWVNtAZ.js:10
+AuthPage-C5IoC4jF.js:20 Login error: APIError: Network error. Please check your internet connection.
+    at HC.request (index-ClWVNtAZ.js:190:4921)
+
+регистраиця:
+GET https://airbro-production.up.railway.app/images/HeroWhite.mp4 net::ERR_CONNECTION_RESET 206 (Partial Content)
+index-ClWVNtAZ.js:190 Making request to: http://localhost:3000/auth/register with method: POST
+index-ClWVNtAZ.js:190  POST http://localhost:3000/api/auth/register net::ERR_CONNECTION_REFUSED
+request @ index-ClWVNtAZ.js:190
+register @ index-ClWVNtAZ.js:190
+mutationFn @ AuthPage-C5IoC4jF.js:20
+fn @ index-ClWVNtAZ.js:14
+_ @ index-ClWVNtAZ.js:14
+start @ index-ClWVNtAZ.js:14
+execute @ index-ClWVNtAZ.js:14
+await in execute
+mutate @ AuthPage-C5IoC4jF.js:1
+de @ AuthPage-C5IoC4jF.js:20
+(anonymous) @ AuthPage-C5IoC4jF.js:1
+await in (anonymous)
+iy @ index-ClWVNtAZ.js:9
+(anonymous) @ index-ClWVNtAZ.js:9
+um @ index-ClWVNtAZ.js:9
+Yc @ index-ClWVNtAZ.js:9
+of @ index-ClWVNtAZ.js:10
+y_ @ index-ClWVNtAZ.js:10
+index-ClWVNtAZ.js:190 Network error: TypeError: Failed to fetch
+    at HC.request (index-ClWVNtAZ.js:190:4751)
+    at HC.register (index-ClWVNtAZ.js:190:5190)
+    at Object.mutationFn (AuthPage-C5IoC4jF.js:20:25841)
+    at Object.fn (index-ClWVNtAZ.js:14:35975)
+    at _ (index-ClWVNtAZ.js:14:26853)
+    at Object.start (index-ClWVNtAZ.js:14:27303)
+    at Yw.execute (index-ClWVNtAZ.js:14:36606)
+    at async de (AuthPage-C5IoC4jF.js:20:54490)
+    at async AuthPage-C5IoC4jF.js:1:21507
+request @ index-ClWVNtAZ.js:190
+await in request
+register @ index-ClWVNtAZ.js:190
+mutationFn @ AuthPage-C5IoC4jF.js:20
+fn @ index-ClWVNtAZ.js:14
+_ @ index-ClWVNtAZ.js:14
+start @ index-ClWVNtAZ.js:14
+execute @ index-ClWVNtAZ.js:14
+await in execute
+mutate @ AuthPage-C5IoC4jF.js:1
+de @ AuthPage-C5IoC4jF.js:20
+(anonymous) @ AuthPage-C5IoC4jF.js:1
+await in (anonymous)
+iy @ index-ClWVNtAZ.js:9
+(anonymous) @ index-ClWVNtAZ.js:9
+um @ index-ClWVNtAZ.js:9
+Yc @ index-ClWVNtAZ.js:9
+of @ index-ClWVNtAZ.js:10
+y_ @ index-ClWVNtAZ.js:10
+AuthPage-C5IoC4jF.js:20 Registration error: APIError: Network error. Please check your internet connection.
+    at HC.request (index-ClWVNtAZ.js:190:4921)
+
+бэкенд терминал:
+PS C:\Users\sskut\Desktop\AIRBRO\backend> npm run dev                                             
+
+> aibro-backend@1.0.0 dev
+> tsx --watch --require dotenv/config src/server.ts
+
+CORS allowed origins: [
+  'http://localhost:5173',
+  'https://airbro-mrqs.vercel.app',
+  'https://airbro.vercel.app',
+  'https://airbro-business.vercel.app',
+  'https://airbro-production.up.railway.app',
+  'https://airbro-production-backend.up.railway.app',
+  'http://localhost:5173',                                                                        
+  'http://localhost:5174',
+  'http://localhost:4173',
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'http://localhost:5173/api',
+  'http://localhost:3001/api',
+  'https://airbro-mrqs.vercel.app/api'
+]
+info: Rate limiting disabled for development
+🚀 Server is running on port 3001
+🌍 Frontend URL: http://localhost:5173
+🔐 Environment: development
+CORS: Allowing request from origin: http://localhost:5173
+CORS: Allowing request from origin: http://localhost:5173
+CORS: Allowing request from origin: http://localhost:5173
+CORS: Allowing request from origin: http://localhost:5173
+
+
+отправка формы со страницы:
+CTASection-Do_QX2f3.js:1 
+ POST http://localhost:3000/api/telegram/send net::ERR_CONNECTION_REFUSED
+CTASection-Do_QX2f3.js:1 Failed to send message: TypeError: Failed to fetch
+    at p (CTASection-Do_QX2f3.js:1:1055)
+    at iy (index-ClWVNtAZ.js:9:127501)
+    at index-ClWVNtAZ.js:9:132589
+    at um (index-ClWVNtAZ.js:9:15121)
+    at Yc (index-ClWVNtAZ.js:9:128735)
+    at of (index-ClWVNtAZ.js:10:28660)
+    at y_ (index-ClWVNtAZ.js:10:28482)
+
+версель отправка формы со страницы:
+index-VTNK7J6_.js:26 
+ POST http://localhost:3000/api/telegram/send net::ERR_CONNECTION_REFUSED
+index-VTNK7J6_.js:26 Failed to send message: TypeError: Failed to fetch (localhost:3000)
+    at index-VTNK7J6_.js:26:6780
+    at p (CTASection-tvVL4ems.js:1:1055)
+    at A0 (index-VTNK7J6_.js:9:127585)
+    at index-VTNK7J6_.js:9:132711
+    at Nv (index-VTNK7J6_.js:9:15121)
+    at ip (index-VTNK7J6_.js:9:128819)
+    at yp (index-VTNK7J6_.js:10:28666)
+    at ck (index-VTNK7J6_.js:10:28488)
+    at HTMLDivElement.s (index-VTNK7J6_.js:26:8945)
+
+
+локалхост отправка формы со страницы(секция Готовы автоматизировать свой бизнес?)
+Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+client.ts:142 APIClient initialized with baseURL: http://localhost:3001/api
+sentry.ts:13 Sentry disabled in development mode
+index.ts:8 GA Measurement ID not configured
+init @ index.ts:8
+(anonymous) @ main.tsx:12
+index.ts:8 GA Measurement ID not configured
+init @ index.ts:8
+(anonymous) @ App.tsx:66
+react_stack_bottom_frame @ react-dom_client.js?v=a6f70585:18567
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+commitHookEffectListMount @ react-dom_client.js?v=a6f70585:9411
+commitHookPassiveMountEffects @ react-dom_client.js?v=a6f70585:9465
+reconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11273
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11240
+reconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11317
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11240
+reconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11265
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11240
+reconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11265
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11240
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11173
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11141
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11033
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11033
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11033
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11033
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11033
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11033
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11055
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11033
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11033
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11055
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11033
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11201
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=a6f70585:11010
+commitPassiveMountOnFiber @ react-dom_client.js?v=a6f70585:11066
+flushPassiveEffects @ react-dom_client.js?v=a6f70585:13150
+(anonymous) @ react-dom_client.js?v=a6f70585:12776
+performWorkUntilDeadline @ react-dom_client.js?v=a6f70585:36
+index.ts:8 GA Measurement ID not configured
+init @ index.ts:8
+(anonymous) @ App.tsx:66
+react_stack_bottom_frame @ react-dom_client.js?v=a6f70585:18567
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+commitHookEffectListMount @ react-dom_client.js?v=a6f70585:9411
+commitHookPassiveMountEffects @ react-dom_client.js?v=a6f70585:9465
+reconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11273
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11240
+reconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11317
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11240
+reconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11265
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11240
+reconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11265
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11240
+reconnectPassiveEffects @ react-dom_client.js?v=a6f70585:11292
+doubleInvokeEffectsOnFiber @ react-dom_client.js?v=a6f70585:13339
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:999
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13321
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13317
+commitDoubleInvokeEffectsInDEV @ react-dom_client.js?v=a6f70585:13347
+flushPassiveEffects @ react-dom_client.js?v=a6f70585:13157
+(anonymous) @ react-dom_client.js?v=a6f70585:12776
+performWorkUntilDeadline @ react-dom_client.js?v=a6f70585:36
+client.ts:240 Making request to: http://localhost:3001/api/telegram/send with method: POST
+client.ts:280  POST http://localhost:3001/api/api/telegram/send 404 (Not Found)
+request @ client.ts:280
+sendTelegramMessage @ client.ts:431
+handleSubmit @ CTASection.tsx:41
+executeDispatch @ react-dom_client.js?v=a6f70585:13622
+runWithFiberInDEV @ react-dom_client.js?v=a6f70585:997
+processDispatchQueue @ react-dom_client.js?v=a6f70585:13658
+(anonymous) @ react-dom_client.js?v=a6f70585:14071
+batchedUpdates$1 @ react-dom_client.js?v=a6f70585:2626
+dispatchEventForPluginEventSystem @ react-dom_client.js?v=a6f70585:13763
+dispatchEvent @ react-dom_client.js?v=a6f70585:16784
+dispatchDiscreteEvent @ react-dom_client.js?v=a6f70585:16765
+CTASection.tsx:58 Failed to send message: APIError: Route not found
+    at APIClient.handleResponse (client.ts:227:11)
+    at async handleSubmit (CTASection.tsx:41:7)

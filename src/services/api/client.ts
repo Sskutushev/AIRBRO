@@ -124,7 +124,10 @@ class APIClient {
 
   constructor() {
     // Use environment variable or fallback to localhost for development
-    let apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+    let apiUrl =
+      import.meta.env.VITE_API_BASE_URL ||
+      import.meta.env.VITE_API_URL ||
+      'http://localhost:3001/api';
 
     // Ensure URL has protocol
     if (apiUrl && !apiUrl.startsWith('http://') && !apiUrl.startsWith('https://')) {
@@ -275,7 +278,7 @@ class APIClient {
     // }
 
     try {
-      const response = await fetch(`${this.baseURL}/api${endpoint}`, {
+      const response = await fetch(`${this.baseURL}${endpoint}`, {
         ...options,
         headers,
         credentials: 'include',
@@ -414,6 +417,21 @@ class APIClient {
   async cancelSubscription(subscriptionId: string): Promise<void> {
     return this.request<void>(`/user/subscriptions/${subscriptionId}/cancel`, {
       method: 'POST',
+    });
+  }
+
+  // TELEGRAM (for contact form)
+  async sendTelegramMessage(data: {
+    name: string;
+    email: string;
+    telegram: string;
+    business?: string;
+    product?: string;
+    description: string;
+  }): Promise<{ success: boolean; message: string }> {
+    return this.request<{ success: boolean; message: string }>('/telegram/send', {
+      method: 'POST',
+      body: JSON.stringify(data),
     });
   }
 }

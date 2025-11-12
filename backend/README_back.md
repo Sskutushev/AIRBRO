@@ -104,22 +104,27 @@ See [API Documentation](../docs/API.md) for detailed endpoint specs.
 ## Database Models
 
 ### User
+
 - Stores user credentials and profile
 - Links to subscriptions, payments, cart
 
 ### Product
+
 - Subscription plans (tier 1-3)
 - Price, features, billing interval
 
 ### CartItem
+
 - User's shopping cart entries
 - Unique constraint on (userId, productId)
 
 ### Subscription
+
 - Active user subscriptions
 - Status: active, cancelled, expired, trial
 
 ### Payment
+
 - Payment records with crypto details
 - Status tracking: pending, completed, failed
 
@@ -218,6 +223,7 @@ Tests use Vitest with in-memory database. See [Testing Guide](../docs/TESTING.md
 ## Logging
 
 Winston logger writes to:
+
 - **Console**: Formatted colored output (dev only)
 - **logs/combined-YYYY-MM-DD.log**: All logs
 - **logs/error-YYYY-MM-DD.log**: Errors only
@@ -260,6 +266,7 @@ npm run logs:cleanup
 ## Troubleshooting
 
 ### Database Connection Issues
+
 ```bash
 # Check PostgreSQL is running
 psql -U postgres -c "SELECT version();"
@@ -269,6 +276,7 @@ echo $DATABASE_URL
 ```
 
 ### Migration Errors
+
 ```bash
 # Reset and re-migrate (development only!)
 npm run prisma:migrate reset
@@ -276,6 +284,7 @@ npm run prisma:migrate
 ```
 
 ### Port Already in Use
+
 ```bash
 # Find process on port 3001
 netstat -ano | findstr :3001  # Windows

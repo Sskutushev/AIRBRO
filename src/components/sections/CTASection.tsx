@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Mail, User, Building, MessageSquare, Shield, Clock } from 'lucide-react';
+import { apiClient } from '../../services/api/client';
 
 type SubmissionStatus = 'idle' | 'loading' | 'success' | 'error';
 
@@ -36,17 +37,8 @@ const CTASection: React.FC = () => {
     setSubmissionStatus('loading');
 
     try {
-      const response = await fetch('http://localhost:3000/api/telegram/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+      // Send data using the centralized API client
+      await apiClient.sendTelegramMessage(formData);
 
       setSubmissionStatus('success');
 

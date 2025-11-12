@@ -71,7 +71,7 @@ export default defineConfig({
       'X-Frame-Options': 'DENY',
       'X-XSS-Protection': '1; mode=block',
       'Content-Security-Policy':
-        "default-src 'self'; connect-src 'self' http://localhost:3000; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-src https://www.youtube.com;",
+        "default-src 'self'; connect-src 'self' http://localhost:3000 http://localhost:3001 https://airbro-production.up.railway.app https://*.railway.app https://*.vercel.app https://api.airbro.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-src https://www.youtube.com;",
     },
   },
   build: {

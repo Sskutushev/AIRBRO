@@ -14,12 +14,12 @@ import productRoutes from './routes/products';
 import cartRoutes from './routes/cart';
 import paymentRoutes from './routes/payments';
 import userRoutes from './routes/user';
-// import telegramRoutes from './routes/telegram';
+import telegramRoutes from './routes/telegram';
 import logger from './utils/logger';
 
 // Initialize Express app
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Add body parser middleware
 app.use(express.json());
@@ -27,31 +27,46 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Security middleware - MUST be before CORS
-app.use(helmet({
-  crossOriginResourcePolicy: { policy: "cross-origin" },
-  crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" },
-})); // Activate Helmet.js for security headers
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: 'cross-origin' },
+    crossOriginOpenerPolicy: { policy: 'same-origin-allow-popups' },
+  })
+); // Activate Helmet.js for security headers
 
 // CORS configuration - MUST be before routes
 const allowedOrigins = [
   process.env.FRONTEND_URL,
   'https://airbro-mrqs.vercel.app',
   'https://airbro.vercel.app',
+  'https://airbro-business.vercel.app',
   'https://airbro-production.up.railway.app',
   'http://localhost:5173',
   'http://localhost:5174',
   'http://localhost:4173',
+  'http://localhost:3000',
+  'http://localhost:3001',
 ].filter(Boolean); // Remove undefined values
+
+console.log('CORS allowed origins:', allowedOrigins);
 
 app.use(
   cors({
     origin: (origin, callback) => {
       // Allow requests with no origin (mobile apps, Postman, etc.)
       if (!origin) {
+        console.log('CORS: Allowing request with no origin');
         return callback(null, true);
       }
-      
-      if (allowedOrigins.some(allowedOrigin => origin.startsWith(allowedOrigin as string))) {
+
+      // Check if origin matches any allowed origin
+      const isAllowed = allowedOrigins.some((allowedOrigin) => {
+        if (!allowedOrigin) return false;
+        return allowedOrigin === origin;
+      });
+
+      if (isAllowed) {
+        console.log('CORS: Allowing request from origin:', origin);
         callback(null, true);
       } else {
         logger.warn('CORS blocked request from origin:', origin);
@@ -116,7 +131,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/user', userRoutes);
-// app.use('/api/telegram', telegramRoutes);
+app.use('/api/telegram', telegramRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
