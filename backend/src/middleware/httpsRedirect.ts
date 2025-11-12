@@ -5,6 +5,11 @@ import { Request, Response, NextFunction } from 'express';
  * Only activates when NODE_ENV is 'production'
  */
 export const httpsRedirect = (req: Request, res: Response, next: NextFunction) => {
+  // Skip HTTPS redirect for OPTIONS requests (CORS preflight)
+  if (req.method === 'OPTIONS') {
+    return next();
+  }
+
   // Only apply HTTPS redirect in production environment
   if (process.env.NODE_ENV === 'production') {
     // Check if the request is already HTTPS

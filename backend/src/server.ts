@@ -26,8 +26,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// CORS configuration
-// CORS middleware
+// Security middleware - MUST be before CORS
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" },
+  crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" },
+})); // Activate Helmet.js for security headers
+
+// CORS configuration - MUST be before routes
 app.use(
   cors({
     origin: [
@@ -50,13 +55,13 @@ app.use(
       'Access-Control-Request-Headers',
     ],
     exposedHeaders: ['Set-Cookie'],
+    optionsSuccessStatus: 200,
   })
 );
 
-// Security middleware
+// HTTPS redirect - MUST be after CORS
 app.use(httpsRedirect); // Apply HTTPS redirect for production
 app.use(sanitizeInput); // Apply input sanitization to prevent XSS
-app.use(helmet()); // Activate Helmet.js for security headers
 
 // Different rate limits for different routes
 // General rate limiter (for all routes)
