@@ -1,273 +1,54 @@
- RERUN  src/pages/__tests__/AccountPage.test.tsx x1 
-
- ❯ backend/src/controllers/paymentController.test.ts (0 test)
- ❯ backend/src/controllers/authController.test.ts (0 test)
- ❯ backend/src/controllers/cartController.test.ts (0 test)
- ✓ src/pages/__tests__/AccountPage.test.tsx (8 tests) 779ms
-   ✓ AccountPage (8)
-     ✓ should redirect to auth page if user is not logged in 182ms
-     ✓ should display user information when logged in 110ms
-     ✓ should display navigation tabs 178ms
-     ✓ should display stats cards 51ms
-     ✓ should display active products 51ms
-     ✓ should display quick actions 98ms
-     ✓ should display billing information 51ms
-     ✓ should call logout and redirect on "Log Out" click 53ms
-
- Test Files  3 failed | 1 passed (4)
-      Tests  8 passed (8)
-   Start at  22:58:43
-   Duration  1.55s
-
- PASS  Waiting for file changes...
-       press h to show help, press q to quit
-PS C:\Users\sskut\Desktop\AIRBRO> npm run test
-
-> airbro-business-landing@1.0.0 test
-> vitest
+inter-latin-400-normal.27ae72da.woff2:1  Failed to load resource: the server responded with a status of 404 (Not Found)
+inter-all-400-normal.4c1f8a0d.woff:1  Failed to load resource: the server responded with a status of 404 (Not Found)
+index.js:1 Bootstrap Duration: 493.108154296875 ms
+inter-latin-600-normal.87d718a2.woff2:1  Failed to load resource: the server responded with a status of 404 (Not Found)
+index.js:1 [getAllCounts] Unable to process `count` query Object
+F @ index.js:1
+index.js:1 undefined
+F @ index.js:1
+index.js:1 Uncaught (in promise) j
+jetbrains-mono-latin-400-normal.80a5dc9e.woff2:1  Failed to load resource: the server responded with a status of 404 (Not Found)
+inter-all-600-normal.d0a7c8a9.woff:1  Failed to load resource: the server responded with a status of 404 (Not Found)
+jetbrains-mono-all-400-normal.f86807b7.woff:1  Failed to load resource: the server responded with a status of 404 (Not Found)
+index.js:1 Running query:  Object
+index.js:1 Count request failed for model: User Object
+index.js:1 [runQuery] Error in Prisma Client request: 
 
 
- DEV  v4.0.8 C:/Users/sskut/Desktop/AIRBRO
+Invalid `p=e.match(B2t)?.[1]??"",g=e.match(U2t)?.[1]??null,v=e.match(G2t)?.[1]??null,{getPrismaClient:x,PrismaClientKnownRequestError:E,PrismaClientRustPanicError:D,PrismaClientInitializationError:P,PrismaClientValidationError:R}=require(`${u.prismaClient}/runtime/${c}`),k=e,F=(0,Mj.createHash)("sha256").update()` invocation in
+C:\Users\sskut\Desktop\AIRBRO\backend\node_modules\prisma\build\index.js:1935:10404
 
-stdout | src/pages/__tests__/AuthPage.test.tsx
-APIClient initialized with baseURL: https://airbro-production.up.railway.app
+  1932       }
+  1933     }
+  1934   }
+→ 1935 `}});return Xe.resourceList(a.workspaces)}};var P2e=require("@prisma/engines");var sDe=require("buffer");function aDe(e,r,n,i){Object.defineProperty(e,r,{get:n,set:i,enumerable:!0,configurable:!0})}var oDe={};aDe(oDe,"serializeRPCMessage",()=>tq);aDe(oDe,"deserializeRPCMessage",()=>rq);var Z5="PrismaBigInt::",eq="PrismaBytes::";function tq(e){return JSON.stringify(e,(r,n)=>typeof n=="bigint"?Z5+n:n?.type==="Buffer"&&Array.isArray(n?.data)?eq+sDe.Buffer.from(n.data).toString("base64"):n)}function rq(e){return JSON.parse(e,(r,n)=>typeof n=="string"&&n.startsWith(Z5)?BigInt(n.substr(Z5.length)):typeof n=="string"&&n.startsWith(eq)?n.substr(eq.length):n)}var b2e=B(hDe()),xT=B(a2e()),x2e=B(require("http")),w2e=B(u2e()),_2e=require("zlib");var To=require("path");var Mj=require("crypto"),m2e=B(kj());function Lj(e,r,n,i){Object.defineProperty(e,r,{get:n,set:i,enumerable:!0,configurable:!0})}var g2e=globalThis,Fj={},bT={},Dp=g2e.parcelRequire1308;Dp==null&&(Dp=function(e){if(e in Fj)return Fj[e].exports;if(e in bT){var r=bT[e];delete bT[e];var n={id:e,exports:{}};return Fj[e]=n,r.call(n.exports,n,n.exports),n.exports}var i=new Error("Cannot find module '"+e+"'");throw i.code="MODULE_NOT_FOUND",i},Dp.register=function(r,n){bT[r]=n},g2e.parcelRequire1308=Dp);var v2e=Dp.register;v2e("9lTzd",function(module,exports){Lj(module.exports,"guessEnginePaths",()=>guessEnginePaths),Lj(module.exports,"guessPrismaClientPath",()=>guessPrismaClientPath);var $5COlq=Dp("5COlq");async function guessEnginePaths({forceBinary,forceLibrary,resolveOverrides}){let queryEngineName,queryEngineType;if(forceLibrary?(queryEngineName=await(0,$5COlq.prismaEngineName)("query-engine","library"),queryEngineType="library"):forceBinary?(queryEngineName=await(0,$5COlq.prismaEngineName)("query-engine","binary"),queryEngineType="binary"):(queryEngineName=void 0,queryEngineType=void 0),!queryEngineName||!queryEngineType)return{queryEngine:void 0};let queryEnginePath;if(resolveOverrides[".prisma/client"])queryEnginePath=(0,To.resolve)(resolveOverrides[".prisma/client"],`../${queryEngineName}`);else if(resolveOverrides["@prisma/engines"])queryEnginePath=(0,To.resolve)(resolveOverrides["@prisma/engines"],`../../${queryEngineName}`);else{let atPrismaEnginesPath;try{atPrismaEnginesPath=eval("require.resolve('@prisma/engines')")}catch(e){throw new Error("Unable to resolve Prisma engine paths. This is a bug.")}queryEnginePath=(0,To.resolve)(atPrismaEnginesPath`../../${queryEngineName}`)}return{queryEngine:{type:queryEngineType,path:queryEnginePath}}}function guessPrismaClientPath({resolveOverrides}){let prismaClientPath=resolveOverrides["@prisma/client"]||eval("require.resolve('@prisma/client')");return(0,To.resolve)(prismaClientPath,"../")}});v2e("5COlq",function(e,r){Lj(e.exports,"prismaEngineName",()=>n);async function n(i,a){let o=await Hr(),c=o==="windows"?".exe":"";if(a==="library")return qa(o,"fs");if(a==="binary")return`${i}-${o}${c}`;throw new Error(`Unknown engine type: ${a}`)}});function j2t(e){return{models:$j(e.models),enums:$j(e.enums),types:$j(e.types)}}function $j(e){let r={};for(let{name:n,...i}of e)r[n]=i;return r}var ox=(0,m2e.debug)("prisma:studio-pcw"),B2t=/^\s*datasource\s+([^\s]+)\s*{/m,U2t=/url *= *env\("(.*)"\)/,G2t=/url *= *"(.*)"/;async function W2t({schema:e,schemaPath:r,dmmf:n,datasourceProvider:i,previewFeatures:a,datasources:o,engineType:c,paths:u,directUrl:l,versions:f}){let p=e.match(B2t)?.[1]??"",g=e.match(U2t)?.[1]??null,v=e.match(G2t)?.[1]??null,{getPrismaClient:x,PrismaClientKnownRequestError:E,PrismaClientRustPanicError:D,PrismaClientInitializationError:P,PrismaClientValidationError:R}=require(`${u.prismaClient}/runtime/${c}`),k=e,F=(0,Mj.createHash)("sha256").update(
+error: Error validating datasource `db`: the URL must start with the protocol `postgresql://` or `postgres://`.
+  -->  schema.prisma:8
+   | 
+ 7 |   provider = "postgresql"
+ 8 |   url      = env("DATABASE_URL")
+   | 
 
-stderr | backend/src/controllers/authController.test.ts                                           
-Environment validation failed:                                                                    
-  JWT_SECRET: Required                                                                            
-                                                                                                  
-stderr | backend/src/controllers/paymentController.test.ts                                        
-Environment validation failed:                                                                    
-  JWT_SECRET: Required                                                                            
-                                                                                                  
-stderr | backend/src/controllers/cartController.test.ts                                           
-Environment validation failed:                                                                    
-  JWT_SECRET: Required                                                                            
-                                                                                                  
- ✓ src/pages/__tests__/AccountPage.test.tsx (8 tests) 1841ms
-     ✓ should display stats cards  776ms
- ✓ src/pages/__tests__/PaymentPage.test.tsx (9 tests) 2539ms
-       ✓ should process card payment successfully  892ms
-     ✓ should allow retrying payment after an error  529ms
- ✓ src/pages/__tests__/AuthPage.test.tsx (10 tests) 2656ms
-     ✓ should render login form by default  376ms
-     ✓ should switch to registration form when "Register" tab is clicked  914ms
-     ✓ should call register mutation on valid registration submission  489ms
-Cancelling test run. Press CTRL+c again to exit forcefully.
+Validation Error Count: 1 Object
+F @ index.js:1
+index.js:1 undefined
 
 
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 3 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-
- FAIL  backend/src/controllers/authController.test.ts [ backend/src/controllers/authController.test.ts ]
- FAIL  backend/src/controllers/cartController.test.ts [ backend/src/controllers/cartController.test.ts ]
- FAIL  backend/src/controllers/paymentController.test.ts [ backend/src/controllers/paymentController.test.ts ]
-Error: process.exit unexpectedly called with "1"
- ❯ validateEnvironment backend/src/config/environment.ts:45:15
-     43|         console.error(`  ${err.path.join('.')}: ${err.message}`);
-     44|       });
-     45|       process.exit(1);
-       |               ^
-     46|     }
-     47|     throw error;
- ❯ backend/src/config/environment.ts:51:20
- ❯ backend/src/server.ts:2:1
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-
-Vitest caught 6 unhandled errors during the test run.
-This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-Error: [vitest-pool]: Timeout starting forks runner.
- ❯ Timeout.<anonymous> node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
- ❯ listOnTimeout node:internal/timers:581:17
- ❯ processTimers node:internal/timers:519:7
-
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-Error: [vitest-pool]: Timeout starting forks runner.
- ❯ Timeout.<anonymous> node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
- ❯ listOnTimeout node:internal/timers:581:17
- ❯ processTimers node:internal/timers:519:7
-
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-Error: [vitest-pool]: Timeout starting forks runner.
- ❯ Timeout.<anonymous> node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
- ❯ listOnTimeout node:internal/timers:581:17
- ❯ processTimers node:internal/timers:519:7
-
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-Error: [vitest-pool]: Timeout starting forks runner.
- ❯ Timeout.<anonymous> node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
- ❯ listOnTimeout node:internal/timers:581:17
- ❯ processTimers node:internal/timers:519:7
-
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-Error: [vitest-pool]: Timeout starting forks runner.
- ❯ Timeout.<anonymous> node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
- ❯ listOnTimeout node:internal/timers:581:17
- ❯ processTimers node:internal/timers:519:7
-
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-Error: [vitest-pool]: Timeout starting forks runner.
- ❯ Timeout.<anonymous> node_modules/vitest/dist/chunks/cli-api.BQ-bjcRi.js:7235:65
- ❯ listOnTimeout node:internal/timers:581:17
- ❯ processTimers node:internal/timers:519:7
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-
-
- Test Files  3 failed | 3 passed (22)
-      Tests  27 passed (27)
-     Errors  6 errors
-   Start at  23:05:27
-   Duration  90.66s (transform 1.29s, setup 2.71s, collect 6.40s, tests 7.04s, environment 39.50s, prepare 320ms)
-
- FAIL  Tests failed. Watching for file changes...
-       press h to show help, press q to quit
-PS C:\Users\sskut\Desktop\AIRBRO> npm run test
-
-> airbro-business-landing@1.0.0 test
-> vitest
-
-
- DEV  v4.0.8 C:/Users/sskut/Desktop/AIRBRO
-
-stderr | backend/src/controllers/authController.test.ts
-Environment validation failed:
-  JWT_SECRET: Required
-
-stderr | backend/src/controllers/cartController.test.ts
-Environment validation failed:
-  JWT_SECRET: Required
-
-stdout | src/pages/__tests__/AuthPage.test.tsx                                                    
-APIClient initialized with baseURL: https://airbro-production.up.railway.app                      
-                                                                                                  
-stderr | backend/src/controllers/paymentController.test.ts                                        
-Environment validation failed:                                                                    
-  JWT_SECRET: Required                                                                            
-                                                                                                  
-stderr | src/hooks/__tests__/useAsync.test.ts > useAsync > should handle async function execution with error
-An update to TestComponent inside a test was not wrapped in act(...).
-
-When testing, code that causes React state updates should be wrapped into act(...):
-
-act(() => {
-  /* fire events that update state */
-});
-/* assert on the output */
-
-This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
-
-stderr | src/hooks/__tests__/useAsync.test.ts > useAsync > should call onError callback on error  
-An update to TestComponent inside a test was not wrapped in act(...).
-
-When testing, code that causes React state updates should be wrapped into act(...):
-
-act(() => {
-  /* fire events that update state */
-});
-/* assert on the output */
-
-This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
-
- ✓ src/pages/__tests__/AccountPage.test.tsx (8 tests) 1428ms
-     ✓ should redirect to auth page if user is not logged in  339ms
-     ✓ should display navigation tabs  309ms
- ✓ src/hooks/__tests__/useAsync.test.ts (9 tests) 531ms
- ✓ src/pages/__tests__/PaymentPage.test.tsx (9 tests) 1787ms
-     ✓ should switch payment methods  321ms
- ✓ src/components/common/__tests__/OptimizedImage.test.tsx (9 tests) 536ms
- ✓ src/pages/__tests__/SolutionsPage.test.tsx (6 tests) 640ms
- ✓ src/pages/__tests__/AuthPage.test.tsx (10 tests) 2180ms
-     ✓ should render login form by default  479ms
- ✓ src/components/common/__tests__/Skeleton.test.tsx (13 tests) 328ms
- ✓ src/components/__tests__/ErrorBoundary.test.tsx (6 tests) 352ms
-stdout | src/lib/utils/__tests__/dom.test.ts > DOM Utilities > formatCurrency > should format currency with specified currency
-Expected USD: $123
-Actual USD: $123
-
- ✓ src/lib/utils/__tests__/dom.test.ts (13 tests) 59ms
- ✓ src/components/common/__tests__/SafeHTML.test.tsx (9 tests) 112ms
- ✓ src/hooks/__tests__/useLocalStorage.test.ts (8 tests) 52ms
- ✓ src/components/common/__tests__/Button.test.tsx (11 tests) 325ms
- ✓ src/hooks/__tests__/useDebounce.test.ts (5 tests) 42ms
-stdout | src/services/api/__tests__/client.test.ts
-APIClient initialized with baseURL: https://airbro-production.up.railway.app
-
-stdout | src/services/api/__tests__/client.test.ts > APIClient > login > should return user and token on successful login
-Making request to: http://localhost:3000/auth/login with method: POST
-
-stdout | src/services/api/__tests__/client.test.ts > APIClient > login > should throw APIError on failed login (401)
-Making request to: http://localhost:3000/auth/login with method: POST
-
-stdout | src/services/api/__tests__/client.test.ts > APIClient > login > should throw a generic APIError on network failure
-Making request to: http://localhost:3000/auth/login with method: POST
-
-stderr | src/services/api/__tests__/client.test.ts > APIClient > login > should throw a generic APIError on network failure                                                                         
-Network error: Error: Network error                                                               
-    at C:/Users/sskut/Desktop/AIRBRO/src/services/api/__tests__/client.test.ts:89:33              
-    at Mock (file:///C:/Users/sskut/Desktop/AIRBRO/node_modules/@vitest/spy/dist/index.js:280:34) 
-    at APIClient.request (C:/Users/sskut/Desktop/AIRBRO/src/services/api/client.ts:245:30)        
-    at APIClient.login (C:/Users/sskut/Desktop/AIRBRO/src/services/api/client.ts:279:17)          
-    at C:/Users/sskut/Desktop/AIRBRO/src/services/api/__tests__/client.test.ts:101:30             
-    at file:///C:/Users/sskut/Desktop/AIRBRO/node_modules/@vitest/runner/dist/index.js:157:11     
-    at file:///C:/Users/sskut/Desktop/AIRBRO/node_modules/@vitest/runner/dist/index.js:753:26     
-    at file:///C:/Users/sskut/Desktop/AIRBRO/node_modules/@vitest/runner/dist/index.js:1636:20    
-    at new Promise (<anonymous>)                                                                  
-    at runWithTimeout (file:///C:/Users/sskut/Desktop/AIRBRO/node_modules/@vitest/runner/dist/index.js:1602:10)
-
-stdout | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should include Authorization header on GET requests                                                       
-Making request to: http://localhost:3000/auth/me with method: GET                                 
-Authorization header added.                                                                       
-                                                                                                  
-stdout | src/services/api/__tests__/client.test.ts > APIClient > authenticated requests > should clear token and throw on 401 response                                                              
-Making request to: http://localhost:3000/auth/me with method: GET                                 
-Authorization header added.                                                                       
-                                                                                                  
-stdout | src/services/api/__tests__/client.test.ts > APIClient > other methods > getProducts should call the correct endpoint with params                                                           
-Making request to: http://localhost:3000/products?tier=1&isActive=true with method: GET
-
-stdout | src/services/api/__tests__/client.test.ts > APIClient > other methods > addToCart should send correct payload and headers
-Making request to: http://localhost:3000/cart with method: POST
-Authorization header added.
-
- ✓ src/services/api/__tests__/client.test.ts (7 tests) 29ms
- ✓ src/lib/utils/__tests__/cn.test.ts (9 tests) 15ms
- ✓ src/lib/validation/__tests__/auth.test.ts (19 tests) 20ms
- ✓ src/lib/utils/__tests__/storage.test.ts (8 tests) 11ms
- ✓ src/lib/__tests__/toast.test.tsx (8 tests) 9ms
- ✓ src/lib/utils/__tests__/validators.test.ts (10 tests) 6ms
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ Failed Suites 3 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-
- FAIL  backend/src/controllers/authController.test.ts [ backend/src/controllers/authController.test.ts ]
- FAIL  backend/src/controllers/cartController.test.ts [ backend/src/controllers/cartController.test.ts ]
- FAIL  backend/src/controllers/paymentController.test.ts [ backend/src/controllers/paymentController.test.ts ]
-Error: process.exit unexpectedly called with "1"
- ❯ validateEnvironment backend/src/config/environment.ts:45:15
-     43|         console.error(`  ${err.path.join('.')}: ${err.message}`);
-     44|       });
-     45|       process.exit(1);
-       |               ^
-     46|     }
-     47|     throw error;
- ❯ backend/src/config/environment.ts:51:20
- ❯ backend/src/server.ts:2:1
-
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
-
-
- Test Files  3 failed | 19 passed (22)
-      Tests  177 passed (177)
-   Start at  23:07:31
-   Duration  8.80s (transform 1.93s, setup 6.03s, collect 5.59s, tests 8.46s, environment 19.39s, prepare 612ms)
-
- FAIL  Tests failed. Watching for file changes...
+Making request to: https://airbro-production.up.railway.app/auth/login with method: POST
+client.ts:245 Connecting to 'https://airbro-production.up.railway.app/api/auth/login' violates the following Content Security Policy directive: "connect-src 'self' http://localhost:3000". The action has been blocked.
+request @ client.ts:245
+client.ts:245 Fetch API cannot load https://airbro-production.up.railway.app/api/auth/login. Refused to connect because it violates the document's Content Security Policy.
+request @ client.ts:245
+client.ts:267 Network error: TypeError: Failed to fetch. Refused to connect because it violates the document's Content Security Policy.
+    at APIClient.request (client.ts:245:30)
+    at APIClient.login (client.ts:279:17)
+    at Object.mutationFn (useAuth.ts:22:17)
+    at Object.fn (chunk-QZMQAYIQ.js?v=4b719695:1970:29)
+    at run (chunk-QZMQAYIQ.js?v=4b719695:776:49)
+    at Object.start (chunk-QZMQAYIQ.js?v=4b719695:818:9)
+    at Mutation.execute (chunk-QZMQAYIQ.js?v=4b719695:2009:40)
+    at async onLoginSubmit (AuthPage.tsx:74:22)
+    at async chunk-IY3BHXED.js?v=4b719695:1559:9
+request @ client.ts:267
+useAuth.ts:28 Login error: APIError: Network error. Please check your internet connection.
+    at APIClient.request (client.ts:268:13)

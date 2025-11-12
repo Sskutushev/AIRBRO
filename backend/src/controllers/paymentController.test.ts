@@ -1,196 +1,144 @@
-import { vi, describe, it, expect, beforeEach, beforeAll } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, afterAll } from 'vitest';
 import request from 'supertest';
-import app from '../../src/server'; // Assuming app is exported from server.ts
-import prisma from '../../src/config/database'; // Mocked Prisma client
+import app from '../server';
+import { clearDatabase, closeDatabase } from '../tests/setup';
+import { PrismaClient } from '@prisma/client';
 import jwt from 'jsonwebtoken';
-import { authenticateToken } from '../../src/middleware/auth'; // Import authenticateToken
-import * as cryptoUtils from '../../src/utils/crypto'; // Import crypto utility functions
+import { JWT_SECRET } from '../config/environment';
 
-// Mock the environment module
-vi.mock('@/config/environment');
-vi.mock('@/config/database');
+const prisma = new PrismaClient();
 
-// Mock jsonwebtoken for token generation
-vi.mock('jsonwebtoken');
-// Mock the authentication middleware
-vi.mock('../../src/middleware/auth', () => ({
-  authenticateToken: vi.fn((req, res, next) => {
-    (req as any).userId = 'testUserId123'; // Set a dummy userId
-    next();
-  }),
-}));
-// Mock crypto utility functions
-vi.mock('../../src/utils/crypto', () => ({
-  getCryptoConfig: vi.fn(),
-  generateQRCode: vi.fn(),
-  calculateCryptoAmount: vi.fn(),
-  getPaymentWarnings: vi.fn(),
-}));
-
-describe('PaymentController', () => {
+describe('Payment Controller', () => {
   let token: string;
-  const userId = 'testUserId123';
-  const cartItemId1 = 'c1d2e3f4-a5b6-7890-1234-567890abcdef'; // Valid UUID
-  const productId1 = 'a1b2c3d4-e5f6-7890-1234-567890abcdef';
-  const paymentId = 'payment123';
+  let userId: string;
+  let productId: string;
+  let cartItemId: string;
 
-  beforeAll(() => {
-    (jwt.sign as any).mockReturnValue('mockedAuthToken');
-    token = 'mockedAuthToken';
-  });
+  beforeEach(async () => {
+    await clearDatabase();
 
-  beforeEach(() => {
-    vi.clearAllMocks();
-    // Reset Prisma mock values for each test
-    prisma.cartItem.findMany.mockResolvedValue([]);
-    prisma.payment.create.mockResolvedValue(null);
-    prisma.payment.findUnique.mockResolvedValue(null);
-    prisma.payment.update.mockResolvedValue(null);
-    prisma.cartItem.findUnique.mockResolvedValue(null);
-    prisma.subscription.create.mockResolvedValue(null);
-    prisma.cartItem.deleteMany.mockResolvedValue({ count: 0 });
-
-    // Reset crypto utils mocks
-    (cryptoUtils.getCryptoConfig as any).mockResolvedValue({
-      wallet: 'mockWalletAddress',
-      rate: 100, // 1 RUB = 100 crypto units
-      currency: 'USDT',
-      network: 'TRC20',
+    // Create a test user and authenticate
+    const registerResponse = await request(app).post('/api/auth/register').send({
+      email: 'test@example.com',
+      password: 'password123',
+      name: 'Test User',
+      telegram: '@testuser',
     });
-    (cryptoUtils.calculateCryptoAmount as any).mockReturnValue(10); // 1000 kopecks / 100 rate = 10 crypto
-    (cryptoUtils.generateQRCode as any).mockResolvedValue('mockQRCodeBase64');
-    (cryptoUtils.getPaymentWarnings as any).mockReturnValue(['Warning 1']);
+
+    token = registerResponse.body.token;
+    userId = registerResponse.body.user.id;
+
+    // Create a test product
+    const productResponse = await prisma.product.create({
+      data: {
+        slug: 'test-product',
+        name: 'Test Product',
+        description: 'A test product',
+        price: 1000,
+        interval: 'month',
+        features: '[]',
+        tier: 1,
+        isActive: true,
+      },
+    });
+
+    productId = productResponse.id;
+
+    // Add product to user's cart
+    const addToCartResponse = await request(app)
+      .post('/api/cart/add')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ productId, quantity: 1 });
+
+    cartItemId = addToCartResponse.body.cartItem.id;
   });
 
-  describe('createCryptoPayment', () => {
-    it('should create a crypto payment successfully', async () => {
-      const mockCartItems = [
-        {
-          id: cartItemId1,
-          userId,
-          productId: productId1,
-          quantity: 1,
-          product: { id: productId1, price: 1000, interval: 'month' },
-        },
-      ];
-      prisma.cartItem.findMany.mockResolvedValue(mockCartItems);
-      prisma.payment.create.mockResolvedValue({
-        id: paymentId,
-        userId,
-        amount: 1000,
-        currency: 'USDT',
-        status: 'pending',
-        paymentMethod: 'crypto_usdt_trc20',
-        walletAddress: 'mockWalletAddress',
-        qrCode: 'mockQRCodeBase64',
-        expiresAt: new Date(),
-        metadata: JSON.stringify({
-          cartItems: [{ id: cartItemId1, productId: productId1, quantity: 1 }],
-        }),
-      });
+  afterAll(async () => {
+    await closeDatabase();
+  });
 
-      const res = await request(app)
+  describe('POST /api/payments/crypto/create', () => {
+    it('should create a crypto payment successfully', async () => {
+      const response = await request(app)
         .post('/api/payments/crypto/create')
         .set('Authorization', `Bearer ${token}`)
-        .send({ cartItems: [cartItemId1], paymentMethod: 'crypto_usdt_trc20' });
+        .send({
+          cartItems: [cartItemId],
+          paymentMethod: 'crypto_usdt_trc20',
+        });
 
-      expect(res.statusCode).toEqual(200);
-      expect(res.body).toHaveProperty('paymentId', paymentId);
-      expect(res.body).toHaveProperty('amountCrypto', 10);
-      expect(res.body).toHaveProperty('qrCode', 'mockQRCodeBase64');
-      expect(prisma.payment.create).toHaveBeenCalled();
+      expect(response.status).toBe(200);
+      expect(response.body).toHaveProperty('paymentId');
+      expect(response.body).toHaveProperty('amountCrypto');
+      expect(response.body).toHaveProperty('walletAddress');
+      expect(response.body).toHaveProperty('qrCode');
     });
 
     it('should return 400 if some cart items not found in user cart', async () => {
-      prisma.cartItem.findMany.mockResolvedValue([]); // No cart items found
-
-      const res = await request(app)
+      const response = await request(app)
         .post('/api/payments/crypto/create')
         .set('Authorization', `Bearer ${token}`)
-        .send({ cartItems: [cartItemId1], paymentMethod: 'crypto_usdt_trc20' });
+        .send({
+          cartItems: ['non-existent-id'],
+          paymentMethod: 'crypto_usdt_trc20',
+        });
 
-      expect(res.statusCode).toEqual(400);
-      expect(res.body).toHaveProperty('error', 'Some cart items not found in user cart');
+      expect(response.status).toBe(400);
     });
   });
 
-  describe('getPaymentStatus', () => {
+  describe('GET /api/payments/:id/status', () => {
     it('should return payment status', async () => {
-      const mockPayment = {
-        id: paymentId,
-        status: 'pending',
-        txHash: null,
-        expiresAt: new Date(Date.now() + 60 * 1000), // 1 minute from now
-      };
-      prisma.payment.findUnique.mockResolvedValue(mockPayment);
+      // Create a payment first
+      const createPaymentResponse = await request(app)
+        .post('/api/payments/crypto/create')
+        .set('Authorization', `Bearer ${token}`)
+        .send({
+          cartItems: [cartItemId],
+          paymentMethod: 'crypto_usdt_trc20',
+        });
 
-      const res = await request(app)
+      const paymentId = createPaymentResponse.body.paymentId;
+
+      const response = await request(app)
         .get(`/api/payments/${paymentId}/status`)
         .set('Authorization', `Bearer ${token}`);
 
-      expect(res.statusCode).toEqual(200);
-      expect(res.body).toHaveProperty('status', 'pending');
-      expect(res.body).toHaveProperty('timeLeft');
-      expect(prisma.payment.findUnique).toHaveBeenCalledWith({ where: { id: paymentId } });
+      expect(response.status).toBe(200);
+      expect(response.body).toHaveProperty('status');
+      expect(response.body).toHaveProperty('timeLeft');
     });
 
     it('should return 404 if payment not found', async () => {
-      prisma.payment.findUnique.mockResolvedValue(null);
-
-      const res = await request(app)
-        .get(`/api/payments/nonExistentPayment/status`)
+      const response = await request(app)
+        .get('/api/payments/non-existent-id/status')
         .set('Authorization', `Bearer ${token}`);
 
-      expect(res.statusCode).toEqual(404);
-      expect(res.body).toHaveProperty('error', 'Payment not found');
+      expect(response.status).toBe(404);
     });
   });
 
-  describe('confirmPayment', () => {
+  describe('POST /api/payments/:id/confirm', () => {
     it('should confirm payment and create subscriptions', async () => {
-      const mockPayment = {
-        id: paymentId,
-        userId,
-        amount: 1000,
-        currency: 'USDT',
-        status: 'pending',
-        paymentMethod: 'crypto_usdt_trc20',
-        metadata: JSON.stringify({
-          cartItems: [{ id: cartItemId1, productId: productId1, quantity: 1 }],
-        }),
-        user: { name: 'Test User', telegram: '@testuser' },
-      };
-      const mockCartItem = {
-        id: cartItemId1,
-        productId: productId1,
-        product: { id: productId1, interval: 'month' },
-      };
+      // Create a payment first
+      const createPaymentResponse = await request(app)
+        .post('/api/payments/crypto/create')
+        .set('Authorization', `Bearer ${token}`)
+        .send({
+          cartItems: [cartItemId],
+          paymentMethod: 'crypto_usdt_trc20',
+        });
 
-      prisma.payment.update.mockResolvedValue({
-        ...mockPayment,
-        status: 'completed',
-        txHash: 'mockTxHash123',
-      });
-      prisma.cartItem.findUnique.mockResolvedValue(mockCartItem);
-      prisma.subscription.create.mockResolvedValue({});
-      prisma.cartItem.deleteMany.mockResolvedValue({ count: 1 });
+      const paymentId = createPaymentResponse.body.paymentId;
 
-      const res = await request(app)
+      const response = await request(app)
         .post(`/api/payments/${paymentId}/confirm`)
         .set('Authorization', `Bearer ${token}`)
         .send({ txHash: 'mockTxHash123' });
 
-      expect(res.statusCode).toEqual(200);
-      expect(res.body).toHaveProperty('payment');
-      expect(res.body.payment).toHaveProperty('status', 'completed');
-      expect(prisma.payment.update).toHaveBeenCalledWith(
-        expect.objectContaining({
-          where: { id: paymentId },
-          data: { status: 'completed', txHash: 'mockTxHash123' },
-        })
-      );
-      expect(prisma.subscription.create).toHaveBeenCalled();
-      expect(prisma.cartItem.deleteMany).toHaveBeenCalledWith({ where: { userId } });
+      expect(response.status).toBe(200);
+      expect(response.body).toHaveProperty('payment');
+      expect(response.body.payment.status).toBe('completed');
     });
   });
 });

@@ -11,7 +11,10 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
     "prisma:seed": "tsx prisma/seed.ts",
-    "test": "jest",
+    "test": "dotenv -e .env.test -- vitest",
+    "test:run": "dotenv -e .env.test -- vitest run",
+    "test:ui": "dotenv -e .env.test -- vitest --ui",
+    "test:coverage": "dotenv -e .env.test -- vitest --coverage",
     "logs:cleanup": "node scripts/cleanup-logs.js",
     "logs:view-errors": "tail -f logs/error-*.log",
     "logs:view-all": "tail -f logs/combined-*.log"
@@ -59,11 +62,15 @@
     "@types/node": "^20.4.2",
     "@types/qrcode": "^1.5.1",
     "@types/supertest": "^6.0.3",
+    "@vitest/coverage-v8": "^4.0.8",
+    "@vitest/ui": "^4.0.8",
+    "dotenv-cli": "^11.0.0",
     "jest": "^30.2.0",
     "prisma": "^5.0.0",
     "supertest": "^7.1.4",
     "ts-jest": "^29.4.5",
     "tsx": "^4.7.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "vitest": "^4.0.8"
   }
 }
