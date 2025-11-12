@@ -3,7 +3,7 @@ import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import type { Mock } from 'vitest';
 
 describe('APIClient', () => {
-  const mockBaseUrl = 'http://localhost:3000';
+  const mockBaseUrl = 'http://localhost:3001/api';
   let fetchMock: Mock;
 
   beforeEach(() => {
@@ -11,9 +11,8 @@ describe('APIClient', () => {
     fetchMock = vi.fn();
     (globalThis as typeof globalThis & { fetch: Mock }).fetch = fetchMock;
 
-    // Default mock for CSRF token requests, which happen automatically
+    // Default mock for all requests - initially rejecting everything
     fetchMock.mockImplementation((url) => {
-      // For any other URL, return a default rejection to catch un-mocked requests
       return Promise.reject(new Error(`Unexpected fetch call to ${url}`));
     });
 
@@ -33,25 +32,24 @@ describe('APIClient', () => {
         token: 'fake-jwt-token',
       };
 
-      // Specific mock for the login endpoint for this test
-      fetchMock.mockImplementation((url) => {
-        if (url.toString().endsWith('/api/auth/login')) {
-          return Promise.resolve({
-            ok: true,
-            json: async () => mockResponse,
-            status: 200,
-          });
-        }
-        return Promise.reject(new Error(`Unexpected fetch call to ${url}`));
+      // Mock the login endpoint
+      fetchMock.mockResolvedValue({
+        ok: true,
+        json: async () => mockResponse,
+        status: 200,
       });
 
       const result = await apiClient.login('test@example.com', 'password123');
 
       expect(fetchMock).toHaveBeenCalledWith(
-        `${mockBaseUrl}/api/auth/login`,
+        `${mockBaseUrl}/auth/login`,
         expect.objectContaining({
           method: 'POST',
           body: JSON.stringify({ email: 'test@example.com', password: 'password123' }),
+          headers: expect.objectContaining({
+            'Content-Type': 'application/json',
+          }),
+          credentials: 'include',
         })
       );
       expect(result).toEqual(mockResponse);
@@ -60,22 +58,10 @@ describe('APIClient', () => {
     it('should throw APIError on failed login (401)', async () => {
       const errorResponse = { message: 'Invalid credentials' };
 
-      fetchMock.mockImplementation((url) => {
-        if (url.toString().endsWith('/api/auth/login')) {
-          return Promise.resolve({
-            ok: false,
-            json: async () => errorResponse,
-            status: 401,
-          });
-        }
-        if (url.toString().endsWith('/api/csrf-token')) {
-          return Promise.resolve({
-            ok: true,
-            json: async () => ({ csrfToken: 'test-csrf-token' }),
-            status: 200,
-          });
-        }
-        return Promise.reject(new Error(`Unexpected fetch call to ${url}`));
+      fetchMock.mockResolvedValue({
+        ok: false,
+        json: async () => errorResponse,
+        status: 401,
       });
 
       await expect(apiClient.login('test@example.com', 'wrongpassword')).rejects.toStrictEqual(
@@ -84,19 +70,7 @@ describe('APIClient', () => {
     });
 
     it('should throw a generic APIError on network failure', async () => {
-      fetchMock.mockImplementation((url) => {
-        if (url.toString().endsWith('/api/auth/login')) {
-          return Promise.reject(new Error('Network error'));
-        }
-        if (url.toString().endsWith('/api/csrf-token')) {
-          return Promise.resolve({
-            ok: true,
-            json: async () => ({ csrfToken: 'test-csrf-token' }),
-            status: 200,
-          });
-        }
-        return Promise.reject(new Error(`Unexpected fetch call to ${url}`));
-      });
+      fetchMock.mockRejectedValue(new Error('Network error'));
 
       await expect(apiClient.login('test@example.com', 'password123')).rejects.toStrictEqual(
         new APIError('Network error. Please check your internet connection.', 0)
@@ -110,19 +84,23 @@ describe('APIClient', () => {
     });
 
     it('should include Authorization header on GET requests', async () => {
+      const mockUserData = { id: '1', email: 'test@example.com', name: 'Test User' };
+
       fetchMock.mockResolvedValue({
         ok: true,
-        json: async () => ({ user: 'data' }),
+        json: async () => mockUserData,
       });
 
       await apiClient.getMe();
 
       expect(fetchMock).toHaveBeenCalledWith(
-        `${mockBaseUrl}/api/auth/me`,
+        `${mockBaseUrl}/auth/me`,
         expect.objectContaining({
           headers: expect.objectContaining({
+            'Content-Type': 'application/json',
             Authorization: 'Bearer fake-jwt-token',
           }),
+          credentials: 'include',
         })
       );
     });
@@ -141,35 +119,39 @@ describe('APIClient', () => {
 
   describe('other methods', () => {
     it('getProducts should call the correct endpoint with params', async () => {
+      const mockProducts = [{ id: '1', name: 'Test Product' }];
+
       fetchMock.mockResolvedValue({
         ok: true,
-        json: async () => ({ products: [] }),
+        json: async () => mockProducts,
       });
 
       await apiClient.getProducts({ tier: 1, isActive: true });
 
       expect(fetchMock).toHaveBeenCalledWith(
-        `${mockBaseUrl}/api/products?tier=1&isActive=true`,
-        expect.any(Object)
+        `${mockBaseUrl}/products?tier=1&isActive=true`,
+        expect.objectContaining({
+          headers: expect.objectContaining({
+            'Content-Type': 'application/json',
+          }),
+          credentials: 'include',
+        })
       );
     });
 
     it('addToCart should send correct payload and headers', async () => {
       apiClient.setToken('fake-jwt-token');
-      fetchMock.mockImplementation((url) => {
-        if (url.toString().endsWith('/api/cart')) {
-          return Promise.resolve({
-            ok: true,
-            json: async () => ({ success: true }),
-          });
-        }
-        return Promise.reject(new Error(`Unexpected fetch call to ${url}`));
+      const mockResponse = { success: true };
+
+      fetchMock.mockResolvedValue({
+        ok: true,
+        json: async () => mockResponse,
       });
 
       await apiClient.addToCart('prod-123', 2);
 
       expect(fetchMock).toHaveBeenCalledWith(
-        `${mockBaseUrl}/api/cart`,
+        `${mockBaseUrl}/cart`,
         expect.objectContaining({
           method: 'POST',
           headers: expect.objectContaining({
@@ -177,6 +159,7 @@ describe('APIClient', () => {
             Authorization: 'Bearer fake-jwt-token',
           }),
           body: JSON.stringify({ productId: 'prod-123', quantity: 2 }),
+          credentials: 'include',
         })
       );
     });

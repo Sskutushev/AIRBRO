@@ -9,6 +9,7 @@ import React, {
   useRef,
 } from 'react';
 import { apiClient } from '../services/api/client';
+import { storage } from '../lib/utils/storage';
 import * as ApiTypes from '../types/api';
 
 interface AuthContextType {
@@ -36,7 +37,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // Update mounted ref when component mounts/unmounts
     mountedRef.current = true;
 
-    const token = localStorage.getItem('airbro_token');
+    const token = storage.get<string>('authToken');
     if (token) {
       apiClient.setToken(token);
       apiClient
@@ -49,7 +50,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         .catch((error) => {
           console.error('Error fetching user data:', error);
           if (mountedRef.current) {
-            localStorage.removeItem('airbro_token');
+            storage.remove('authToken');
             apiClient.setToken(null);
           }
         })
@@ -71,14 +72,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   const setAuthData = useCallback((user: ApiTypes.User, token: string) => {
-    localStorage.setItem('airbro_token', token);
+    storage.set<string>('authToken', token);
     apiClient.setToken(token);
     setUser(user);
   }, []);
 
   const clearAuthData = useCallback(() => {
     setUser(null);
-    localStorage.removeItem('airbro_token');
+    storage.remove('authToken');
     apiClient.setToken(null);
   }, []);
 
@@ -88,7 +89,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const logout = useCallback(() => {
     setUser(null);
-    localStorage.removeItem('airbro_token');
+    storage.remove('authToken');
     apiClient.setToken(null);
   }, []);
 

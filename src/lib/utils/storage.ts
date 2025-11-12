@@ -61,7 +61,7 @@ class StorageService {
     try {
       const prefixedKey = this.getPrefixedKey(key);
       const serializedValue = window.localStorage.getItem(prefixedKey);
-      if (serializedValue === null) {
+      if (serializedValue === null || serializedValue === 'undefined') {
         return null;
       }
       return JSON.parse(serializedValue) as T;
