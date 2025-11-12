@@ -42,7 +42,12 @@ export function validateEnvironment(): Environment {
       error.errors.forEach((err) => {
         console.error(`  ${err.path.join('.')}: ${err.message}`);
       });
-      process.exit(1);
+      // Only exit in production, not during tests
+      if (process.env.NODE_ENV !== 'test') {
+        process.exit(1);
+      } else {
+        throw error; // Let tests handle the error properly
+      }
     }
     throw error;
   }

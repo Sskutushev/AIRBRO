@@ -3,13 +3,15 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "ES2020",
-    "types": ["jest", "node"]
+    "types": ["vitest", "node"]
   },
   "include": [
-    "jest.config.ts",
-    "jest.setup.ts",
-    "jest.setup.env.ts",
+    "vitest.config.ts",
+    "vitest.setup.ts",
     "src/**/*.test.ts",
-    "src/**/*.test.tsx"
+    "src/**/*.spec.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.tsx",
+    "src/tests/**/*"
   ]
 }

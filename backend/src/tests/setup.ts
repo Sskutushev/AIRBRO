@@ -1,10 +1,16 @@
 // src/tests/setup.ts
 import { PrismaClient } from '@prisma/client';
 
-// Set environment variables for testing
-process.env.JWT_SECRET = 'supersecretjwtkeyfor_testing_only_12345';
-process.env.NODE_ENV = 'test';
-process.env.DATABASE_URL = 'postgresql://airbro:airbro_dev@localhost:5432/airbro_test';
+// Set environment variables for testing (only if not already set)
+if (!process.env.JWT_SECRET) {
+  process.env.JWT_SECRET = 'supersecretjwtkeyfor_testing_only_12345';
+}
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = 'test';
+}
+if (!process.env.DATABASE_URL) {
+  process.env.DATABASE_URL = 'postgresql://airbro:airbro_dev@localhost:5432/airbro_test';
+}
 
 // Create Prisma client with test database
 const prisma = new PrismaClient({

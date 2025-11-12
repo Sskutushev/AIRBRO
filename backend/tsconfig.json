@@ -27,5 +27,5 @@
     }
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "getChatId.ts", "prisma"]
+  "exclude": ["node_modules", "dist", "getChatId.ts", "prisma", "**/*.test.ts", "**/__tests__/**/*"]
 }

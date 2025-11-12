@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import type { AuthenticatedRequest } from '../middleware/auth';
 import { CryptoPaymentCreate } from '../models/payment';
 import prisma from '../config/database';
@@ -142,7 +142,7 @@ export const getPaymentStatus = async (req: Request, res: Response) => {
   }
 };
 
-export const confirmPayment = async (req: Request, res: Response) => {
+export const confirmPayment = async (req: AuthenticatedRequest, res: Response) => {
   try {
     const { id } = req.params;
     const { txHash } = req.body;
@@ -154,7 +154,7 @@ export const confirmPayment = async (req: Request, res: Response) => {
       where: { id },
       data: {
         status: 'completed',
-        txHash,
+        txHash: txHash,
       },
       include: {
         user: {

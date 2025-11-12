@@ -4,7 +4,6 @@ import app from '../server';
 import { clearDatabase, closeDatabase } from '../tests/setup';
 import { PrismaClient } from '@prisma/client';
 import jwt from 'jsonwebtoken';
-import { JWT_SECRET } from '../config/environment';
 
 const prisma = new PrismaClient();
 

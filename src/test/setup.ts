@@ -1,71 +1,67 @@
-/**
- * @file Global test setup file for Vitest.
- * @module test/setup
- */
-
-import '@testing-library/jest-dom';
-import { cleanup } from '@testing-library/react';
-import { afterEach, vi } from 'vitest';
-
-// Cleans up the DOM after each test run
-afterEach(() => {
-  cleanup();
-});
+// src/test/setup.ts
+import '@testing-library/jest-dom/vitest';
 
 // Mock localStorage
-const localStorageMock = (() => {
-  let store: { [key: string]: string } = {};
-  return {
-    getItem: (key: string) => store[key] || null,
-    setItem: (key: string, value: string) => {
-      store[key] = value.toString();
-    },
-    removeItem: (key: string) => {
-      delete store[key];
-    },
-    clear: () => {
-      store = {};
-    },
-    length: 0, // Add length property
-    key: (index: number) => Object.keys(store)[index] || null, // Add key method
-  };
-})();
-
+const localStorageMock = {
+  getItem: vi.fn(),
+  setItem: vi.fn(),
+  removeItem: vi.fn(),
+  clear: vi.fn(),
+};
 Object.defineProperty(window, 'localStorage', {
   value: localStorageMock,
+  writable: true,
 });
 
-// Mock window.matchMedia for responsive components
+// Mock sessionStorage
+const sessionStorageMock = {
+  getItem: vi.fn(),
+  setItem: vi.fn(),
+  removeItem: vi.fn(),
+  clear: vi.fn(),
+};
+Object.defineProperty(window, 'sessionStorage', {
+  value: sessionStorageMock,
+  writable: true,
+});
+
+// Mock window.location
+Object.defineProperty(window, 'location', {
+  value: {
+    href: 'http://localhost:5173',
+    assign: vi.fn(),
+    replace: vi.fn(),
+  },
+  writable: true,
+});
+
+// Mock ResizeObserver
+class ResizeObserver {
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
+}
+window.ResizeObserver = ResizeObserver;
+
+// Mock IntersectionObserver
+class IntersectionObserver {
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
+}
+window.IntersectionObserver = IntersectionObserver;
+
+// Mock matchMedia
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
-  value: vi.fn().mockImplementation((query) => ({
+  value: vi.fn().mockImplementation(query => ({
     matches: false,
     media: query,
     onchange: null,
-    addListener: vi.fn(), // Deprecated
-    removeListener: vi.fn(), // Deprecated
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
     addEventListener: vi.fn(),
     removeEventListener: vi.fn(),
     dispatchEvent: vi.fn(),
   })),
 });
-
-// Mock IntersectionObserver for components using react-intersection-observer
-class IntersectionObserverMock {
-  constructor() {
-    // No need to call vi.fn() here, just define the methods as mocks
-  }
-
-  disconnect = vi.fn();
-  observe = vi.fn();
-  takeRecords = vi.fn();
-  unobserve = vi.fn();
-}
-
-Object.defineProperty(window, 'IntersectionObserver', {
-  writable: true,
-  value: IntersectionObserverMock,
-});
-
-// Mock global fetch
-(globalThis as any).fetch = vi.fn();
