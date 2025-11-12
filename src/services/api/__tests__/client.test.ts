@@ -9,7 +9,7 @@ describe('APIClient', () => {
   beforeEach(() => {
     // Create a generic mock for fetch for each test
     fetchMock = vi.fn();
-    (globalThis as any).fetch = fetchMock;
+    (globalThis as typeof globalThis & { fetch: Mock }).fetch = fetchMock;
 
     // Default mock for CSRF token requests, which happen automatically
     fetchMock.mockImplementation((url) => {
@@ -135,7 +135,7 @@ describe('APIClient', () => {
       });
 
       await expect(apiClient.getMe()).rejects.toThrow('Token expired');
-      expect((apiClient as any).token).toBeNull();
+      expect((apiClient as { token: string | null }).token).toBeNull();
     });
   });
 

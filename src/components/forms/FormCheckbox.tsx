@@ -15,7 +15,7 @@ import { cn } from '../../lib/utils/cn'; // Assuming cn utility for class name c
  * @param {FormCheckboxProps<TFormValues>} props - The properties for the component.
  * @returns {JSX.Element} The rendered checkbox component.
  */
-export const FormCheckbox = <TFormValues extends Record<string, any>>({
+export const FormCheckbox = <TFormValues extends Record<string, unknown>>({
   name,
   label,
   register,

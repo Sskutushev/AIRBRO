@@ -39,7 +39,7 @@ export const mockAPI = {
     };
   },
 
-  async register(data: any) {
+  async register(data: { email: string; name: string; telegram?: string }) {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     const newUser = {

@@ -15,7 +15,7 @@ import { cn } from '../../lib/utils/cn'; // Assuming cn utility for class name c
  * @param {FormSelectProps<TFormValues>} props - The properties for the component.
  * @returns {JSX.Element} The rendered select component.
  */
-export const FormSelect = <TFormValues extends Record<string, any>>({
+export const FormSelect = <TFormValues extends Record<string, unknown>>({
   name,
   label,
   options,

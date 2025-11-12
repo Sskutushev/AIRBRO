@@ -16,7 +16,7 @@ import { cn } from '../../lib/utils/cn'; // Assuming cn utility for class name c
  * @param {FormInputProps<TFormValues>} props - The properties for the component.
  * @returns {JSX.Element} The rendered input component.
  */
-export const FormInput = <TFormValues extends Record<string, any>>({
+export const FormInput = <TFormValues extends Record<string, unknown>>({
   name,
   label,
   type = 'text',
@@ -49,7 +49,7 @@ export const FormInput = <TFormValues extends Record<string, any>>({
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
             {React.cloneElement(startIcon as React.ReactElement, {
               className: 'h-5 w-5 text-gray-400 dark:text-gray-500',
-            } as any)}
+            })}
           </div>
         )}
         <input
@@ -75,7 +75,7 @@ export const FormInput = <TFormValues extends Record<string, any>>({
             {endIcon &&
               React.cloneElement(endIcon as React.ReactElement, {
                 className: 'h-5 w-5 text-gray-400 dark:text-gray-500',
-              } as any)}
+              })}
             {showPasswordToggle && (
               <button
                 type="button"

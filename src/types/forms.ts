@@ -9,7 +9,7 @@ import type { ReactNode } from 'react';
  * Base props for all form fields, providing common properties for integration with React Hook Form.
  * @template TFormValues The type of the form values object.
  */
-export interface FormFieldProps<TFormValues extends Record<string, any>> {
+export interface FormFieldProps<TFormValues extends Record<string, unknown>> {
   /** The unique name of the field, used for registration with React Hook Form. */
   name: keyof TFormValues;
   /** The human-readable label for the form field. */
@@ -35,7 +35,7 @@ export interface FormFieldProps<TFormValues extends Record<string, any>> {
  * Props specific to text-based input components (e.g., FormInput, FormTextarea).
  * @template TFormValues The type of the form values object.
  */
-export interface FormInputProps<TFormValues extends Record<string, any>>
+export interface FormInputProps<TFormValues extends Record<string, unknown>>
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'name'>, FormFieldProps<TFormValues> {
   /** Optional icon to display at the start of the input. */
   startIcon?: ReactNode;
@@ -65,7 +65,7 @@ export interface FormSelectOption {
  * Props specific to select components (e.g., FormSelect).
  * @template TFormValues The type of the form values object.
  */
-export interface FormSelectProps<TFormValues extends Record<string, any>>
+export interface FormSelectProps<TFormValues extends Record<string, unknown>>
   extends FormFieldProps<TFormValues> {
   /** An array of options to display in the select dropdown. */
   options: FormSelectOption[];
@@ -79,7 +79,7 @@ export interface FormSelectProps<TFormValues extends Record<string, any>>
  * Props specific to checkbox components (e.g., FormCheckbox).
  * @template TFormValues The type of the form values object.
  */
-export interface FormCheckboxProps<TFormValues extends Record<string, any>>
+export interface FormCheckboxProps<TFormValues extends Record<string, unknown>>
   extends FormFieldProps<TFormValues> {
   /** Optional disabled state for the checkbox. */
   disabled?: boolean;
