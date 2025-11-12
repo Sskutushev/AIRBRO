@@ -1,12 +1,23 @@
-весрель:
-
-Making request to: https://airbro-production.up.railway.app/api/telegram/send with method: POST
-/#/:1 Access to fetch at 'https://airbro-production.up.railway.app/api/telegram/send' from origin 'https://airbro-mrqs.vercel.app' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-index-QyI9BqpO.js:26  POST https://airbro-production.up.railway.app/api/telegram/send net::ERR_FAILED
+index-QyI9BqpO.js:211 APIClient initialized with baseURL: https://airbro-production.up.railway.app/api
+index-QyI9BqpO.js:26 ✅ Sentry initialized successfully
+index-QyI9BqpO.js:26 ✅ Google Analytics initialized
+index-QyI9BqpO.js:26 ✅ Google Analytics initialized
+index-QyI9BqpO.js:26 Making request to: https://airbro-production.up.railway.app/api/auth/login with method: POST
+/#/auth:1 Access to fetch at 'https://airbro-production.up.railway.app/api/auth/login' from origin 'https://airbro-mrqs.vercel.app' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+index-QyI9BqpO.js:26  POST https://airbro-production.up.railway.app/api/auth/login net::ERR_FAILED
 (anonymous) @ index-QyI9BqpO.js:26
 request @ index-QyI9BqpO.js:211
-sendTelegramMessage @ index-QyI9BqpO.js:211
-p @ CTASection-BaF9YVML.js:1
+login @ index-QyI9BqpO.js:211
+mutationFn @ AuthPage-iJ1NUBju.js:20
+fn @ index-QyI9BqpO.js:35
+_ @ index-QyI9BqpO.js:35
+start @ index-QyI9BqpO.js:35
+execute @ index-QyI9BqpO.js:35
+await in execute
+mutate @ AuthPage-iJ1NUBju.js:1
+O @ AuthPage-iJ1NUBju.js:20
+(anonymous) @ AuthPage-iJ1NUBju.js:1
+await in (anonymous)
 A0 @ index-QyI9BqpO.js:9
 (anonymous) @ index-QyI9BqpO.js:9
 Nv @ index-QyI9BqpO.js:9
@@ -17,20 +28,28 @@ s @ index-QyI9BqpO.js:26
 index-QyI9BqpO.js:26 Network error: TypeError: Failed to fetch (airbro-production.up.railway.app)
     at index-QyI9BqpO.js:26:6780
     at $4.request (index-QyI9BqpO.js:211:4791)
-    at $4.sendTelegramMessage (index-QyI9BqpO.js:211:6564)
-    at p (CTASection-BaF9YVML.js:1:1059)
-    at A0 (index-QyI9BqpO.js:9:127585)
-    at index-QyI9BqpO.js:9:132711
-    at Nv (index-QyI9BqpO.js:9:15121)
-    at sp (index-QyI9BqpO.js:9:128819)
-    at vp (index-QyI9BqpO.js:10:28666)
-    at ck (index-QyI9BqpO.js:10:28488)
-    at HTMLDivElement.s (index-QyI9BqpO.js:26:8945)
+    at $4.login (index-QyI9BqpO.js:211:5084)
+    at Object.mutationFn (AuthPage-iJ1NUBju.js:20:25547)
+    at Object.fn (index-QyI9BqpO.js:35:35957)
+    at _ (index-QyI9BqpO.js:35:26835)
+    at Object.start (index-QyI9BqpO.js:35:27285)
+    at K5.execute (index-QyI9BqpO.js:35:36588)
+    at async O (AuthPage-iJ1NUBju.js:20:54313)
+    at async AuthPage-iJ1NUBju.js:1:21507
 (anonymous) @ index-QyI9BqpO.js:26
 request @ index-QyI9BqpO.js:211
 await in request
-sendTelegramMessage @ index-QyI9BqpO.js:211
-p @ CTASection-BaF9YVML.js:1
+login @ index-QyI9BqpO.js:211
+mutationFn @ AuthPage-iJ1NUBju.js:20
+fn @ index-QyI9BqpO.js:35
+_ @ index-QyI9BqpO.js:35
+start @ index-QyI9BqpO.js:35
+execute @ index-QyI9BqpO.js:35
+await in execute
+mutate @ AuthPage-iJ1NUBju.js:1
+O @ AuthPage-iJ1NUBju.js:20
+(anonymous) @ AuthPage-iJ1NUBju.js:1
+await in (anonymous)
 A0 @ index-QyI9BqpO.js:9
 (anonymous) @ index-QyI9BqpO.js:9
 Nv @ index-QyI9BqpO.js:9
@@ -38,90 +57,64 @@ sp @ index-QyI9BqpO.js:9
 vp @ index-QyI9BqpO.js:10
 ck @ index-QyI9BqpO.js:10
 s @ index-QyI9BqpO.js:26
-index-QyI9BqpO.js:26 Failed to send message: APIError: Network error. Please check your internet connection.
+index-QyI9BqpO.js:26 Login error: APIError: Network error. Please check your internet connection.
     at $4.request (index-QyI9BqpO.js:211:4957)
-    at async p (CTASection-BaF9YVML.js:1:1051)
 
 
-рейлвей:
-APIClient initialized with baseURL: http://localhost:3000
-index-ClWVNtAZ.js:12 Sentry DSN not configured - error tracking disabled
-WA @ index-ClWVNtAZ.js:12
-(anonymous) @ index-ClWVNtAZ.js:198
-index-ClWVNtAZ.js:12 GA Measurement ID not configured
-init @ index-ClWVNtAZ.js:12
-(anonymous) @ index-ClWVNtAZ.js:198
-index-ClWVNtAZ.js:12 GA Measurement ID not configured
-init @ index-ClWVNtAZ.js:12
-(anonymous) @ index-ClWVNtAZ.js:198
-Ls @ index-ClWVNtAZ.js:9
-Ta @ index-ClWVNtAZ.js:9
-Ta @ index-ClWVNtAZ.js:9
-Ta @ index-ClWVNtAZ.js:9
-Ta @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-We @ index-ClWVNtAZ.js:9
-wg @ index-ClWVNtAZ.js:9
-Kg @ index-ClWVNtAZ.js:9
-(anonymous) @ index-ClWVNtAZ.js:9
-Dt @ index-ClWVNtAZ.js:2
-CTASection-Do_QX2f3.js:1  POST http://localhost:3000/api/telegram/send net::ERR_CONNECTION_REFUSED
-p @ CTASection-Do_QX2f3.js:1
-iy @ index-ClWVNtAZ.js:9
-(anonymous) @ index-ClWVNtAZ.js:9
-um @ index-ClWVNtAZ.js:9
-Yc @ index-ClWVNtAZ.js:9
-of @ index-ClWVNtAZ.js:10
-y_ @ index-ClWVNtAZ.js:10
-CTASection-Do_QX2f3.js:1 Failed to send message: TypeError: Failed to fetch
-    at p (CTASection-Do_QX2f3.js:1:1055)
-    at iy (index-ClWVNtAZ.js:9:127501)
-    at index-ClWVNtAZ.js:9:132589
-    at um (index-ClWVNtAZ.js:9:15121)
-    at Yc (index-ClWVNtAZ.js:9:128735)
-    at of (index-ClWVNtAZ.js:10:28660)
-    at y_ (index-ClWVNtAZ.js:10:28482)
+Making request to: https://airbro-production.up.railway.app/api/auth/register with method: POST
+/#/auth:1 Access to fetch at 'https://airbro-production.up.railway.app/api/auth/register' from origin 'https://airbro-mrqs.vercel.app' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+index-QyI9BqpO.js:26  POST https://airbro-production.up.railway.app/api/auth/register net::ERR_FAILED
+(anonymous) @ index-QyI9BqpO.js:26
+request @ index-QyI9BqpO.js:211
+register @ index-QyI9BqpO.js:211
+mutationFn @ AuthPage-iJ1NUBju.js:20
+fn @ index-QyI9BqpO.js:35
+_ @ index-QyI9BqpO.js:35
+start @ index-QyI9BqpO.js:35
+execute @ index-QyI9BqpO.js:35
+await in execute
+mutate @ AuthPage-iJ1NUBju.js:1
+de @ AuthPage-iJ1NUBju.js:20
+(anonymous) @ AuthPage-iJ1NUBju.js:1
+await in (anonymous)
+A0 @ index-QyI9BqpO.js:9
+(anonymous) @ index-QyI9BqpO.js:9
+Nv @ index-QyI9BqpO.js:9
+sp @ index-QyI9BqpO.js:9
+vp @ index-QyI9BqpO.js:10
+ck @ index-QyI9BqpO.js:10
+s @ index-QyI9BqpO.js:26
+index-QyI9BqpO.js:26 Network error: TypeError: Failed to fetch (airbro-production.up.railway.app)
+    at index-QyI9BqpO.js:26:6780
+    at $4.request (index-QyI9BqpO.js:211:4791)
+    at $4.register (index-QyI9BqpO.js:211:5226)
+    at Object.mutationFn (AuthPage-iJ1NUBju.js:20:25841)
+    at Object.fn (index-QyI9BqpO.js:35:35957)
+    at _ (index-QyI9BqpO.js:35:26835)
+    at Object.start (index-QyI9BqpO.js:35:27285)
+    at K5.execute (index-QyI9BqpO.js:35:36588)
+    at async de (AuthPage-iJ1NUBju.js:20:54490)
+    at async AuthPage-iJ1NUBju.js:1:21507
+(anonymous) @ index-QyI9BqpO.js:26
+request @ index-QyI9BqpO.js:211
+await in request
+register @ index-QyI9BqpO.js:211
+mutationFn @ AuthPage-iJ1NUBju.js:20
+fn @ index-QyI9BqpO.js:35
+_ @ index-QyI9BqpO.js:35
+start @ index-QyI9BqpO.js:35
+execute @ index-QyI9BqpO.js:35
+await in execute
+mutate @ AuthPage-iJ1NUBju.js:1
+de @ AuthPage-iJ1NUBju.js:20
+(anonymous) @ AuthPage-iJ1NUBju.js:1
+await in (anonymous)
+A0 @ index-QyI9BqpO.js:9
+(anonymous) @ index-QyI9BqpO.js:9
+Nv @ index-QyI9BqpO.js:9
+sp @ index-QyI9BqpO.js:9
+vp @ index-QyI9BqpO.js:10
+ck @ index-QyI9BqpO.js:10
+s @ index-QyI9BqpO.js:26
+index-QyI9BqpO.js:26 Registration error: APIError: Network error. Please check your internet connection.
+    at $4.request (index-QyI9BqpO.js:211:4957)
