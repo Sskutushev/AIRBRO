@@ -11,8 +11,9 @@ export const validate = (schema: ZodSchema) => {
       });
       next();
       return;
-    } catch (error: any) {
-      const errors = error.errors?.map((err: any) => ({
+    } catch (error: unknown) {
+      const zodError = error as { errors?: Array<{ path: string[]; message: string }> };
+      const errors = zodError.errors?.map((err) => ({
         field: err.path.join('.'),
         message: err.message,
       })) || [{ field: 'validation', message: 'Invalid request format' }];

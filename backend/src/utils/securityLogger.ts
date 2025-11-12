@@ -8,7 +8,7 @@ export const logSecurityEvent = (event: {
   userAgent?: string;
   success?: boolean;
   reason?: string;
-  details?: Record<string, any>;
+  details?: Record<string, unknown>;
 }) => {
   const logData = {
     timestamp: new Date().toISOString(),
@@ -32,7 +32,7 @@ export const logSuspiciousActivity = (details: {
   userId?: string;
   ip: string;
   reason: string;
-  details?: Record<string, any>;
+  details?: Record<string, unknown>;
 }) => {
   logSecurityEvent({
     type: 'suspicious_activity',

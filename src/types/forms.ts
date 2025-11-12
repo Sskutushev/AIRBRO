@@ -15,7 +15,7 @@ export interface FormFieldProps<TFormValues extends Record<string, any>> {
   /** The human-readable label for the form field. */
   label: string;
   /** The register function from `useForm` to register the input with React Hook Form. */
-  register: (name: keyof TFormValues, options?: any) => any;
+  register: (name: keyof TFormValues, options?: Record<string, unknown>) => Record<string, unknown>;
   /** The errors object from `useForm` to display validation messages. */
   errors?: {
     [K in keyof TFormValues]?: {

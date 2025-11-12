@@ -23,7 +23,7 @@ class AnalyticsService {
 
       // Initialize gtag
       window.dataLayer = window.dataLayer || [];
-      function gtag(...args: any[]) {
+      function gtag(...args: unknown[]) {
         window.dataLayer.push(args);
       }
       window.gtag = gtag;
@@ -49,7 +49,7 @@ class AnalyticsService {
     });
   }
 
-  trackEvent(name: string, params?: Record<string, any>) {
+  trackEvent(name: string, params?: Record<string, unknown>) {
     if (!this.initialized || !window.gtag) return;
 
     window.gtag('event', name, params);
@@ -64,7 +64,7 @@ class AnalyticsService {
     });
   }
 
-  trackPurchase(transaction: { id: string; value: number; items: any[] }) {
+  trackPurchase(transaction: { id: string; value: number; items: unknown[] }) {
     this.trackEvent('purchase', {
       currency: 'RUB',
       transaction_id: transaction.id,
@@ -96,7 +96,7 @@ export const analytics = new AnalyticsService();
 // Types
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: any[];
+    gtag: (...args: unknown[]) => void;
+    dataLayer: unknown[];
   }
 }

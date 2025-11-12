@@ -60,7 +60,7 @@ export const useError = (): ErrorContextType => {
 };
 
 // Higher-order component to wrap async functions with error handling
-export const withErrorHandling = <T extends any[], R>(
+export const withErrorHandling = <T extends unknown[], R>(
   fn: (...args: T) => Promise<R>,
   errorHandler?: (error: Error) => void
 ) => {

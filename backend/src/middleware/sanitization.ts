@@ -29,7 +29,9 @@ export const sanitizeInput = (req: Request, res: Response, next: NextFunction) =
  * @param obj - The object to sanitize
  * @returns Sanitized object
  */
-function sanitizeObject(obj: any): any {
+type Sanitizable = string | number | boolean | null | undefined | Sanitizable[] | {[key: string]: Sanitizable};
+
+function sanitizeObject(obj: Sanitizable): Sanitizable {
   if (obj === null || obj === undefined) {
     return obj;
   }
@@ -46,7 +48,7 @@ function sanitizeObject(obj: any): any {
 
   if (typeof obj === 'object') {
     // Sanitize each property in the object
-    const sanitized: any = {};
+    const sanitized: {[key: string]: Sanitizable} = {};
     for (const key in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, key)) {
         sanitized[key] = sanitizeObject(obj[key]);

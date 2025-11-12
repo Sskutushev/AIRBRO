@@ -30,7 +30,7 @@ const customRender = (
     route = '/',
     initialState: _initialState = {}, // Placeholder for any initial state if needed
     ...renderOptions
-  }: RenderOptions & { route?: string; initialState?: any } = {}
+  }: RenderOptions & { route?: string; initialState?: unknown } = {}
 ): RenderResult => {
   const Wrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (

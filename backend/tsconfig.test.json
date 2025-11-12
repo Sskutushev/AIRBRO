@@ -8,10 +8,13 @@
   "include": [
     "vitest.config.ts",
     "vitest.setup.ts",
+    "jest.config.ts",
+    "jest.setup.ts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.tsx",
     "src/**/*.spec.tsx",
-    "src/tests/**/*"
+    "src/tests/**/*",
+    "src/controllers/**/*"
   ]
 }

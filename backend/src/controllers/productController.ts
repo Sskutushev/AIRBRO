@@ -5,7 +5,10 @@ export const getProducts = async (req: Request, res: Response) => {
   try {
     const { tier, isActive } = req.query;
 
-    const whereClause: any = {};
+    const whereClause: {
+      tier?: number;
+      isActive?: boolean;
+    } = {};
 
     if (tier !== undefined) {
       whereClause.tier = Number(tier);

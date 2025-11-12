@@ -52,11 +52,11 @@ const logger = winston.createLogger({
 });
 
 // Helper methods
-export const logInfo = (message: string, meta?: any) => {
+export const logInfo = (message: string, meta?: unknown) => {
   logger.info(message, redactSensitive(meta));
 };
 
-export const logError = (message: string, error?: any, context?: any) => {
+export const logError = (message: string, error?: unknown, context?: unknown) => {
   logger.error(message, {
     error: redactSensitive(error),
     context: redactSensitive(context),
@@ -67,19 +67,21 @@ export const logError = (message: string, error?: any, context?: any) => {
   // sendTelegramNotification(errorMessage).catch(console.error);
 };
 
-export const logWarn = (message: string, meta?: any) => {
+export const logWarn = (message: string, meta?: unknown) => {
   logger.warn(message, redactSensitive(meta));
 };
 
-export const logDebug = (message: string, meta?: any) => {
+export const logDebug = (message: string, meta?: unknown) => {
   logger.debug(message, redactSensitive(meta));
 };
 
 // Redact sensitive data
-function redactSensitive(obj: any): any {
+type Redactable = null | undefined | string | number | boolean | Redactable[] | {[key: string]: Redactable};
+
+function redactSensitive(obj: Redactable): Redactable {
   if (!obj || typeof obj !== 'object') return obj;
 
-  const redacted = Array.isArray(obj) ? [] : {};
+  const redacted: Redactable = Array.isArray(obj) ? [] : {};
   const sensitiveKeys = [
     'password',
     'token',
@@ -96,11 +98,11 @@ function redactSensitive(obj: any): any {
     const isSensitive = sensitiveKeys.some((s) => keyLower.includes(s));
 
     if (isSensitive) {
-      (redacted as any)[key] = '[REDACTED]';
+      (redacted as {[key: string]: Redactable})[key] = '[REDACTED]';
     } else if (typeof value === 'object' && value !== null) {
-      (redacted as any)[key] = redactSensitive(value);
+      (redacted as {[key: string]: Redactable})[key] = redactSensitive(value);
     } else {
-      (redacted as any)[key] = value;
+      (redacted as {[key: string]: Redactable})[key] = value;
     }
   }
 

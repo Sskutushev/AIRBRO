@@ -38,12 +38,18 @@ const ModulePopup: React.FC<ModulePopupProps> = ({
     useCasesKeys: [],
   };
 
+  // Define types for benefit data
+  interface BenefitItem {
+    titleKey: string;
+    descriptionKey: string;
+  }
+
   const renderContent = () => {
     switch (activeTab) {
       case 'keyBenefits':
         return (
           <div className="space-y-3">
-            {data.keyBenefits.map((benefit: any, index: number) => (
+            {(data.keyBenefits as BenefitItem[]).map((benefit, index: number) => (
               <div key={index} className="p-3 bg-bg-tertiary/50 rounded-lg">
                 <h4 className="font-semibold text-text-primary mb-1 text-sm sm:text-base">
                   {t(benefit.titleKey)}
