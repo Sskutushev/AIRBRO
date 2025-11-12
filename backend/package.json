@@ -8,6 +8,7 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "audit": "node scripts/audit-check.js",
+    "audit-safe": "node scripts/safe-audit.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",

@@ -1,0 +1,9 @@
+# railway.toml
+[build]
+builder = "nixpacks"
+nodeVersion = "20.18.0"
+
+[deploy]
+numReplicas = 1
+plan = "free"
+autoDeploy = true
