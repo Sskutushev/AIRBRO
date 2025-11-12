@@ -33,11 +33,23 @@ app.use(
     origin: [
       process.env.FRONTEND_URL || 'http://localhost:5173',
       'https://airbro-mrqs.vercel.app',
+      'https://airbro.vercel.app',
       'http://localhost:5173',
+      'http://localhost:5174',
+      'http://localhost:4173',
     ],
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'X-Requested-With',
+      'Accept',
+      'Origin',
+      'Access-Control-Request-Method',
+      'Access-Control-Request-Headers',
+    ],
+    exposedHeaders: ['Set-Cookie'],
   })
 );
 
