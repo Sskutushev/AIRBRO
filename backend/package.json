@@ -7,6 +7,7 @@
     "dev": "tsx --watch --require dotenv/config src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
+    "audit": "node scripts/audit-check.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
