@@ -1,415 +1,221 @@
-
-zoological-heart - AIRBRO - Deployment failed-npm run build
-39s
-npm warn config production Use `--omit=dev` instead.
-> airbro-business-landing@1.0.0 build
-> npm run optimize:images && tsc -b && vite build
-npm warn config production Use `--omit=dev` instead.
-> airbro-business-landing@1.0.0 optimize:images
-> node scripts/optimize-images.js
-Starting image optimization...
-Image optimization complete!
-Processed 23 images.
-Total original size: 6.99 MB
-Total optimized size: 4.58 MB
-Total size saved: 2.41 MB
-src/components/forms/FormInput.tsx(51,15): error TS2769: No overload matches this call.
-
-  The last overload gave the following error.
-    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
-src/components/forms/FormInput.tsx(77,17): error TS2769: No overload matches this call.
-
-  The last overload gave the following error.
-    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
-src/components/forms/FormTextarea.tsx(40,8): error TS2322: Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>'.
-
-  Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'TextareaHTMLAttributes<HTMLTextAreaElement>'.
-    Types of property 'onChange' are incompatible.
-      Type 'ChangeEventHandler<HTMLInputElement> | undefined' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement> | undefined'.
-        Type 'ChangeEventHandler<HTMLInputElement>' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement>'.
-          Type 'HTMLInputElement' is missing the following properties from type 'HTMLTextAreaElement': cols, rows, textLength, wrap
-src/lib/toast.ts(109,25): error TS2345: Argument of type 'ReactNode' is not assignable to parameter of type 'Message'.
-
-  Type 'undefined' is not assignable to type 'Message'.
-ERROR: failed to build: failed to solve: process "npm run build" did not complete successfully: exit code: 2
-
-
-
-Vercel – airbro-mrqs - Deployment has failed-14:10:22.471 Running build in Washington, D.C., USA (East) – iad1
-14:10:22.472 Build machine configuration: 2 cores, 8 GB
-14:10:22.604 Cloning github.com/Sskutushev/AIRBRO (Branch: main, Commit: fc13a88)
-14:10:23.534 Cloning completed: 930.000ms
-14:10:23.734 Restored build cache from previous deployment (HUCR19zrd32SdbMcVJxMw3VYPF3z)
-14:10:24.390 Running "vercel build"
-14:10:24.771 Vercel CLI 48.9.0
-14:10:25.499 Installing dependencies...
-14:10:27.510 
-14:10:27.511 > airbro-business-landing@1.0.0 prepare
-14:10:27.512 > husky install
-14:10:27.512 
-14:10:27.634 husky - install command is DEPRECATED
-14:10:27.650 
-14:10:27.650 up to date in 2s
-14:10:27.651 
-14:10:27.651 220 packages are looking for funding
-14:10:27.651   run `npm fund` for details
-14:10:27.686 Running "npm run build"
-14:10:27.794 
-14:10:27.797 > airbro-business-landing@1.0.0 build
-14:10:27.797 > npm run optimize:images && tsc -b && vite build
-14:10:27.797 
-14:10:27.905 
-14:10:27.906 > airbro-business-landing@1.0.0 optimize:images
-14:10:27.906 > node scripts/optimize-images.js
-14:10:27.907 
-14:10:28.017 Starting image optimization...
-14:11:17.774 
-14:11:17.775 Image optimization complete!
-14:11:17.775 Processed 23 images.
-14:11:17.776 Total original size: 6.99 MB
-14:11:17.776 Total optimized size: 4.58 MB
-14:11:17.776 Total size saved: 2.41 MB
-14:11:24.321 src/components/forms/FormInput.tsx(51,15): error TS2769: No overload matches this call.
-14:11:24.324   The last overload gave the following error.
-14:11:24.324     Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
-14:11:24.324 src/components/forms/FormInput.tsx(77,17): error TS2769: No overload matches this call.
-14:11:24.325   The last overload gave the following error.
-14:11:24.325     Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
-14:11:24.325 src/components/forms/FormTextarea.tsx(40,8): error TS2322: Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>'.
-14:11:24.325   Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'TextareaHTMLAttributes<HTMLTextAreaElement>'.
-14:11:24.326     Types of property 'onChange' are incompatible.
-14:11:24.327       Type 'ChangeEventHandler<HTMLInputElement> | undefined' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement> | undefined'.
-14:11:24.327         Type 'ChangeEventHandler<HTMLInputElement>' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement>'.
-14:11:24.327           Type 'HTMLInputElement' is missing the following properties from type 'HTMLTextAreaElement': cols, rows, textLength, wrap
-14:11:24.328 src/lib/toast.ts(109,25): error TS2345: Argument of type 'ReactNode' is not assignable to parameter of type 'Message'.
-14:11:24.328   Type 'undefined' is not assignable to type 'Message'.
-14:11:25.230 Error: Command "npm run build" exited with 2
-
-
-
-CI / TypeScript Type Check (push) Failing after 30s- Run npx tsc --noEmit
-Error: src/middleware/sanitization.ts(16,5): error TS2322: Type 'Sanitizable' is not assignable to type 'ParsedQs'.
-  Type 'undefined' is not assignable to type 'ParsedQs'.
-Error: src/middleware/sanitization.ts(21,5): error TS2322: Type 'Sanitizable' is not assignable to type 'ParamsDictionary'.
-  Type 'undefined' is not assignable to type 'ParamsDictionary'.
-Error: src/server.ts(97,11): error TS2339: Property 'code' does not exist on type 'Error'.
-Error: src/utils/logger.ts(56,40): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'Redactable'.
-Error: src/utils/logger.ts(61,28): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'Redactable'.
-Error: src/utils/logger.ts(62,30): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'Redactable'.
-Error: src/utils/logger.ts(71,40): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'Redactable'.
-Error: src/utils/logger.ts(75,41): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'Redactable'.
-Error: Process completed with exit code 2.
-
-
-
-CI / Lint & Format Check (push) Failing after 35s- Run npm run lint
-
-> airbro-business-landing@1.0.0 lint
-> eslint . --ext .ts,.tsx
-
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/authController.test.ts
-  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
-The file was not found in any of the provided project(s): backend/src/controllers/authController.test.ts
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/cartController.test.ts
-  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
-The file was not found in any of the provided project(s): backend/src/controllers/cartController.test.ts
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/paymentController.test.ts
-  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
-The file was not found in any of the provided project(s): backend/src/controllers/paymentController.test.ts
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/productController.test.ts
-  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
-The file was not found in any of the provided project(s): backend/src/controllers/productController.test.ts
-
-/home/runner/work/AIRBRO/AIRBRO/backend/src/controllers/userController.test.ts
-  0:0  error  Parsing error: "parserOptions.project" has been provided for @typescript-eslint/parser.
-The file was not found in any of the provided project(s): backend/src/controllers/userController.test.ts
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/__tests__/ErrorBoundary.test.tsx
-Warning:   31:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   32:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/OptimizedImage.tsx
-  85:7  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
-
-Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
-* Update external systems with the latest state from React.
-* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
-
-Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/OptimizedImage.tsx:85:7
-  83 |     const img = imgRef.current;
-  84 |     if (img?.complete && isMounted) {
-> 85 |       setLoaded(true);
-     |       ^^^^^^^^^ Avoid calling setState() directly within an effect
-  86 |     }
-  87 |
-  88 |     return () => {  react-hooks/set-state-in-effect
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/PWAPrompt.tsx
-  26:7   warning  Error: Calling setState synchronously within an effect can trigger cascading renders
-
-Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
-* Update external systems with the latest state from React.
-* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
-
-Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/PWAPrompt.tsx:26:7
-  24 |     // Check if component is still mounted before setting state
-  25 |     if (isMounted) {
-> 26 |       setIsIOS(isIos());
-     |       ^^^^^^^^ Avoid calling setState() directly within an effect
-  27 |     }
-  28 |
-  29 |     // Handle beforeinstallprompt event for non-iOS devices  react-hooks/set-state-in-effect
-Warning:   55:52  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        @typescript-eslint/no-explicit-any
-Warning:   97:41  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/VotingModal.tsx
-   64:9  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
-
-Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
-* Update external systems with the latest state from React.
-* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
-
-Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/common/VotingModal.tsx:64:9
-  62 |       const userHasVoted = localStorage.getItem('featureVote');
-  63 |       if (userHasVoted) {
-> 64 |         setHasVoted(true);
-     |         ^^^^^^^^^^^ Avoid calling setState() directly within an effect
-  65 |         setSelectedOption(userHasVoted);
-  66 |       }
-  67 |  react-hooks/set-state-in-effect
-Warning:   116:6  warning  React Hook useEffect has missing dependencies: 'featureOptions' and 'voteResults.length'. Either include them or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 react-hooks/exhaustive-deps
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/sections/PricingSection.tsx
-Warning:   13:66  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/components/sections/ProductsSection.tsx
-Warning:   100:84  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   103:85  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/context/AuthContext.tsx
-   63:9   warning  Error: Calling setState synchronously within an effect can trigger cascading renders
-
-Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
-* Update external systems with the latest state from React.
-* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
-
-Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
-
-/home/runner/work/AIRBRO/AIRBRO/src/context/AuthContext.tsx:63:9
-  61 |     } else {
-  62 |       if (mountedRef.current) {
-> 63 |         setLoading(false);
-     |         ^^^^^^^^^^ Avoid calling setState() directly within an effect
-  64 |       }
-  65 |     }
-  66 |  react-hooks/set-state-in-effect
-Warning:   110:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    react-refresh/only-export-components
-
-/home/runner/work/AIRBRO/AIRBRO/src/context/ErrorContext.tsx
-Warning:   54:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
-Warning:   63:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
-
-/home/runner/work/AIRBRO/AIRBRO/src/context/SubscriptionContext.tsx
-Warning:   144:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
-
-/home/runner/work/AIRBRO/AIRBRO/src/context/ThemeContext.tsx
-Warning:   33:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
-
-/home/runner/work/AIRBRO/AIRBRO/src/hooks/useDebounce.ts
-  28:7  warning  Error: Calling setState synchronously within an effect can trigger cascading renders
-
-Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
-* Update external systems with the latest state from React.
-* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
-
-Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
-
-/home/runner/work/AIRBRO/AIRBRO/src/hooks/useDebounce.ts:28:7
-  26 |     // If delay is 0, update immediately
-  27 |     if (delay === 0) {
-> 28 |       setDebouncedValue((prevValue) => {
-     |       ^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
-  29 |         // Only update if value actually changed
-  30 |         if (prevValue !== value) {
-  31 |           return value;  react-hooks/set-state-in-effect
-
-/home/runner/work/AIRBRO/AIRBRO/src/lib/utils/__tests__/storage.test.ts
-Warning:   120:43  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   130:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   135:43  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   145:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/pages/AuthPage.tsx
-   66:25  warning  Compilation Skipped: Use of incompatible library
-
-This API returns functions which cannot be memoized without leading to stale UI. To prevent this, by default React Compiler will skip memoizing this component/hook. However, you may see issues if values from this API are passed to other components/hooks that are memoized.
-
-/home/runner/work/AIRBRO/AIRBRO/src/pages/AuthPage.tsx:66:25
-  64 |   } = registerForm;
-  65 |
-> 66 |   const passwordValue = registerWatch('password'); // Watch password field for strength calculation
-     |                         ^^^^^^^^^^^^^ React Hook Form's `useForm()` API returns a `watch()` function which cannot be memoized safely.
-  67 |
-  68 |   /**
-  69 |    * Handles the submission of the login form  react-hooks/incompatible-library
-Warning:    79:21  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
-Warning:    96:21  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
-Warning:   206:33  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
-Warning:   209:48  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/pages/__tests__/AccountPage.test.tsx
-Warning:   42:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   51:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/pages/__tests__/AuthPage.test.tsx
-Warning:   53:18  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   54:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   55:27  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   56:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/pages/__tests__/PaymentPage.test.tsx
-Warning:    64:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    65:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    69:44  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    70:39  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    71:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    80:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    86:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:    87:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   123:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   127:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   156:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   160:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   187:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   205:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   222:44  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-Warning:   226:39  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/pages/__tests__/SolutionsPage.test.tsx
-Warning:   82:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/test/setup.ts
-Warning:   77:75  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-/home/runner/work/AIRBRO/AIRBRO/src/test/utils.tsx
-Warning:   66:1  warning  This rule can't verify that `export *` only exports components  react-refresh/only-export-components
-
-✖ 57 problems (5 errors, 52 warnings)
-
-Error: Process completed with exit code 1.
-
-
-
-CI / E2E Tests (push) Failing after 2m- Run npm run build
-
-> airbro-business-landing@1.0.0 build
-> npm run optimize:images && tsc -b && vite build
-
-
-> airbro-business-landing@1.0.0 optimize:images
-> node scripts/optimize-images.js
-
-Starting image optimization...
-
-Image optimization complete!
-Processed 23 images.
-Total original size: 6.99 MB
-Total optimized size: 4.58 MB
-Total size saved: 2.41 MB
-Error: src/components/forms/FormInput.tsx(51,15): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
-Error: src/components/forms/FormInput.tsx(77,17): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
-Error: src/components/forms/FormTextarea.tsx(40,8): error TS2322: Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>'.
-  Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'TextareaHTMLAttributes<HTMLTextAreaElement>'.
-    Types of property 'onChange' are incompatible.
-      Type 'ChangeEventHandler<HTMLInputElement> | undefined' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement> | undefined'.
-        Type 'ChangeEventHandler<HTMLInputElement>' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement>'.
-          Type 'HTMLInputElement' is missing the following properties from type 'HTMLTextAreaElement': cols, rows, textLength, wrap
-Error: src/lib/toast.ts(109,25): error TS2345: Argument of type 'ReactNode' is not assignable to parameter of type 'Message'.
-  Type 'undefined' is not assignable to type 'Message'.
-Error: Process completed with exit code 2.
-
-
-Deploy Frontend / Deploy to Vercel (push) Failing after 1m- Run npm run build
-
-> airbro-business-landing@1.0.0 build
-> npm run optimize:images && tsc -b && vite build
-
-
-> airbro-business-landing@1.0.0 optimize:images
-> node scripts/optimize-images.js
-
-Starting image optimization...
-
-Image optimization complete!
-Processed 23 images.
-Total original size: 6.99 MB
-Total optimized size: 4.58 MB
-Total size saved: 2.41 MB
-Error: src/components/forms/FormInput.tsx(51,15): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
-Error: src/components/forms/FormInput.tsx(77,17): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
-Error: src/components/forms/FormTextarea.tsx(40,8): error TS2322: Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>'.
-  Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'TextareaHTMLAttributes<HTMLTextAreaElement>'.
-    Types of property 'onChange' are incompatible.
-      Type 'ChangeEventHandler<HTMLInputElement> | undefined' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement> | undefined'.
-        Type 'ChangeEventHandler<HTMLInputElement>' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement>'.
-          Type 'HTMLInputElement' is missing the following properties from type 'HTMLTextAreaElement': cols, rows, textLength, wrap
-Error: src/lib/toast.ts(109,25): error TS2345: Argument of type 'ReactNode' is not assignable to parameter of type 'Message'.
-  Type 'undefined' is not assignable to type 'Message'.
-Error: Process completed with exit code 2.
-
-
-Deploy Backend / Deploy to Railway (push) Failing after 11s- Run echo "Deploying to Railway..."
-Deploying to Railway...
-Multiple services found. Please specify a service via the `--service` flag.
-Error: Process completed with exit code 1.
-
-
-CI / Build Check (push) Failing after 1m- Run npm run build
-
-> airbro-business-landing@1.0.0 build
-> npm run optimize:images && tsc -b && vite build
-
-
-> airbro-business-landing@1.0.0 optimize:images
-> node scripts/optimize-images.js
-
-Starting image optimization...
-
-Image optimization complete!
-Processed 23 images.
-Total original size: 6.99 MB
-Total optimized size: 4.58 MB
-Total size saved: 2.41 MB
-Error: src/components/forms/FormInput.tsx(51,15): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
-Error: src/components/forms/FormInput.tsx(77,17): error TS2769: No overload matches this call.
-  The last overload gave the following error.
-    Object literal may only specify known properties, and 'className' does not exist in type 'Partial<unknown> & Attributes'.
-Error: src/components/forms/FormTextarea.tsx(40,8): error TS2322: Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>'.
-  Type '{ startIcon?: ReactNode; endIcon?: ReactNode; showPasswordToggle?: boolean | undefined; isPasswordShown?: boolean | undefined; onPasswordToggle?: (() => void) | undefined; ... 306 more ...; rows: number; }' is not assignable to type 'TextareaHTMLAttributes<HTMLTextAreaElement>'.
-    Types of property 'onChange' are incompatible.
-      Type 'ChangeEventHandler<HTMLInputElement> | undefined' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement> | undefined'.
-        Type 'ChangeEventHandler<HTMLInputElement>' is not assignable to type 'ChangeEventHandler<HTMLTextAreaElement>'.
-          Type 'HTMLInputElement' is missing the following properties from type 'HTMLTextAreaElement': cols, rows, textLength, wrap
-Error: src/lib/toast.ts(109,25): error TS2345: Argument of type 'ReactNode' is not assignable to parameter of type 'Message'.
-  Type 'undefined' is not assignable to type 'Message'.
-Error: Process completed with exit code 2.
+на railway логи консоли:
+Making request to: http://localhost:3000/auth/login with method: POST
+/#/auth:1 Access to fetch at 'http://localhost:3000/api/auth/login' from origin 'https://airbro-production.up.railway.app' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+localhost:3000/api/auth/login:1  Failed to load resource: net::ERR_FAILED
+index-ClWVNtAZ.js:190 Network error: TypeError: Failed to fetch
+    at HC.request (index-ClWVNtAZ.js:190:4751)
+    at HC.login (index-ClWVNtAZ.js:190:5048)
+    at Object.mutationFn (AuthPage-C5IoC4jF.js:20:25547)
+    at Object.fn (index-ClWVNtAZ.js:14:35975)
+    at _ (index-ClWVNtAZ.js:14:26853)
+    at Object.start (index-ClWVNtAZ.js:14:27303)
+    at Yw.execute (index-ClWVNtAZ.js:14:36606)
+    at async O (AuthPage-C5IoC4jF.js:20:54313)
+    at async AuthPage-C5IoC4jF.js:1:21507
+request @ index-ClWVNtAZ.js:190
+AuthPage-C5IoC4jF.js:20 Login error: APIError: Network error. Please check your internet connection.
+    at HC.request (index-ClWVNtAZ.js:190:4921)
+onError @ AuthPage-C5IoC4jF.js:20
+index-ClWVNtAZ.js:190 Making request to: http://localhost:3000/auth/login with method: POST
+/#/auth:1 Access to fetch at 'http://localhost:3000/api/auth/login' from origin 'https://airbro-production.up.railway.app' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+localhost:3000/api/auth/login:1  Failed to load resource: net::ERR_FAILED
+index-ClWVNtAZ.js:190 Network error: TypeError: Failed to fetch
+    at HC.request (index-ClWVNtAZ.js:190:4751)
+    at HC.login (index-ClWVNtAZ.js:190:5048)
+    at Object.mutationFn (AuthPage-C5IoC4jF.js:20:25547)
+    at Object.fn (index-ClWVNtAZ.js:14:35975)
+    at _ (index-ClWVNtAZ.js:14:26853)
+    at Object.start (index-ClWVNtAZ.js:14:27303)
+    at Yw.execute (index-ClWVNtAZ.js:14:36606)
+    at async O (AuthPage-C5IoC4jF.js:20:54313)
+    at async AuthPage-C5IoC4jF.js:1:21507
+request @ index-ClWVNtAZ.js:190
+AuthPage-C5IoC4jF.js:20 Login error: APIError: Network error. Please check your internet connection.
+    at HC.request (index-ClWVNtAZ.js:190:4921)
+
+при регистрации тамже:
+Making request to: http://localhost:3000/auth/register with method: POST
+/#/auth:1 Access to fetch at 'http://localhost:3000/api/auth/register' from origin 'https://airbro-production.up.railway.app' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+index-ClWVNtAZ.js:190  POST http://localhost:3000/api/auth/register net::ERR_FAILED
+request @ index-ClWVNtAZ.js:190
+register @ index-ClWVNtAZ.js:190
+mutationFn @ AuthPage-C5IoC4jF.js:20
+fn @ index-ClWVNtAZ.js:14
+_ @ index-ClWVNtAZ.js:14
+start @ index-ClWVNtAZ.js:14
+execute @ index-ClWVNtAZ.js:14
+await in execute
+mutate @ AuthPage-C5IoC4jF.js:1
+de @ AuthPage-C5IoC4jF.js:20
+(anonymous) @ AuthPage-C5IoC4jF.js:1
+await in (anonymous)
+iy @ index-ClWVNtAZ.js:9
+(anonymous) @ index-ClWVNtAZ.js:9
+um @ index-ClWVNtAZ.js:9
+Yc @ index-ClWVNtAZ.js:9
+of @ index-ClWVNtAZ.js:10
+y_ @ index-ClWVNtAZ.js:10
+index-ClWVNtAZ.js:190 Network error: TypeError: Failed to fetch
+    at HC.request (index-ClWVNtAZ.js:190:4751)
+    at HC.register (index-ClWVNtAZ.js:190:5190)
+    at Object.mutationFn (AuthPage-C5IoC4jF.js:20:25841)
+    at Object.fn (index-ClWVNtAZ.js:14:35975)
+    at _ (index-ClWVNtAZ.js:14:26853)
+    at Object.start (index-ClWVNtAZ.js:14:27303)
+    at Yw.execute (index-ClWVNtAZ.js:14:36606)
+    at async de (AuthPage-C5IoC4jF.js:20:54490)
+    at async AuthPage-C5IoC4jF.js:1:21507
+request @ index-ClWVNtAZ.js:190
+await in request
+register @ index-ClWVNtAZ.js:190
+mutationFn @ AuthPage-C5IoC4jF.js:20
+fn @ index-ClWVNtAZ.js:14
+_ @ index-ClWVNtAZ.js:14
+start @ index-ClWVNtAZ.js:14
+execute @ index-ClWVNtAZ.js:14
+await in execute
+mutate @ AuthPage-C5IoC4jF.js:1
+de @ AuthPage-C5IoC4jF.js:20
+(anonymous) @ AuthPage-C5IoC4jF.js:1
+await in (anonymous)
+iy @ index-ClWVNtAZ.js:9
+(anonymous) @ index-ClWVNtAZ.js:9
+um @ index-ClWVNtAZ.js:9
+Yc @ index-ClWVNtAZ.js:9
+of @ index-ClWVNtAZ.js:10
+y_ @ index-ClWVNtAZ.js:10
+AuthPage-C5IoC4jF.js:20 Registration error: APIError: Network error. Please check your internet connection.
+    at HC.request (index-ClWVNtAZ.js:190:4921)
+
+версель авторизация логи консоли:
+Making request to: https://airbro-production.up.railway.app/auth/login with method: POST
+/#/auth:1 Access to fetch at 'https://airbro-production.up.railway.app/api/auth/login' from origin 'https://airbro-mrqs.vercel.app' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+index-VTNK7J6_.js:26  POST https://airbro-production.up.railway.app/api/auth/login net::ERR_FAILED
+(anonymous) @ index-VTNK7J6_.js:26
+request @ index-VTNK7J6_.js:211
+login @ index-VTNK7J6_.js:211
+mutationFn @ AuthPage-DwnzTc5Z.js:20
+fn @ index-VTNK7J6_.js:35
+_ @ index-VTNK7J6_.js:35
+start @ index-VTNK7J6_.js:35
+execute @ index-VTNK7J6_.js:35
+await in execute
+mutate @ AuthPage-DwnzTc5Z.js:1
+O @ AuthPage-DwnzTc5Z.js:20
+(anonymous) @ AuthPage-DwnzTc5Z.js:1
+await in (anonymous)
+A0 @ index-VTNK7J6_.js:9
+(anonymous) @ index-VTNK7J6_.js:9
+Nv @ index-VTNK7J6_.js:9
+ip @ index-VTNK7J6_.js:9
+yp @ index-VTNK7J6_.js:10
+ck @ index-VTNK7J6_.js:10
+s @ index-VTNK7J6_.js:26
+index-VTNK7J6_.js:26 Network error: TypeError: Failed to fetch (airbro-production.up.railway.app)
+    at index-VTNK7J6_.js:26:6780
+    at $4.request (index-VTNK7J6_.js:211:4762)
+    at $4.login (index-VTNK7J6_.js:211:5059)
+    at Object.mutationFn (AuthPage-DwnzTc5Z.js:20:25547)
+    at Object.fn (index-VTNK7J6_.js:35:35957)
+    at _ (index-VTNK7J6_.js:35:26835)
+    at Object.start (index-VTNK7J6_.js:35:27285)
+    at K5.execute (index-VTNK7J6_.js:35:36588)
+    at async O (AuthPage-DwnzTc5Z.js:20:54313)
+    at async AuthPage-DwnzTc5Z.js:1:21507
+(anonymous) @ index-VTNK7J6_.js:26
+request @ index-VTNK7J6_.js:211
+await in request
+login @ index-VTNK7J6_.js:211
+mutationFn @ AuthPage-DwnzTc5Z.js:20
+fn @ index-VTNK7J6_.js:35
+_ @ index-VTNK7J6_.js:35
+start @ index-VTNK7J6_.js:35
+execute @ index-VTNK7J6_.js:35
+await in execute
+mutate @ AuthPage-DwnzTc5Z.js:1
+O @ AuthPage-DwnzTc5Z.js:20
+(anonymous) @ AuthPage-DwnzTc5Z.js:1
+await in (anonymous)
+A0 @ index-VTNK7J6_.js:9
+(anonymous) @ index-VTNK7J6_.js:9
+Nv @ index-VTNK7J6_.js:9
+ip @ index-VTNK7J6_.js:9
+yp @ index-VTNK7J6_.js:10
+ck @ index-VTNK7J6_.js:10
+s @ index-VTNK7J6_.js:26
+index-VTNK7J6_.js:26 Login error: APIError: Network error. Please check your internet connection.
+    at $4.request (index-VTNK7J6_.js:211:4932)
+
+регистрация логи консоли версель:
+Making request to: https://airbro-production.up.railway.app/auth/register with method: POST
+/#/auth:1 Access to fetch at 'https://airbro-production.up.railway.app/api/auth/register' from origin 'https://airbro-mrqs.vercel.app' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+index-VTNK7J6_.js:26  POST https://airbro-production.up.railway.app/api/auth/register net::ERR_FAILED
+(anonymous) @ index-VTNK7J6_.js:26
+request @ index-VTNK7J6_.js:211
+register @ index-VTNK7J6_.js:211
+mutationFn @ AuthPage-DwnzTc5Z.js:20
+fn @ index-VTNK7J6_.js:35
+_ @ index-VTNK7J6_.js:35
+start @ index-VTNK7J6_.js:35
+execute @ index-VTNK7J6_.js:35
+await in execute
+mutate @ AuthPage-DwnzTc5Z.js:1
+de @ AuthPage-DwnzTc5Z.js:20
+(anonymous) @ AuthPage-DwnzTc5Z.js:1
+await in (anonymous)
+A0 @ index-VTNK7J6_.js:9
+(anonymous) @ index-VTNK7J6_.js:9
+Nv @ index-VTNK7J6_.js:9
+ip @ index-VTNK7J6_.js:9
+yp @ index-VTNK7J6_.js:10
+ck @ index-VTNK7J6_.js:10
+s @ index-VTNK7J6_.js:26
+index-VTNK7J6_.js:26 Network error: TypeError: Failed to fetch (airbro-production.up.railway.app)
+    at index-VTNK7J6_.js:26:6780
+    at $4.request (index-VTNK7J6_.js:211:4762)
+    at $4.register (index-VTNK7J6_.js:211:5201)
+    at Object.mutationFn (AuthPage-DwnzTc5Z.js:20:25841)
+    at Object.fn (index-VTNK7J6_.js:35:35957)
+    at _ (index-VTNK7J6_.js:35:26835)
+    at Object.start (index-VTNK7J6_.js:35:27285)
+    at K5.execute (index-VTNK7J6_.js:35:36588)
+    at async de (AuthPage-DwnzTc5Z.js:20:54490)
+    at async AuthPage-DwnzTc5Z.js:1:21507
+(anonymous) @ index-VTNK7J6_.js:26
+request @ index-VTNK7J6_.js:211
+await in request
+register @ index-VTNK7J6_.js:211
+mutationFn @ AuthPage-DwnzTc5Z.js:20
+fn @ index-VTNK7J6_.js:35
+_ @ index-VTNK7J6_.js:35
+start @ index-VTNK7J6_.js:35
+execute @ index-VTNK7J6_.js:35
+await in execute
+mutate @ AuthPage-DwnzTc5Z.js:1
+de @ AuthPage-DwnzTc5Z.js:20
+(anonymous) @ AuthPage-DwnzTc5Z.js:1
+await in (anonymous)
+A0 @ index-VTNK7J6_.js:9
+(anonymous) @ index-VTNK7J6_.js:9
+Nv @ index-VTNK7J6_.js:9
+ip @ index-VTNK7J6_.js:9
+yp @ index-VTNK7J6_.js:10
+ck @ index-VTNK7J6_.js:10
+s @ index-VTNK7J6_.js:26
+index-VTNK7J6_.js:26 Registration error: APIError: Network error. Please check your internet connection.
+    at $4.request (index-VTNK7J6_.js:211:4932)
+(anonymous) @ index-VTNK7J6_.js:26
+onError @ AuthPage-DwnzTc5Z.js:20
+execute @ index-VTNK7J6_.js:35
+await in execute
+mutate @ AuthPage-DwnzTc5Z.js:1
+de @ AuthPage-DwnzTc5Z.js:20
+(anonymous) @ AuthPage-DwnzTc5Z.js:1
+await in (anonymous)
+A0 @ index-VTNK7J6_.js:9
+(anonymous) @ index-VTNK7J6_.js:9
+Nv @ index-VTNK7J6_.js:9
+ip @ index-VTNK7J6_.js:9
+yp @ index-VTNK7J6_.js:10
+ck @ index-VTNK7J6_.js:10
+s @ index-VTNK7J6_.js:26

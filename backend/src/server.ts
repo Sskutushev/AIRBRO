@@ -33,16 +33,31 @@ app.use(helmet({
 })); // Activate Helmet.js for security headers
 
 // CORS configuration - MUST be before routes
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  'https://airbro-mrqs.vercel.app',
+  'https://airbro.vercel.app',
+  'https://airbro-production.up.railway.app',
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'http://localhost:4173',
+].filter(Boolean); // Remove undefined values
+
 app.use(
   cors({
-    origin: [
-      process.env.FRONTEND_URL || 'http://localhost:5173',
-      'https://airbro-mrqs.vercel.app',
-      'https://airbro.vercel.app',
-      'http://localhost:5173',
-      'http://localhost:5174',
-      'http://localhost:4173',
-    ],
+    origin: (origin, callback) => {
+      // Allow requests with no origin (mobile apps, Postman, etc.)
+      if (!origin) {
+        return callback(null, true);
+      }
+      
+      if (allowedOrigins.some(allowedOrigin => origin.startsWith(allowedOrigin as string))) {
+        callback(null, true);
+      } else {
+        logger.warn('CORS blocked request from origin:', origin);
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
     allowedHeaders: [
@@ -56,6 +71,7 @@ app.use(
     ],
     exposedHeaders: ['Set-Cookie'],
     optionsSuccessStatus: 200,
+    preflightContinue: false,
   })
 );
 
